@@ -1,5 +1,5 @@
 FROM node:16.13.1
-LABEL org.opencontainers.image.source https://github.com/arquisoft/dede_en_01b
+LABEL org.opencontainers.image.source https://github.com/arquisoft/dede_en1b
 COPY . /app
 WORKDIR /app
 #Install the dependencies

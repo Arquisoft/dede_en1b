@@ -1,8 +1,8 @@
 # dede_en_01b
 
-[![CI for ASW2122](https://github.com/Arquisoft/dede_en_01b/actions/workflows/asw2122.yml/badge.svg)](https://github.com/Arquisoft/dede_en_01b/actions/workflows/asw2122.yml)
+[![CI for ASW2122](https://github.com/Arquisoft/dede_en1b/actions/workflows/asw2122.yml/badge.svg)](https://github.com/Arquisoft/dede_en1b/actions/workflows/asw2122.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_dede_en_01b&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Arquisoft_dede_en_01b)
-[![codecov](https://codecov.io/gh/Arquisoft/dede_en_01b/branch/master/graph/badge.svg?token=r1a8JeFXQN)](https://codecov.io/gh/Arquisoft/dede_en_01b)
+[![codecov](https://codecov.io/gh/Arquisoft/dede_en_01b/branch/master/graph/badge.svg?token=r1a8JeFXQN)](https://codecov.io/gh/Arquisoft/dede_en1b)
 
 <p float="left">
 <img src="https://blog.wildix.com/wp-content/uploads/2020/06/react-logo.jpg" height="100">
@@ -46,6 +46,6 @@ You should be able to access the application in [http://localhost:3000](http://l
 
 ## More information
 You can get more information about the respository in the other README files:
-- Documentation: https://github.com/arquisoft/dede_en_01b/tree/master/docs
-- Webapp: https://github.com/arquisoft/dede_en_01b/tree/master/webapp
-- Restapi: https://github.com/arquisoft/dede_en_01b/tree/master/restapi
+- Documentation: https://github.com/arquisoft/dede_en1b/tree/master/docs
+- Webapp: https://github.com/arquisoft/dede_en1b/tree/master/webapp
+- Restapi: https://github.com/arquisoft/dede_en1b/tree/master/restapi
