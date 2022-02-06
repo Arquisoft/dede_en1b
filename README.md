@@ -53,4 +53,5 @@ You can get more information about the respository in the other README files:
 ## Developers
 - Sebastián López Hernández, [@sebaslh01](https://github.com/sebaslh01)
 - Daniel Álvarez Díaz, [@danieladov](https://github.com/danieladov)
+- Luis Miguel Alonso Ferreiro [@lumialfe](https://github.com/lumialfe)
 
