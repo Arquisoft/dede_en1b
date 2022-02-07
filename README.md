@@ -55,4 +55,4 @@ You can get more information about the respository in the other README files:
 - Daniel Álvarez Díaz, [@danieladov](https://github.com/danieladov)
 - Luis Miguel Alonso Ferreiro [@lumialfe](https://github.com/lumialfe)
 - Jesús González Méndez, [@UO263799](https://github.com/UO263799)
-- Miguel Cuesta Martínez, [UO258220](https://github.com/UO258220)
+- Miguel Cuesta Martínez, [@UO258220](https://github.com/UO258220)
