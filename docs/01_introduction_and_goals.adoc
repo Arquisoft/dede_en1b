@@ -1,15 +1,28 @@
 [[section-introduction-and-goals]]
 == Introduction and Goals
 
-Hi...
-
 [role="arc42help"]
 ****
-Describes the relevant requirements and the driving forces that software architects and development team must consider. These include
+//Describes the relevant requirements and the driving forces that software architects and development team must consider. These include
 
-* underlying business goals, essential features and functional requirements for the system
-* quality goals for the architecture
-* relevant stakeholders and their expectations
+//* underlying business goals, essential features and functional requirements for the system
+//* quality goals for the architecture
+//* relevant stakeholders and their expectations
+
+The system, DeDe, is this year's project for the course Software Architecture of the University of Oviedo. The development team, that is, the team EN1B is composed of the following students:
+
+* Alonso Ferreiro, Luis Miguel.
+* Álvarez Díaz, Daniel.
+* Cuesta Martínez, Miguel.
+* González Méndez, Jesús.
+* López Hernández, Sebastián.
+
+And, of course, of the teacher:
+
+* Labra Gayo, Jose Emilio.
+
+DeDe is a online retail system that preserves the privacy of the customers following the SOLID principles. This means that our Decentralized Delivery app will not store user data per se, but will acess, when permission is granted, the information located inside the user's SOLID pod.
+
 ****
 
 === Requirements Overview
