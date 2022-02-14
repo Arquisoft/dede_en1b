@@ -21,7 +21,7 @@ And, of course, of the teacher:
 
 * Labra Gayo, Jose Emilio.
 
-DeDe is a online retail system that preserves the privacy of the customers following the SOLID principles. This means that our Decentralized Delivery app will not store user data per se, but will acess, when permission is granted, the information located inside the user's SOLID pod.
+DeDe is a online retail system that preserves the privacy of the customers following the SOLID principles. This means that our Decentralized Delivery app will not store user data per se, but will acess, when permission is granted, the information located inside the user's SOLID pod. This information will be used by our app to know the user's address for delivery purposes.
 
 ****
 
@@ -35,8 +35,9 @@ of requirements. Link to (hopefully existing) requirements documents
 (with version number and information where to find it).
 
 .Motivation
-From the point of view of the end users a system is created or modified to
-improve support of a business activity and/or improve the quality.
+//From the point of view of the end users a system is created or modified to
+//improve support of a business activity and/or improve the quality.
+The main point of creating DeDe is to develop a delivery application similar to those that already exist, but which does not store user data in the app's database. Instead, user hosted SOLID pods will be used.
 
 .Form
 Short textual description, probably in tabular use-case format.
