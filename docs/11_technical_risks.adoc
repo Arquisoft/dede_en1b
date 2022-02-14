@@ -12,6 +12,8 @@
 |Typescript
 |Even though we have some experience with javascript, we've never used Typescript hence there will be a period of adaptation
 
+|MongoDB
+|MongoDB has a non relational scheme so we'll have to do more work with data validation.
 
 |===
 
