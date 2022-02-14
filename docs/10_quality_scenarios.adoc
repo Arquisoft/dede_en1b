@@ -18,7 +18,7 @@ concrete and measurable.
 ****
 
 === Quality Tree
-
+image::QA-tree.png[]
 [role="arc42help"]
 ****
 .Content
@@ -61,3 +61,33 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 .Form
 Tabular or free form text.
 ****
+[cols="1,1,1"]
+|===
+|Quality attribute |QA scenario |Priority
+
+|Privacy
+|DeDe must not keep private information of its users, just the bare minimum, using mainly
+each user's POD for the necessary things.
+|High
+
+|Usability
+|Every type of user should be able to make use of DeDe. It should be easy to work with,
+intuitive,much accesible as possible. It should also be adaptable to any kind of platform.
+|High
+
+|Security
+|DeDe should take into account the triple A concept: Authentication, Authorization, Accounting.
+Special care with the contents shown to each user. Data must never be given to any third party.
+|High
+
+|Reliability
+|The system should be so perfectly build that it will never collapse if an error were to be produced.
+That is, every type of possible exception should we be properly handled. As it is a product for a retail
+company, we must ensure good behaviour and service to its final clients.
+|Medium-High
+
+|Efficiency
+|The system should work as supposed to. Any user should be able to make their own purchases with no problem.
+|Medium-High
+
+|===
