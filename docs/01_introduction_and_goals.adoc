@@ -1,77 +1,127 @@
 [[section-introduction-and-goals]]
 == Introduction and Goals
 
-Hi...
-
 [role="arc42help"]
-****
-Describes the relevant requirements and the driving forces that software architects and development team must consider. These include
+//****
+//Describes the relevant requirements and the driving forces that software architects and development team must consider. These include
 
-* underlying business goals, essential features and functional requirements for the system
-* quality goals for the architecture
-* relevant stakeholders and their expectations
-****
+//* underlying business goals, essential features and functional requirements for the system
+//* quality goals for the architecture
+//* relevant stakeholders and their expectations
+
+The system, DeDe, is this year's project for the course Software Architecture of the University of Oviedo. The development team, that is, the team EN1B is composed of the following students:
+
+* Alonso Ferreiro, Luis Miguel.
+* Álvarez Díaz, Daniel.
+* Cuesta Martínez, Miguel.
+* González Méndez, Jesús.
+* López Hernández, Sebastián.
+
+And, of course, of the teacher:
+
+* Labra Gayo, Jose Emilio.
+
+DeDe is a online retail system that preserves the privacy of the customers following the SOLID principles. This means that our Decentralized Delivery app will not store user data per se, but will acess, when permission is granted, the information located inside the user's SOLID pod. This information will be used by our app to know the user's address for delivery purposes.
+
+//****
 
 === Requirements Overview
 
 [role="arc42help"]
-****
-.Contents
-Short description of the functional requirements, driving forces, extract (or abstract)
-of requirements. Link to (hopefully existing) requirements documents
-(with version number and information where to find it).
+//****
 
-.Motivation
-From the point of view of the end users a system is created or modified to
-improve support of a business activity and/or improve the quality.
+The main point of creating DeDe is to develop a delivery application similar to those that already exist, but which does not store user data in the app's database. Instead, user hosted SOLID pods will be used.
 
-.Form
-Short textual description, probably in tabular use-case format.
-If requirements documents exist this overview should refer to these documents.
+Functional Requirements
 
-Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
-****
+* The system must emulate an online shopping system where end-users can select and order products to buy.
+
+* Once a user selects the products to buy: 
+** The system will access the users adress by requesting permision to access their POD.
+** The system will calculate the estimated delivery cost by calculating the distance from the reailer to the obtained user adress.
+
+* The system will show the user the the final price of the products to buy.
+
+* Once an order has been placed, the system will simulate that the product has been bought and that it can proceed with the delivery.
+
+* The system will allow the users to visualize the orders done.
+
+//.Contents
+//Short description of the functional requirements, driving forces, extract (or abstract) of requirements. Link to (hopefully existing) requirements documents (with version number and information where to find it).
+
+//.Motivation
+//From the point of view of the end users a system is created or modified to
+//improve support of a business activity and/or improve the quality.
+
+
+//.Form
+//Short textual description, probably in tabular use-case format.
+//If requirements documents exist this overview should refer to these documents.
+
+//Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
+//****
 
 === Quality Goals
 
 [role="arc42help"]
-****
-.Contents
-The top three (max five) quality goals for the architecture whose fulfillment is of highest importance to the major stakeholders. We really mean quality goals for the architecture. Don't confuse them with project goals. They are not necessarily identical.
+//****
+//.Contents
+// The top three (max five) quality goals for the architecture whose fulfillment is of highest importance to the major stakeholders. We really mean quality goals for the architecture. Don't confuse them with project goals. They are not necessarily identical.
 
-.Motivation
-You should know the quality goals of your most important stakeholders, since they will influence fundamental architectural decisions. Make sure to be very concrete about these qualities, avoid buzzwords.
-If you as an architect do not know how the quality of your work will be judged …
+[cols="1,3, 1"]  
+|=== 
+|Quality goal |Scenario |Priority
 
-.Form
-A table with quality goals and concrete scenarios, ordered by priorities
-****
+|Privacy 
+|Privacy is our top priority when it comes to creating DeDe. This is due to the fact that all delivery systems nowadays store user information in their own databases, making it vulnerable to breaches or attacks. Meanwhile, DeDe will only access user information by means on their own hosted SOLID PODS, making it impossible to acces personal information through our app.
+|1
+
+|Usability
+|As DeDe is meant to be an app for everyone to use, usability is our second top priority. We want for everyone to be able to use this app without few previous knowledge, so we will put a lot of effort in making good usable user interfaces.
+|2
+
+|Security
+|As in most applications nowadyas, security is a very important topic. That's the reason we made it out top 3 priority. Even though no personal user data will be stored in our servers, we will still need to keep track on other data, like orders made. We also will be managing prices and money. These are the reasons we are planning to make our app very secure.
+|3
+|===
+
+//.Motivation
+//You should know the quality goals of your most important stakeholders, since they will influence fundamental architectural decisions. Make sure to be very concrete about these qualities, avoid buzzwords.
+//If you as an architect do not know how the quality of your work will be judged …
+
+//.Form
+//A table with quality goals and concrete //scenarios, ordered by priorities
+//****
 
 === Stakeholders
 
 [role="arc42help"]
-****
-.Contents
-Explicit overview of stakeholders of the system, i.e. all person, roles or organizations that
+//****
+//.Contents
+//Explicit overview of stakeholders of the system, i.e. all person, roles or organizations that
 
-* should know the architecture
-* have to be convinced of the architecture
-* have to work with the architecture or with code
-* need the documentation of the architecture for their work
-* have to come up with decisions about the system or its development
+//* should know the architecture
+//* have to be convinced of the architecture
+//* have to work with the architecture or with code
+//* need the documentation of the architecture for their work
+//* have to come up with decisions about the system or its development
 
-.Motivation
-You should know all parties involved in development of the system or affected by the system.
-Otherwise, you may get nasty surprises later in the development process.
-These stakeholders determine the extent and the level of detail of your work and its results.
+//.Motivation
+//You should know all parties involved in development of the system or affected by the system.
+//Otherwise, you may get nasty surprises later in the development process.
+//These stakeholders determine the extent and the level of detail of your work and its results.
 
-.Form
-Table with role names, person names, and their expectations with respect to the architecture and its documentation.
-****
+//.Form
+//Table with role names, person names, and their expectations with respect to the architecture and its documentation.
+//****
 
 [options="header",cols="1,2,2"]
 |===
 |Role/Name|Contact|Expectations
-| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
-| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
+| Development Team | These are the students of group EN1B. Their information can be found at the bottom of the README file. | They will be the ones in charge of documenting, developing and testing the application, among others.
+| Clients | These are the teachers. In particular Jose Emilio Labra Gayo (labra@uniovi.es). | They will provide functional requirements as well as constraints.
+| Users | These group will be composed by the development team, the teachers, students, and other. | They will be the final users of the application. Due to our scope, no real user will interact with our app, so these user will server as test dummies for our system.
+| SOLID Project | Solid is a specification that lets people store their data securely in decentralized data stores called Pods. (info@solidproject.org)  | The application will use the PODS, developed by the SOLID Project.
+| Inrupt | Inrupt is a company that helped craft Solid-based solutions in verticals such as healthcare, finance, telecommunications, government and media. (info@inrupt.com) | Inrupt is one of the two companies that organize the SOLID challenge in which our app will be competing.
+| Empathy | Empathy is a company that specializes in Commerce Search and Discovery platforms. | Empathy is the other compnay that organizes the SOLID challenge in which our app will be competing.
 |===
