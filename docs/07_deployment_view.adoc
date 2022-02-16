@@ -4,83 +4,30 @@
 == Deployment View
 
 [role="arc42help"]
-****
-.Content
-The deployment view describes:
-
- 1. the technical infrastructure used to execute your system, with infrastructure elements like geographical locations, environments, computers, processors, channels and net topologies as well as other infrastructure elements and
-
-2. the mapping of (software) building blocks to that infrastructure elements.
-
-Often systems are executed in different environments, e.g. development environment, test environment, production environment. In such cases you should document all relevant environments.
-
-Especially document the deployment view when your software is executed as distributed system with more then one computer, processor, server or container or when you design and construct your own hardware processors and chips.
-
-From a software perspective it is sufficient to capture those elements of the infrastructure that are needed to show the deployment of your building blocks. Hardware architects can go beyond that and describe the infrastructure to any level of detail they need to capture.
-
-.Motivation
-Software does not run without hardware.
-This underlying infrastructure can and will influence your system and/or some
-cross-cutting concepts. Therefore, you need to know the infrastructure.
-
-.Form
-
-Maybe the highest level deployment diagram is already contained in section 3.2. as
-technical context with your own infrastructure as ONE black box. In this section you will
-zoom into this black box using additional deployment diagrams:
-
-* UML offers deployment diagrams to express that view. Use it, probably with nested diagrams,
-when your infrastructure is more complex.
-* When your (hardware) stakeholders prefer other kinds of diagrams rather than the deployment diagram, let them use any kind that is able to show nodes and channels of the infrastructure.
-****
 
 === Infrastructure Level 1
 
 [role="arc42help"]
-****
-Describe (usually in a combination of diagrams, tables, and text):
 
-*  the distribution of your system to multiple locations, environments, computers, processors, .. as well as the physical connections between them
-*  important justification or motivation for this deployment structure
-* Quality and/or performance features of the infrastructure
-*  the mapping of software artifacts to elements of the infrastructure
-
-For multiple environments or alternative deployments please copy that section of arc42 for all relevant environments.
-****
-
-_**<Overview Diagram>**_
+image:images/07_DeploymentView_V0.svg[Deployment diagram, align = "center"]
 
 Motivation::
 
-_<explanation in text form>_
+Our software would be nothing without a hardware to run it on and, of course, it will affect greatly the way our application behaves and performs under several different situations. Our goal is to have a correct understanding of the infraestructure over wich our system will be deployed.
 
 Quality and/or Performance Features::
 
-_<explanation in text form>_
+As we have stated before, privacy and security will be our main concerns. Having a good infraestructure and servers backing up our app, will be a crucial part for us to achieve this goals. 
+Performance is also a thing to look after, but DeDe being a Web App, this will depend mostly on the server in which it runs, as well ass the users own internet connection.
 
 Mapping of Building Blocks to Infrastructure::
-_<description of the mapping>_
 
-
-=== Infrastructure Level 2
-
-[role="arc42help"]
-****
-Here you can include the internal structure of (some) infrastructure elements from level 1.
-
-Please copy the structure from level 1 for each selected element.
-****
-
-==== _<Infrastructure Element 1>_
-
-_<diagram + explanation>_
-
-==== _<Infrastructure Element 2>_
-
-_<diagram + explanation>_
-
-...
-
-==== _<Infrastructure Element n>_
-
-_<diagram + explanation>_
+[cols="1, 3"]
+|===
+    |*Building Block* | *Mapping to Infraestructure*
+    |DeDe | This is the main application. It will run inside a docker container, which will be deployed in a server. The nature of this server is still to be determined.
+    |WebApp | This is the user end of te application. It will be rendered by a web browser, which will be executed over the users personal computer or smart device, like phones, tablets...
+    |Pod | These are the users Pods, where their address will be stored. They will be served by the SOLID project, and hosted in a server of the user's election.
+    |MongoDB | This is the DataBase, which will be stored on a server as well. Like the application per se, the nature of this server is still to be determined.
+    |CorreosAPI | This API will be used to calculate routes and costs of delivery. It will be hosted by a third party in a server of their choosing.
+|===
