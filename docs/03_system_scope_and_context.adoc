@@ -8,17 +8,17 @@ Here we define how the different components of DeDe interact with each other, as
 [plantuml]
 ....
 @startuml
-title Business Context
 Actor User
-node POD
-node MongoDB
-User -> (DeDe) : Requests information
+database POD
+database MongoDB
+node DeDe
+User -> DeDe : Requests information
 User -> POD : Creates and manages
-(DeDe) --> User : Returns view / data
-(DeDe) --> POD : Requests / Updates information
-(DeDe) --> MongoDB : Requests / Updates information
-POD --> (DeDe) : Provides info / Requests login
-MongoDB --> (DeDe) : Provides information
+DeDe --> User : Returns view / data
+DeDe --> POD : Requests / Updates information
+DeDe --> MongoDB : Requests / Updates information
+POD --> DeDe : Provides info / Requests login
+MongoDB --> DeDe : Provides information
 @enduml
 ....
 
