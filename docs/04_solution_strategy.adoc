@@ -1,24 +1,26 @@
 [[section-solution-strategy]]
 == Solution Strategy
 
+=== Technology decisions
 
-[role="arc42help"]
-****
-.Contents
-A short summary and explanation of the fundamental decisions and solution strategies, that shape the system's architecture. These include
+We have chosen to use the following technologies:
 
-* technology decisions
-* decisions about the top-level decomposition of the system, e.g. usage of an architectural pattern or design pattern
-* decisions on how to achieve key quality goals
-* relevant organizational decisions, e.g. selecting a development process or delegating certain tasks to third parties.
+* *Bootstrap:* A well-used library for web development, it will ease work on HTML and CSS by providing default stylization. It is also highly compatible with React.
+* *MongoDB:* One of the most potent non-relational database, which fits the decentralised data model of DeDe. We will use it to store the information that is general to the application so as to not fill the PODs with unnecessary and redundant information.
+* *JSON:* Exporting the information of the purchases for communication with API will be done with JSON, a flexible and powerful format of handling data that can also be converted easily to many others (such as n3 or turtle).
+* *Correos API:* We will communicate with it to inform the deliverers of the chosen products. It's the single most important external service in our application.
 
-.Motivation
-These decisions form the cornerstones for your architecture. They are the basis for many other detailed decisions or implementation rules.
 
-.Form
-Keep the explanation of these key decisions short.
+=== Decisions on top-level decomposition
 
-Motivate what you have decided and why you decided that way,
-based upon your problem statement, the quality goals and key constraints.
-Refer to details in the following sections.
-****
+Although no pattern has been firmly agreed on, we will start development with a structure similar to MVC, as the separated layers provide both easier especialization of each member and a better way of treating the data model so that POD and MongoDB info does not intersect.
+
+
+=== Decisions on quality goals
+
+The primary concern, privacy, is already solved assuming the usage of the PODs is the appropiate. The whole structure of the application is centered around preserving the integrity of the user's data, so it's not hard to affirm DeDe will have a high privacy value. Usability is also a major concern and so the application will be built as responsive and accesible as possible. The decentralization of data will also have positive consecuences on the security of DeDe, and server-side validation will be provided to check for the legitimity of the user's operations.
+
+
+=== Organizational decisions
+
+Apart from the periodic Tuesday reunion, a second one has been scheduled each Thursday at 18:00. Thanks to Microsoft Teams, it will be asy to assist and check the progress multiple times during the week. A WhatsApp group has also been created for a more swift communication on the kind of matters that must be resolved quickly or are too unimportant for the reunions.
