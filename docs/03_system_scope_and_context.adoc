@@ -12,8 +12,8 @@ title Business Context
 Actor User
 node POD
 node MongoDB
-User --> (DeDe) : Requests information
-User --> POD : Creates and manages
+User -> (DeDe) : Requests information
+User -> POD : Creates and manages
 (DeDe) --> User : Returns view / data
 (DeDe) --> POD : Requests / Updates information
 (DeDe) --> MongoDB : Requests / Updates information
