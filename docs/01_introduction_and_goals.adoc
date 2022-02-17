@@ -1,7 +1,7 @@
 [[section-introduction-and-goals]]
 == Introduction and Goals
 
-[role="arc42help"]
+//[role="arc42help"]
 //****
 //Describes the relevant requirements and the driving forces that software architects and development team must consider. These include
 
@@ -27,7 +27,7 @@ DeDe is a online retail system that preserves the privacy of the customers follo
 
 === Requirements Overview
 
-[role="arc42help"]
+//[role="arc42help"]
 //****
 
 The main point of creating DeDe is to develop a delivery application similar to those that already exist, but which does not store user data in the app's database. Instead, user hosted SOLID pods will be used.
@@ -63,7 +63,7 @@ Functional Requirements
 
 === Quality Goals
 
-[role="arc42help"]
+//[role="arc42help"]
 //****
 //.Contents
 // The top three (max five) quality goals for the architecture whose fulfillment is of highest importance to the major stakeholders. We really mean quality goals for the architecture. Don't confuse them with project goals. They are not necessarily identical.
@@ -95,7 +95,7 @@ Functional Requirements
 
 === Stakeholders
 
-[role="arc42help"]
+//[role="arc42help"]
 //****
 //.Contents
 //Explicit overview of stakeholders of the system, i.e. all person, roles or organizations that
