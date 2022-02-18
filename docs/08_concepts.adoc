@@ -17,10 +17,10 @@ Protocol HTTPS will be used to ensure the user's secure access, and validation c
 SOLID pods also provide a mean od security, as each user has it's own information protected using the authentication SOLID library.
 
 === Technical decisions
-(Still undecided)
+TBD
 
 === Internationalization
-the project will be a multi-language application since the beginning of the design, to save expensive future costs in implementing this functionality.
+The project will be a multi-language application since the beginning of the design, to save expensive future costs in implementing this functionality.
 
 === Notifications
 A notification system will be implemented, in which an user gets a notification that provides relevatn information to keep track of the product or if that product has arrived.

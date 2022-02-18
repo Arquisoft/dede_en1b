@@ -2,25 +2,14 @@
 == Design Decisions
 
 
-[role="arc42help"]
-****
-.Contents
-Important, expensive, large scale or risky architecture decisions including rationals.
-With "decisions" we mean selecting one alternative based on given criteria.
+=== Webapp
+We decided to create a web application supported by every browser. This web can be ported
+to a desktop ap easily with react native
 
-Please use your judgement to decide whether an architectural decision should be documented
-here in this central section or whether you better document it locally
-(e.g. within the white box template of one building block).
 
-Avoid redundancy. Refer to section 4, where you already captured the most important decisions of your architecture.
+=== Database
+For the datatabase we choose MongoDB,it is a non relational DB fast, easy to setup, powerful and scalable
 
-.Motivation
-Stakeholders of your system should be able to comprehend and retrace your decisions.
 
-.Form
-Various options:
-
-* List or table, ordered by importance and consequences or:
-* more detailed in form of separate sections per decision
-* ADR (architecture decision record) for every important decision
-****
+=== Bootstrap
+Bootstrap is a CSS framework, it will allow us to create a good frontend with less effort

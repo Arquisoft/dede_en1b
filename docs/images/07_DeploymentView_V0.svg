@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="574px" preserveAspectRatio="none" style="width:627px;height:574px;background:#FFFFFF;" version="1.1" viewBox="0 0 627 574" width="627px" zoomAndPan="magnify"><defs><filter height="300%" id="f1ljnk9e19wfg1" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[244c28f1a2b8944bb6317e8d24e64623]
+cluster UserPC--><polygon fill="#FFFFFF" filter="url(#f1ljnk9e19wfg1)" points="16,171,26,161,230,161,230,329,220,339,16,339,16,171" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="220" x2="230" y1="171" y2="161"/><line style="stroke:#000000;stroke-width:1.5;" x1="16" x2="220" y1="171" y2="171"/><line style="stroke:#000000;stroke-width:1.5;" x1="220" x2="220" y1="171" y2="339"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="52" x="93" y="188.5332">UserPC</text><!--MD5=[96c8505ddb462f447daae51599687cfe]
+cluster WebBrowser--><polygon fill="#FFFFFF" filter="url(#f1ljnk9e19wfg1)" points="40,220,50,210,206,210,206,305,196,315,40,315,40,220" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="196" x2="206" y1="220" y2="210"/><line style="stroke:#000000;stroke-width:1.5;" x1="40" x2="196" y1="220" y2="220"/><line style="stroke:#000000;stroke-width:1.5;" x1="196" x2="196" y1="220" y2="315"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="90" x="74" y="237.5332">WebBrowser</text><!--MD5=[3f0cd6d8531412bdb4ea35cf9a189c2b]
+cluster WebServer--><polygon fill="#FFFFFF" filter="url(#f1ljnk9e19wfg1)" points="254,171,264,161,497,161,497,329,487,339,254,339,254,171" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="487" x2="497" y1="171" y2="161"/><line style="stroke:#000000;stroke-width:1.5;" x1="254" x2="487" y1="171" y2="171"/><line style="stroke:#000000;stroke-width:1.5;" x1="487" x2="487" y1="171" y2="339"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="79" x="332" y="188.5332">WebServer</text><!--MD5=[7980d42c2c3755125a0d9e82f3c9a824]
+cluster DockerContainer--><polygon fill="#FFFFFF" filter="url(#f1ljnk9e19wfg1)" points="278,220,288,210,473,210,473,305,463,315,278,315,278,220" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="463" x2="473" y1="220" y2="210"/><line style="stroke:#000000;stroke-width:1.5;" x1="278" x2="463" y1="220" y2="220"/><line style="stroke:#000000;stroke-width:1.5;" x1="463" x2="463" y1="220" y2="315"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="119" x="312" y="237.5332">DockerContainer</text><!--MD5=[95874a2a984151d3313ea67e6016df1f]
+cluster SOLID--><polygon fill="#FFFFFF" filter="url(#f1ljnk9e19wfg1)" points="225,399,235,389,424,389,424,557,414,567,225,567,225,399" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="414" x2="424" y1="399" y2="389"/><line style="stroke:#000000;stroke-width:1.5;" x1="225" x2="414" y1="399" y2="399"/><line style="stroke:#000000;stroke-width:1.5;" x1="414" x2="414" y1="399" y2="567"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="42" x="299.5" y="416.5332">SOLID</text><!--MD5=[fb98674f192756e62ca094d4c10a6d35]
+cluster PodServer--><polygon fill="#FFFFFF" filter="url(#f1ljnk9e19wfg1)" points="249,448,259,438,400,438,400,533,390,543,249,543,249,448" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="390" x2="400" y1="448" y2="438"/><line style="stroke:#000000;stroke-width:1.5;" x1="249" x2="390" y1="448" y2="448"/><line style="stroke:#000000;stroke-width:1.5;" x1="390" x2="390" y1="448" y2="543"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="75" x="283" y="465.5332">PodServer</text><!--MD5=[086db9061bf79a5b96a0feeb8d765287]
+cluster DBserver--><polygon fill="#FFFFFF" filter="url(#f1ljnk9e19wfg1)" points="261,16,271,6,404,6,404,101,394,111,261,111,261,16" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="394" x2="404" y1="16" y2="6"/><line style="stroke:#000000;stroke-width:1.5;" x1="261" x2="394" y1="16" y2="16"/><line style="stroke:#000000;stroke-width:1.5;" x1="394" x2="394" y1="16" y2="111"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="67" x="295" y="33.5332">DBserver</text><!--MD5=[ed05b4b62fc63017e649bfedb1046e43]
+entity WebApp--><rect fill="#FEFECE" filter="url(#f1ljnk9e19wfg1)" height="47.6094" style="stroke:#A80036;stroke-width:1.5;" width="94" x="96" y="251"/><rect fill="#FEFECE" height="10" style="stroke:#A80036;stroke-width:1.5;" width="15" x="170" y="256"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="168" y="258"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="168" y="262"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="54" x="111" y="285.5332">WebApp</text><!--MD5=[eba128b6d936d910c2ba136450428cef]
+entity DeDe--><rect fill="#FEFECE" filter="url(#f1ljnk9e19wfg1)" height="47.6094" style="stroke:#A80036;stroke-width:1.5;" width="76" x="294" y="251"/><rect fill="#FEFECE" height="10" style="stroke:#A80036;stroke-width:1.5;" width="15" x="350" y="256"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="348" y="258"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="348" y="262"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="36" x="309" y="285.5332">DeDe</text><!--MD5=[825324b7f558f659a104b3dc0e220d0f]
+entity Pod--><rect fill="#FEFECE" filter="url(#f1ljnk9e19wfg1)" height="47.6094" style="stroke:#A80036;stroke-width:1.5;" width="65" x="291.5" y="479"/><rect fill="#FEFECE" height="10" style="stroke:#A80036;stroke-width:1.5;" width="15" x="336.5" y="484"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="334.5" y="486"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="334.5" y="490"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="25" x="306.5" y="513.5332">Pod</text><!--MD5=[ba72416187da2a396e219ea5b5d73a26]
+entity MongoDB--><rect fill="#FEFECE" filter="url(#f1ljnk9e19wfg1)" height="47.6094" style="stroke:#A80036;stroke-width:1.5;" width="102" x="281" y="47"/><rect fill="#FEFECE" height="10" style="stroke:#A80036;stroke-width:1.5;" width="15" x="363" y="52"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="361" y="54"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="361" y="58"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62" x="296" y="81.5332">MongoDB</text><!--MD5=[fee662a292a0353a69bd162820bae93b]
+entity User--><ellipse cx="165" cy="471" fill="#FEFECE" filter="url(#f1ljnk9e19wfg1)" rx="8" ry="8" style="stroke:#A80036;stroke-width:1.5;"/><path d="M165,479 L165,506 M152,487 L178,487 M165,506 L152,521 M165,506 L178,521 " fill="none" filter="url(#f1ljnk9e19wfg1)" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="29" x="150.5" y="541.0332">User</text><!--MD5=[c10756ebb9a51feaa5c5518676641529]
+entity CorreosAPI--><path d="M521.2561,259.6004 C524.7794,252.7488 530.1696,251.7717 535.6414,257.3443 C539.2697,250.2874 546.0634,251.0179 549.9132,257.1039 C552.7395,250.0869 558.9074,249.2021 564.2347,254.0969 C569.5826,246.4597 577.2978,248.8265 580.1832,256.639 C584.264,251.1141 589.9302,251.3738 593.0411,257.6919 C598.7372,251.7943 604.8028,253.5177 607.9681,260.6019 C618.019,261.8264 619.9933,267.124 615.2065,275.5388 C620.9154,283.7565 617.8358,291.7365 607.4948,292.772 C603.0788,299.8768 598.5193,298.8944 593.5469,293.3873 C590.5823,300.719 586.1532,302.1635 580.3051,296.2756 C577.3475,303.5383 570.0422,304.4217 565.0842,298.603 C560.2788,304.5609 553.1715,302.6804 550.4473,296.1615 C545.2501,302.4205 539.785,299.9021 537.0807,293.5246 C531.8625,298.5161 526.5573,297.9132 523.0585,291.4244 C513.9703,290.8168 512.0621,283.7238 516.1796,276.8733 C508.3734,268.631 512.3829,262.9406 521.2561,259.6004 " fill="#FEFECE" filter="url(#f1ljnk9e19wfg1)" style="stroke:#000000;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="72" x="528" y="280.5332">CorreosAPI</text><!--MD5=[3693b4829716e33e757dfc255703c3a1]
+reverse link MongoDB to DeDe--><path d="M332,100.39 C332,140.65 332,213.57 332,250.79 " fill="none" id="MongoDB-backto-DeDe" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="332,95.17,328,104.17,332,100.17,336,104.17,332,95.17" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="36" x="333" y="141.4951">CRUD</text><!--MD5=[4848a369e07cd03e5a4762f382f7daa1]
+link DeDe to Pod--><path d="M331.17,299.33 C329.69,341.14 326.6,428.66 325,473.77 " fill="none" id="DeDe-to-Pod" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="324.82,478.79,329.1513,469.9447,325.0056,473.7934,321.1568,469.6477,324.82,478.79" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="93" x="330" y="369.4951">getUserAddress</text><!--MD5=[5fe0b0bbf1717dcc4f5e7be1634ee1ad]
+reverse link WebApp to DeDe--><path d="M195.55,275 C226.78,275 265.68,275 293.95,275 " fill="none" id="WebApp-backto-DeDe" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="190.21,275,199.21,279,195.21,275,199.21,271,190.21,275" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="30" x="227" y="268.4951">serve</text><!--MD5=[2fab695e8b624b2026e5eeb0003fb865]
+link DeDe to CorreosAPI--><path d="M370.05,275 C407.48,275 465.06,275 507.77,275 " fill="none" id="DeDe-to-CorreosAPI" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="512.9,275,503.9,271,507.9,275,503.9,279,512.9,275" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="86" x="398.5" y="268.4951">calculateRoute</text><!--MD5=[3f8e288ed5da93788c9183d72cd988f3]
+link User to Pod--><path d="M179.6,503 C215.08,503 250.56,503 286.05,503 " fill="none" id="User-to-Pod" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="291.28,503,282.28,499,286.28,503,282.28,507,291.28,503" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[1e09925fc6b10b684cdf4ab3bac9bc98]
+reverse link WebApp to User--><path d="M145.77,304.47 C149.63,344.08 156.63,416.05 161.04,461.32 " fill="none" id="WebApp-backto-User" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="145.27,299.33,142.1615,308.6754,145.7548,304.3064,150.1238,307.8997,145.27,299.33" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[2225c55db232b77e06e0656c3cdfac93]
+@startuml 07_DeploymentView_V0
+node UserPC {
+    node WebBrowser {
+        component WebApp 
+    }
+}
+
+node WebServer{
+    node DockerContainer {
+        component DeDe
+    }
+}
+
+node SOLID {
+    node PodServer {
+        component Pod 
+    }
+}
+
+node DBserver {
+    component MongoDB
+}
+
+actor User
+
+cloud CorreosAPI
+
+DeDe -u-> MongoDB : CRUD
+DeDe -d-> Pod : getUserAddress
+DeDe -l-> WebApp : serve
+DeDe -r-> CorreosAPI : calculateRoute
+Pod <-l- User
+WebApp <-d- User
+
+@enduml
+
+PlantUML version 1.2022.0(Tue Jan 11 17:16:42 CET 2022)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: Cp1252
+Language: es
+Country: ES
+--></g></svg>
