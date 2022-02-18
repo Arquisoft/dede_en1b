@@ -1,57 +1,63 @@
 [[section-runtime-view]]
 == Runtime View
 
+=== User browses DeDe WebApp
+* When a user enters DeDe's WebApp (s)he can browse through it. Several items are displayed
+organized following some policy, such as category (type of item). Such item will display an image and price.
 
-[role="arc42help"]
-****
-.Contents
-The runtime view describes concrete behavior and interactions of the system’s building blocks in form of scenarios from the following areas:
-
-* important use cases or features: how do building blocks execute them?
-* interactions at critical external interfaces: how do building blocks cooperate with users and neighboring systems?
-* operation and administration: launch, start-up, stop
-* error and exception scenarios
-
-Remark: The main criterion for the choice of possible scenarios (sequences, workflows) is their *architectural relevance*. It is *not* important to describe a large number of scenarios. You should rather document a representative selection.
-
-.Motivation
-You should understand how (instances of) building blocks of your system perform their job and communicate at runtime.
-You will mainly capture scenarios in your documentation to communicate your architecture to stakeholders that are less willing or able to read and understand the static models (building block view, deployment view).
-
-.Form
-There are many notations for describing scenarios, e.g.
-
-* numbered list of steps (in natural language)
-* activity diagrams or flow charts
-* sequence diagrams
-* BPMN or EPCs (event process chains)
-* state machines
-* ...
-
-****
-
-=== <Runtime Scenario 1>
-
-
-* _<insert runtime diagram or textual description of the scenario>_
-* _<insert description of the notable aspects of the interactions between the
-building block instances depicted in this diagram.>_
-
-It is possible to use a sequence diagram:
-
-[plantuml,"Sequence diagram",png]
+[plantuml,"User browses DeDe",png]
 ----
-actor Alice
-actor Bob
-database Pod as "Bob's Pod"
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
-Alice  --> Pod: Store route
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+actor User
+participant WebApp
+participant DeDe_Server
+database DB as "DeDe database"
+User -> WebApp: Enters WebApp
+
+WebApp -> DeDe_Server: Index Request
+DeDe_Server -> DB: Asks for items in stock
+DB --> DeDe_Server: Returns items in stock
+DeDe_Server --> WebApp: Returns content displaying several items and principal page
+WebApp --> User: Shows webpage
 ----
-=== <Runtime Scenario 2>
 
-=== ...
+=== User makes an order
+* For the purpose of making an order, the user should select some item(s). The cumulative price of the items in the order will be shown. (Users should be notified that delivery costs are not included yet).
+When the user decides to proceed with the ordering, a registration is made.
+The system gets the delivery address from the user's own POD. 
+The price is calculated using an API and taking into account the distance
+from the distribution center to that address.
+If the user decides to finish with the ordering, the registration is made and 
+the order is done.
 
-=== <Runtime Scenario n>
+[plantuml,"Runtimeview 2",png]
+----
+actor User
+participant WebApp
+participant DeDe_Server
+database DB as "DeDe database"
+database POD as "User's POD"
+User -> WebApp: Selects item
+
+WebApp -> DeDe_Server: Ask for price and information related to item selected
+DeDe_Server -> DB: Manages users request
+DB --> DeDe_Server: Returns price of item and more info
+DeDe_Server --> WebApp: Returns content displaying user's request
+WebApp --> User: displays content requested
+User -> WebApp: approves ordering process
+WebApp --> DeDe_Server: notifies of user's decision
+DeDe_Server -> POD: asks delivery address
+POD --> DeDe_Server: returns delivery address
+DeDe_Server -> DeDe_Server:calculates price based on distance
+DeDe_Server --> WebApp: notifies of total price (delivery costs included)
+WebApp --> User: shows order's total price
+User -> WebApp: decides to continue (assuming costs)
+WebApp -> DeDe_Server: notifies registration of order
+DeDe_Server -> DB: registers order number and order's metainf
+DeDe_Server -> DB: updates stock of items
+DeDe_Server --> WebApp: notifies of ordering process completion
+WebApp --> User: notifies finalization of ordering
+----
+
+
+=== ... 
+ * In further versions more runtime views will be added... #TBD
