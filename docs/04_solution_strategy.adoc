@@ -6,14 +6,14 @@
 We have chosen to use the following technologies:
 
 * *Bootstrap:* A well-used library for web development, it will ease work on HTML and CSS by providing default stylization. It is also highly compatible with React.
-* *MongoDB:* One of the most potent non-relational database, which fits the decentralised data model of DeDe. We will use it to store the information that is general to the application so as to not fill the PODs with unnecessary and redundant information.
+* *MongoDB:* One of the most potent non-relational databases, which fits the decentralised data model of DeDe. We will use it to store the information that is general to the application so as to not fill the PODs with unnecessary and redundant information.
 * *JSON:* Exporting the information of the purchases for communication with API will be done with JSON, a flexible and powerful format of handling data that can also be converted easily to many others (such as n3 or turtle).
 * *Correos API:* We will communicate with it to inform the deliverers of the chosen products. It's the single most important external service in our application.
 
 
 === Decisions on top-level decomposition
 
-Although no pattern has been firmly agreed on, we will start development with a structure similar to MVC, as the separated layers provide both easier especialization of each member and a better way of treating the data model so that POD and MongoDB info does not intersect.
+Although no pattern has been firmly agreed on, we will start development with a structure similar to MVC, as the separated layers provide both easier especialization of each member and a better way of treating the data model so that POD and MongoDB information does not intersect.
 
 
 === Decisions on quality goals
@@ -23,4 +23,4 @@ The primary concern, privacy, is already solved assuming the usage of the PODs i
 
 === Organizational decisions
 
-Apart from the periodic Tuesday reunion, a second one has been scheduled each Thursday at 18:00. Thanks to Microsoft Teams, it will be asy to assist and check the progress multiple times during the week. A WhatsApp group has also been created for a more swift communication on the kind of matters that must be resolved quickly or are too unimportant for the reunions.
+Apart from the periodic Tuesday reunion, a second one has been scheduled each Thursday at 18:00. Thanks to Microsoft Teams, it will be easy to assist and check the progress multiple times during the week. A WhatsApp group has also been created for a more swift communication on the kind of matters that must be resolved quickly or are too unimportant for the reunions.
