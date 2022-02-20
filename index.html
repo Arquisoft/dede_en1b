@@ -500,7 +500,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#section-design-decisions">9. Design Decisions</a>
 <ul class="sectlevel2">
-<li><a href="#_webapp">9.1. Webapp</a></li>
+<li><a href="#_web_application">9.1. Web Application</a></li>
 <li><a href="#_database">9.2. Database</a></li>
 <li><a href="#_bootstrap">9.3. Bootstrap</a></li>
 </ul>
@@ -511,7 +511,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_quality_scenarios">10.2. Quality Scenarios</a></li>
 </ul>
 </li>
-<li><a href="#section-technical-risks">11. Risks and Technical Debts</a></li>
+<li><a href="#section-technical-risks">11. Risks and Technical Debts</a>
+<ul class="sectlevel2">
+<li><a href="#_risks">11.1. Risks</a></li>
+<li><a href="#_technical_debts">11.2. Technical Debts</a></li>
+</ul>
+</li>
 <li><a href="#section-glossary">12. Glossary</a></li>
 </ul>
 </div>
@@ -855,7 +860,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The database will accept requests from the application for any information stored (that is, the one we consider not to be personal or sensitive).</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The database will communicate with the application as a response to the access to database. It will return information such as the dataon the products offered, or other data that is supposed to be know in public.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The database will communicate with the application as a response to the access to database. It will return information such as the data on the products offered, or other data that is supposed to be know in public.</p></td>
 </tr>
 </tbody>
 </table>
@@ -919,7 +924,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <p><strong>Bootstrap:</strong> A well-used library for web development, it will ease work on HTML and CSS by providing default stylization. It is also highly compatible with React.</p>
 </li>
 <li>
-<p><strong>MongoDB:</strong> One of the most potent non-relational database, which fits the decentralised data model of DeDe. We will use it to store the information that is general to the application so as to not fill the PODs with unnecessary and redundant information.</p>
+<p><strong>MongoDB:</strong> One of the most potent non-relational databases, which fits the decentralised data model of DeDe. We will use it to store the information that is general to the application so as to not fill the PODs with unnecessary and redundant information.</p>
 </li>
 <li>
 <p><strong>JSON:</strong> Exporting the information of the purchases for communication with API will be done with JSON, a flexible and powerful format of handling data that can also be converted easily to many others (such as n3 or turtle).</p>
@@ -933,7 +938,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="sect2">
 <h3 id="_decisions_on_top_level_decomposition">4.2. Decisions on top-level decomposition</h3>
 <div class="paragraph">
-<p>Although no pattern has been firmly agreed on, we will start development with a structure similar to MVC, as the separated layers provide both easier especialization of each member and a better way of treating the data model so that POD and MongoDB info does not intersect.</p>
+<p>Although no pattern has been firmly agreed on, we will start development with a structure similar to MVC, as the separated layers provide both easier especialization of each member and a better way of treating the data model so that POD and MongoDB information does not intersect.</p>
 </div>
 </div>
 <div class="sect2">
@@ -945,7 +950,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="sect2">
 <h3 id="_organizational_decisions">4.4. Organizational decisions</h3>
 <div class="paragraph">
-<p>Apart from the periodic Tuesday reunion, a second one has been scheduled each Thursday at 18:00. Thanks to Microsoft Teams, it will be asy to assist and check the progress multiple times during the week. A WhatsApp group has also been created for a more swift communication on the kind of matters that must be resolved quickly or are too unimportant for the reunions.</p>
+<p>Apart from the periodic Tuesday reunion, a second one has been scheduled each Thursday at 18:00. Thanks to Microsoft Teams, it will be easy to assist and check the progress multiple times during the week. A WhatsApp group has also been created for a more swift communication on the kind of matters that must be resolved quickly or are too unimportant for the reunions.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -1144,22 +1149,22 @@ As well as the role assigned to the user.</p>
 <h2 id="section-design-decisions">9. Design Decisions</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_webapp">9.1. Webapp</h3>
+<h3 id="_web_application">9.1. Web Application</h3>
 <div class="paragraph">
-<p>We decided to create a web application supported by every browser. This web can be ported
-to a desktop ap easily with react native</p>
+<p>We decided to create a Web application supported by the latest versions of the main market browsers (Chrome, Firefox, Edge&#8230;&#8203;). This online version of DeDe could be ported
+to a portable device app easily with REACT Native, a JavaScript framework for writing real, natively rendering mobile applications for iOS and Android.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_database">9.2. Database</h3>
 <div class="paragraph">
-<p>For the datatabase we choose MongoDB,it is a non relational DB fast, easy to setup, powerful and scalable</p>
+<p>We chose MongoDB as our Database Management System. MongoDB is a document-oriented NoSQL database used for high volume data storage. Instead of using tables and rows as in the traditional relational databases, MongoDB makes use of collections and documents. Documents consist of key-value pairs which are the basic unit of data in MongoDB. Collections contain sets of documents and function which is the equivalent of relational database tables. MongoDB is a database which came into light around the mid-2000s.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_bootstrap">9.3. Bootstrap</h3>
 <div class="paragraph">
-<p>Bootstrap is a CSS framework, it will allow us to create a good frontend with less effort</p>
+<p>Bootstrap is a free and open-source CSS framework directed at responsive, mobile-first front-end web development. It contains CSS and (optionally) JavaScript-based design templates for typography, forms, buttons, navigation, and other interface components. It will allow us to create a good frontend with less effort.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -1169,7 +1174,7 @@ to a desktop ap easily with react native</p>
 <h2 id="section-quality-scenarios">10. Quality Requirements</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The most important ones have already been described in section 1.2. (quality goals). Nevertheless, we will see them again in companion with each corresponding quality scenario and in the tree.</p>
+<p>The most important Quality Requirements have already been described in section 1.2. (Quality Goals). Nevertheless, we will see them again next to each corresponding quality scenario and mapped in the Quality Tree.</p>
 </div>
 <div class="sect2">
 <h3 id="_quality_tree">10.1. Quality Tree</h3>
@@ -1198,13 +1203,13 @@ to a desktop ap easily with react native</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Privacy</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DeDe must not keep private information of its users, just the bare minimum, using mainly
-each user&#8217;s POD for the necessary things.</p></td>
+each user&#8217;s SOLID POD for the necessary things.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Every type of user should be able to make use of DeDe. It should be easy to work with,
-intuitive,much accesible as possible. It should also be adaptable to any kind of platform.</p></td>
+intuitive, and as accesible as possible. DeDe should also be adaptable to the main platforms used now a days (PC and portable devices).</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
 </tr>
 <tr>
@@ -1215,14 +1220,14 @@ Special care with the contents shown to each user. Data must never be given to a
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Reliability</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The system should be so perfectly built that it will never collapse if an error were to be produced.
-That is, every type of possible exception should we be properly handled. As it is a product for a retail
+<td class="tableblock halign-left valign-top"><p class="tableblock">The system should be robust enough so that the most common errors won&#8217;t make it collapse for extended periods of time.
+That is, every type of possible exception should be properly handled. As it is a product for a retail
 company, we must ensure good behaviour and service to its final clients.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Medium-High</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Efficiency</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The system should work as supposed to. Any user should be able to make their own purchases with no problem.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The system should work as supposed to with response times under 0.5 - 1 seconds on most of its operations. Any user should be able to make their own purchases with no major problems and without having noticeable delays on response times.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Medium-High</p></td>
 </tr>
 </tbody>
@@ -1234,32 +1239,8 @@ company, we must ensure good behaviour and service to its final clients.</p></td
 <div class="sect1">
 <h2 id="section-technical-risks">11. Risks and Technical Debts</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Technical debts</th>
-<th class="tableblock halign-left valign-top">Explanation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lack of knowledge of react</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">It will be the first team that every member of the team use React so some time must be spent learning it, slowing down the development</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Typescript</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Even though we have some experience with javascript, we&#8217;ve never used Typescript hence there will be a period of adaptation</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB has a non relational scheme so we&#8217;ll have to do more work with data validation.</p></td>
-</tr>
-</tbody>
-</table>
+<div class="sect2">
+<h3 id="_risks">11.1. Risks</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -1274,15 +1255,45 @@ company, we must ensure good behaviour and service to its final clients.</p></td
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Time</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">We must comply with the deadlines imposed by the course</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The development team, that is, us, must comply with the deadlines imposed by the course.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Money</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">As we are students, we can&#8217;t use software that requires a paid license</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Software requiring a subscription as well as servers or DBMSs are no go to the developers.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_technical_debts">11.2. Technical Debts</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Technical debt</th>
+<th class="tableblock halign-left valign-top">Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lack of knowledge of REACT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It will be the first time any member of the team uses REACT framework, so some time must be spent learning it, slowing down the development.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Typescript</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Even though we have some experience with JavaScript, we have never used Typescript, hence there will be a period of adaptation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB has a non relational scheme, which means that data validation and integrity must be taken into account solely by the developpers.</p></td>
 </tr>
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 <div class="sect1">
