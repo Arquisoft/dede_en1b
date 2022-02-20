@@ -954,47 +954,6 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="sect1">
 <h2 id="section-building-block-view">5. Building Block View</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Content</div>
-<p>The building block view shows the static decomposition of the system into building blocks (modules, components, subsystems, classes,
-interfaces, packages, libraries, frameworks, layers, partitions, tiers, functions, macros, operations,
-datas structures, &#8230;&#8203;) as well as their dependencies (relationships, associations, &#8230;&#8203;)</p>
-</div>
-<div class="paragraph">
-<p>This view is mandatory for every architecture documentation.
-In analogy to a house this is the <em>floor plan</em>.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>Maintain an overview of your source code by making its structure understandable through
-abstraction.</p>
-</div>
-<div class="paragraph">
-<p>This allows you to communicate with your stakeholder on an abstract level without disclosing implementation details.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>The building block view is a hierarchical collection of black boxes and white boxes
-(see figure below) and their descriptions.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="./images/05_building_blocks-EN.png" alt="Hierarchy of building blocks"></span></p>
-</div>
-<div class="paragraph">
-<p><strong>Level 1</strong> is the white box description of the overall system together with black
-box descriptions of all contained building blocks.</p>
-</div>
-<div class="paragraph">
-<p><strong>Level 2</strong> zooms into some building blocks of level 1.
-Thus it contains the white box description of selected building blocks of level 1, together with black box descriptions of their internal building blocks.</p>
-</div>
-<div class="paragraph">
-<p><strong>Level 3</strong> zooms into selected building blocks of level 2, and so on.</p>
-</div>
-</div>
-</div>
 <div class="sect2">
 <h3 id="_level_1_overall_system">5.1. Level 1 - Overall System</h3>
 <div class="imageblock">
@@ -1105,7 +1064,7 @@ Performance is also a thing to look after, but DeDe being a Web App, this will d
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">WebApp</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This is the user end of te application. It will be rendered by a web browser, which will be executed over the users personal computer or smart device, like phones, tablets&#8230;&#8203;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is the user end of the application. It will be rendered by a web browser, which will be executed over the users personal computer or smart device, like phones, tablets&#8230;&#8203;</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pod</p></td>
@@ -1133,7 +1092,7 @@ Performance is also a thing to look after, but DeDe being a Web App, this will d
 <div class="ulist">
 <ul>
 <li>
-<p>User, will use the unique id of the users pod, which will provide us the different addresses that the user has available.
+<p>User, will use the unique id of the user&#8217;s pod, which will provide us the different addresses that the user has available.
 As well as the role assigned to the user.</p>
 </li>
 </ul>
@@ -1157,7 +1116,7 @@ As well as the role assigned to the user.</p>
 <p>Protocol HTTPS will be used to ensure the user&#8217;s secure access, and validation constraints will be present to avoid undesired access.</p>
 </div>
 <div class="paragraph">
-<p>SOLID pods also provide a mean of security, as each user is the only owner of his private information stored in a decentralised way.</p>
+<p>SOLID pods also provide a mean of security, as each user is the only owner of his/her private information stored in a decentralised way.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1329,38 +1288,6 @@ company, we must ensure good behaviour and service to its final clients.</p></td
 <div class="sect1">
 <h2 id="section-glossary">12. Glossary</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>The most important domain and technical terms that your stakeholders use when discussing the system.</p>
-</div>
-<div class="paragraph">
-<p>You can also see the glossary as source for translations if you work in multi-language teams.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>You should clearly define your terms, so that all stakeholders</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>have an identical understanding of these terms</p>
-</li>
-<li>
-<p>do not use synonyms and homonyms</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>A table with columns &lt;Term&gt; and &lt;Definition&gt;.</p>
-</div>
-<div class="paragraph">
-<p>Potentially more columns in case you need translations.</p>
-</div>
-</div>
-</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -1374,12 +1301,25 @@ company, we must ensure good behaviour and service to its final clients.</p></td
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;Term-1&gt;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;definition-1&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DeDe</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Decentralized Delivery, the name of our app.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;Term-2&gt;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;definition-2&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An integrated suite of cloud database and data services to accelerate and simplify how you build with data.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Quality attribute</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Architecture characteristic. Non-functional requirement.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Quality scenario</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Describes a stimulus of the system and a measurable response to the stimulus. <em>i.e: 20 concurrent users
+and response time of less than 1s.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOLID Pods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Solid is a specification that lets people store their data securely in decentralized data stores called Pods. Pods are like secure personal web servers for data. When data is stored in someone&#8217;s Pod, they control which people and applications can access it.</p></td>
 </tr>
 </tbody>
 </table>
