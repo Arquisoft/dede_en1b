@@ -1,7 +1,7 @@
 [[section-concepts]]
 == Cross-cutting Concepts
 === Domain model
-* User, will use the unique id of the users pod, which will provide us the different addresses that the user has available.
+* User, will use the unique id of the user's pod, which will provide us the different addresses that the user has available.
 As well as the role assigned to the user.
 
 We will store store the user in our non-relational database, provided by mongoDB.
@@ -9,12 +9,12 @@ We will store store the user in our non-relational database, provided by mongoDB
 === Design patterns 
 The MVC pattern is the one that will be used to start coding our  project, as it is one of the best ways for accessing the SOLID pods using REACT. 
 
-Routes for accessing every action will exist, and a model defining the database skeleton will be defined.
+Routes for accessing every action will exist, and a model defining the database schema will be defined.
 
 === Security
 Protocol HTTPS will be used to ensure the user's secure access, and validation constraints will be present to avoid undesired access.
 
-SOLID pods also provide a mean od security, as each user has it's own information protected using the authentication SOLID library.
+SOLID pods also provide a mean of security, as each user is the only owner of his/her private information stored in a decentralised way.
 
 === Technical decisions
 TBD
@@ -23,6 +23,6 @@ TBD
 The project will be a multi-language application since the beginning of the design, to save expensive future costs in implementing this functionality.
 
 === Notifications
-A notification system will be implemented, in which an user gets a notification that provides relevatn information to keep track of the product or if that product has arrived.
+A notification system will be implemented, in which a user gets a notification that provides relevant information to keep track of the product, such as whether that product has arrived or not.
 
 
