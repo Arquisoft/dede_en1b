@@ -1,21 +1,7 @@
 [[section-technical-risks]]
 == Risks and Technical Debts
 
-[%header, cols=2]
-|===
-|Technical debts
-|Explanation
-
-|Lack of knowledge of react
-|It will be the first team that every member of the team use React so some time must be spent learning it, slowing down the development
-
-|Typescript
-|Even though we have some experience with javascript, we've never used Typescript hence there will be a period of adaptation
-
-|MongoDB
-|MongoDB has a non relational scheme so we'll have to do more work with data validation.
-
-|===
+=== Risks
 
 [%header, cols=2]
 |===
@@ -23,9 +9,27 @@
 |Explanation
 
 |Time
-|We must comply with the deadlines imposed by the course
+|The development team, that is, us, must comply with the deadlines imposed by the course.
 
 |Money
-|As we are students, we can't use software that requires a paid license
+|Software requiring a subscription as well as servers or DBMSs are no go to the developers.
+
+|===
+
+=== Technical Debts
+
+[%header, cols=2]
+|===
+|Technical debt
+|Explanation
+
+|Lack of knowledge of REACT
+|It will be the first time any member of the team uses REACT framework, so some time must be spent learning it, slowing down the development.
+
+|Typescript
+|Even though we have some experience with JavaScript, we have never used Typescript, hence there will be a period of adaptation.
+
+|MongoDB
+|MongoDB has a non relational scheme, which means that data validation and integrity must be taken into account solely by the developpers.
 
 |===
