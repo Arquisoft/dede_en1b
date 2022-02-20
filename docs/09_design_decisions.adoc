@@ -2,7 +2,7 @@
 == Design Decisions
 
 
-=== Webapp
+=== Web Application
 We decided to create a Web application supported by the latest versions of the main market browsers (Chrome, Firefox, Edge...). This online version of DeDe could be ported
 to a portable device app easily with REACT Native, a JavaScript framework for writing real, natively rendering mobile applications for iOS and Android.
 
