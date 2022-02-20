@@ -6,5 +6,8 @@
 | Term         | Definition
 | DeDe     | Decentralized Delivery, the name of our app.
 | MongoDB | An integrated suite of cloud database and data services to accelerate and simplify how you build with data.
+| Quality attribute | Architecture characteristic. Non-functional requirement.
+| Quality scenario | Describes a stimulus of the system and a measurable response to the stimulus. _i.e: 20 concurrent users
+and response time of less than 1s._
 |SOLID Pods | Solid is a specification that lets people store their data securely in decentralized data stores called Pods. Pods are like secure personal web servers for data. When data is stored in someone's Pod, they control which people and applications can access it.
 |===
