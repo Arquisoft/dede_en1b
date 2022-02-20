@@ -9,7 +9,7 @@
 //* quality goals for the architecture
 //* relevant stakeholders and their expectations
 
-The system, DeDe, is this year's project for the course Software Architecture of the University of Oviedo. The development team, that is, the team EN1B is composed of the following students:
+The system, DeDe, is this year's project for the course Software Architecture of the University of Oviedo. The development team, that is, the team EN1B is composed by the following students:
 
 * Alonso Ferreiro, Luis Miguel.
 * Álvarez Díaz, Daniel.
@@ -17,11 +17,11 @@ The system, DeDe, is this year's project for the course Software Architecture of
 * González Méndez, Jesús.
 * López Hernández, Sebastián.
 
-And, of course, of the teacher:
+And, of course, by the teacher:
 
 * Labra Gayo, Jose Emilio.
 
-DeDe is a online retail system that preserves the privacy of the customers following the SOLID principles. This means that our Decentralized Delivery app will not store user data per se, but will acess, when permission is granted, the information located inside the user's SOLID pod. This information will be used by our app to know the user's address for delivery purposes.
+DeDe is an online retail system that preserves the privacy of the customers following the SOLID principles. This means that our Decentralized Delivery app will not store user data per se, but will acess, when permission is granted, the information located inside the user's SOLID pod. This information will be used by our app to know the user's address for delivery purposes.
 
 //****
 
@@ -81,7 +81,7 @@ Functional Requirements
 |2
 
 |Security
-|As in most applications nowadyas, security is a very important topic. That's the reason we made it out top 3 priority. Even though no personal user data will be stored in our servers, we will still need to keep track on other data, like orders made. We also will be managing prices and money. These are the reasons we are planning to make our app very secure.
+|As in most applications nowadyas, security is a very important topic. That's the reason we made it our top 3 priority. Even though no personal user data will be stored in our servers, we will still need to keep track of other data, like orders made. We also will be managing prices and money. These are the reasons we are planning to make our app very secure.
 |3
 |===
 
@@ -119,9 +119,9 @@ Functional Requirements
 |===
 |Role/Name|Contact|Expectations
 | Development Team | These are the students of group EN1B. Their information can be found at the bottom of the README file. | They will be the ones in charge of documenting, developing and testing the application, among others.
-| Clients | These are the teachers. In particular Jose Emilio Labra Gayo (labra@uniovi.es). | They will provide functional requirements as well as constraints.
-| Users | These group will be composed by the development team, the teachers, students, and other. | They will be the final users of the application. Due to our scope, no real user will interact with our app, so these user will server as test dummies for our system.
-| SOLID Project | Solid is a specification that lets people store their data securely in decentralized data stores called Pods. (info@solidproject.org)  | The application will use the PODS, developed by the SOLID Project.
+| Clients | These are the teachers. In particular, Jose Emilio Labra Gayo (labra@uniovi.es). | They will provide functional requirements as well as constraints.
+| Users | This group will be composed by the development team, the teachers, students, and other. | They will be the final users of the application. Due to our scope, no real user will interact with our app, so these users will server as test dummies for our system.
+| SOLID Project | Solid is a specification that lets people store their data securely in decentralized data storages called Pods. (info@solidproject.org)  | The application will use the PODS, developed by the SOLID Project.
 | Inrupt | Inrupt is a company that helped craft Solid-based solutions in verticals such as healthcare, finance, telecommunications, government and media. (info@inrupt.com) | Inrupt is one of the two companies that organize the SOLID challenge in which our app will be competing.
 | Empathy | Empathy is a company that specializes in Commerce Search and Discovery platforms. | Empathy is the other compnay that organizes the SOLID challenge in which our app will be competing.
 |===
