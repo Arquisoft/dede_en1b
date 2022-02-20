@@ -1,6 +1,6 @@
 [[section-quality-scenarios]]
 == Quality Requirements
-The most important ones have already been described in section 1.2. (quality goals). Nevertheless, we will see them again in companion with each corresponding quality scenario and in the tree.
+The most important Quality Requirements have already been described in section 1.2. (Quality Goals). Nevertheless, we will see them again next to each corresponding quality scenario and mapped in the Quality Tree.
 
 
 === Quality Tree
@@ -15,12 +15,12 @@ image::QA-tree.png[]
 
 |Privacy
 |DeDe must not keep private information of its users, just the bare minimum, using mainly 
-each user's POD for the necessary things.
+each user's SOLID POD for the necessary things.
 |High
 
 |Usability
 |Every type of user should be able to make use of DeDe. It should be easy to work with,
-intuitive,much accesible as possible. It should also be adaptable to any kind of platform.
+intuitive, and as accesible as possible. DeDe should also be adaptable to the main platforms used now a days (PC and portable devices).
 |High
 
 |Security
@@ -29,13 +29,13 @@ Special care with the contents shown to each user. Data must never be given to a
 |High
 
 |Reliability
-|The system should be so perfectly built that it will never collapse if an error were to be produced.
-That is, every type of possible exception should we be properly handled. As it is a product for a retail 
+|The system should be robust enough so that the most common errors won't make it collapse for extended periods of time.
+That is, every type of possible exception should be properly handled. As it is a product for a retail 
 company, we must ensure good behaviour and service to its final clients.
 |Medium-High
 
 |Efficiency
-|The system should work as supposed to. Any user should be able to make their own purchases with no problem.
+|The system should work as supposed to with response times under 0.5 - 1 seconds on most of its operations. Any user should be able to make their own purchases with no major problems and without having noticeable delays on response times.
 |Medium-High
 
 
