@@ -8,7 +8,43 @@
 === Infrastructure Level 1
 
 
-image:https://github.com/Arquisoft/dede_en1b/blob/master/docs/images/07_DeploymentView_V0.svg[Deployment diagram, align = "center"]
+....
+@startuml 07_DeploymentView_V0
+node UserPC {
+    node WebBrowser {
+        component WebApp 
+    }
+}
+
+node WebServer{
+    node DockerContainer {
+        component DeDe
+    }
+}
+
+node SOLID {
+    node PodServer {
+        component Pod 
+    }
+}
+
+node DBserver {
+    component MongoDB
+}
+
+actor User
+
+cloud CorreosAPI
+
+DeDe -u-> MongoDB : CRUD
+DeDe -d-> Pod : getUserAddress
+DeDe -l-> WebApp : serve
+DeDe -r-> CorreosAPI : calculateRoute
+Pod <-l- User
+WebApp <-d- User
+
+@enduml
+....
 
 Motivation::
 
