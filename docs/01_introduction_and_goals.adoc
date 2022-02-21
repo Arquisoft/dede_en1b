@@ -37,7 +37,7 @@ Functional Requirements
 * The system must emulate an online shopping system where end-users can select and order products to buy.
 
 * Once a user selects the products to buy: 
-** The system will access the users adress by requesting permision to access their POD.
+** The system will access the users address by requesting permision to access their POD.
 ** The system will calculate the estimated delivery cost by calculating the distance from the reailer to the obtained user adress.
 
 * The system will show the user the the final price of the products to buy.
