@@ -3,11 +3,10 @@
 
 == Deployment View
 
-[role="arc42help"]
+
 
 === Infrastructure Level 1
 
-[role="arc42help"]
 
 image:images/07_DeploymentView_V0.svg[Deployment diagram, align = "center"]
 
