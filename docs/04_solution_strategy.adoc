@@ -18,7 +18,7 @@ Although no pattern has been firmly agreed on, we will start development with a 
 
 === Decisions on quality goals
 
-The primary concern, privacy, is already solved assuming the usage of the PODs is the appropiate. The whole structure of the application is centered around preserving the integrity of the user's data, so it's not hard to affirm DeDe will have a high privacy value. Usability is also a major concern and so the application will be built as responsive and accesible as possible. The decentralization of data will also have positive consecuences on the security of DeDe, and server-side validation will be provided to check for the legitimity of the user's operations.
+The primary concern, privacy, is already solved assuming the usage of the PODs is the appropiate. The whole structure of the application is centered around preserving the integrity of the user's data, so it's not hard to affirm DeDe will have a high privacy value. Usability is also a major concern and so the application will be built as responsive and accesible as possible. The decentralization of data will also have positive consequences on the security of DeDe, and server-side validation will be provided to check for the legitimity of the user's operations.
 
 
 === Organizational decisions
