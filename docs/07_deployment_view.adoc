@@ -22,11 +22,7 @@ node WebServer{
     }
 }
 
-node SOLID {
-    node PodServer {
-        component Pod 
-    }
-}
+cloud SOLID_POD
 
 node DBserver {
     component MongoDB
