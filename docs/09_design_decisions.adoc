@@ -8,7 +8,12 @@ to a portable device app easily with REACT Native, a JavaScript framework for wr
 
 
 === Database
-We chose MongoDB as our Database Management System. MongoDB is a document-oriented NoSQL database used for high volume data storage. Instead of using tables and rows as in the traditional relational databases, MongoDB makes use of collections and documents. Documents consist of key-value pairs which are the basic unit of data in MongoDB. Collections contain sets of documents and function which is the equivalent of relational database tables. MongoDB is a database which came into light around the mid-2000s.
+We chose MongoDB as our Database Management System because its flexible schema allows us 
+to rapidly model the domain and change it with the evolution of the app without any problems.
+MongoDB stores data in form of JSON so the conversion and interaction between typescript and the database are flawless.
+Another point in favor is its performance and scalability although in a small application like ours is not strictly necessary.
+
+MongoDB is a document-oriented NoSQL database used for high volume data storage. Instead of using tables and rows as in the traditional relational databases, MongoDB makes use of collections and documents. Documents consist of key-value pairs which are the basic unit of data in MongoDB. Collections contain sets of documents and function which is the equivalent of relational database tables. MongoDB is a database which came into light around the mid-2000s.
 
 
 === Bootstrap
