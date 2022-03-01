@@ -38,13 +38,16 @@ node "DeDe" {
 	[View]
 	[Controller]
 	[Model]
+	collections Mongoose
 	[View] --> [Controller] : Get information
 	[Controller] --> [Model] : Access data model
+	[Model] --> Mongoose : Update data
+  Mongoose --> [Model] : Recover data
 }
 User --> [View] : Interact with interface
 [Model] --> POD : Update data
-[Model] --> MongoDB : Update data
+Mongoose --> MongoDB : Update data
 POD --> [Model] : Recover data
-MongoDB --> [Model] : Recover data
+MongoDB --> Mongoose : Recover data
 @enduml
 ....
