@@ -12,7 +12,7 @@ class ProductController {
          = new Product({name, description, price, image, category});
         product.save()
             .then(() => res.status(201).json({ message: 'Product saved' }))
-            .catch(error => res.status(400).json({ error }));
+            .catch((error:any) => res.status(400).json({ error }));
     }
 
     public async getProducts(req: Request, res: Response) {

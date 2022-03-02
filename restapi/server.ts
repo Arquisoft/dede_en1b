@@ -16,6 +16,15 @@ const options: cors.CorsOptions = {
   origin: ['http://localhost:3000']
 };
 
+var session = require('express-session')
+
+app.use(session({
+  secret: 'test test test',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}))
+
 const metricsMiddleware:RequestHandler = promBundle({includeMethod: true});
 app.use(metricsMiddleware);
 

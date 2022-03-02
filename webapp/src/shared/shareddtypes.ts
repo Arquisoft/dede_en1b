@@ -11,3 +11,8 @@ export type Product = {
     image:string;
     category:string;
 }
+
+export type ItemCart = {
+  product:Product
+  quantity: number
+}
