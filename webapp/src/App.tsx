@@ -5,6 +5,7 @@ import Container from '@mui/material/Container';
 import EmailForm from './components/EmailForm';
 import Welcome from './components/Welcome';
 import ProductList from './components/ProductList';
+import Header from './components/NavBar';
 import  {getProducts} from './api/api';
 import {Product, User} from './shared/shareddtypes';
 import './App.css';
@@ -23,6 +24,7 @@ function App(): JSX.Element {
 
   return (
     <>
+      <Header />
       <Container maxWidth="sm">
         <ProductList products={products}/>
         <Link href="https://github.com/arquisoft/dede_en_01b">Source code</Link>
