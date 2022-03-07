@@ -26,10 +26,11 @@ function App(): JSX.Element {
   return (
     <>
       <Header />
+
       <Container maxWidth="sm">
         <ProductList products={products}/>
-        <Link href="https://github.com/arquisoft/dede_en_01b">Source code</Link>
       </Container>
+      
       <Footer/>
     </>
   );
