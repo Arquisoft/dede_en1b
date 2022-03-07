@@ -51,7 +51,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         transition: theme.transitions.create('width'),
         width: '100%',
         [theme.breakpoints.up('md')]: {
-            width: '20ch',
+            width: '100ch',
         },
     },
 }));
@@ -157,30 +157,30 @@ export default function PrimarySearchAppBar() {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
-                <Toolbar>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ display: { xs: 'none', sm: 'block' } }}
-                    >
-                        <a href="/" ><img src="./logo.png" alt="DeDe logo."/></a>
-                    </Typography>
+                <Toolbar style={{backgroundColor: "#7c4dff"}}>
+   
+                    <a style={{ width: "20%", margin: "1%"}} href="/" ><img src="./logo.png" alt="DeDe logo."/></a>
+
                     <Search>
                         <SearchIconWrapper>
                             <SearchIcon />
                         </SearchIconWrapper>
-                        <StyledInputBase
+                        <StyledInputBase 
                             placeholder="Search Item..."
                             inputProps={{ 'aria-label': 'search' }}
                         />
                     </Search>
+
+                    
                     <Box sx={{ flexGrow: 1 }} />
-                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <IconButton size="large" aria-label="shopping cart" color="inherit">
+
+                    <Box style={{ margin: "1%"}} sx={{ display: { xs: 'none', md: 'flex' } }}>
+                        <IconButton size="large" aria-label="shopping cart" color="inherit" href="/cart">
                                 <ShoppingCart />
                         </IconButton>
+                    </Box>
 
+                    <Box style={{ margin: "1%"}} sx={{ display: { xs: 'none', md: 'flex' } }}>
                         <IconButton
                             size="large"
                             edge="end"
@@ -189,21 +189,9 @@ export default function PrimarySearchAppBar() {
                             aria-haspopup="true"
                             // onClick={handleProfileMenuOpen}
                             color="inherit"
+                            href="/signup"
                         >
                             <AccountCircle />
-                        </IconButton>
-
-                    </Box>
-                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="show more"
-                            aria-controls={mobileMenuId}
-                            aria-haspopup="true"
-                            // onClick={handleMobileMenuOpen}
-                            color="inherit"
-                        >
-                            <MoreIcon />
                         </IconButton>
                     </Box>
                 </Toolbar>
