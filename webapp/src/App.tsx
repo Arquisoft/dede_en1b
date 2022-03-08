@@ -36,7 +36,6 @@ function App(): JSX.Element {
           </Routes>
           </Router>
         </Container>
-
       <Footer/>
 
       

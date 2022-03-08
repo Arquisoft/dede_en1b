@@ -1,53 +1,35 @@
-import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import {ShoppingCart} from "@material-ui/icons";
+import { Badge, Button, Menu, MenuItem, TextField } from '@mui/material';
+import Container from '@mui/material/Container';
+import { useState } from 'react';
 
-const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, .25),
-    '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.5),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(3),
-        width: 'auto',
-    },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-    '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('md')]: {
-            width: '100ch',
-        },
-    },
-}));
+const SearchBar = () => (
+    <Container maxWidth="sm">
+        <form style={{width: "50vw"}} action="/" method="get">
+            <TextField  
+                variant="outlined"
+                type="text"
+                id="header-search"
+                placeholder="Search Items..."
+                name="s" 
+                style={{width: "40vw", padding: "1%"}}
+                sx={{ input: { color: 'white' } }}
+            />
+            
+            <Button type="submit" variant="contained" endIcon={<SearchIcon/>}
+            style = {{padding: "1%", marginLeft: "2%", marginTop: "1.5%", backgroundColor: "#F23005", borderRadius: "8px"}}
+            >
+                Search
+            </Button>
+        </form>
+    </Container>
+);
 
 export default function PrimarySearchAppBar() {
     return (
@@ -57,22 +39,15 @@ export default function PrimarySearchAppBar() {
    
                     <a style={{ width: "20%", margin: "1%"}} href="/" ><img src="./logo.png" alt="DeDe logo."/></a>
 
-                    <Search>
-                        <SearchIconWrapper>
-                            <SearchIcon />
-                        </SearchIconWrapper>
-                        <StyledInputBase 
-                            placeholder="Search Item..."
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
-                    </Search>
-
+                    <SearchBar/>
                     
                     <Box sx={{ flexGrow: 1 }} />
 
                     <Box style={{ margin: "1%"}} sx={{ display: { xs: 'none', md: 'flex' } }}>
                         <IconButton size="large" aria-label="shopping cart" color="inherit" href="/cart">
-                                <ShoppingCart />
+                            <Badge badgeContent={4} color="secondary">
+                                    <ShoppingCart />
+                            </Badge>
                         </IconButton>
                     </Box>
 
