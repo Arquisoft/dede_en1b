@@ -11,7 +11,7 @@ import  {getProducts} from './api/api';
 import {Product, User} from './shared/shareddtypes';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import AboutUs from "./about_us"
+import AboutUs from "./components/about_us"
 
 function App(): JSX.Element {
 
@@ -30,7 +30,7 @@ function App(): JSX.Element {
 
 
       <Header />
-        <Container maxWidth="sm">
+        <Container style={{alignContent: "center", marginTop: "5%", minHeight: "50vh"}} maxWidth="lg">
         <Router>
           <Routes>
               <Route path='/' element={<ProductList products={products}/>} />

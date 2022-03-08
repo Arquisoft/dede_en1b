@@ -14,8 +14,10 @@ function Footer() : JSX.Element {
                 style={{ width: "100%",
                     backgroundColor: "lavender",
                     marginTop: "5%",
-                    marginBottom: "5%",
-                    height: "200px"
+                    height: "22ch",
+                    position: "static",
+                    bottom: "0",
+                    left:"0"
                 }}
                 showLabels
             >
