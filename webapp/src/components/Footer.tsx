@@ -2,11 +2,8 @@ import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
 import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
 import CircleRoundedIcon from '@mui/icons-material/CircleRounded';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
-import { useState } from "react";
-import { Router } from "react-router-dom";
 
 function Footer() : JSX.Element {
-    const [selected, setSelected] = useState(0);
     
      return (
        <>

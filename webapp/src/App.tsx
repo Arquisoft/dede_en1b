@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
-import EmailForm from './components/EmailForm';
-import Welcome from './components/Welcome';
 import ProductList from './components/ProductList';
 import Header from './components/NavBar';
 import Footer from './components/Footer';
 import  {getProducts} from './api/api';
-import {Product, User} from './shared/shareddtypes';
+import {Product} from './shared/shareddtypes';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AboutUs from "./components/about_us"
