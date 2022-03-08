@@ -10,6 +10,8 @@ import Footer from './components/Footer';
 import  {getProducts} from './api/api';
 import {Product, User} from './shared/shareddtypes';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AboutUs from "./about_us"
 
 function App(): JSX.Element {
 
@@ -25,13 +27,23 @@ function App(): JSX.Element {
 
   return (
     <>
-      <Header />
 
-      <Container maxWidth="sm">
-        <ProductList products={products}/>
-      </Container>
-      
+
+      <Header />
+        <Container maxWidth="sm">
+        <Router>
+          <Routes>
+              <Route path='/' element={<ProductList products={products}/>} />
+              <Route path='/about_us' element={<AboutUs/>} />
+              <Route path='/cart' element={<ProductList products={products}/>} />
+              <Route path='/login' element={<ProductList products={products}/>} />
+          </Routes>
+          </Router>
+        </Container>
+
       <Footer/>
+
+      
     </>
   );
 }

@@ -5,9 +5,8 @@ function AboutUs(): JSX.Element {
   
     return (
       <>
-        <Header />
-        
-        <Footer/>
+          <h1>DedEx, Decentralized Delivery</h1>
       </>
     );
-  }
+}
+export default AboutUs;
