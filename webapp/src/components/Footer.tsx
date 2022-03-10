@@ -2,19 +2,21 @@ import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
 import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
 import CircleRoundedIcon from '@mui/icons-material/CircleRounded';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
+import { ForkRight } from "@mui/icons-material";
 
 function Footer() : JSX.Element {
     
      return (
        <>
             <BottomNavigation
-                style={{ width: "100%",
+                style={{ width: "100vw",
                     backgroundColor: "lavender",
                     marginTop: "5%",
-                    height: "22ch",
-                    position: "static",
-                    bottom: "0",
-                    left:"0"
+                    height: "20vh",
+                    position: "absolute",
+                    bottom: "0%",
+                    left:"0%",
+                    right: "0%"
                 }}
                 showLabels
             >

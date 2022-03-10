@@ -10,22 +10,23 @@ import Container from '@mui/material/Container';
 import { useState } from 'react';
 
 const SearchBar = () => (
-    <Container maxWidth="sm">
-        <form style={{width: "50vw"}} action="/" method="get">
+    <Container style={{ width: "60%", marginLeft: "0"}}>
+        <form action="/" method="get" style={{ width: "60%", marginLeft: "20%"}}>
             <TextField  
                 variant="outlined"
                 type="text"
                 id="header-search"
                 placeholder="Search Items..."
                 name="s" 
-                style={{width: "40vw", padding: "1%"}}
+                style={{width: "100%"}}
                 sx={{ input: { color: 'white' } }}
             />
             
-            <Button type="submit" variant="contained" endIcon={<SearchIcon/>}
-            style = {{padding: "1%", marginLeft: "2%", marginTop: "1.5%", backgroundColor: "#F23005", borderRadius: "8px"}}
+            <Button type="submit" variant="contained"
+            style = {{marginLeft: "1%", backgroundColor: "#F23005", borderRadius: "8px", width: "2%", top: "7%", height: "86%",
+            position: "absolute"}}
             >
-                Search
+                <SearchIcon/>    
             </Button>
         </form>
     </Container>
@@ -33,39 +34,35 @@ const SearchBar = () => (
 
 export default function PrimarySearchAppBar() {
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
-                <Toolbar style={{backgroundColor: "#7c4dff"}}>
-   
-                    <a style={{ width: "20%", margin: "1%"}} href="/" ><img src="./logo.png" alt="DeDe logo."/></a>
+            <AppBar position="static" style={{width: "100%"}}>
+                <Toolbar style={{backgroundColor: "#7c4dff", width: "100%"}}>
 
-                    <SearchBar/>
-                    
-                    <Box sx={{ flexGrow: 1 }} />
+                    <a style={{ width: "10%", marginRight: "5%"}} href="/" ><img style={{ width: "100%"}} src="./logo.png" alt="DeDe logo."/></a>
 
-                    <Box style={{ margin: "1%"}} sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <IconButton size="large" aria-label="shopping cart" color="inherit" href="/cart">
+                    <SearchBar />
+
+
+                        <IconButton 
+                            style={{marginRight: "1%"}}
+                            size="large" aria-label="shopping cart" color="inherit" href="/cart">
                             <Badge badgeContent={4} color="secondary">
                                     <ShoppingCart />
                             </Badge>
                         </IconButton>
-                    </Box>
 
-                    <Box style={{ margin: "1%"}} sx={{ display: { xs: 'none', md: 'flex' } }}>
                         <IconButton
                             size="large"
                             edge="end"
                             aria-label="account of current user"
-                            // aria-controls={menuId}
                             aria-haspopup="true"
                             color="inherit"
                             href="/login"
+                            style={{marginRight: "5%"}}
                         >
                             <AccountCircle />
                         </IconButton>
-                    </Box>
+
                 </Toolbar>
             </AppBar>
-        </Box>
     );
 }

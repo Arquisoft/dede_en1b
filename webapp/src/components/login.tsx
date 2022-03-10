@@ -9,11 +9,8 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import { Button } from '@mui/material';
 
 export default function Login() {
-  return (
-    <Box sx={{ '& > :not(style)': { m: 1 } }}
-    style = {{textAlign: "center"}}>
-        
-    <form style={{width: "50vw"}} action="/" method="get">
+  return (    
+    <form style={{width: "80%", margin: "auto", textAlign: "right", marginTop: "20%"}} action="/" method="get">
         <InputLabel htmlFor="login" style = {{textAlign: "left", marginLeft: "1%"}}>
           Enter your POD URL:
         </InputLabel>
@@ -22,9 +19,9 @@ export default function Login() {
             variant="outlined"
             type="text"
             id="login"
-            placeholder="https://pod.inrupt.com/username/profile/card#me"
+            placeholder="https://pod.inrupt.com/username /profile/card#me"
             name="login" 
-            style={{width: "58vw", padding: "1%"}}
+            style={{width: "100%", margin: "auto"}}
             sx={{ input: { color: '#7c4dff' } }}
             InputProps={{
                 startAdornment: (
@@ -34,9 +31,10 @@ export default function Login() {
                 ),
                 }}
         />
-            
-        <Button type="submit" variant="contained" style = {{color: "white", padding: "1%", marginLeft: "2%", marginTop: "1.5%", backgroundColor: "#F23005", borderRadius: "8px"}}>Connect</Button>
+
+        <Button href="/" variant="contained" style = {{width: "49.8%", color: "white", padding: "1%", marginTop: "1.5%", marginRight: ".4%", backgroundColor: "#F23005", borderRadius: "8px"}}>Cancel</Button>
+
+        <Button type="submit" variant="contained" style = {{width: "49.8%", color: "white", padding: "1%", marginTop: "1.5%", backgroundColor: "#7c4dff", borderRadius: "8px"}}>Connect</Button>
     </form>
-    </Box>
   );
 }
