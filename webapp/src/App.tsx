@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
-import EmailForm from './components/EmailForm';
-import Welcome from './components/Welcome';
-import UserList from './components/UserList';
-import  {getUsers} from './api/api';
-import {User} from './shared/shareddtypes';
+import ProductList from './components/ProductList';
+import Header from './components/NavBar';
+import Footer from './components/Footer';
+import  {getProducts} from './api/api';
+import {Product} from './shared/shareddtypes';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AboutUs from "./components/about_us"
+import Login from './components/login';
 
 function App(): JSX.Element {
 
-  const [users,setUsers] = useState<User[]>([]);
+  const [products,setProducts] = useState<Product[]>([]);
 
   const refreshUserList = async () => {
-    setUsers(await getUsers());
+    setProducts(await getProducts());
   }
 
   useEffect(()=>{
@@ -23,13 +24,22 @@ function App(): JSX.Element {
 
   return (
     <>
-      <Container maxWidth="sm">
-        <Welcome message="ASW students"/>
-        <Box component="div" sx={{ py: 2}}>This is a basic example of a React application using Typescript. You can add your email to the list filling the form below.</Box>
-        <EmailForm OnUserListChange={refreshUserList}/>        
-        <UserList users={users}/>
-        <Link href="https://github.com/arquisoft/dede_en_01b">Source code</Link>
-      </Container>
+
+
+      <Header />
+        <Container style={{alignContent: "center", marginTop: "5%", minHeight: "50vh"}} maxWidth="lg">
+        <Router>
+          <Routes>
+              <Route path='/' element={<ProductList products={products}/>} />
+              <Route path='/about_us' element={<AboutUs/>} />
+              <Route path='/cart' element={<ProductList products={products}/>} />
+              <Route path='/login' element={<Login/>} />
+          </Routes>
+          </Router>
+        </Container>
+      <Footer/>
+
+      
     </>
   );
 }
