@@ -15,6 +15,36 @@ function AboutUs(): JSX.Element {
             <li>Jesús González Méndez,     <a href="https://github.com/jesugmend">@jesugmend</a></li>
             <li>Miguel Cuesta Martínez,      <a href="https://github.com/UO258220">@UO258220</a></li>
           </ul>
+
+          <h2>Developers</h2>
+          <ul>
+            <li>Sebastián López Hernández, <a href="https://github.com/sebaslh01">@sebaslh01</a></li>
+            <li>Daniel Álvarez Díaz,     <a href="https://github.com/danieladov">@danieladov</a></li>
+            <li>Luis Miguel Alonso Ferreiro  <a href="https://github.com/lumialfe">@lumialfe</a></li>
+            <li>Jesús González Méndez,     <a href="https://github.com/jesugmend">@jesugmend</a></li>
+            <li>Miguel Cuesta Martínez,      <a href="https://github.com/UO258220">@UO258220</a></li>
+          </ul><h2>Developers</h2>
+          <ul>
+            <li>Sebastián López Hernández, <a href="https://github.com/sebaslh01">@sebaslh01</a></li>
+            <li>Daniel Álvarez Díaz,     <a href="https://github.com/danieladov">@danieladov</a></li>
+            <li>Luis Miguel Alonso Ferreiro  <a href="https://github.com/lumialfe">@lumialfe</a></li>
+            <li>Jesús González Méndez,     <a href="https://github.com/jesugmend">@jesugmend</a></li>
+            <li>Miguel Cuesta Martínez,      <a href="https://github.com/UO258220">@UO258220</a></li>
+          </ul><h2>Developers</h2>
+          <ul>
+            <li>Sebastián López Hernández, <a href="https://github.com/sebaslh01">@sebaslh01</a></li>
+            <li>Daniel Álvarez Díaz,     <a href="https://github.com/danieladov">@danieladov</a></li>
+            <li>Luis Miguel Alonso Ferreiro  <a href="https://github.com/lumialfe">@lumialfe</a></li>
+            <li>Jesús González Méndez,     <a href="https://github.com/jesugmend">@jesugmend</a></li>
+            <li>Miguel Cuesta Martínez,      <a href="https://github.com/UO258220">@UO258220</a></li>
+          </ul><h2>Developers</h2>
+          <ul>
+            <li>Sebastián López Hernández, <a href="https://github.com/sebaslh01">@sebaslh01</a></li>
+            <li>Daniel Álvarez Díaz,     <a href="https://github.com/danieladov">@danieladov</a></li>
+            <li>Luis Miguel Alonso Ferreiro  <a href="https://github.com/lumialfe">@lumialfe</a></li>
+            <li>Jesús González Méndez,     <a href="https://github.com/jesugmend">@jesugmend</a></li>
+            <li>Miguel Cuesta Martínez,      <a href="https://github.com/UO258220">@UO258220</a></li>
+          </ul>
       </>
     );
 }
