@@ -1,13 +1,11 @@
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import {ShoppingCart} from "@material-ui/icons";
-import { Badge, Button, Menu, MenuItem, TextField } from '@mui/material';
+import { Badge, Button, TextField } from '@mui/material';
 import Container from '@mui/material/Container';
-import { useState } from 'react';
 
 const SearchBar = () => (
     <Container style={{ width: "60%", marginLeft: "0"}}>
