@@ -1,24 +1,45 @@
-
+import React, { useState, useEffect } from 'react';
+import Container from '@mui/material/Container';
+import ProductList from './components/ProductList';
+import Header from './components/NavBar';
+import Footer from './components/Footer';
+import  {getProducts} from './api/api';
+import {Product} from './shared/shareddtypes';
 import './App.css';
-import { TextField } from '@mui/material';
-import { BrowserRouter as Router, Route,Routes } from 'react-router-dom';
-import Login  from "./components/Login";
-import MainProducts from "./components/MainProducts";
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AboutUs from "./components/about_us"
+import Login from './components/login';
 
 function App(): JSX.Element {
 
-  
+  const [products,setProducts] = useState<Product[]>([]);
+
+  const refreshUserList = async () => {
+    setProducts(await getProducts());
+  }
+
+  useEffect(()=>{
+    refreshUserList();
+  },[]);
 
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path='/' element={<MainProducts/>} />
-          <Route  path="/login" element={<Login/>} />
 
-        </Routes>
-    </Router>
+
+      <Header />
+        <Container style={{alignContent: "center", marginTop: "5%", minHeight: "50vh"}} maxWidth="lg">
+        <Router>
+          <Routes>
+              <Route path='/' element={<ProductList products={products}/>} />
+              <Route path='/about_us' element={<AboutUs/>} />
+              <Route path='/cart' element={<ProductList products={products}/>} />
+              <Route path='/login' element={<Login/>} />
+          </Routes>
+          </Router>
+        </Container>
+      <Footer/>
+
+      
     </>
   );
 }
