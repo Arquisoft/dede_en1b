@@ -32,8 +32,8 @@ const SearchBar = () => (
 
 export default function PrimarySearchAppBar() {
     return (
-            <AppBar position="static" style={{width: "100%"}}>
-                <Toolbar style={{backgroundColor: "#7c4dff", width: "100%"}}>
+            <AppBar position="static">
+                <Toolbar style={{backgroundColor: "#7c4dff"}}>
 
                     <a style={{ width: "10%", marginRight: "5%"}} href="/" ><img style={{ width: "100%"}} src="./logo.png" alt="DeDe logo."/></a>
 

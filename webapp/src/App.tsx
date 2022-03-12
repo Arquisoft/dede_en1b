@@ -9,6 +9,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AboutUs from "./components/about_us"
 import SOLIDLogin from "./components/SOLIDLogin";
+import UserProfile from "./components/UserProfile";
 
 function App(): JSX.Element {
 
@@ -34,6 +35,7 @@ function App(): JSX.Element {
               <Route path='/about_us' element={<AboutUs/>} />
               <Route path='/cart' element={<ProductList products={products}/>} />
               <Route path='/login' element={<SOLIDLogin/>} />
+              <Route path='/profile' element={<UserProfile/>} />
           </Routes>
           </Router>
         </Container>
