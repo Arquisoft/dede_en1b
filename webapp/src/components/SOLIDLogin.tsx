@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { LoginButton } from "@inrupt/solid-ui-react";
-import { Autocomplete, Button, Container, Grid, TextField } from "@mui/material";
+import { Autocomplete, Button, Container, Grid, TextField, Typography } from "@mui/material";
 import "../css/SOLIDLogin.css";
 
 const authOptions = {
-  clientName: "DedEx",
+  clientName: "DedEx: Decentralized Delivery",
 };
 
 export default function SOLIDLogin() {
@@ -14,6 +14,9 @@ export default function SOLIDLogin() {
 
   return (
     <Container id="mainLoginDiv">
+      <Typography id="pageTitle" variant="h3">
+        SOLID Login
+      </Typography>
       <Autocomplete
           disablePortal
           id="combo-box-providers"
