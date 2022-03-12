@@ -1,0 +1,28 @@
+#combo-box-providers {
+    width: 100% !important;
+    margin: auto;
+    color: #7c4dff;
+}
+
+#mainLoginDiv {
+    /* width: 60vw; */
+    padding-top: 8vw;
+}
+
+#cancelButton {
+    width: 100%;
+    color: white;
+    padding: 1%;
+    margin-top: 1.5%;
+    background-color: #F23005;
+    border-radius: 8px;
+}
+
+#loginButton {
+    width: 100%;
+    color: white;
+    padding: 1%;
+    margin-top: 1.5%;
+    background-color: #7c4dff;
+    border-radius: 8px;
+}

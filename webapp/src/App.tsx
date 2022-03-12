@@ -8,7 +8,7 @@ import {Product} from './shared/shareddtypes';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AboutUs from "./components/about_us"
-import Login from './components/login';
+import SOLIDLogin from "./components/SOLIDLogin";
 
 function App(): JSX.Element {
 
@@ -33,7 +33,7 @@ function App(): JSX.Element {
               <Route path='/' element={<ProductList products={products}/>} />
               <Route path='/about_us' element={<AboutUs/>} />
               <Route path='/cart' element={<ProductList products={products}/>} />
-              <Route path='/login' element={<Login/>} />
+              <Route path='/login' element={<SOLIDLogin/>} />
           </Routes>
           </Router>
         </Container>
