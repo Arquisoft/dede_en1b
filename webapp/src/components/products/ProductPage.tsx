@@ -28,10 +28,7 @@ const DivBtonStyle = styled('div')({
     width:'100%',
   
   });
-  function addProduct(product: Product): void {
-    console.log('addToCart', product);
-    addToCart({ product: product, quantity: 1 });
-  }
+
   
 
 function ProductPage() : JSX.Element {
@@ -45,20 +42,7 @@ function ProductPage() : JSX.Element {
     }, []);
    
  
-    const images = [
-        {
-          original: 'https://picsum.photos/id/1018/1000/600/',
-          thumbnail: 'https://picsum.photos/id/1018/250/150/',
-        },
-        {
-          original: 'https://picsum.photos/id/1015/1000/600/',
-          thumbnail: 'https://picsum.photos/id/1015/250/150/',
-        },
-        {
-          original: 'https://picsum.photos/id/1019/1000/600/',
-          thumbnail: 'https://picsum.photos/id/1019/250/150/',
-        },
-      ];
+  
   return (
     <Grid container
       direction="row"
@@ -95,8 +79,8 @@ function ProductPage() : JSX.Element {
 </Grid>
 <Grid  item xs={2} sm={5} md={6} >
         <DivBtonStyle>
-        <BuyBtton startIcon={<AddShoppingCartIcon />}>
-            Buy
+        <BuyBtton startIcon={<AddShoppingCartIcon />} >
+            Add to Cart
         </BuyBtton> 
         </DivBtonStyle>
 </Grid>
