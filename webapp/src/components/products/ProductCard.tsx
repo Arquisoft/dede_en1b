@@ -46,7 +46,7 @@ const ProductCard = ( prod: ProductCardProps): JSX.Element => {
 
   return (
    
-    <Card sx={{ maxWidth: 345 }} style={{height:"90%"}}>
+    <Card >
     <CardActionArea href={"/products/"+prod.product.id}>
         <CardMedia
             component="img"
@@ -68,7 +68,7 @@ const ProductCard = ( prod: ProductCardProps): JSX.Element => {
     <CardActions>
       <DivBtonStyle>
         <BuyBtton startIcon={<AddShoppingCartIcon />} onClick={()=> addProduct(prod.product)}>
-            Buy
+            Add to cart
         </BuyBtton> 
         </DivBtonStyle>
     </CardActions>
