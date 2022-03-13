@@ -51,11 +51,11 @@ export async function addToCart(itemCart:ItemCart) {
 }
 
 export async function deleteFromCart(itemCart:ItemCart) {
-  // No actual delete, just nulls (quantity = 0) the item in terms of display
   var cart = await getCart();
   const index = cart.findIndex((i:ItemCart)=>i.product.id===itemCart.product.id);
   if(index>=0){
-    cart[index].quantity = 0;
+    delete cart[index];
+    cart = cart.filter(Boolean);
     }
   else
     return false;
