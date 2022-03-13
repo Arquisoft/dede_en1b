@@ -27,7 +27,7 @@ const UserSchema = new Schema({
 });
 
 
-export interface User extends moongose.Document {
+export interface UserModel extends moongose.Document {
     email: string;
     name: string;
     lastName: string;
@@ -35,6 +35,6 @@ export interface User extends moongose.Document {
     PODUrl: string;
 }
 
-export default model<User>('User', UserSchema);
+export default model<UserModel>('User', UserSchema);
 
     
