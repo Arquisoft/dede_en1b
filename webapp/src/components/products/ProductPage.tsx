@@ -38,17 +38,11 @@ function ProductPage() : JSX.Element {
     const {id} = useParams();
     const [product, setProduct] = useState<Product>(); //default empty product
     const getProduct = async () => {
-
-        await setProduct(await getProductById(id));
-        console.log('holaaa: ->'+id);
-    
-        
-        
+        await setProduct(await getProductById(id));    
     };
     useEffect(()=>{
         getProduct();
-        console.log(product?.name+'not found?');
-    }, );
+    }, []);
    
  
     const images = [
