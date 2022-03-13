@@ -1,0 +1,11 @@
+#cardButton {
+    text-align: left;
+}
+
+#orderCard {
+    width: 100%;
+}
+
+#orderCard:hover {
+    color: #7c4dff;
+}

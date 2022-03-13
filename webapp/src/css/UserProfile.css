@@ -1,6 +1,18 @@
 #pageTitle {
-    text-align: center;
+    text-align: left;
     margin: auto;
     margin-bottom: 2%;
     color: #7c4dff;
+}
+
+#ordersTitle {
+    text-align: left;
+    margin: auto;
+    margin-bottom: 2%;
+    color: #F23005;
+}
+
+#mainDivider {
+    margin-top: 5%;
+    margin-bottom: 5%;
 }

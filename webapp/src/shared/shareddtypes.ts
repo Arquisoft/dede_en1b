@@ -11,3 +11,10 @@ export type Product = {
     image:string;
     category:string;
 }
+
+export type Order = {
+  userId: string;
+    products: Array<Product>;
+    subTotal: number;
+    deliveryPrice: number;
+}
