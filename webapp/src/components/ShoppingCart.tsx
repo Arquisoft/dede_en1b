@@ -35,7 +35,7 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
             <Stack m={6} spacing = {5}>
             {props.items.map((item: ItemCart) =>
                 {   
-                    if (item.quantity > 0)
+                    if (item.quantity < 0)
                         return;
                     return (
                         <Card variant="outlined" sx={{display: 'flex'}}>
@@ -77,14 +77,7 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
                 
             <div style={{display: 'flex',  justifyContent:'center'}}>
                 <Stack direction="row" spacing={3} alignItems="center">
-                    <Button color="secondary" component={Link} to="/">
-                            Continue shopping
-                    </Button>
                     
-                    <Button color="secondary" variant="outlined"
-                         component={Link} to="/checkout">
-                        Checkout
-                    </Button>
                 </Stack>
             </div>
         </Box>
