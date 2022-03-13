@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
-import EmailForm from './components/EmailForm';
-import Welcome from './components/Welcome';
 import ProductList from './components/ProductList';
 import  {getProducts,getCart} from './api/api';
 import {Product, ItemCart} from './shared/shareddtypes';
 import './App.css';
-import { TextField } from '@mui/material';
+import ShoppingCart from './components/ShoppingCart';
+import { addToCart } from './api/api';
 
 function App(): JSX.Element {
 
@@ -30,11 +28,14 @@ function App(): JSX.Element {
 
   return (
     <>
-      <Container maxWidth="sm">
+      <Container maxWidth="xl">
         <ProductList products={products}/>
-        <Link href="https://github.com/arquisoft/dede_en_01b">Source code</Link>
-        {console.log(cart)}
-        {cart.map(itemCart => <Box key={itemCart.product.name}>{itemCart.product.name + itemCart.quantity}</Box>)}
+        {/* {console.log(cart)}
+        {cart.map(itemCart => <Box key={itemCart.product.name}>{itemCart.product.name + itemCart.quantity}</Box>)} */}
+        
+        <ShoppingCart items={cart}></ShoppingCart>
+        <Link href="https://github.com/arquisoft/dede_en_01b"
+        >Source code</Link>
       </Container>
     </>
   );
