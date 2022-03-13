@@ -35,7 +35,6 @@ class ProductController {
         if (product) {
             res.send(product);
             console.log(product);
-            return product;
           } else {
             res.status(404).send({ message: 'Product Not Found' });
           }
