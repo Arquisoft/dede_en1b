@@ -31,7 +31,7 @@ export default function SOLIDLogin() {
 
   onSessionRestore((url) => {
     if (session.info.isLoggedIn) {
-      navigate("/profile");
+      navigate(url);
     }
   });
 
@@ -70,7 +70,7 @@ export default function SOLIDLogin() {
             <Grid item xs={6}>
               <LoginButton
                 oidcIssuer={oidcIssuer}
-                redirectUrl={window.location.href.slice(0, -6).concat("/profile")}
+                redirectUrl={window.location.href}
                 authOptions={authOptions}>
                 <Button id="loginButton" data-testid="button" color="primary" variant="contained">CONNECT</Button>
               </LoginButton>
