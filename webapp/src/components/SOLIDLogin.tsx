@@ -1,9 +1,15 @@
-import { Component, useState } from "react";
+import { useState } from "react";
 import { LoginButton, useSession } from "@inrupt/solid-ui-react";
 import { Autocomplete, Button, Container, Grid, Link, TextField, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 import "../css/SOLIDLogin.css";
+
+import {
+  handleIncomingRedirect, 
+  onSessionRestore
+} from "@inrupt/solid-client-authn-browser";
+import { useEffect } from 'react';
 
 const authOptions = {
   clientName: "DedEx: Decentralized Delivery",
@@ -19,13 +25,29 @@ export default function SOLIDLogin() {
 
   const { session } = useSession();
 
-  if (session.info.isLoggedIn) {
-    navigate("/profile");
-  }
+  // if (session.info.isLoggedIn) {
+  //   navigate("/profile");
+  // }
+
+  onSessionRestore((url) => {
+    if (session.info.isLoggedIn) {
+      navigate("/profile");
+    }
+  });
+
+  useEffect(() => {
+    handleIncomingRedirect({
+      restorePreviousSession: true
+    }).then(() => {
+      if (session.info.isLoggedIn) {
+        navigate("/profile");
+      }
+    })
+  }, []);
 
   return (
     <Container id="mainLoginDiv">
-      {!session.info.isLoggedIn ? (
+      {/* {!session.info.isLoggedIn ? ( */}
         <>
           <Typography id="pageTitle" variant="h3">
             SOLID Login
@@ -55,14 +77,14 @@ export default function SOLIDLogin() {
             </Grid>
           </Grid>
           <Typography variant="body1" component="p" className="help">
-            Don't have one? You can get it here: <Link id="inrupt" href="https://inrupt.com/" target="_blank">Inrupt</Link>
+            Don't have a POD? Get one here: <Link id="inrupt" href="https://inrupt.com/" target="_blank">Inrupt</Link>
           </Typography>
         </>
-      ) : (
+      {/* ) : (
         <Typography id="pageTitle" variant="h3">
           Oops! Something went wrong...
         </Typography>
-      )}
+      )} */}
     </Container>
   );
 }

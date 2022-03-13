@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Container from '@mui/material/Container';
 import ProductList from './components/ProductList';
 import Header from './components/NavBar';
