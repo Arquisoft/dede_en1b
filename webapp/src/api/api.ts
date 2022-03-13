@@ -53,5 +53,11 @@ export async function addToCart(itemCart:ItemCart) {
 
 
 
+export async function getProductById(id: any):Promise<Product>{ 
+  const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
+  console.log(apiEndPoint+'/product/id')
+  let response = await fetch(apiEndPoint+'/products/' + id);
+  return response.json();
+}
 
   

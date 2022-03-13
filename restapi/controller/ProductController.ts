@@ -30,7 +30,17 @@ class ProductController {
         return product;
     }
 
-
+    public async getProductByIdSebas(req: Request, res: Response) {
+        const product  = await Product.findOne({_id: req.params.id});
+        if (product) {
+            res.send(product);
+            console.log(product);
+            return product;
+          } else {
+            res.status(404).send({ message: 'Product Not Found' });
+          }
+ 
+    }
 }
 
 const productController = new ProductController();

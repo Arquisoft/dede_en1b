@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import UserController from './UserController';
 import UserModel from '../model/User';
-const Joi = require('@hapi/joi');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
