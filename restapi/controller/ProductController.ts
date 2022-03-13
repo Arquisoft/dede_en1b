@@ -25,12 +25,12 @@ class ProductController {
         return products;
     }
 
-    public async getProductById(id: string) {
+    public async getProductById(id: string) { ///this GetProductById should be changed? I think we should use the one below.
         var product  = await Product.findOne({_id: id});
         return product;
     }
 
-    public async getProductByIdSebas(req: Request, res: Response) {
+    public async getProductWithId(req: Request, res: Response) {
         const product  = await Product.findOne({_id: req.params.id});
         if (product) {
             res.send(product);
