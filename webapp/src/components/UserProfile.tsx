@@ -6,6 +6,8 @@ import {
     LogoutButton,
 } from "@inrupt/solid-ui-react";
 
+import { getOrderByUserId } from '../api/api';
+
 import { useNavigate } from "react-router-dom";
 
 import "../css/UserProfile.css";
@@ -14,12 +16,24 @@ import {
     handleIncomingRedirect,
     onSessionRestore
 } from "@inrupt/solid-client-authn-browser";
-import { useEffect } from 'react';
-import Order from "./OrderCard";
+import { useEffect, useState } from 'react';
+import OrderCard from "./OrderCard";
+import { Order } from "../shared/shareddtypes";
+
 
 export default function UserProfile() {
     const { session } = useSession();
     const webId = session.info.webId as string;
+
+    //Order management:
+    const [orders, setOrders] = useState<Order[]>([]);
+    const findUserOrders = async () => {
+        setOrders(await getOrderByUserId(webId.substring(23, webId.length).slice(0, -16)));
+    }
+
+    useEffect(() => {
+        findUserOrders();
+    }, []);
 
     const navigate = useNavigate();
 
@@ -54,7 +68,7 @@ export default function UserProfile() {
                     ]} />
                 </Typography>
 
-                <Divider id = "mainDivider" orientation="horizontal" flexItem />
+                <Divider id="mainDivider" orientation="horizontal" flexItem />
 
                 <Typography id="ordersTitle" variant="h4">
                     <span>Your orders: </span>
@@ -65,9 +79,10 @@ export default function UserProfile() {
                     divider={<Divider orientation="horizontal" flexItem />}
                     spacing={2}
                 >
-                    <Order/>
-                    <Order/>
-                    <Order/>
+
+                    {orders.map(order => (
+                        <OrderCard order = {order}/>
+                    ))}
                 </Stack>
 
 
