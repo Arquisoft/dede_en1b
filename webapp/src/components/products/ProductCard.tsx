@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import {Button, CardActionArea, CardActions} from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { styled } from '@mui/system';
+import { propTypes } from "react-bootstrap/esm/Image";
 
 const DivBtonStyle = styled('div')({
   backgroundColor: '#7c4dff',
@@ -29,6 +30,7 @@ const BuyBtton = styled(Button)({
 
 type ProductCardProps = {
   product: Product;
+  refreshCartList: () => void;
 }
 
 function addProduct(product: Product): void {
@@ -67,7 +69,11 @@ const ProductCard = ( prod: ProductCardProps): JSX.Element => {
     </CardActionArea>
     <CardActions>
       <DivBtonStyle>
-        <BuyBtton startIcon={<AddShoppingCartIcon />} onClick={()=> addProduct(prod.product)}>
+        <BuyBtton startIcon={<AddShoppingCartIcon />} onClick={()=> {
+          addProduct(prod.product)
+          prod.refreshCartList();
+        }}>
+          
             Add to cart
         </BuyBtton> 
         </DivBtonStyle>

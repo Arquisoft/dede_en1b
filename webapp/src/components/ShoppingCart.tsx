@@ -14,6 +14,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 type ShoppingCartProps = {
     items: ItemCart[];
+    refreshCartList: () => void;
 };
 
 const Img =
@@ -22,23 +23,19 @@ const Img =
     });
 
 function addProduct(product: Product): void {
-    console.log('addToCart',product);
     addToCart({product:product,quantity:1});
 }
 
 function ShoppingCart(props: ShoppingCartProps): JSX.Element {
 
-    console.log('ShoppingCart',props);
     const [total, setTotal] = useState<number>(0);  
     
     const  updateTotal = async ()  => {
-        console.log('updateTotal');
         let cart = await getCart();
         setTotal(cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0));
     };
 
     const deleteItem = async (product:Product) => {
-        console.log('deleteItem',product);
         await deleteFromCart(product.id);
         updateTotal();
         //set props.items to the new items
@@ -46,9 +43,9 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
         if(i>=0){
             delete props.items[i];
             reorganizeProps();
-            console.log('deleteItem',props.items);
-
         }
+
+        props.refreshCartList();
     };
 
 

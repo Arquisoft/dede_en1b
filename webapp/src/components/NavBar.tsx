@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -6,6 +7,13 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import {ShoppingCart} from "@material-ui/icons";
 import { Badge, Button, TextField } from '@mui/material';
 import Container from '@mui/material/Container';
+import { getCart } from '../api/api';
+import { ItemCart } from '../shared/shareddtypes';
+
+
+type NavBarProps = {
+    cart: ItemCart[];
+};
 
 const SearchBar = () => (
     <Container style={{ width: "60%", marginLeft: "0"}}>
@@ -30,7 +38,16 @@ const SearchBar = () => (
     </Container>
 );
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar(props : NavBarProps) {
+    const [cartItemNumber, setCartItemNumber] = useState<number>(0);
+
+    useEffect( ()  => {
+        setCartItemNumber(props.cart.length);
+    }, []);
+
+
+
+
     return (
             <AppBar position="static">
                 <Toolbar style={{backgroundColor: "#7c4dff"}}>
@@ -43,7 +60,7 @@ export default function PrimarySearchAppBar() {
                         <IconButton 
                             style={{marginRight: "1%"}}
                             size="large" aria-label="shopping cart" color="inherit" href="/cart">
-                            <Badge badgeContent={4} color="secondary">
+                            <Badge badgeContent={props.cart.length} color="secondary">
                                     <ShoppingCart />
                             </Badge>
                         </IconButton>

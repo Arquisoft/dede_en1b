@@ -32,7 +32,7 @@ export async function getOrderByUserId(webId: string): Promise<Order[]> {
   return response.json();
 }
 
-export async function getCart() : Promise<ItemCart[]> {
+export  function getCart() : ItemCart[] {
   var cart = localStorage.getItem('cart');
   if(cart != null)
     return JSON.parse(cart);
@@ -43,8 +43,8 @@ export async function getCart() : Promise<ItemCart[]> {
     
 }
 
-export async function addToCart(itemCart:ItemCart) {
-  var cart = await getCart();
+export  function addToCart(itemCart:ItemCart) {
+  var cart = getCart();
   console.log(cart);
   const index = cart.findIndex((i:ItemCart)=>i.product.id===itemCart.product.id);
   if(index>=0){
@@ -56,7 +56,7 @@ export async function addToCart(itemCart:ItemCart) {
 }
 
 export async function deleteFromCart(id:String) {
-  var cart = await getCart();
+  var cart = getCart();
   const index = cart.findIndex((i:ItemCart)=>i.product.id===id);
   if(index>=0){
     delete cart[index];

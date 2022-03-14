@@ -29,8 +29,8 @@ function App(): JSX.Element {
     setProducts(await getProducts());
   }
 
-  const refreshCartList = async () => {
-    setCart(await getCart());
+  const refreshCartList =  () => {
+    setCart( getCart());
   }
 
   useEffect(()=>{
@@ -42,17 +42,17 @@ function App(): JSX.Element {
     <>
 
 
-      <Header />
+      <Header cart={cart}/>
         <Container style={{alignContent: "center", marginTop: "5%", minHeight: "50vh"}} maxWidth="lg">
         <Router>
           <Routes>
-             <Route path='/' element={<MainProducts products={products}/>} />
+             <Route path='/' element={<MainProducts refreshCartList={refreshCartList}  products={products}/>} />
               <Route path="/products/:id" element={<ProductPage />} />
               <Route path='/about_us' element={<AboutUs/>} />
               <Route path='/login' element={<SOLIDLogin/>} />
               <Route path='/profile' element={<UserProfile/>} />
               <Route path='/shipping' element={<Shipping/>} />
-              <Route path='/cart' element={<ShoppingCart items={cart}/>} />
+              <Route path='/cart' element={<ShoppingCart items={cart} refreshCartList={refreshCartList} />} />
           </Routes>
           </Router>
         </Container>

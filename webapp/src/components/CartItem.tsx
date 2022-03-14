@@ -26,7 +26,6 @@ function CartItem(props: CartItemProps) {
     const [quantity,setQuantity] = useState<number>(props.item.quantity);
 
     async function changeQuantityBy (item: ItemCart, factor: number): Promise<void> {
-        console.log("changeQuantityBy",item,factor);
         item.quantity += factor;
         setQuantity(item.quantity);
         await addToCart(item);
