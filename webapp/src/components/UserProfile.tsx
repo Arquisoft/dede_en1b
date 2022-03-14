@@ -2,8 +2,7 @@ import { Container, Divider, Stack, Typography } from "@mui/material";
 import {
     Text,
     useSession,
-    CombinedDataProvider,
-    LogoutButton,
+    CombinedDataProvider
 } from "@inrupt/solid-ui-react";
 
 import { getOrderByUserId } from '../api/api';

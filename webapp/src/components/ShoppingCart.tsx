@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ItemCart, Product } from "../shared/shareddtypes";
 import { addToCart, deleteFromCart, getCart } from '../api/api';
 
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import { Card, CardContent, Box, Divider, CardMedia } from "@mui/material";
+import { Card, Box, Divider } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import CartItem from "./CartItem";
-import { isTemplateSpan } from "typescript";
-import { Link } from "react-router-dom";
-import DeleteIcon from '@mui/icons-material/Delete';
 
 type ShoppingCartProps = {
     items: ItemCart[];
@@ -23,24 +20,24 @@ const Img =
     });
 
 function addProduct(product: Product): void {
-    addToCart({product:product,quantity:1});
+    addToCart({ product: product, quantity: 1 });
 }
 
 function ShoppingCart(props: ShoppingCartProps): JSX.Element {
 
-    const [total, setTotal] = useState<number>(0);  
-    
-    const  updateTotal = async ()  => {
+    const [total, setTotal] = useState<number>(0);
+
+    const updateTotal = async () => {
         let cart = await getCart();
         setTotal(cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0));
     };
 
-    const deleteItem = async (product:Product) => {
+    const deleteItem = async (product: Product) => {
         await deleteFromCart(product.id);
         updateTotal();
         //set props.items to the new items
         let i = props.items.findIndex(item => item.product.id === product.id);
-        if(i>=0){
+        if (i >= 0) {
             delete props.items[i];
             reorganizeProps();
         }
@@ -49,12 +46,12 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
     };
 
 
-    function reorganizeProps(): void{
-        let temp : ItemCart[] = [];
+    function reorganizeProps(): void {
+        let temp: ItemCart[] = [];
 
         //copy all non empty elements
         props.items.forEach(item => {
-            if(item != undefined)
+            if (item != undefined)
                 temp.push(item);
         });
 
@@ -69,7 +66,7 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
     }
 
 
-    
+
     useEffect(() => {
         setTotal(props.items.reduce((acc, item) => acc + item.product.price * item.quantity, 0));
     }, [props.items]);
@@ -79,24 +76,23 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
 
 
     function loadItems(): JSX.Element {
-        
-        if (props.items.length === 0) {    
+
+        if (props.items.length === 0) {
             return (
                 <Typography variant="h5" color="text.secondary">
                     The shopping cart is empty
                 </Typography>
             );
-        } 
+        }
         else {
             //console.log("Length: " + props.items.length)
-            let res = props.items.map((item: ItemCart) =>
-                {
-                    if (item !== null && item.quantity > 0) {
-                        return <CartItem updateTotal={updateTotal} deleteItem={deleteItem} item={item}/>
-                    }
+            let res = props.items.map((item: ItemCart) => {
+                if (item !== null && item.quantity > 0) {
+                    return <CartItem updateTotal={updateTotal} deleteItem={deleteItem} item={item} />
                 }
+            }
             )
-            return(
+            return (
                 <div>
                     {res}
                 </div>
@@ -109,34 +105,34 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
             <Typography component="h1" variant="h3" >
                 Shopping cart
             </Typography>
-            <Divider/>
+            <Divider />
 
             <Box style={{ display: 'flex' }}>
                 <Stack m={6} spacing={5} style={{ flex: 3 }}>
-                    { loadItems() }
+                    {loadItems()}
                 </Stack>
-                
-                <Stack mt={6} mr={6} style={{flex:1}}>
-                    <Card variant="elevation" sx={{display: 'flex', flexDirection: 'column', padding:3 }}>
+
+                <Stack mt={6} mr={6} style={{ flex: 1 }}>
+                    <Card variant="elevation" sx={{ display: 'flex', flexDirection: 'column', padding: 3 }}>
                         <Typography component="h1" variant="h6" color="text.secondary">
                             Total Amount:
                         </Typography>
                         <Typography component="h1" variant="h4">
-                            { total.toString().concat(" €") }
+                            {total.toString().concat(" €")}
                         </Typography>
                     </Card>
-                    {props.items.length>0?<Button variant="contained" href="/checkout" style = {{color:"white", backgroundColor: "#7c4dff", borderRadius: "8px", top: "20px", height:"50px"}}>
+                    {props.items.length > 0 ? <Button variant="contained" href="/checkout" style={{ color: "white", backgroundColor: "#7c4dff", borderRadius: "8px", top: "20px", height: "50px" }}>
                         Checkout
-                    </Button>:<></>}
+                    </Button> : <></>}
                 </Stack>
             </Box>
-                
-            <div style={{display: 'flex',  justifyContent:'center'}}>
+
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <Stack direction="row" spacing={3} alignItems="center">
                     <Button color="secondary" size="large" href="/">
                         Continue shopping
                     </Button>
-                    
+
 
                 </Stack>
             </div>
