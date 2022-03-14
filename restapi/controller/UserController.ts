@@ -1,23 +1,25 @@
 import { Request, Response } from 'express';
-import User  from '../model/User';
+import User,{UserModel}  from '../model/User';
 import mongoose from 'mongoose';
 
 
+
+
 class UserController {
+
     
-    public saveUser(req: Request, res: Response) {
-        const userFound = User.findOne({email:req.body.email});
+    
+    public async saveUser( user:UserModel) {
+        const userFound = User.findOne({email:user.email});
         if(userFound != null){
-            res.status(400).json({message:"User already exists"});
-            return;
+            throw new Error("User already exists");
         }
-        
-        const { email, name, lastName, password, PODUrl } = req.body;
-        const user = new User({email, name, lastName, password, PODUrl});
-    
+           
         user.save()
-            .then(() => res.status(201).json({ message: 'User saved' }))
-            .catch(error => res.status(400).json({ error }));
+            .catch((error:any) => 
+            {
+                throw new Error(error.message);
+            } );
         }
     
     public async getUsers(req: Request, res: Response) {
