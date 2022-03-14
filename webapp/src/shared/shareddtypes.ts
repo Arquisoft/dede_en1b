@@ -18,3 +18,8 @@ export type Order = {
     subTotal: number;
     deliveryPrice: number;
 }
+
+export type ItemCart = {
+  product:Product
+  quantity: number
+}

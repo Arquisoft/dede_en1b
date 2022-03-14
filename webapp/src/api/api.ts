@@ -1,4 +1,4 @@
-import { User, Product, Order } from '../shared/shareddtypes';
+import { User, Product, Order,ItemCart } from '../shared/shareddtypes';
 
 export async function addUser(user: User): Promise<boolean> {
   const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
@@ -31,3 +31,38 @@ export async function getOrderByUserId(webId: string): Promise<Order[]> {
   let response = await fetch(apiEndPoint + '/order/' + webId);
   return response.json();
 }
+
+export async function getCart() {
+  var cart = localStorage.getItem('cart');
+  if(cart != null)
+    return JSON.parse(cart);
+  else{
+    localStorage.setItem('cart', JSON.stringify([]));
+    return [];
+  }
+    
+}
+
+export async function addToCart(itemCart:ItemCart) {
+  var cart = await getCart();
+  const index = cart.findIndex((i:ItemCart)=>i.product.id===itemCart.product.id);
+  if(index>=0){
+    itemCart.quantity += cart[index].quantity;
+    cart[index] = itemCart;
+    }
+  else
+    cart.push(itemCart);
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+  
+
+
+
+export async function getProductById(id: any):Promise<Product>{ 
+  const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
+  console.log(apiEndPoint+'/product/id')
+  let response = await fetch(apiEndPoint+'/products/' + id);
+  return response.json();
+}
+
+  
