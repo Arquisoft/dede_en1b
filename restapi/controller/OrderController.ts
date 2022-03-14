@@ -33,7 +33,7 @@ class OrderController {
 
     public async getOrderByUserId(req: Request, res: Response) {
         const userId = req.params.userId;
-        var order = await Order.findOne({ userId: userId });
+        var order = await Order.find({ userId: userId });
         res.send(order);
     }
 }

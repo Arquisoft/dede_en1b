@@ -12,6 +12,13 @@ export type Product = {
     category:string;
 }
 
+export type Order = {
+  userId: string;
+    products: Array<Product>;
+    subTotal: number;
+    deliveryPrice: number;
+}
+
 export type ItemCart = {
   product:Product
   quantity: number
