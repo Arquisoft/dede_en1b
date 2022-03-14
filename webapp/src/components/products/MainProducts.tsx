@@ -9,6 +9,7 @@ import  Grid  from "@mui/material/Grid";
 
 type MainProductsProps = {
   products: Product[];
+  refreshCartList: () => void;
 }
 function MainProducts(props:MainProductsProps ):JSX.Element{
 
@@ -20,7 +21,7 @@ function MainProducts(props:MainProductsProps ):JSX.Element{
 //  }
 
   const refreshCartList = async () => {
-    setCart(await getCart());
+    setCart( getCart());
   }
 
   useEffect(()=>{
@@ -37,7 +38,7 @@ function MainProducts(props:MainProductsProps ):JSX.Element{
       > 
         {props.products.map((p,i) => (
            <Grid  item xs={2} sm={4} md={4} key={p.id} >
-            <ProductCard key={p.id} product={p} />
+            <ProductCard key={p.id} product={p} refreshCartList={props.refreshCartList} />
           </Grid>
           ))}
       
