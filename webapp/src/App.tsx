@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Container from '@mui/material/Container';
 import ProductList from './components/ProductList';
 import Header from './components/NavBar';
@@ -8,6 +8,10 @@ import {Product} from './shared/shareddtypes';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AboutUs from "./components/about_us"
+import SOLIDLogin from "./components/SOLIDLogin";
+import UserProfile from "./components/UserProfile";
+import Shipping from './components/Shipping';
+
 import MainProducts from './components/products/MainProducts';
 import ProductPage from './components/products/ProductPage';
 function App(): JSX.Element {
@@ -34,6 +38,9 @@ function App(): JSX.Element {
               <Route path="/products/:id" element={<ProductPage />} />
               <Route path='/about_us' element={<AboutUs/>} />
               <Route path='/cart' element={<ProductList products={products}/>} />
+              <Route path='/login' element={<SOLIDLogin/>} />
+              <Route path='/profile' element={<UserProfile/>} />
+              <Route path='/shipping' element={<Shipping/>} />
           </Routes>
           </Router>
         </Container>
