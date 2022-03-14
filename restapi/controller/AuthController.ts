@@ -29,7 +29,8 @@ const jwt = require('jsonwebtoken');
 
     login: async(req: Request, res: Response) => {
         const { email, password } = req.body;
-        const user = await UserModel.findOne({email});
+        var userEmail = String(email);
+        const user = await UserModel.findOne({userEmail});
         if(!user) {
             return res.status(404).send('User not found');
         }

@@ -20,7 +20,7 @@ function MainProducts():JSX.Element{
   }
 
   const refreshCartList = async () => {
-    setCart(await getCart());
+    setCart( getCart());
   }
 
   useEffect(()=>{
@@ -32,12 +32,6 @@ function MainProducts():JSX.Element{
         <>
          <Container maxWidth="sm">
         <ProductList products={products}/>
-        <Link href="https://github.com/arquisoft/dede_en_01b">Source code</Link>
-        {console.log(cart)}
-        {cart.map(itemCart => <Box key={itemCart.product.name}>{itemCart.product.name + itemCart.quantity}</Box>)}
-        <Link href="/login" >
-          Login
-      </Link> 
       </Container>
 
         

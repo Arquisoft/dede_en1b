@@ -32,7 +32,7 @@ export async function getOrderByUserId(webId: string): Promise<Order[]> {
   return response.json();
 }
 
-export async function getCart() {
+export  function getCart() : ItemCart[] {
   var cart = localStorage.getItem('cart');
   if(cart != null)
     return JSON.parse(cart);
@@ -43,17 +43,32 @@ export async function getCart() {
     
 }
 
-export async function addToCart(itemCart:ItemCart) {
-  var cart = await getCart();
+export  function addToCart(itemCart:ItemCart) {
+  var cart = getCart();
+  console.log(cart);
   const index = cart.findIndex((i:ItemCart)=>i.product.id===itemCart.product.id);
   if(index>=0){
-    itemCart.quantity += cart[index].quantity;
-    cart[index] = itemCart;
+    cart[index].quantity = itemCart.quantity;
     }
   else
     cart.push(itemCart);
   localStorage.setItem('cart', JSON.stringify(cart));
 }
+
+export async function deleteFromCart(id:String) {
+  var cart = getCart();
+  const index = cart.findIndex((i:ItemCart)=>i.product.id===id);
+  if(index>=0){
+    delete cart[index];
+    cart = cart.filter(Boolean);
+  }
+  else {
+    return false;
+  }
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+
   
 
 
