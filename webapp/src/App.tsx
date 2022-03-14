@@ -17,6 +17,7 @@ import Shipping from './components/Shipping';
 import MainProducts from './components/products/MainProducts';
 import ProductPage from './components/products/ProductPage';
 import ShoppingCart from './components/ShoppingCart';
+import Checkout from './components/Checkout';
 import { addToCart } from './api/api';
 
 function App(): JSX.Element {
@@ -52,6 +53,7 @@ function App(): JSX.Element {
               <Route path='/login' element={<SOLIDLogin/>} />
               <Route path='/profile' element={<UserProfile/>} />
               <Route path='/shipping' element={<Shipping/>} />
+              <Route path='/checkout' element={<Checkout items={cart} refreshCartList={refreshCartList}/>}/>
               <Route path='/cart' element={<ShoppingCart items={cart} refreshCartList={refreshCartList} />} />
           </Routes>
           </Router>
