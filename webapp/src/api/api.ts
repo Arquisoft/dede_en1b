@@ -22,7 +22,7 @@ export async function getUsers(): Promise<User[]> {
 
 export async function getProducts(): Promise<Product[]> {
   const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
-  let response = await fetch(apiEndPoint + '/product');
+  let response = await fetch(apiEndPoint + '/products');
   return response.json();
 }
 
