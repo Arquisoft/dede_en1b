@@ -9,6 +9,8 @@ import { Card, CardContent, Box, Divider, CardMedia } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import CartItem from "./CartItem";
 import { isTemplateSpan } from "typescript";
+import { Link } from "react-router-dom";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 type ShoppingCartProps = {
     items: ItemCart[];
@@ -83,6 +85,7 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
                     <Button color="secondary" size="large" variant="outlined" href="/checkout">
                         Checkout
                     </Button>
+
                 </Stack>
             </div>
         </Box>
@@ -90,5 +93,3 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
 }
 
 export default ShoppingCart;
-
-
