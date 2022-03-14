@@ -48,7 +48,7 @@ function App(): JSX.Element {
         <Router>
           <Routes>
              <Route path='/' element={<MainProducts refreshCartList={refreshCartList}  products={products}/>} />
-              <Route path="/products/:id" element={<ProductPage />} />
+              <Route path="/products/:id" element={<ProductPage refreshCartList={refreshCartList}/>} />
               <Route path='/about_us' element={<AboutUs/>} />
               <Route path='/login' element={<SOLIDLogin/>} />
               <Route path='/profile' element={<UserProfile/>} />
