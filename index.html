@@ -502,7 +502,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_web_application">9.1. Web Application</a></li>
 <li><a href="#_database">9.2. Database</a></li>
-<li><a href="#_bootstrap">9.3. Bootstrap</a></li>
+<li><a href="#_material_ui">9.3. Material UI</a></li>
 </ul>
 </li>
 <li><a href="#section-quality-scenarios">10. Quality Requirements</a>
@@ -773,7 +773,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Schedule</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The project must be implemented before the last lab session of the subject.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The project must be implemented before the last lab session of the subject, on April the 5th 2022.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Developer team</em></p></td>
@@ -810,7 +810,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Version control</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Git version control system will be used in the project through Github.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Git version control system will be used in the project through Github. The repository employed was initialized and provided by the teachers of the subject.</p></td>
 </tr>
 </tbody>
 </table>
@@ -828,7 +828,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <h3 id="_business_context">3.1. Business Context</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/diag-a9c62004652c877286de7c9e5a639a4b.png" alt="Diagram" width="916" height="344">
+<img src="./images/diag-bc801f16afb1b072b5ba70c0d39c802f.png" alt="Diagram" width="810" height="435">
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -847,23 +847,28 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">User</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The user will receive the requested information from the application (generally a solicited view) via the device the web is being consulted on.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The user will continuously interact with the application, requesting the information he needs. The user is also the one responsible of creating and managing some information in the Solid POD, although DeDe will be the one to modify most of the information on its own.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The user will receive a response from the application (generally a solicited view) via the device the web is being consulted on.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The user will continuously provide input to the application. He is also the one responsible of creating and managing sensitive information in the Solid POD.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DeDe</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The application will receibe requests to fulfill from the user, as well as data from both the POD and the MongoDB when required.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The web app will send responses to the user and requests to both the POD and MongoDB. For solicitations to the POD, a login in Solid must be filled by the user. It&#8217;s integral to the architecture that the data from the POD and the one from MongoDB are handled separately as to not divulge any personal information.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The application will receive requests to fulfill from the user, as well as data from both the POD and the MongoDB when required.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The web app will send responses to the user and requests for information to both the POD and Mongo Database. For solicitations to the POD, a login in Solid must be filled by the user. It&#8217;s integral to the architecture that the data from the POD and the one from MongoDB are handled separately as to not divulge any personal information.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Solid POD</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The user will create the POD to manage his personal information in the app. From the application itself, it will be requested to provide data and should always ask for authentication from the user.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The user will create the POD to manage his personal information in the app. The application itself, will request for the necessary sensitive data and should always ask for authentication from the user.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The POD will only send personal information to the application, after the appropiate login in Solid.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The database will accept requests from the application for any information stored (that is, the one we consider not to be personal or sensitive).</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The database will communicate with the application as a response to the access to database. It will return information such as the data on the products offered, or other data that is supposed to be know in public.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The database will accept requests from the application for any information stored (that is, the one we consider not to be personal or sensitive, like the set of products available).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The database will communicate with the application as a response. It will return information that is supposed to be known as public.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correos API</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The API will accept requests from the application, avoiding interaction with the user as serving to mediate between him and the delivery is the main purpose of the application.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">From the API, a response will ideally be given to DeDe when the order has been completed, although this behaviour can be considered optional as making the order is the end goal.</p></td>
 </tr>
 </tbody>
 </table>
@@ -874,7 +879,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <p>DeDe is a decentralized system that follows the architecture of the Solid Project. This means that users are the ones that own and manage the access to their sensitive information, and not the application itself. To handle this, each user will be the owner of a Solid POD (Personal Online Data Store) from which the required information is extracted if needed.</p>
 </div>
 <div class="paragraph">
-<p>Although the personal data is handled by the PODs, DeDe will also store general information within MongoDB. The application is written in TypeScript, employing the React framework for a more polished appearance.</p>
+<p>Although the personal data is handled by the PODs, DeDe will also store general information within MongoDB. The application is written in TypeScript, employing the React framework in combination with Material UI for a more polished appearance.</p>
 </div>
 <div class="paragraph">
 <p>We identify the following technical interfaces:</p>
@@ -905,7 +910,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">React</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Widespread framework in TypeScript that focuses on handling the views of the application and save time invested on interfaces.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Widespread framework in JavaScript and TypeScript that focuses on handling the views of the application and save time invested on interfaces.</p></td>
 </tr>
 </tbody>
 </table>
@@ -924,9 +929,6 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Bootstrap:</strong> A well-used library for web development, it will ease work on HTML and CSS by providing default stylization. It is also highly compatible with React.</p>
-</li>
-<li>
 <p><strong>MongoDB:</strong> One of the most potent non-relational databases, which fits the decentralised data model of DeDe. We will use it to store the information that is general to the application so as to not fill the PODs with unnecessary and redundant information.</p>
 </li>
 <li>
@@ -935,25 +937,34 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <li>
 <p><strong>Correos API:</strong> We will communicate with it to inform the deliverers of the chosen products. It&#8217;s the single most important external service in our application.</p>
 </li>
+<li>
+<p><strong>Mongoose:</strong> We will employ the Mongoose library as the frame to communicate with the internal Mongo database. It is easily accesible with Node JS</p>
+</li>
+<li>
+<p><strong>Material UI:</strong> A library for web development that contains many predefined components. It will serve to ease work on HTML and CSS by providing default stylization and easy ways of handling customization from TypeScript. It is also highly compatible with React.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_decisions_on_top_level_decomposition">4.2. Decisions on top-level decomposition</h3>
 <div class="paragraph">
-<p>Although no pattern has been firmly agreed on, we will start development with a structure similar to MVC, as the separated layers provide both easier especialization of each member and a better way of treating the data model so that POD and MongoDB information does not intersect.</p>
+<p>ON development, the project will match MVC (Model-View-Controller). The separation of responsibilities in layers provides both easier especialization of each member during the development and a better way of treating the data model so that POD and MongoDB information does not intersect.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_decisions_on_quality_goals">4.3. Decisions on quality goals</h3>
 <div class="paragraph">
-<p>The primary concern, privacy, is already solved assuming the usage of the PODs is the appropiate. The whole structure of the application is centered around preserving the integrity of the user&#8217;s data, so it&#8217;s not hard to affirm DeDe will have a high privacy value. Usability is also a major concern and so the application will be built as responsive and accesible as possible. The decentralization of data will also have positive consequences on the security of DeDe, and server-side validation will be provided to check for the legitimity of the user&#8217;s operations.</p>
+<p>The primary concern, privacy, is already solved through the usage of the PODs (assuming of course the correct implementation of the access to them). The whole structure of the application is centered around preserving the integrity of the user&#8217;s data, so it&#8217;s not hard to affirm DeDe will have a high privacy value. Usability is also a major concern and so the application will be built as responsive and accesible as possible. The decentralization of data will also have positive consequences on the security of DeDe, and server-side validation will be provided to check for the legitimity of the user&#8217;s operations.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_organizational_decisions">4.4. Organizational decisions</h3>
 <div class="paragraph">
-<p>Apart from the periodic Tuesday reunion, a second one has been scheduled each Thursday at 18:00. Thanks to Microsoft Teams, it will be easy to assist and check the progress multiple times during the week. A WhatsApp group has also been created for a more swift communication on the kind of matters that must be resolved quickly or are too unimportant for the reunions.</p>
+<p>Apart from the periodic Tuesday reunion during the laboratories, a second one has been scheduled every Thursday at 18:00. Thanks to Microsoft Teams, it will be easy to get together and check the progress multiple times during the week. A WhatsApp group has also been created for a more swift communication on the kind of matters that must be resolved quickly or are too unimportant for the reunions.</p>
+</div>
+<div class="paragraph">
+<p>The use of pull requests is our standard to solicit aproval from the team to add a new feature or improvement to the develop branch. This will also guarantee the quality of the code through the peer review process.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -974,7 +985,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <h3 id="_level_2_dede_structure">5.2. Level 2 - DeDe Structure</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/diag-d8ead98441370acd5b0b8208e79cff14.png" alt="Diagram" width="391" height="625">
+<img src="./images/diag-14b6f6b80c756c9b0462dcb4bb206d16.png" alt="Diagram" width="458" height="748">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -1170,9 +1181,9 @@ Another point in favor is its performance and scalability although in a small ap
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bootstrap">9.3. Bootstrap</h3>
+<h3 id="_material_ui">9.3. Material UI</h3>
 <div class="paragraph">
-<p>Bootstrap is a free and open-source CSS framework directed at responsive, mobile-first front-end web development. It contains CSS and (optionally) JavaScript-based design templates for typography, forms, buttons, navigation, and other interface components. It will allow us to create a good frontend with less effort.</p>
+<p>Material UI is a free React-compatible library directed at easy creation of responsive components. It contains many default styles for typography, forms, buttons, navigation, and other interface components. It will allow us to create a good frontend with less effort.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -1367,7 +1378,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-02-04 16:46:28 +0100
+Last updated 2022-02-18 17:40:18 +0100
 </div>
 </div>
 </body>
