@@ -1,4 +1,4 @@
-import {User,Product} from '../shared/shareddtypes';
+import {User,Product, ItemCart} from '../shared/shareddtypes';
 
 export async function addUser(user:User):Promise<boolean>{
     const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
@@ -22,6 +22,42 @@ export async function getUsers():Promise<User[]>{
 
 export async function getProducts():Promise<Product[]>{ 
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
-  let response = await fetch(apiEndPoint+'/product');
+  console.log(apiEndPoint+'/products')
+  let response = await fetch(apiEndPoint+'/products');
   return response.json();
 }
+
+export async function getCart() {
+  var cart = localStorage.getItem('cart');
+  if(cart != null)
+    return JSON.parse(cart);
+  else{
+    localStorage.setItem('cart', JSON.stringify([]));
+    return [];
+  }
+    
+}
+
+export async function addToCart(itemCart:ItemCart) {
+  var cart = await getCart();
+  const index = cart.findIndex((i:ItemCart)=>i.product.id===itemCart.product.id);
+  if(index>=0){
+    itemCart.quantity += cart[index].quantity;
+    cart[index] = itemCart;
+    }
+  else
+    cart.push(itemCart);
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+  
+
+
+
+export async function getProductById(id: any):Promise<Product>{ 
+  const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
+  console.log(apiEndPoint+'/product/id')
+  let response = await fetch(apiEndPoint+'/products/' + id);
+  return response.json();
+}
+
+  

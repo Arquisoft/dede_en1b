@@ -10,15 +10,16 @@ Here we define how the different components of DeDe interact with each other, as
 @startuml
 Actor User
 database POD
-database MongoDB
-node DeDe
-User -> DeDe : Requests information
-User -> POD : Creates and manages
-DeDe --> User : Returns view / data
-DeDe --> POD : Requests / Updates information
-DeDe --> MongoDB : Requests / Updates information
+component CorreosAPI
+node DeDe {
+  database MongoDB
+}
+User --> DeDe : Requests information
+User --> POD : Creates and manages
+DeDe -u-> User : Returns view / data
+DeDe -l-> POD : Requests / Updates information
+DeDe -r-> CorreosAPI : Places order
 POD --> DeDe : Provides info / Requests login
-MongoDB --> DeDe : Provides information
 @enduml
 ....
 
@@ -30,6 +31,7 @@ MongoDB --> DeDe : Provides information
 |DeDe|The application will receibe requests to fulfill from the user, as well as data from both the POD and the MongoDB when required.|The web app will send responses to the user and requests to both the POD and MongoDB. For solicitations to the POD, a login in Solid must be filled by the user. It's integral to the architecture that the data from the POD and the one from MongoDB are handled separately as to not divulge any personal information.
 |Solid POD|The user will create the POD to manage his personal information in the app. From the application itself, it will be requested to provide data and should always ask for authentication from the user.|The POD will only send personal information to the application, after the appropiate login in Solid.
 |MongoDB|The database will accept requests from the application for any information stored (that is, the one we consider not to be personal or sensitive).|The database will communicate with the application as a response to the access to database. It will return information such as the data on the products offered, or other data that is supposed to be know in public.
+|Correos API|The API will accept requests from the application, avoiding interaction with the user as serving to mediate between him and the delivery is the main purpose of the application.|From the API, response will ideally be given to DeDe when the order has been completed, although this behaviour can be considered optional as making the order already completes the functionality.
 |===
 
 
@@ -47,6 +49,6 @@ We identify the following technical interfaces:
 |Solid Project|Defines the handling of data, which will in turn determine the general structure of the project.
 |POD|Personal Online Data Store, it contains sensitive information related to the user so that the provider (DeDe) has no direct access to it without given permission.
 |TypeScript|The web development language that will be employed to write our application.
-|React|Widespread framework in TypeScript that focuses on handling the views of the application and save time invested on interfaces.
+|React|Widespread framework in JavaScript and TypeScript that focuses on handling the views of the application and save time invested on interfaces.
 |===
 
