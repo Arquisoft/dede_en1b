@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { ItemCart, Product } from "../shared/shareddtypes";
-import { addToCart, deleteFromCart, getProducts } from '../api/api';
+import { addToCart, deleteFromCart } from '../api/api';
 
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
@@ -12,22 +12,42 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 type CartItemProps = {
     item: ItemCart;
+    updateTotal: () => void;
+    deleteItem: (product: Product) => void;
 };
 
-function changeQuantityBy (item: ItemCart, factor: number):void {
-    let i = item;
-    i.quantity = factor;
-    addToCart(i);
-};    
+  
+
+
+
+
 
 function CartItem(props: CartItemProps) {
-    
+    const [quantity,setQuantity] = useState<number>(props.item.quantity);
+
+    async function changeQuantityBy (item: ItemCart, factor: number): Promise<void> {
+        console.log("changeQuantityBy",item,factor);
+        item.quantity += factor;
+        setQuantity(item.quantity);
+        await addToCart(item);
+        props.updateTotal();
+    };  
+
+
+
+
+  
     return (
         <Card variant="elevation" sx={{ display: 'flex', marginBottom:5 }}>
             <CardMedia
                 component="img"
+                
+                //set max image to fill the card
+                //sx={{ maxWidth: '100', maxHeight: '110', width: '100', height: '110' }}
                 image={props.item.product.image}
                 //image={require("path/to/image.jpg")} FOR TESTING
+                //set max height to 100px
+                sx={{ height: 110, width: 100, margin: 3 }}
                 style={{ flex: 2 }} />
             <Box style={{ flex: 3, display: 'flex', flexDirection: 'column' }}
                 justifyContent='space-between'>
@@ -49,7 +69,7 @@ function CartItem(props: CartItemProps) {
                                 -
                             </Button>
                             <Typography component="h4" align="center">
-                                { props.item.quantity }
+                                { quantity }
                             </Typography>
                             <Button size="small"
                                 onClick={() => changeQuantityBy(props.item, 1)}
@@ -58,7 +78,7 @@ function CartItem(props: CartItemProps) {
                             </Button>
                         </Stack>
                         <Button 
-                            onClick={() => deleteFromCart(props.item)}
+                            onClick={() => props.deleteItem(props.item.product)}
                             color="error" size="medium" variant="outlined" startIcon={<DeleteIcon />}
                         >
                             Delete

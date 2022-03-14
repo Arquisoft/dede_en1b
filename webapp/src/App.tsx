@@ -5,8 +5,8 @@ import Container from '@mui/material/Container';
 import ProductList from './components/ProductList';
 import Header from './components/NavBar';
 import Footer from './components/Footer';
-import  {getProducts} from './api/api';
-import {Product} from './shared/shareddtypes';
+import  {getProducts,getCart} from './api/api';
+import {Product,ItemCart} from './shared/shareddtypes';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AboutUs from "./components/about_us"
@@ -25,8 +25,13 @@ function App(): JSX.Element {
     setProducts(await getProducts());
   }
 
+  const refreshCartList = async () => {
+    setCart(await getCart());
+  }
+
   useEffect(()=>{
     refreshUserList();
+    refreshCartList();
   },[]);
 
   return (
