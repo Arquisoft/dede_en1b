@@ -10,6 +10,10 @@ import {Product,ItemCart} from './shared/shareddtypes';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AboutUs from "./components/about_us"
+import SOLIDLogin from "./components/SOLIDLogin";
+import UserProfile from "./components/UserProfile";
+import Shipping from './components/Shipping';
+
 import MainProducts from './components/products/MainProducts';
 import ProductPage from './components/products/ProductPage';
 import ShoppingCart from './components/ShoppingCart';
@@ -45,6 +49,9 @@ function App(): JSX.Element {
              <Route path='/' element={<MainProducts products={products}/>} />
               <Route path="/products/:id" element={<ProductPage />} />
               <Route path='/about_us' element={<AboutUs/>} />
+              <Route path='/login' element={<SOLIDLogin/>} />
+              <Route path='/profile' element={<UserProfile/>} />
+              <Route path='/shipping' element={<Shipping/>} />
               <Route path='/cart' element={<ShoppingCart items={cart}/>} />
           </Routes>
           </Router>
