@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import { Product } from '../../shared/shareddtypes';
 import { addToCart } from '../../api/api';
 import Card from '@mui/material/Card';
@@ -9,6 +9,7 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { styled } from '@mui/system';
 
+import { useNavigate } from "react-router-dom";
 const DivBtonStyle = styled('div')({
   backgroundColor: '#7c4dff',
   color: '#ffff',
@@ -39,16 +40,19 @@ function addProduct(product: Product): void {
 
 
 
-const ProductCard = (prod: ProductCardProps): JSX.Element => {
-  const [isAdded, setIsAdded] = useState(false);
+const ProductCard = ( prod: ProductCardProps): JSX.Element => {
 
 
 
+
+  const navigate = useNavigate();
 
   return (
 
     <Card >
-      <CardActionArea href={"/products/" + prod.product.id}>
+
+    <CardActionArea  onClick={()=>navigate("products/"+prod.product.id)}>
+
         <CardMedia
           component="img"
           image={prod.product.image}

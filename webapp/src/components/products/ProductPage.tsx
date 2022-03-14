@@ -11,6 +11,13 @@ import  Grid  from "@mui/material/Grid";
 import {Button} from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { styled } from '@mui/system';
+
+import { addToCart } from '../../api/api';
+
+type ProductPageProps = {
+  refreshCartList: () => void;
+}
+
 const DivBtonStyle = styled('div')({
     backgroundColor: '#7c4dff',
     color: '#ffff',
@@ -28,9 +35,13 @@ const DivBtonStyle = styled('div')({
   
   });
 
-  
 
-function ProductPage() : JSX.Element {
+  function addProduct(product: Product): void {
+    addToCart({ product: product, quantity: 1 });
+
+  }
+
+function ProductPage(prop : ProductPageProps) : JSX.Element {
     const {id} = useParams();
     const [product, setProduct] = useState<Product>(); //default empty product
     const getProduct = async () => {
@@ -40,57 +51,65 @@ function ProductPage() : JSX.Element {
         getProduct();
     }, []);
    
- 
-  
-  return (
-    <Grid container
-      direction="row"
-      justifyContent="left"
-      alignItems="center"
-      spacing={{ xs: 2, md: 3 }} columns={{ xs: 6, sm: 12, md: 15 }}
-      rowSpacing={5}
+    
+  if(product){
+    return (
+      <Grid container
+        direction="row"
+        justifyContent="left"
+        alignItems="center"
+        spacing={{ xs: 2, md: 3 }} columns={{ xs: 6, sm: 12, md: 15 }}
+        rowSpacing={5}
+        
+        > 
+          
+        <Grid  item xs={2} sm={5} md={6} >
+      <Card sx={{ maxWidth: 345 }} style={{height:"100%"}}>
       
-      > 
-        
-      <Grid  item xs={2} sm={5} md={6} >
-    <Card sx={{ maxWidth: 345 }} style={{height:"100%"}}>
-    
-        <CardMedia
-            component="img"
-            image={product?.image}
-            alt={product?.name}
-            
-        />
-        <CardContent>
-            <Typography gutterBottom variant="h3" component="div">
-             {product?.name}
-            </Typography>
-            <Typography gutterBottom variant="h5" component="div">
-             {product?.price}€
-            </Typography>
-            <Typography gutterBottom variant="body1" component="div">
-             {product?.description}
-            </Typography>
-        </CardContent>
-    
-    
-</Card>
-</Grid>
-<Grid  item xs={2} sm={5} md={6} >
-        <DivBtonStyle>
-        <BuyBtton startIcon={<AddShoppingCartIcon />} >
-            Add to Cart
-        </BuyBtton> 
-        </DivBtonStyle>
-</Grid>
+          <CardMedia
+              component="img"
+              image={product?.image}
+              alt={product.name}
+              
+          />
+          <CardContent>
+              <Typography gutterBottom variant="h3" component="div">
+               {product?.name}
+              </Typography>
+              <Typography gutterBottom variant="h5" component="div">
+               {product?.price}€
+              </Typography>
+              <Typography gutterBottom variant="body1" component="div">
+               {product?.description}
+              </Typography>
+          </CardContent>
+      
+      
+  </Card>
+  </Grid>
+  <Grid  item xs={2} sm={5} md={6} >
+          <DivBtonStyle>
+          <BuyBtton startIcon={<AddShoppingCartIcon />} onClick={()=>{addProduct(product);
+            prop.refreshCartList();}} >
+              Add to Cart
+          </BuyBtton> 
+          </DivBtonStyle>
+  </Grid>
+  
+  </Grid>
+   
+          
+    // the button is contained because it has actions that are primary to our app( add an Item to the cart)
+          
+  
+    );
+  }else{
+    return (<Typography gutterBottom variant="body1" component="div">
+    No product found
+   </Typography>);
+  }
+  }
+  
 
-</Grid>
- 
-        
-  // the button is contained because it has actions that are primary to our app( add an Item to the cart)
-        
-
-  );
-}
 
 export default ProductPage;
