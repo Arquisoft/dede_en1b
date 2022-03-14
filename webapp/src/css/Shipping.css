@@ -1,0 +1,18 @@
+#shippingTitle {
+    text-align: left;
+    margin: auto;
+    margin-bottom: 2%;
+    color: #7c4dff;
+}
+
+#cost {
+    text-align: left;
+    margin: auto;
+    margin-bottom: 2%;
+    color: #F23005;
+}
+
+#costMessage {
+    margin-top: 5%;
+    margin-bottom: 15%;
+}

@@ -3,12 +3,13 @@ import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
 import CircleRoundedIcon from '@mui/icons-material/CircleRounded';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 
-function Footer() : JSX.Element {
-    
-     return (
-       <>
+function Footer(): JSX.Element {
+
+    return (
+        <>
             <BottomNavigation
-                style={{ width: "100vw",
+                style={{
+                    width: "100vw",
                     backgroundColor: "lavender",
                     marginTop: "5%",
                     height: "20vh",
@@ -19,8 +20,8 @@ function Footer() : JSX.Element {
                 <BottomNavigationAction label="SOLID" icon={<CircleRoundedIcon />} href="https://solidproject.org/" />
                 <BottomNavigationAction label="Source code" icon={<CodeRoundedIcon />} href="https://github.com/arquisoft/dede_en_01b" />
             </BottomNavigation>
-       </>
-     );
+        </>
+    );
 }
 
 export default Footer;

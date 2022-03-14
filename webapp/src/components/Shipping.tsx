@@ -1,17 +1,31 @@
 
-import { Component } from "react";
-import { Card, CardContent, Box, Divider, CardMedia } from "@mui/material";
+import { Box, Divider, Grid, Button } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
 import "../css/Shipping.css";
 
 export default function Shipping() {
+    var shippingCost = 3.99
     return (
         <Box justifyContent="center">
-                <Typography component="h1" variant="h3" >
-                    Shipping
-                </Typography>
-                <Divider/>      
-            </Box>
+            <Typography id="shippingTitle" component="h1" variant="h3" >
+                Shipping Information
+            </Typography>
+
+            <Divider />
+
+            <Typography id="costMessage" component="h2" variant="h5" >
+                Your estimated devilvery cost is: <span id="cost">{shippingCost} €</span>
+            </Typography>
+
+            <Grid container spacing={2}>
+                <Grid item xs={6}>
+                    <Button href="/checkout" variant="contained" id="cancelButton" >Cancel</Button>
+                </Grid>
+                <Grid item xs={6}>
+                    <Button href="/" id="loginButton" data-testid="button" color="primary" variant="contained">PLACE ORDER</Button>
+                </Grid>
+            </Grid>
+        </Box>
     );
 }
