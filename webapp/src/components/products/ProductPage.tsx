@@ -11,7 +11,6 @@ import  Grid  from "@mui/material/Grid";
 import {Button} from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { styled } from '@mui/system';
-import { addToCart } from '../../api/api';
 const DivBtonStyle = styled('div')({
     backgroundColor: '#7c4dff',
     color: '#ffff',
