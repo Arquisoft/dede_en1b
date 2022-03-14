@@ -1,34 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
-import EmailForm from './components/EmailForm';
-import Welcome from './components/Welcome';
-import UserList from './components/UserList';
-import  {getUsers} from './api/api';
-import {User} from './shared/shareddtypes';
+import ProductList from './components/ProductList';
+import  {getProducts,getCart} from './api/api';
+import {Product, ItemCart} from './shared/shareddtypes';
 import './App.css';
+import ShoppingCart from './components/ShoppingCart';
+import { addToCart } from './api/api';
 
 function App(): JSX.Element {
 
-  const [users,setUsers] = useState<User[]>([]);
+  const [products,setProducts] = useState<Product[]>([]);
+  const [cart,setCart] = useState<ItemCart[]>([]);
 
-  const refreshUserList = async () => {
-    setUsers(await getUsers());
+  const refreshProductList = async () => {
+    setProducts(await getProducts());
+  }
+
+  const refreshCartList = async () => {
+    setCart(await getCart());
   }
 
   useEffect(()=>{
-    refreshUserList();
+    refreshProductList();
+    refreshCartList();
   },[]);
 
   return (
     <>
-      <Container maxWidth="sm">
-        <Welcome message="ASW students"/>
-        <Box component="div" sx={{ py: 2}}>This is a basic example of a React application using Typescript. You can add your email to the list filling the form below.</Box>
-        <EmailForm OnUserListChange={refreshUserList}/>        
-        <UserList users={users}/>
-        <Link href="https://github.com/arquisoft/dede_en_01b">Source code</Link>
+      <Container maxWidth="xl">
+        <ShoppingCart items={cart}></ShoppingCart>
+        <Link href="https://github.com/arquisoft/dede_en_01b"
+        >Source code</Link>
       </Container>
     </>
   );
