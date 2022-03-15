@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
-import { ItemCart, Product } from "../shared/shareddtypes";
-import { addToCart, deleteFromCart, getCart } from '../api/api';
+import { ItemCart } from "../shared/shareddtypes";
+import { getCart } from '../api/api';
 
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import { Card, Box, Divider } from "@mui/material";
+import { Card, CardContent, Box, Divider, CardMedia } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import CartItem from "./CartItem";
+import CheckoutItem from "./CheckoutItem";
 
-type ShoppingCartProps = {
+type CheckoutProps = {
     items: ItemCart[];
     refreshCartList: () => void;
 };
@@ -19,11 +19,7 @@ const Img =
         display: "block"
     });
 
-function addProduct(product: Product): void {
-    addToCart({ product: product, quantity: 1 });
-}
-
-function ShoppingCart(props: ShoppingCartProps): JSX.Element {
+function Checkout(props: CheckoutProps): JSX.Element {
 
     const [total, setTotal] = useState<number>(0);
 
@@ -32,46 +28,19 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
         setTotal(cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0));
     };
 
-    const deleteItem = async (product: Product) => {
-        await deleteFromCart(product.id);
-        updateTotal();
-        //set props.items to the new items
-        let i = props.items.findIndex(item => item.product.id === product.id);
-        if (i >= 0) {
-            delete props.items[i];
-            reorganizeProps();
-        }
+    const [cart, setCart] = useState<ItemCart[]>([]);
 
-        props.refreshCartList();
-    };
-
-
-    function reorganizeProps(): void {
-        let temp: ItemCart[] = [];
-
-        //copy all non empty elements
-        props.items.forEach(item => {
-            if (item != undefined)
-                temp.push(item);
-        });
-
-        //empty props.items
-        props.items.length = 0;
-
-        //copy back to props.items
-        temp.forEach(item => {
-            props.items.push(item);
-        });
-
+    const refreshCartList = async () => {
+        setCart(getCart());
     }
 
-
+    useEffect(() => {
+        refreshCartList();
+    }, []);
 
     useEffect(() => {
         setTotal(props.items.reduce((acc, item) => acc + item.product.price * item.quantity, 0));
     }, [props.items]);
-
-
 
 
 
@@ -85,10 +54,9 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
             );
         }
         else {
-            //console.log("Length: " + props.items.length)
             let res = props.items.map((item: ItemCart) => {
                 if (item !== null && item.quantity > 0) {
-                    return <CartItem updateTotal={updateTotal} deleteItem={deleteItem} item={item} />
+                    return <CheckoutItem updateTotal={updateTotal} item={item} />
                 }
             }
             )
@@ -103,41 +71,28 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
     return (
         <Box justifyContent="center">
             <Typography component="h1" variant="h3" >
-                Shopping cart
+                Checkout
             </Typography>
             <Divider />
 
             <Box style={{ display: 'flex' }}>
                 <Stack m={6} spacing={5} style={{ flex: 3 }}>
                     {loadItems()}
-                </Stack>
-
-                <Stack mt={6} mr={6} style={{ flex: 1 }}>
                     <Card variant="elevation" sx={{ display: 'flex', flexDirection: 'column', padding: 3 }}>
                         <Typography component="h1" variant="h6" color="text.secondary">
-                            Total Amount:
+                            Cart Totals:
                         </Typography>
                         <Typography component="h1" variant="h4">
                             {total.toString().concat(" €")}
                         </Typography>
                     </Card>
-                    {props.items.length > 0 ? <Button variant="contained" href="/checkout" style={{ color: "white", backgroundColor: "#7c4dff", borderRadius: "8px", top: "20px", height: "50px" }}>
-                        Checkout
+                    {props.items.length > 0 ? <Button variant="contained" href="/shipping" style={{ color: "white", backgroundColor: "#7c4dff", borderRadius: "8px", top: "20px", height: "50px" }}>
+                        Continue to Shipping
                     </Button> : <></>}
                 </Stack>
             </Box>
-
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Stack direction="row" spacing={3} alignItems="center">
-                    <Button color="secondary" size="large" href="/">
-                        Continue shopping
-                    </Button>
-
-
-                </Stack>
-            </div>
         </Box>
     );
 }
 
-export default ShoppingCart;
+export default Checkout;
