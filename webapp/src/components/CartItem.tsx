@@ -32,10 +32,10 @@ function CartItem(props: CartItemProps) {
         props.updateTotal();
     };  
 
+    useEffect(() => {
+        setQuantity(props.item.quantity);
+    }, [props.item.quantity]);
 
-
-
-  
     return (
         <Card variant="elevation" sx={{ display: 'flex', marginBottom:5 }}>
             <CardMedia
