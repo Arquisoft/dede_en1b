@@ -43,12 +43,12 @@ export  function getCart() : ItemCart[] {
     
 }
 
-export  function addToCart(itemCart:ItemCart) {
+export  function addToCart(itemCart:ItemCart, factor:number=1) : void {
   var cart = getCart();
   console.log(cart);
   const index = cart.findIndex((i:ItemCart)=>i.product.id===itemCart.product.id);
   if(index>=0){
-    cart[index].quantity = itemCart.quantity;
+    cart[index].quantity += factor;
     }
   else
     cart.push(itemCart);
