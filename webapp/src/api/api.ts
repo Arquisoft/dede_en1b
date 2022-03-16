@@ -43,6 +43,19 @@ export  function getCart() : ItemCart[] {
     
 }
 
+export function getShippingCost(){
+  var cart = getCart();
+  var totalPrice = cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
+  var shippingCost;
+  
+  if(totalPrice > 100){
+    shippingCost = 0;
+  }else{
+    shippingCost = 10;
+  }
+  return shippingCost;
+}
+
 export  function addToCart(itemCart:ItemCart) {
   var cart = getCart();
   console.log(cart);
