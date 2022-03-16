@@ -1,4 +1,4 @@
-import { ItemCart } from "../shared/shareddtypes";
+import { ItemCart } from "../../shared/shareddtypes";
 import Typography from "@mui/material/Typography";
 import { Card, CardContent, Box, CardMedia } from "@mui/material";
 

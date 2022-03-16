@@ -17,7 +17,7 @@ import Shipping from './components/Shipping';
 import MainProducts from './components/products/MainProducts';
 import ProductPage from './components/products/ProductPage';
 import ShoppingCart from './components/ShoppingCart';
-import Checkout from './components/Checkout';
+import Checkout from './components/checkout/Checkout';
 import { addToCart } from './api/api';
 
 function App(): JSX.Element {
