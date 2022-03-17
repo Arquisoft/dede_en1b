@@ -12,6 +12,7 @@ type CartItemProps = {
     item: ItemCart;
     updateTotal: () => void;
     deleteItem: (product: Product) => void;
+    refreshCartList: () => void;
 };
 
 function CartItem(props: CartItemProps) {
@@ -22,6 +23,8 @@ function CartItem(props: CartItemProps) {
         setQuantity(item.quantity);
         addToCart(item,factor);
         props.updateTotal();
+        props.refreshCartList();
+
     };
 
     useEffect(() => {
