@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { ItemCart, Product } from "../shared/shareddtypes";
 import { addToCart } from '../api/api';
 
@@ -12,6 +12,7 @@ type CartItemProps = {
     item: ItemCart;
     updateTotal: () => void;
     deleteItem: (product: Product) => void;
+    refreshCartList: () => void;
 };
 
 function CartItem(props: CartItemProps) {
@@ -20,9 +21,15 @@ function CartItem(props: CartItemProps) {
     async function changeQuantityBy(item: ItemCart, factor: number): Promise<void> {
         item.quantity += factor;
         setQuantity(item.quantity);
-        await addToCart(item);
+        addToCart(item,factor);
         props.updateTotal();
+        props.refreshCartList();
+
     };
+
+    useEffect(() => {
+        setQuantity(props.item.quantity);
+    }, [props.item.quantity]);
 
     return (
         <Card variant="elevation" sx={{ display: 'flex', marginBottom: 5 }}>
