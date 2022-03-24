@@ -16,8 +16,18 @@ class ProductController {
     }
 
     public async getProducts(req: Request, res: Response) {
-        var products = await Product.find({});
-        res.send(products);
+        let params = req.query.search;
+        if(params){
+            const products = await Product.find({name: {$regex: params, $options: 'i'}});
+            res.status(200).json(products);
+        }
+        else{
+            var products = await Product.find({});
+            console.log(products);
+            //products = await productController.addImagePaths(products);
+            res.send(products);
+        }
+            
     }
 
     public async getProductsByIds(ids: string[]) {
@@ -29,6 +39,7 @@ class ProductController {
         var product  = await Product.findOne({_id: id});
         return product;
     }
+
 
     public async getProductWithId(req: Request, res: Response) {
         const product  = await Product.findOne({_id: req.params.id});
