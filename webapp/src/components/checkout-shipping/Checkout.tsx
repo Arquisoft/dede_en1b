@@ -5,19 +5,13 @@ import { getCart } from '../../api/api';
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import { Card, CardContent, Box, Divider, CardMedia } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Card, Box, Divider} from "@mui/material";
 import CheckoutItem from "./CheckoutItem";
 
 type CheckoutProps = {
     items: ItemCart[];
     refreshCartList: () => void;
 };
-
-const Img =
-    styled("img")({
-        display: "block"
-    });
 
 function Checkout(props: CheckoutProps): JSX.Element {
 

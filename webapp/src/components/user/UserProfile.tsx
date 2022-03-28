@@ -54,7 +54,6 @@ export default function UserProfile() {
 
     return (
         <Container>
-            {/* {session.info.isLoggedIn ? ( */}
             <CombinedDataProvider
                 datasetUrl={webId}
                 thingUrl={webId}
@@ -83,17 +82,7 @@ export default function UserProfile() {
                         <OrderCard order = {order}/>
                     ))}
                 </Stack>
-
-
-                {/* <LogoutButton
-                        onLogout={() => session.logout()}
-                    /> */}
             </CombinedDataProvider>
-            {/* ) : (
-                <Typography id="pageTitle" variant="h3">
-                    Oops! Something went wrong...
-                </Typography>
-            )} */}
         </Container>
     );
 }

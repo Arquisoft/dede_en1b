@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
+import { useState, useEffect } from 'react';
 import Container from '@mui/material/Container';
 import Header from './components/fragments/NavBar';
 import Footer from './components/fragments/Footer';
-import  {getProducts,getCart} from './api/api';
-import {Product,ItemCart} from './shared/shareddtypes';
+import  {getCart} from './api/api';
+import {ItemCart} from './shared/shareddtypes';
 import './css/App.css';
 import { BrowserRouter as Router, Routes, Route, useSearchParams } from 'react-router-dom';
-import AboutUs from "./components/about_us"
+import AboutUs from "./components/other/about_us"
 import SOLIDLogin from "./components/user/SOLIDLogin";
 import UserProfile from "./components/user/UserProfile";
 import Shipping from './components/checkout-shipping/Shipping';
