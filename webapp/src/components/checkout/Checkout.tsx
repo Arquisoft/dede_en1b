@@ -28,15 +28,7 @@ function Checkout(props: CheckoutProps): JSX.Element {
         setTotal(cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0));
     };
 
-    // const [cart, setCart] = useState<ItemCart[]>([]);
-
-    // const refreshCartList = async () => {
-    //     setCart(getCart());
-    // }
-
-    // useEffect(() => {
-    //     refreshCartList();
-    // }, []);
+    
 
     useEffect(() => {
         setTotal(props.items.reduce((acc, item) => acc + item.product.price * item.quantity, 0));
