@@ -29,7 +29,11 @@ const SearchBar = () => (
                 sx={{ input: { color: 'white' } }}
             />
 
-            <Button id="submitButton" type="submit" variant="contained">
+            <Button 
+                id="submitButton" 
+                type="submit" 
+                variant="contained"
+            >
                 <SearchIcon />
             </Button>
         </form>
@@ -37,28 +41,33 @@ const SearchBar = () => (
 );
 
 export default function PrimarySearchAppBar(props: NavBarProps) {
+
     const [cartItemNumber, setCartItemNumber] = useState<number>(0);
 
     useEffect(() => {
         setCartItemNumber(props.cart.length);
     }, []);
 
-
-
-
     return (
         <AppBar position="static">
             <Toolbar id="navToolbar">
 
-                <a id="logoLink" href="/" ><img id="logoImg" src="./logo.png" alt="DeDe logo." /></a>
+                <a id="logoLink" href="/" >
+                    <img id="logoImg" src="./logo.png" alt="DeDe logo." />
+                </a>
 
                 <SearchBar />
 
-
                 <IconButton
                     style={{ marginRight: "1%" }}
-                    size="large" aria-label="shopping cart" color="inherit" href="/cart">
-                    <Badge badgeContent={props.cart.reduce((acc, i) => acc + i.quantity, 0)} color="secondary">
+                    size="large" 
+                    aria-label="shopping cart" 
+                    color="inherit" 
+                    href="/cart">
+                    <Badge 
+                        badgeContent={props.cart.reduce((acc, i) => acc + i.quantity, 0)} 
+                        color="secondary"
+                    >
                         <ShoppingCart />
                     </Badge>
                 </IconButton>
@@ -72,7 +81,7 @@ export default function PrimarySearchAppBar(props: NavBarProps) {
                     href="/login"
                     style={{ marginRight: "5%" }}
                 >
-                    <AccountCircle />
+                    <AccountCircle/>
                 </IconButton>
 
             </Toolbar>
