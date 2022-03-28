@@ -5,7 +5,7 @@ import { getCart } from '../../api/api';
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import { Card, CardContent, Box, Divider, CardMedia } from "@mui/material";
+import { Card,  Box, Divider, } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import CheckoutItem from "../checkout/CheckoutItem";
 
@@ -24,7 +24,7 @@ function Checkout(props: CheckoutProps): JSX.Element {
     const [total, setTotal] = useState<number>(0);
 
     const updateTotal = async () => {
-        let cart = await getCart();
+        let cart = getCart();
         setTotal(cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0));
     };
 
