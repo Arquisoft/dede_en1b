@@ -22,7 +22,7 @@ const SearchBar = () => (
                 type="text"
                 id="header-search"
                 placeholder="Search Items..."
-                name="s"
+                name="q"
                 style={{ width: "100%" }}
                 sx={{ input: { color: 'white' } }}
             />

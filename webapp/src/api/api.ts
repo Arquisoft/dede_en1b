@@ -20,9 +20,9 @@ export async function getUsers(): Promise<User[]> {
   return response.json()
 }
 
-export async function getProducts(): Promise<Product[]> {
+export async function getProducts(searchParams?:String): Promise<Product[]> {
   const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
-  let response = await fetch(apiEndPoint + '/products');
+  let response = await fetch(apiEndPoint + '/products' + (searchParams ? '?search=' + searchParams : ''));
   return response.json();
 }
 

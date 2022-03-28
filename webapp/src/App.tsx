@@ -8,7 +8,7 @@ import Footer from './components/Footer';
 import  {getProducts,getCart} from './api/api';
 import {Product,ItemCart} from './shared/shareddtypes';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useSearchParams } from 'react-router-dom';
 import AboutUs from "./components/about_us"
 import SOLIDLogin from "./components/SOLIDLogin";
 import UserProfile from "./components/UserProfile";
@@ -22,20 +22,16 @@ import { addToCart } from './api/api';
 
 function App(): JSX.Element {
 
-  const [products,setProducts] = useState<Product[]>([]);
   const [cart,setCart] = useState<ItemCart[]>([]);
 
 
-  const refreshUserList = async () => {
-    setProducts(await getProducts());
-  }
+ 
 
   const refreshCartList =  () => {
     setCart( getCart());
   }
 
   useEffect(()=>{
-    refreshUserList();
     refreshCartList();
   },[]);
 
@@ -47,7 +43,7 @@ function App(): JSX.Element {
         <Container style={{alignContent: "center", marginTop: "5%", minHeight: "50vh"}} maxWidth="lg">
         <Router>
           <Routes>
-             <Route path='/' element={<MainProducts refreshCartList={refreshCartList}  products={products}/>} />
+             <Route path='/' element={<MainProducts refreshCartList={refreshCartList}/>} />
               <Route path="/products/:id" element={<ProductPage refreshCartList={refreshCartList}/>} />
               <Route path='/about_us' element={<AboutUs/>} />
               <Route path='/login' element={<SOLIDLogin/>} />
