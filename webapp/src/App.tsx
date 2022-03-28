@@ -2,22 +2,21 @@ import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
-import ProductList from './components/ProductList';
 import Header from './components/fragments/NavBar';
 import Footer from './components/fragments/Footer';
 import  {getProducts,getCart} from './api/api';
 import {Product,ItemCart} from './shared/shareddtypes';
-import './App.css';
+import './css/App.css';
 import { BrowserRouter as Router, Routes, Route, useSearchParams } from 'react-router-dom';
 import AboutUs from "./components/about_us"
 import SOLIDLogin from "./components/user/SOLIDLogin";
 import UserProfile from "./components/user/UserProfile";
-import Shipping from './components/Shipping';
+import Shipping from './components/checkout-shipping/Shipping';
 
 import MainProducts from './components/products/MainProducts';
 import ProductPage from './components/products/ProductPage';
 import ShoppingCart from './components/cart/ShoppingCart';
-import Checkout from './components/Checkout';
+import Checkout from './components/checkout-shipping/Checkout';
 
 function App(): JSX.Element {
 
