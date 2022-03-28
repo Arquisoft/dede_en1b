@@ -16,7 +16,7 @@ import Shipping from './components/Shipping';
 
 import MainProducts from './components/products/MainProducts';
 import ProductPage from './components/products/ProductPage';
-import ShoppingCart from './components/ShoppingCart';
+import ShoppingCart from './components/cart/ShoppingCart';
 import Checkout from './components/Checkout';
 
 function App(): JSX.Element {

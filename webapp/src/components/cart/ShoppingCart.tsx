@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { ItemCart, Product } from "../shared/shareddtypes";
-import { addToCart, deleteFromCart, getCart } from '../api/api';
+import { ItemCart, Product } from "../../shared/shareddtypes";
+import { addToCart, deleteFromCart, getCart } from '../../api/api';
 
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
