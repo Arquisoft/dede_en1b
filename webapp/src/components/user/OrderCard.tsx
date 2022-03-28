@@ -1,10 +1,10 @@
-import "../css/OrderCard.css";
+import "../../css/OrderCard.css";
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Order } from "../shared/shareddtypes";
+import { Order } from "../../shared/shareddtypes";
 
 type OrderCardProps = {
     order: Order;

@@ -5,11 +5,11 @@ import {
     CombinedDataProvider
 } from "@inrupt/solid-ui-react";
 
-import { getOrderByUserId } from '../api/api';
+import { getOrderByUserId } from '../../api/api';
 
 import { useNavigate } from "react-router-dom";
 
-import "../css/UserProfile.css";
+import "../../css/UserProfile.css";
 
 import {
     handleIncomingRedirect,
@@ -17,7 +17,7 @@ import {
 } from "@inrupt/solid-client-authn-browser";
 import { useEffect, useState } from 'react';
 import OrderCard from "./OrderCard";
-import { Order } from "../shared/shareddtypes";
+import { Order } from "../../shared/shareddtypes";
 
 
 export default function UserProfile() {
