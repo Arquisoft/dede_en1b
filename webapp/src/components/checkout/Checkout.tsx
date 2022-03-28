@@ -36,28 +36,21 @@ function Checkout(props: CheckoutProps): JSX.Element {
 
 
 
-    function loadItems(): JSX.Element {
+    function loadItemsCheckout(): JSX.Element {
 
-        if (props.items.length === 0) {
-            return (
-                <Typography variant="h5" color="text.secondary">
-                    The shopping cart is empty
-                </Typography>
-            );
-        }
-        else {
-            let res = props.items.map((item: ItemCart) => {
-                if (item !== null && item.quantity > 0) {
-                    return <CheckoutItem updateTotal={updateTotal} item={item} />
-                }
+       
+        let res = props.items.map((item: ItemCart) => {
+            if (item !== null && item.quantity > 0) {
+                return <CheckoutItem updateTotal={updateTotal} item={item} />
             }
-            )
-            return (
-                <div>
-                    {res}
-                </div>
-            );
         }
+        )
+        return (
+            <div>
+                {res}
+            </div>
+        );
+        
     }
 
     return (
@@ -69,7 +62,7 @@ function Checkout(props: CheckoutProps): JSX.Element {
 
             <Box style={{ display: 'flex' }}>
                 <Stack m={6} spacing={5} style={{ flex: 3 }}>
-                    {loadItems()}
+                    {loadItemsCheckout()}
                     <Card variant="elevation" sx={{ display: 'flex', flexDirection: 'column', padding: 3 }}>
                         <Typography component="h1" variant="h6" color="text.secondary">
                             Cart Totals:
