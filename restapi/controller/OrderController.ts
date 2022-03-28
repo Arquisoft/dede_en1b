@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import Order from '../model/Order';
-import  { Product } from '../model/Product';
+import  { ProductModel } from '../model/Product';
 import { ProductOrdered } from '../model/ProductOrdered';
 import productController from './ProductController';
 
@@ -11,7 +11,7 @@ class OrderController {
     public async saveOrder(req: Request, res: Response) {
         const { userId, products} = req.body;
         await Promise.all(products.map(async (productOrdered:ProductOrdered) => {
-            const p =  await productController.getProductById(productOrdered.productId) as Product;
+            const p =  await productController.getProductById(productOrdered.productId) as ProductModel;
             productOrdered.product = p;
             console.log(productOrdered);
             console.log(p);

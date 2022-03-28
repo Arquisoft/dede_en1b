@@ -88,7 +88,7 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
             //console.log("Length: " + props.items.length)
             let res = props.items.map((item: ItemCart) => {
                 if (item !== null && item.quantity > 0) {
-                    return <CartItem updateTotal={updateTotal} deleteItem={deleteItem} item={item} />
+                    return <CartItem  refreshCartList={props.refreshCartList} updateTotal={updateTotal} deleteItem={deleteItem} item={item} />
                 }
             }
             )

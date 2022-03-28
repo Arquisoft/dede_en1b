@@ -22,7 +22,7 @@ const SearchBar = () => (
                 type="text"
                 id="header-search"
                 placeholder="Search Items..."
-                name="s"
+                name="q"
                 style={{ width: "100%" }}
                 sx={{ input: { color: 'white' } }}
             />
@@ -61,7 +61,7 @@ export default function PrimarySearchAppBar(props: NavBarProps) {
                 <IconButton
                     style={{ marginRight: "1%" }}
                     size="large" aria-label="shopping cart" color="inherit" href="/cart">
-                    <Badge badgeContent={props.cart.length} color="secondary">
+                    <Badge badgeContent={props.cart.reduce((acc,i)=>acc+i.quantity,0)} color="secondary">
                         <ShoppingCart />
                     </Badge>
                 </IconButton>
