@@ -6,7 +6,7 @@ import { getShippingCost } from '../../api/api';
 import { Box, Divider, Grid, Button } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
-import "../css/Shipping.css";
+import "../../css/Shipping.css";
 
 export default function Shipping() {
     var shippingCost = getShippingCost();
