@@ -1,11 +1,16 @@
 
+import { getShippingCost } from '../../api/api';
+
+
+
 import { Box, Divider, Grid, Button } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
-import "../../css/Shipping.css";
+import "../css/Shipping.css";
 
 export default function Shipping() {
-    var shippingCost = 3.99
+    var shippingCost = getShippingCost();
+
     return (
         <Box justifyContent="center">
             <Typography id="shippingTitle" component="h1" variant="h3" >
@@ -15,7 +20,9 @@ export default function Shipping() {
             <Divider />
 
             <Typography id="costMessage" component="h2" variant="h5" >
-                Your estimated devilvery cost is: <span id="cost">{shippingCost} €</span>
+
+                Your estimated delivery cost is: <span id="cost">{shippingCost} €</span>
+
             </Typography>
 
             <Grid container spacing={2}>

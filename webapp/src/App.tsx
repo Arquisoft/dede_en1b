@@ -6,15 +6,21 @@ import  {getCart} from './api/api';
 import {ItemCart} from './shared/shareddtypes';
 import './css/App.css';
 import { BrowserRouter as Router, Routes, Route, useSearchParams } from 'react-router-dom';
+
 import AboutUs from "./components/other/about_us"
 import SOLIDLogin from "./components/user/SOLIDLogin";
 import UserProfile from "./components/user/UserProfile";
+
 import Shipping from './components/checkout-shipping/Shipping';
 
 import MainProducts from './components/products/MainProducts';
 import ProductPage from './components/products/ProductPage';
+
+import { addToCart } from './api/api';
+
 import ShoppingCart from './components/cart/ShoppingCart';
 import Checkout from './components/checkout-shipping/Checkout';
+
 
 function App(): JSX.Element {
 
