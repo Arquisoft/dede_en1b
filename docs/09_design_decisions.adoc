@@ -14,6 +14,5 @@ MongoDB stores data in form of JSON so the conversion and interaction between ty
 Another point in favor is its performance and scalability although in a small application like ours is not strictly necessary.
 
 
-
-=== Bootstrap
-Bootstrap is a free and open-source CSS framework directed at responsive, mobile-first front-end web development. It contains CSS and (optionally) JavaScript-based design templates for typography, forms, buttons, navigation, and other interface components. It will allow us to create a good frontend with less effort.
+=== Material UI
+Material UI is a free React-compatible library directed at easy creation of responsive components. It contains many default styles for typography, forms, buttons, navigation, and other interface components. It will allow us to create a good frontend with less effort.
