@@ -7,7 +7,9 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import { ShoppingCart } from "@material-ui/icons";
 import { Badge, Button, TextField } from '@mui/material';
 import Container from '@mui/material/Container';
-import { ItemCart } from '../shared/shareddtypes';
+import { ItemCart } from '../../shared/shareddtypes';
+
+import '../../css/NavBar.css';
 
 
 type NavBarProps = {
@@ -15,8 +17,8 @@ type NavBarProps = {
 };
 
 const SearchBar = () => (
-    <Container style={{ width: "60%", marginLeft: "0" }}>
-        <form action="/" method="get" style={{ width: "60%", marginLeft: "20%" }}>
+    <Container id="searchBarConatiner">
+        <form id="searchBarForm" action="/" method="get">
             <TextField
                 variant="outlined"
                 type="text"
@@ -27,11 +29,10 @@ const SearchBar = () => (
                 sx={{ input: { color: 'white' } }}
             />
 
-            <Button type="submit" variant="contained"
-                style={{
-                    marginLeft: "1%", backgroundColor: "#F23005", borderRadius: "8px", width: "2%", top: "7%", height: "86%",
-                    position: "absolute"
-                }}
+            <Button 
+                id="submitButton" 
+                type="submit" 
+                variant="contained"
             >
                 <SearchIcon />
             </Button>
@@ -40,28 +41,33 @@ const SearchBar = () => (
 );
 
 export default function PrimarySearchAppBar(props: NavBarProps) {
+
     const [cartItemNumber, setCartItemNumber] = useState<number>(0);
 
     useEffect(() => {
         setCartItemNumber(props.cart.length);
     }, []);
 
-
-
-
     return (
         <AppBar position="static">
-            <Toolbar style={{ backgroundColor: "#7c4dff" }}>
+            <Toolbar id="navToolbar">
 
-                <a style={{ width: "10%", marginRight: "5%" }} href="/" ><img style={{ width: "100%" }} src="./logo.png" alt="DeDe logo." /></a>
+                <a id="logoLink" href="/" >
+                    <img id="logoImg" src="./logo.png" alt="DeDe logo." />
+                </a>
 
                 <SearchBar />
 
-
                 <IconButton
                     style={{ marginRight: "1%" }}
-                    size="large" aria-label="shopping cart" color="inherit" href="/cart">
-                    <Badge badgeContent={props.cart.reduce((acc,i)=>acc+i.quantity,0)} color="secondary">
+                    size="large" 
+                    aria-label="shopping cart" 
+                    color="inherit" 
+                    href="/cart">
+                    <Badge 
+                        badgeContent={props.cart.reduce((acc, i) => acc + i.quantity, 0)} 
+                        color="secondary"
+                    >
                         <ShoppingCart />
                     </Badge>
                 </IconButton>
@@ -75,7 +81,7 @@ export default function PrimarySearchAppBar(props: NavBarProps) {
                     href="/login"
                     style={{ marginRight: "5%" }}
                 >
-                    <AccountCircle />
+                    <AccountCircle/>
                 </IconButton>
 
             </Toolbar>

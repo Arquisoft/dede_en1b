@@ -5,11 +5,11 @@ import {
     CombinedDataProvider
 } from "@inrupt/solid-ui-react";
 
-import { getOrderByUserId } from '../api/api';
+import { getOrderByUserId } from '../../api/api';
 
 import { useNavigate } from "react-router-dom";
 
-import "../css/UserProfile.css";
+import "../../css/UserProfile.css";
 
 import {
     handleIncomingRedirect,
@@ -17,7 +17,7 @@ import {
 } from "@inrupt/solid-client-authn-browser";
 import { useEffect, useState } from 'react';
 import OrderCard from "./OrderCard";
-import { Order } from "../shared/shareddtypes";
+import { Order } from "../../shared/shareddtypes";
 
 
 export default function UserProfile() {
@@ -54,7 +54,6 @@ export default function UserProfile() {
 
     return (
         <Container>
-            {/* {session.info.isLoggedIn ? ( */}
             <CombinedDataProvider
                 datasetUrl={webId}
                 thingUrl={webId}
@@ -83,17 +82,7 @@ export default function UserProfile() {
                         <OrderCard order = {order}/>
                     ))}
                 </Stack>
-
-
-                {/* <LogoutButton
-                        onLogout={() => session.logout()}
-                    /> */}
             </CombinedDataProvider>
-            {/* ) : (
-                <Typography id="pageTitle" variant="h3">
-                    Oops! Something went wrong...
-                </Typography>
-            )} */}
         </Container>
     );
 }
