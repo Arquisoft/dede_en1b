@@ -12,12 +12,12 @@ import { BrowserRouter as Router, Routes, Route, useSearchParams } from 'react-r
 import AboutUs from "./components/about_us"
 import SOLIDLogin from "./components/SOLIDLogin";
 import UserProfile from "./components/UserProfile";
-import Shipping from './components/Shipping';
+import Shipping from './components/checkout-shipping/Shipping';
 
 import MainProducts from './components/products/MainProducts';
 import ProductPage from './components/products/ProductPage';
 import ShoppingCart from './components/ShoppingCart';
-import Checkout from './components/checkout/Checkout';
+import Checkout from './components/checkout-shipping/Checkout';
 import { addToCart } from './api/api';
 
 function App(): JSX.Element {

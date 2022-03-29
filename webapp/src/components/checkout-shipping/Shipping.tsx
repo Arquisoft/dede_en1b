@@ -1,4 +1,4 @@
-import { getShippingCost } from '../api/api';
+import { getShippingCost } from '../../api/api';
 
 
 import { Box, Divider, Grid, Button } from "@mui/material";

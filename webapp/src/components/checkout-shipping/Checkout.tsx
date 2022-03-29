@@ -7,7 +7,7 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { Card,  Box, Divider, } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import CheckoutItem from "../checkout/CheckoutItem";
+import CheckoutItem from "./CheckoutItem";
 
 type CheckoutProps = {
     items: ItemCart[];
