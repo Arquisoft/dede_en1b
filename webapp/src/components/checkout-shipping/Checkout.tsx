@@ -5,19 +5,17 @@ import { getCart } from '../../api/api';
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import { Card,  Box, Divider, } from "@mui/material";
+
 import { styled } from "@mui/material/styles";
+
+import { Card, Box, Divider} from "@mui/material";
+
 import CheckoutItem from "./CheckoutItem";
 
 type CheckoutProps = {
     items: ItemCart[];
     refreshCartList: () => void;
 };
-
-const Img =
-    styled("img")({
-        display: "block"
-    });
 
 function Checkout(props: CheckoutProps): JSX.Element {
 
@@ -26,13 +24,12 @@ function Checkout(props: CheckoutProps): JSX.Element {
     const updateTotal = async () => {
         let cart = getCart();
         setTotal(cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0));
-    };
-
-    
+    };  
 
     useEffect(() => {
         setTotal(props.items.reduce((acc, item) => acc + item.product.price * item.quantity, 0));
     }, [props.items]);
+
 
 
 
@@ -51,6 +48,7 @@ function Checkout(props: CheckoutProps): JSX.Element {
             </div>
         );
         
+
     }
 
     return (
@@ -62,7 +60,9 @@ function Checkout(props: CheckoutProps): JSX.Element {
 
             <Box style={{ display: 'flex' }}>
                 <Stack m={6} spacing={5} style={{ flex: 3 }}>
+
                     {loadItemsCheckout()}
+
                     <Card variant="elevation" sx={{ display: 'flex', flexDirection: 'column', padding: 3 }}>
                         <Typography component="h1" variant="h6" color="text.secondary">
                             Cart Totals:
@@ -71,9 +71,11 @@ function Checkout(props: CheckoutProps): JSX.Element {
                             {total.toString().concat(" €")}
                         </Typography>
                     </Card>
+
                     <Button variant="contained" href="/cart" style={{ color: "black", backgroundColor: "lavender", borderRadius: "8px", top: "20px", height: "50px" }}>
                         Back to Shopping Cart
                     </Button> 
+
                     {props.items.length > 0 ? <Button variant="contained" href="/shipping" style={{ color: "white", backgroundColor: "#7c4dff", borderRadius: "8px", top: "20px", height: "50px" }}>
                         Continue to Shipping
                     </Button> : <></>}

@@ -1,24 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
+import { useState, useEffect } from 'react';
 import Container from '@mui/material/Container';
-import ProductList from './components/ProductList';
-import Header from './components/NavBar';
-import Footer from './components/Footer';
-import  {getProducts,getCart} from './api/api';
-import {Product,ItemCart} from './shared/shareddtypes';
-import './App.css';
+import Header from './components/fragments/NavBar';
+import Footer from './components/fragments/Footer';
+import  {getCart} from './api/api';
+import {ItemCart} from './shared/shareddtypes';
+import './css/App.css';
 import { BrowserRouter as Router, Routes, Route, useSearchParams } from 'react-router-dom';
-import AboutUs from "./components/about_us"
-import SOLIDLogin from "./components/SOLIDLogin";
-import UserProfile from "./components/UserProfile";
+
+import AboutUs from "./components/other/about_us"
+import SOLIDLogin from "./components/user/SOLIDLogin";
+import UserProfile from "./components/user/UserProfile";
+
 import Shipping from './components/checkout-shipping/Shipping';
 
 import MainProducts from './components/products/MainProducts';
 import ProductPage from './components/products/ProductPage';
-import ShoppingCart from './components/ShoppingCart';
-import Checkout from './components/checkout-shipping/Checkout';
+
 import { addToCart } from './api/api';
+
+import ShoppingCart from './components/cart/ShoppingCart';
+import Checkout from './components/checkout-shipping/Checkout';
+
 
 function App(): JSX.Element {
 

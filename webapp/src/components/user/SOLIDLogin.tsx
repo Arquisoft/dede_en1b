@@ -3,7 +3,7 @@ import { LoginButton, useSession } from "@inrupt/solid-ui-react";
 import { Autocomplete, Button, Container, Grid, Link, TextField, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-import "../css/SOLIDLogin.css";
+import "../../css/SOLIDLogin.css";
 
 import {
   handleIncomingRedirect,
