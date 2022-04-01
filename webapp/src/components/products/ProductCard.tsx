@@ -7,7 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { styled } from '@mui/system';
+import { styled, width } from '@mui/system';
 
 import { useNavigate } from "react-router-dom";
 const DivBtonStyle = styled('div')({
@@ -43,7 +43,7 @@ function addProduct(product: Product): void {
 const ProductCard = ( prod: ProductCardProps): JSX.Element => {
 
 
-
+  const imgPath = "cars/" + prod.product.image + "/" + prod.product.image + " (1).jpg"
 
   const navigate = useNavigate();
 
@@ -55,7 +55,7 @@ const ProductCard = ( prod: ProductCardProps): JSX.Element => {
 
         <CardMedia
           component="img"
-          image={prod.product.image}
+          image={imgPath}
           alt={prod.product.name}
         />
         <CardContent>

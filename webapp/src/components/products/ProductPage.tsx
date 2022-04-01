@@ -53,6 +53,9 @@ function ProductPage(prop : ProductPageProps) : JSX.Element {
    
     
   if(product){
+
+    const imgPath = "cars/" + product?.image + "/" + product?.image + " (1).jpg"
+
     return (
       <Grid container
         direction="row"
@@ -68,7 +71,7 @@ function ProductPage(prop : ProductPageProps) : JSX.Element {
       
           <CardMedia
               component="img"
-              image={product?.image}
+              image={imgPath}
               alt={product.name}
               
           />
