@@ -31,17 +31,20 @@ function CartItem(props: CartItemProps) {
         setQuantity(props.item.quantity);
     }, [props.item.quantity]);
 
+    const imgPath = "cars/" + props.item.product.image + "/" + props.item.product.image + " (1).jpg"
+
     return (
+        
         <Card variant="elevation" sx={{ display: 'flex', marginBottom: 5 }}>
             <CardMedia
                 component="img"
 
                 //set max image to fill the card
                 //sx={{ maxWidth: '100', maxHeight: '110', width: '100', height: '110' }}
-                image={props.item.product.image}
+                image={imgPath}
                 //image={require("path/to/image.jpg")} FOR TESTING
                 //set max height to 100px
-                sx={{ height: 110, width: 100, margin: 3 }}
+                sx={{ height: 200, width: 100, margin: 3 }}
                 style={{ flex: 2 }} />
             <Box style={{ flex: 3, display: 'flex', flexDirection: 'column' }}
                 justifyContent='space-between'>

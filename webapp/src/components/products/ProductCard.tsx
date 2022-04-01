@@ -7,7 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { styled, width } from '@mui/system';
+import { padding, styled, width } from '@mui/system';
 
 import { useNavigate } from "react-router-dom";
 const DivBtonStyle = styled('div')({
@@ -49,7 +49,8 @@ const ProductCard = ( prod: ProductCardProps): JSX.Element => {
 
   return (
 
-    <Card >
+    <Card 
+    >
 
     <CardActionArea  onClick={()=>navigate("products/"+prod.product.id)}>
 

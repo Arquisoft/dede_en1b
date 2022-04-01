@@ -9,12 +9,13 @@ type CheckoutItemProps = {
 
 function CheckoutItem(props: CheckoutItemProps) {
 
+    const imgPath = "cars/" + props.item.product.image + "/" + props.item.product.image + " (1).jpg"
+
     return (
         <Card variant="elevation" sx={{ display: 'flex', marginBottom: 5 }}>
             <CardMedia
                 component="img"
-
-                image={props.item.product.image}
+                image={imgPath}
                 sx={{ height: 260, width: 100, margin: 3 }}
                 style={{ flex: 2 }} />
             <Box style={{ flex: 3, display: 'flex', flexDirection: 'column' }}
