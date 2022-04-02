@@ -1,11 +1,30 @@
-
+import { useState, useEffect } from 'react';
 import { Box, Divider, Grid, Button } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import {
+    useSession,
+    CombinedDataProvider
+} from "@inrupt/solid-ui-react";
+import { addOrderToUser, getCart } from '../api/api'
 
 import "../css/Shipping.css";
 
 export default function Shipping() {
+
+    const { session } = useSession();
+    const webId = session.info.webId as string;
+
+    var subtotal = getCart().reduce((acc, item) => acc + item.product.price * item.quantity, 0)
+    // add shipping to this^
     var shippingCost = 3.99
+
+    addOrderToUser(webId.substring(23, webId.length).slice(0, -16));
+
+    /*  useEffect(() => {
+        fetch('/checkout')
+          .then(() => addOrder());
+    }, []); */
+
     return (
         <Box justifyContent="center">
             <Typography id="shippingTitle" component="h1" variant="h3" >

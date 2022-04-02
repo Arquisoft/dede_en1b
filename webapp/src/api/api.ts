@@ -68,11 +68,6 @@ export async function deleteFromCart(id:String) {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-
-  
-
-
-
 export async function getProductById(id: any):Promise<Product>{ 
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
   console.log(apiEndPoint+'/product/id')
@@ -80,4 +75,28 @@ export async function getProductById(id: any):Promise<Product>{
   return response.json();
 }
 
+export async function addOrderToUser(webId: string) {
+  console.log('adding order to user ' + webId)
+  const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
+  let response = await fetch(apiEndPoint + '/order', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ 'userId': webId, 'products': 
+      getCart().map(async (item:ItemCart) => {
+        let pid = item.product.id;
+        var product = {
+          'productId': pid,
+          'product': getProductById(pid),
+          'quantity': item.quantity,
+          'price': item.product.price
+        }
+        return product;
+      })
+    })
+  });
+  if (response.status === 200)
+    return true;
+  else
+    return false;
+}
   
