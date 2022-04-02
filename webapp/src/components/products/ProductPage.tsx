@@ -99,7 +99,7 @@ function ProductPage(prop : ProductPageProps) : JSX.Element {
       
   </Card>
   </Grid>
-  <Grid  item xs={2} sm={5} md={6} >
+  <Grid  direction = "column" item xs={2} sm={5} md={6} rowSpacing={100} >
   <Rating name="disabled" value={computeReviewMean()} disabled />
           <DivBtonStyle>
           <BuyBtton startIcon={<AddShoppingCartIcon />} onClick={()=>{addProduct(product);
@@ -107,16 +107,20 @@ function ProductPage(prop : ProductPageProps) : JSX.Element {
               Add to Cart
           </BuyBtton> 
           </DivBtonStyle>
+          <Card>
+
+            <List>
+            {product.reviews.map((review) => (
+              <ReviewView review={review} />
+            ))}
+            </List>
+            </Card>
   </Grid>
-  <List>
-  {product.reviews.map((review) => (
-    <ReviewView review={review} />
-  ))}
-  </List>
-    );
   
   
+  
   </Grid>
+  
    
           
     // the button is contained because it has actions that are primary to our app( add an Item to the cart)
