@@ -8,7 +8,7 @@ import reviewController from './../controller/ReviewController'
 router.get('/products', productController.getProducts);
 router.post('/product', productController.saveProduct);
 router.get('/products/:id', productController.getProductWithId); 
-router.post('/review',reviewController.addReview);
+router.post('/review/add',reviewController.addReview);
 
 
 export default router;

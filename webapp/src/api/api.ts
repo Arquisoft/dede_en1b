@@ -1,4 +1,4 @@
-import { User, Product, Order,ItemCart } from '../shared/shareddtypes';
+import { User, Product, Order,ItemCart, Review } from '../shared/shareddtypes';
 
 export async function addUser(user: User): Promise<boolean> {
   const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
@@ -30,6 +30,20 @@ export async function getOrderByUserId(webId: string): Promise<Order[]> {
   const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
   let response = await fetch(apiEndPoint + '/order/' + webId);
   return response.json();
+}
+
+export async function addReview(review:Review) {
+  const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
+  let response = await fetch(apiEndPoint + '/review/add', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(review)
+  });
+  if (response.status === 200)
+    return true;
+  else
+    return false;
+  
 }
 
 export  function getCart() : ItemCart[] {

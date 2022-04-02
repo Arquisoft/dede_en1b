@@ -8,9 +8,10 @@ import Typography from '@mui/material/Typography';
 import { useParams } from "react-router-dom";
 import './ProductPage.css';
 import  Grid  from "@mui/material/Grid";
-import {Button} from '@mui/material';
+import {Button, List, Rating} from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { styled } from '@mui/system';
+import ReviewView from './ReviewView';
 
 import { addToCart } from '../../api/api';
 
@@ -50,6 +51,17 @@ function ProductPage(prop : ProductPageProps) : JSX.Element {
     useEffect(()=>{
         getProduct();
     }, []);
+
+    function computeReviewMean(): number {
+      if (product) {
+        let sum = 0;
+        for (const review of product.reviews) {
+          sum += review.rating;
+        }
+        return sum / product.reviews.length;
+      }
+      return 0;
+    }
    
     
   if(product){
@@ -88,6 +100,7 @@ function ProductPage(prop : ProductPageProps) : JSX.Element {
   </Card>
   </Grid>
   <Grid  item xs={2} sm={5} md={6} >
+  <Rating name="disabled" value={computeReviewMean()} disabled />
           <DivBtonStyle>
           <BuyBtton startIcon={<AddShoppingCartIcon />} onClick={()=>{addProduct(product);
             prop.refreshCartList();}} >
@@ -95,6 +108,13 @@ function ProductPage(prop : ProductPageProps) : JSX.Element {
           </BuyBtton> 
           </DivBtonStyle>
   </Grid>
+  <List>
+  {product.reviews.map((review) => (
+    <ReviewView review={review} />
+  ))}
+  </List>
+    );
+  
   
   </Grid>
    

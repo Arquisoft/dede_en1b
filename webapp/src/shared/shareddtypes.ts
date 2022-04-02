@@ -1,3 +1,5 @@
+import { type } from "os";
+
 export type User = {
     name:string;
     email:string;
@@ -10,6 +12,7 @@ export type Product = {
     price:number;
     image:string;
     category:string;
+    reviews:Array<Review>;
 }
 
 export type Order = {
@@ -22,4 +25,11 @@ export type Order = {
 export type ItemCart = {
   product:Product
   quantity: number
+}
+
+export type Review = {
+  userId: string;
+  productId: string;
+  rating: number;
+  comment: string;
 }
