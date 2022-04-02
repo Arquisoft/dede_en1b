@@ -72,7 +72,6 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
             <CardMedia
               component="img"
               image={imgPath}
-              sx={{ height: 200, width: 100, margin: 3 }}
               alt={product.name}
             />
             <CardContent>
