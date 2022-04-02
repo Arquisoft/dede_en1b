@@ -9,9 +9,10 @@ class ReviewController {
         //TODO: Check the user is logged in and has bought the product
 
         //check that te user has not already reviewed the product
-        const reviewFound = await Product.findOne({
-            review: [{productId: productId,userId: userId}],
-        });
+        const productFound = await Product.findById(productId);
+        const reviewFound = productFound?.reviews.find(review => review.userId === userId);
+        
+        console.log(reviewFound);
         if(reviewFound) {
             return res.status(400).send({
                 message: 'You have already reviewed this product'
