@@ -23,42 +23,10 @@ import axios from "axios";
 
 export default function UserProfile() {
 
-    // Address fetching:
-
     const { session } = useSession();
     const webId = session.info.webId as string;
+    localStorage.setItem("webId", webId);
     let username : string = "null";
-
-    let address : string = "Address not found."
-    if (localStorage.getItem("provider") == "https://inrupt.net/")  {
-        username = webId.substring(8, webId.length - 27);
-
-        axios.get("https://" + username + ".solidcommunity.net/profile/card#address")
-        .then(res => {
-            console.log(res.data);
-            address = res.data;
-        })
-    } else if (localStorage.getItem("provider") == "https://broker.pod.inrupt.com/") {
-        username = webId.substring(8, webId.length - 27);
-        
-        axios.get("https://" + username + ".solidcommunity.net/profile/card#address")
-        .then(res => {
-            console.log(res.data);
-            address = res.data;
-    })
-    }  
-
-    console.log(username);
-
-    //Order management:
-    const [orders, setOrders] = useState<Order[]>([]);
-    const findUserOrders = async () => {
-        setOrders(await getOrderByUserId(webId.substring(23, webId.length).slice(0, -16)));
-    }
-
-    useEffect(() => {
-        findUserOrders();
-    }, []);
 
     const navigate = useNavigate();
 
@@ -76,6 +44,37 @@ export default function UserProfile() {
                 navigate("/profile");
             }
         })
+    }, []);
+
+    // let address : string = "Address not found."
+    // if (localStorage.getItem("provider") == "https://inrupt.net/")  {
+    //     username = webId.substring(8, webId.length - 27);
+
+    //     axios.get("https://" + username + ".solidcommunity.net/profile/card#address")
+    //     .then(res => {
+    //         console.log(res.data);
+    //         address = res.data;
+    //     })
+    // } else if (localStorage.getItem("provider") == "https://broker.pod.inrupt.com/") {
+    //     username = webId.substring(8, webId.length - 27);
+        
+    //     axios.get("https://" + username + ".solidcommunity.net/profile/card#address")
+    //     .then(res => {
+    //         console.log(res.data);
+    //         address = res.data;
+    // })
+    // }  
+
+    console.log(username);
+
+    //Order management:
+    const [orders, setOrders] = useState<Order[]>([]);
+    const findUserOrders = async () => {
+        setOrders(await getOrderByUserId(webId.substring(23, webId.length).slice(0, -16)));
+    }
+
+    useEffect(() => {
+        findUserOrders();
     }, []);
 
     return (

@@ -16,3 +16,39 @@
     margin-top: 5%;
     margin-bottom: 15%;
 }
+
+#solidcom {
+    color: #F2300599;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#solidcom:visited {
+    color: #F2300590;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#solidcom:hover {
+    color: #F2300590;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+#li {
+    color: #F2300599;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#li:visited {
+    color: #F2300590;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#li:hover {
+    color: #F2300590;
+    text-decoration: underline;
+    font-weight: bold;
+}
