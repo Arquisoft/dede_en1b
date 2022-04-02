@@ -43,7 +43,7 @@ function addProduct(product: Product): void {
 const ProductCard = ( prod: ProductCardProps): JSX.Element => {
 
 
-  const imgPath = "cars/" + prod.product.image + "/" + prod.product.image + " (1).jpg"
+  const imgPath = "/cars/" + prod.product.image + "/" + prod.product.image + " (1).jpg"
 
   const navigate = useNavigate();
 

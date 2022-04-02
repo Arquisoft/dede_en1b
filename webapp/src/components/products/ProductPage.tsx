@@ -54,7 +54,7 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
 
   if (product) {
 
-    const imgPath = "cars/" + product?.image + "/" + product?.image + " (1).jpg"
+    const imgPath = "/cars/" + product?.image + "/" + product?.image + " (1).jpg"
 
     return (
       <Grid container
