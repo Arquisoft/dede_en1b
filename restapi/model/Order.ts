@@ -1,5 +1,4 @@
 import moongose, { Schema,model } from 'mongoose';
-import { ProductModel } from './Product';
 import { ProductOrdered } from './ProductOrdered';
 
 const OrderSchema = new Schema({

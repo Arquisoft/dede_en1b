@@ -61,3 +61,34 @@ WebApp --> User: notifies finalization of ordering
 
 === ... 
  * In further versions more runtime views will be added... #TBD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
