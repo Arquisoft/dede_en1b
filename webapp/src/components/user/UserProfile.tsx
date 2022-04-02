@@ -22,15 +22,33 @@ import { Order } from "../../shared/shareddtypes";
 import axios from "axios";
 
 export default function UserProfile() {
+
+    // Address fetching:
+
     const { session } = useSession();
     const webId = session.info.webId as string;
-    
-    const username = webId.substring(8, webId.length - 27);
+    let username : string = "null";
 
-    axios.get("https://" + username + ".solidcommunity.net/profile/card#address")
+    let address : string = "Address not found."
+    if (localStorage.getItem("provider") == "https://inrupt.net/")  {
+        username = webId.substring(8, webId.length - 27);
+
+        axios.get("https://" + username + ".solidcommunity.net/profile/card#address")
         .then(res => {
             console.log(res.data);
+            address = res.data;
+        })
+    } else if (localStorage.getItem("provider") == "https://broker.pod.inrupt.com/") {
+        username = webId.substring(8, webId.length - 27);
+        
+        axios.get("https://" + username + ".solidcommunity.net/profile/card#address")
+        .then(res => {
+            console.log(res.data);
+            address = res.data;
     })
+    }  
+
+    console.log(username);
 
     //Order management:
     const [orders, setOrders] = useState<Order[]>([]);
@@ -68,10 +86,10 @@ export default function UserProfile() {
             >
                 <Typography id="pageTitle" variant="h3">
                     <span>Welcome, </span>
-                    {/* <Text properties={[
+                    <Text properties={[
                         "http://www.w3.org/2006/vcard/ns#fn",
                         "http://xmlns.com/foaf/0.1/name",
-                    ]} /> */}
+                    ]} />
                     {/* <Text properties={[
                         "http://www.w3.org/2006/vcard/ns#fn",
                         "http://www.w3.org/2006/vcard/ns#",

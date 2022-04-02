@@ -11,9 +11,15 @@ import {
 } from "@inrupt/solid-client-authn-browser";
 import { useEffect } from 'react';
 
+let provider: string | undefined;
+
 const authOptions = {
   clientName: "DedEx: Decentralized Delivery",
 };
+
+function handleProvider(value: { displayName: string; url: string; } | null) {
+  localStorage.setItem("provider", value?.url as string);
+}
 
 export default function SOLIDLogin() {
 
@@ -54,8 +60,10 @@ export default function SOLIDLogin() {
           renderInput={(params) => <TextField {...params} label="Provider:" />}
           getOptionLabel={(option) => option.displayName}
           onChange={(e, value) => {
-            if (value != null)
+            if (value != null) {
               setOidcIssuer(value.url)
+            }
+            handleProvider(value);
           }}
         />
         <Grid container spacing={2}>
