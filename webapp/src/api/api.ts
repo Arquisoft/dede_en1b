@@ -28,7 +28,11 @@ export async function getProducts(searchParams?:String): Promise<Product[]> {
 
 export async function getOrderByUserId(webId: string): Promise<Order[]> {
   const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
-  let response = await fetch(apiEndPoint + '/order/' + webId);
+  let response = await fetch(apiEndPoint + '/order/find' ,{
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ 'webId': webId })
+  });
   return response.json();
 }
 
@@ -83,6 +87,10 @@ export async function deleteFromCart(id:String) {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
 
+export function emptyCart() {
+  localStorage.setItem('cart', JSON.stringify([]));
+}
+
 export async function getProductById(id: any):Promise<Product>{ 
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
   console.log(apiEndPoint+'/product/id')
@@ -97,11 +105,11 @@ export async function addOrderToUser(webId: string) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ 'userId': webId, 'products': 
-      getCart().map(async (item:ItemCart) => {
+      getCart().map( (item:ItemCart) => {
         let pid = item.product.id;
         var product = {
           'productId': pid,
-          'product': getProductById(pid),
+          'product': null,
           'quantity': item.quantity,
           'price': item.product.price
         }

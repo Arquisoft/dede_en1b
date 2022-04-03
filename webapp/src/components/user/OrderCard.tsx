@@ -22,7 +22,7 @@ export default function OrderCard(props: OrderCardProps) {
                     Items:
                     {props.order.products.map(product => (
                         <Typography variant="caption" color="text.secondary">
-                            {product},
+                            {product.price},
                         </Typography>
                     ))}
                     <Typography variant="body2" color="text.secondary">

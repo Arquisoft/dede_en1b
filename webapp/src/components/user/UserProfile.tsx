@@ -27,7 +27,8 @@ export default function UserProfile() {
     //Order management:
     const [orders, setOrders] = useState<Order[]>([]);
     const findUserOrders = async () => {
-        setOrders(await getOrderByUserId(webId.substring(23, webId.length).slice(0, -16)));
+        setOrders(await getOrderByUserId(webId));
+        console.log("orders",orders);
     }
 
     useEffect(() => {
