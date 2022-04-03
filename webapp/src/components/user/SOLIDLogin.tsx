@@ -11,8 +11,6 @@ import {
 } from "@inrupt/solid-client-authn-browser";
 import { useEffect } from 'react';
 
-let provider: string | undefined;
-
 const authOptions = {
   clientName: "DedEx: Decentralized Delivery",
 };
@@ -22,6 +20,8 @@ function handleProvider(value: { displayName: string; url: string; } | null) {
 }
 
 export default function SOLIDLogin() {
+
+  // localStorage.setItem("provider", "https://broker.pod.inrupt.com/");
 
   const navigate = useNavigate();
 

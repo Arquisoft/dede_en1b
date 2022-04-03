@@ -4,16 +4,24 @@ const DataComponent = () => {
     const [data, setData] = useState(null);
     const webId = localStorage.getItem("webId") as string;
     let username: string = "null";
+    let url: string = "null";
     let values: string[] = [];
 
     useEffect(() => {
         let unmounted = false;
 
-        username = webId.substring(8, webId.length - 27);
+        if (localStorage.getItem("provider") == "https://inrupt.net/") {
+            username = webId.substring(8, webId.length - 27);
+            url = "https://pod.inrupt.com/" + username + "/public/address.json";
+            console.log(url);
+        } else if (localStorage.getItem("provider") == "https://broker.pod.inrupt.com/") {
+            username = webId.substring(23, webId.length - 16);
+            console.log(username);
+            url = "https://pod.inrupt.com/" + username + "/public/address.json";
+            
+        }
 
-        console.log(username);
-
-        fetch("https://pod.inrupt.com/" + username + "/public/address.json")
+        fetch(url)
             .then(res => res.json())
             .then(data => {
                 !unmounted && setData(data);

@@ -19,8 +19,6 @@ import { useEffect, useState } from 'react';
 import OrderCard from "./OrderCard";
 import { Order } from "../../shared/shareddtypes";
 
-import axios from "axios";
-
 export default function UserProfile() {
 
     const { session } = useSession();
