@@ -19,7 +19,7 @@ const ProductSchema = new Schema({
     timestamps: true
 });
 
-export interface Product extends moongose.Document {
+export interface ProductModel extends moongose.Document {
     id: string;
     name: string;
     description: string;
@@ -42,4 +42,4 @@ ProductSchema.set('toJSON', {
     virtuals: true
 });
 
-export default model<Product>('Product', ProductSchema);
+export default model<ProductModel>('Product', ProductSchema);

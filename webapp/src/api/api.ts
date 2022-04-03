@@ -20,9 +20,9 @@ export async function getUsers(): Promise<User[]> {
   return response.json()
 }
 
-export async function getProducts(): Promise<Product[]> {
+export async function getProducts(searchParams?:String): Promise<Product[]> {
   const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
-  let response = await fetch(apiEndPoint + '/products');
+  let response = await fetch(apiEndPoint + '/products' + (searchParams ? '?search=' + searchParams : ''));
   return response.json();
 }
 
@@ -43,12 +43,27 @@ export  function getCart() : ItemCart[] {
     
 }
 
-export  function addToCart(itemCart:ItemCart) {
+
+export function getShippingCost(){
+  var cart = getCart();
+  var totalPrice = cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
+  var shippingCost;
+  
+  if(totalPrice > 100){
+    shippingCost = 0;
+  }else{
+    shippingCost = 10;
+  }
+  return shippingCost;
+}
+
+
+export  function addToCart(itemCart:ItemCart, factor:number=1) : void {
   var cart = getCart();
   console.log(cart);
   const index = cart.findIndex((i:ItemCart)=>i.product.id===itemCart.product.id);
   if(index>=0){
-    cart[index].quantity = itemCart.quantity;
+    cart[index].quantity += factor;
     }
   else
     cart.push(itemCart);
