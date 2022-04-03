@@ -21,7 +21,7 @@ const DataComponent = () => {
             })
             .catch(console.error);
 
-        
+
         return () => {
             (unmounted = true)
         };
@@ -29,7 +29,7 @@ const DataComponent = () => {
 
     if (data) {
         for (let line of JSON.stringify(data).split(',')) {
-            let value: string = line.split(':')[1].replace('"','').replace('"','').replace('}','');
+            let value: string = line.split(':')[1].replace('"', '').replace('"', '').replace('}', '');
             values.push(value);
         }
     }
@@ -46,7 +46,12 @@ const DataComponent = () => {
             </div>
         )
 
-        : <p>Loading...</p>;
+        :
+        <div>
+            <h3>Shipping Address:</h3>
+            <p>Loading...</p>
+        </div>
+        ;
 };
 
 
