@@ -21,4 +21,4 @@ By discarding the use of an SQL database, we are also losing the opportunity to 
 === Material UI
 Material UI is a free React-compatible library directed at easy creation of responsive components. It contains many default styles for typography, forms, buttons, navigation, and other interface components. It will allow us to create a good frontend with less effort.
 
-We descarded the use of Bootstrap because we felt that Material was more attuned to what we were trying to do with this reactive app. By doing so, we made a lot of design decision fall in the developers hands, making it more customizable but also more diffcult and time consuming to create.
+We discarded the use of Bootstrap because we felt that Material was more attuned to what we were trying to do with this reactive app. By doing so, we made a lot of design decision fall in the developers hands, making it more customizable but also more difficult and time consuming to create.
