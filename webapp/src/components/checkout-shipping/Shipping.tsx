@@ -33,7 +33,6 @@ export default function Shipping(props: ShippingProps) {
     }, []); */
 
 
-export default function Shipping() {
    
     
     var shippingCost = getShippingCost(localStorage.getItem("country"), localStorage.getItem("locality"));
