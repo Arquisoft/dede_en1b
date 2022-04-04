@@ -10,7 +10,7 @@ Here we define how the different components of DeDe interact with each other, as
 @startuml
 Actor User
 database POD
-component CorreosAPI
+component ShippingAPI
 node DeDe {
   database MongoDB
 }
@@ -18,7 +18,7 @@ User --> DeDe : Input
 User --> POD : Creates and manages
 DeDe -u-> User : Returns view / data
 DeDe -l-> POD : Requests / updates information
-DeDe -r-> CorreosAPI : Places order on checkout
+DeDe -r-> ShippingAPI : Places order on checkout
 POD --> DeDe : Returns information
 @enduml
 ....
@@ -31,7 +31,7 @@ POD --> DeDe : Returns information
 |DeDe|The application will receive requests to fulfill from the user, as well as data from both the POD and the MongoDB when required.|The web app will send responses to the user and requests for information to both the POD and Mongo Database. For solicitations to the POD, a login in Solid must be filled by the user. It's integral to the architecture that the data from the POD and the one from MongoDB are handled separately as to not divulge any personal information.
 |Solid POD|The user will create the POD to manage his personal information in the app. The application itself, will request for the necessary sensitive data and should always ask for authentication from the user.|The POD will only send personal information to the application, after the appropiate login in Solid.
 |MongoDB|The database will accept requests from the application for any information stored (that is, the one we consider not to be personal or sensitive, like the set of products available).|The database will communicate with the application as a response. It will return information that is supposed to be known as public.
-|Correos API|The API will accept requests from the application, avoiding interaction with the user as serving to mediate between him and the delivery is the main purpose of the application.|From the API, a response will ideally be given to DeDe when the order has been completed, although this behaviour can be considered optional as making the order is the end goal.
+|Shipping API|The API will accept requests from the application, avoiding interaction with the user as serving to mediate between him and the delivery is the main purpose of the application.|From the API, a response will ideally be given to DeDe when the order has been completed, although this behaviour can be considered optional as making the order is the end goal.
 |===
 
 
