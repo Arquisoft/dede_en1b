@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import { useParams } from "react-router-dom";
 import './ProductPage.css';
 import Grid from "@mui/material/Grid";
-import { Button } from '@mui/material';
+import { Button, CardActions } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { styled } from '@mui/system';
 
@@ -68,42 +68,20 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
 
 
   if (product) {
-    const images = [
-      {
-        original: 'https://picsum.photos/id/1018/1000/600/',
-        thumbnail: 'https://picsum.photos/id/1018/250/150/',
-      },
-      {
-        original: 'https://picsum.photos/id/1015/1000/600/',
-        thumbnail: 'https://picsum.photos/id/1015/250/150/',
-      },
-      {
-        original: 'https://picsum.photos/id/1019/1000/600/',
-        thumbnail: 'https://picsum.photos/id/1019/250/150/',
-      },
-    ];
-    const imgPath = "/cars/" + product?.image + "/" + product?.image + " (1).jpg"
-    let e = getImages("brz", 4);
-    console.log(e);
+
+    let prodImgs = getImages(product?.image, 4);
     return (
       
       <Grid container
-        direction="row"
-        justifyContent="left"
-        alignItems="center"
-        spacing={{ xs: 2, md: 3 }} columns={{ xs: 6, sm: 12, md: 15 }}
-        rowSpacing={5}
 
+       spacing={2} columns={16}
       >
+        <Grid item xs={8}>
+        <ImageGallery items={JSON.parse(prodImgs)} />
+        </Grid>
+        <Grid item xs={8}>
+          <Card>
 
-        <Grid item xs={2} sm={5} md={6} >
-          <Card sx={{ maxWidth: 345 }} style={{ height: "100%" }}>
-
-            <CardMedia
-              component="img"
-              image={imgPath}
-              alt={product.name}
-            />
             <CardContent>
               <Typography gutterBottom variant="h3" component="div">
                 {product?.name}
@@ -115,12 +93,8 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
                 {product?.description}
               </Typography>
             </CardContent>
-
-
-          </Card>
-        </Grid>
-        <Grid item xs={2} sm={5} md={6} >
-          <DivBtonStyle>
+            <CardActions>
+            <DivBtonStyle>
             <BuyBtton startIcon={<AddShoppingCartIcon />} onClick={() => {
               addProduct(product);
               prop.refreshCartList();
@@ -128,10 +102,12 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
               Add to Cart
             </BuyBtton>
           </DivBtonStyle>
+          </CardActions>
+
+          </Card>
         </Grid>
-        <Grid item>
-        <ImageGallery items={JSON.parse(e)} />
-        </Grid>
+       
+        
       </Grid>
     
 
