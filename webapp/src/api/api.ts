@@ -119,11 +119,12 @@ export async function getProductById(id: any):Promise<Product>{
 
 export async function addOrderToUser(webId: string) {
   console.log('adding order to user ' + webId)
+  var shippingCost = getShippingCost(localStorage.getItem("country"), localStorage.getItem("locality"));
   const apiEndPoint = window.location.href.includes("www.dedeen1b.tk") ? "https://api.dedeen1b.tk/api" : (process.env.REACT_APP_API_URI || 'http://localhost:5000/api');
   let response = await fetch(apiEndPoint + '/order', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ 'userId': webId, 'products': 
+    body: JSON.stringify({ 'userId': webId,'deliveryPrice': shippingCost,'products': 
       getCart().map( (item:ItemCart) => {
         let pid = item.product.id;
         var product = {
