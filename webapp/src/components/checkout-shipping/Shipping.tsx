@@ -1,6 +1,8 @@
+import AddressComponent from "../user/address";
+
 import { useState, useEffect } from 'react';
 import { getShippingCost, addOrderToUser, getCart, emptyCart } from '../../api/api';
-import { Box, Divider, Grid, Button } from "@mui/material";
+import { Box, Divider, Grid, Button, Link } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import {
     useSession,
@@ -32,6 +34,12 @@ export default function Shipping(props: ShippingProps) {
 
     var shippingCost = getShippingCost();
 
+    if (localStorage.getItem("webId") === null) {
+        return(
+            <Typography style={{textAlign: "center"}} variant='h6'>Please, <Link id="li" href="/login">Log In</Link> or register via <Link id="inrupt" href="https://inrupt.com/" target="_blank">Inrupt</Link> or <Link id="solidcom" href="https://solidcommunity.net/" target="_blank">SOLID</Link></Typography>
+        );
+    }
+    
     function addOrder() {
         addOrderToUser(webId).then(() => {
             emptyCart(props.refreshCartList);
@@ -46,6 +54,8 @@ export default function Shipping(props: ShippingProps) {
             </Typography>
 
             <Divider />
+
+            <AddressComponent/>
 
             <Typography id="costMessage" component="h2" variant="h5" >
 
