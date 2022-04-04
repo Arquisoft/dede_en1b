@@ -11,7 +11,9 @@ import AddressComponent from "../user/address";
 import "../../css/Shipping.css";
 
 export default function Shipping() {
-    var shippingCost = getShippingCost();
+   
+    
+    var shippingCost = getShippingCost(localStorage.getItem("country"), localStorage.getItem("locality"));
 
     if (localStorage.getItem("webId") === null) {
         return(
@@ -31,7 +33,7 @@ export default function Shipping() {
 
             <Typography id="costMessage" component="h2" variant="h5" >
 
-                Your estimated delivery cost is: <span id="cost">{shippingCost} €</span>
+                Your delivery cost is: <span id="cost">{shippingCost} €</span>
 
             </Typography>
 
