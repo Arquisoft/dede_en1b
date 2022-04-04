@@ -21,17 +21,19 @@ export async function getUsers(): Promise<User[]> {
 }
 
 export async function getProducts(searchParams?:String): Promise<Product[]> {
+  let params = searchParams;
   const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
-  let response = await fetch(apiEndPoint + '/products' + (searchParams ? '?search=' + searchParams : ''));
+  let response = await fetch(apiEndPoint + '/products' + (params ? '?search=' + params : ''));
   return response.json();
 }
 
 export async function getOrderByUserId(webId: string): Promise<Order[]> {
+  let userId = webId;
   const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
   let response = await fetch(apiEndPoint + '/order/find' ,{
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ 'webId': webId })
+    body: JSON.stringify({ 'webId': userId })
   });
   return response.json();
 }
