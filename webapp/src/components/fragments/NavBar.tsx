@@ -53,7 +53,7 @@ export default function PrimarySearchAppBar(props: NavBarProps) {
             <Toolbar id="navToolbar">
 
                 <a id="logoLink" href="/" >
-                    <img id="logoImg" src="./logo.png" alt="DeDe logo." />
+                    <img id="logoImg" src="/logo.png" alt="DeDe logo." />
                 </a>
 
                 <SearchBar />
