@@ -50,7 +50,7 @@ function App(): JSX.Element {
               <Route path='/about_us' element={<AboutUs/>} />
               <Route path='/login' element={<SOLIDLogin/>} />
               <Route path='/profile' element={<UserProfile/>} />
-              <Route path='/shipping' element={<Shipping/>} />
+              <Route path='/shipping' element={<Shipping refreshCartList={refreshCartList}/> } />
               <Route path='/checkout' element={<Checkout items={cart} refreshCartList={refreshCartList}/>}/>
               <Route path='/cart' element={<ShoppingCart items={cart} refreshCartList={refreshCartList} />} />
           </Routes>

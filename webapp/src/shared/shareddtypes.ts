@@ -13,6 +13,7 @@ export type Product = {
     image:string;
     category:string;
     reviews:Array<Review>;
+    product: Product;
 }
 
 export type Order = {
@@ -20,6 +21,7 @@ export type Order = {
     products: Array<Product>;
     subTotal: number;
     deliveryPrice: number;
+    createdAt: Date;
 }
 
 export type ItemCart = {

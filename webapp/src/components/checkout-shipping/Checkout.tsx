@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ItemCart } from "../../shared/shareddtypes";
-import { getCart } from '../../api/api';
+import { getCart, getOrderByUserId } from '../../api/api';
 
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
@@ -78,7 +78,9 @@ function Checkout(props: CheckoutProps): JSX.Element {
 
                     {props.items.length > 0 ? <Button variant="contained" href="/shipping" style={{ color: "white", backgroundColor: "#7c4dff", borderRadius: "8px", top: "20px", height: "50px" }}>
                         Continue to Shipping
-                    </Button> : <></>}
+                    </Button>
+                    :
+                    <></>}
                 </Stack>
             </Box>
         </Box>
