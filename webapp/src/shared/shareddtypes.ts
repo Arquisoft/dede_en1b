@@ -11,6 +11,7 @@ export type Product = {
     image:string;
     category:string;
     numImages:number;
+    product: Product;
 }
 
 export type Order = {
@@ -18,6 +19,7 @@ export type Order = {
     products: Array<Product>;
     subTotal: number;
     deliveryPrice: number;
+    createdAt: Date;
 }
 
 export type ItemCart = {
