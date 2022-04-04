@@ -17,12 +17,14 @@ export default function OrderCard(props: OrderCardProps) {
             <Card id="orderCard" variant="outlined">
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        Order Date
+                        Order {props.order.createdAt.toString().substring(0, 10)}
                     </Typography>
-                    Items:
+                    Items: 
                     {props.order.products.map(product => (
                         <Typography variant="caption" color="text.secondary">
-                            {product},
+
+                            {"\t"}
+                            {product.product.name},
                         </Typography>
                     ))}
                     <Typography variant="body2" color="text.secondary">
