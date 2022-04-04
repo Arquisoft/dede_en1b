@@ -60,7 +60,7 @@ WebApp --> User: notifies finalization of ordering
 
 
 === User logs in
- * To log in, the user must access the login page, where they must chose a solid pod provider to authenticate with. Once authentication is complete, the provider will grant the web app the information requested. Thanks to this information, the user orders stored in the database will be retrieved. All this data will be show to the user by means of the user page.
+ * To log in, the user must access the login page, where they must choose a solid pod provider to authenticate with. Once authentication is complete, the provider will grant the web app the information requested. Thanks to this information, the user orders stored in the database will be retrieved. All this data will be shown to the user by means of the user page.
 
 [plantuml,"Runtimeview 3",png]
 ----
