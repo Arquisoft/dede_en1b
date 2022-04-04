@@ -1,0 +1,32 @@
+#searchBarConatiner {
+    width: 60%;
+    margin-left: 0;
+}
+
+#searchBarForm {
+    width: 60%;
+    margin-left: 20%;
+}
+
+#submitButton {
+    margin-left: 1%;
+    background-color: #F23005;
+    border-radius: 8px;
+    width: 2%;
+    top: 7%;
+    height: 86%;
+    position: absolute;
+}
+
+#navToolbar {
+    background-color: #7c4dff;
+}
+
+#logoLink {
+    width: 10%;
+    margin-right: 5%;
+}
+
+#logoImg {
+    width: 100%;
+}
