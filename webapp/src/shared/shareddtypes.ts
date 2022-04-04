@@ -13,6 +13,7 @@ export type Product = {
     image:string;
     category:string;
     reviews:Array<Review>;
+    numImages:number;
     product: Product;
 }
 

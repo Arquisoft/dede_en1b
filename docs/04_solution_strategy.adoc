@@ -7,7 +7,7 @@ We have chosen to use the following technologies:
 
 * *MongoDB:* One of the most potent non-relational databases, which fits the decentralised data model of DeDe. We will use it to store the information that is general to the application so as to not fill the PODs with unnecessary and redundant information.
 * *JSON:* Exporting the information of the purchases for communication with API will be done with JSON, a flexible and powerful format of handling data that can also be converted easily to many others (such as n3 or turtle).
-* *Correos API:* We will communicate with it to inform the deliverers of the chosen products. It's the single most important external service in our application.
+* *Shipping API:* We will communicate with it to inform the deliverers of the chosen products and receive an estimate shipping price to show the user. It's the single most important external service in our application.
 * *Mongoose:* We will employ the Mongoose library as the frame to communicate with the internal Mongo database. It is easily accesible with Node JS
 * *Material UI:* A library for web development that contains many predefined components. It will serve to ease work on HTML and CSS by providing default stylization and easy ways of handling customization from TypeScript. It is also highly compatible with React.
 

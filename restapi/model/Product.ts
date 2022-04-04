@@ -36,6 +36,7 @@ export interface ProductModel extends moongose.Document {
     image: string;
     category: string;
     reviews: Array<ReviewModel>;
+    numImages:number;
 }
 
 ProductSchema.method('toClient', function() {

@@ -30,13 +30,13 @@ node DBserver {
 
 actor User
 
-cloud CorreosAPI
+cloud ShippingAPI
 
 DeDe -u-> MongoDB : CRUD
-DeDe -d-> Pod : getUserAddress
+DeDe -d-> SOLID_POD : getUserAddress
 DeDe -l-> WebApp : serve
-DeDe -r-> CorreosAPI : calculateRoute
-Pod <-l- User
+DeDe -r-> ShippingAPI : calculateRoute
+SOLID_POD <-l- User
 WebApp <-d- User
 
 @enduml
@@ -60,5 +60,5 @@ Mapping of Building Blocks to Infrastructure::
     |WebApp | This is the user end of the application. It will be rendered by a web browser, which will be executed over the users personal computer or smart device, like phones, tablets...
     |Pod | These are the users Pods, where their address will be stored. They will be served by the SOLID project, and hosted in a server of the user's election.
     |MongoDB | This is the DataBase, which will be stored on a server as well. Like the application per se, the nature of this server is still to be determined.
-    |CorreosAPI | This API will be used to calculate routes and costs of delivery. It will be hosted by a third party in a server of their choosing.
+    |ShippingApi | This API will be used to calculate routes and costs of delivery. It will be hosted by a third party in a server of their choosing.
 |===
