@@ -13,6 +13,8 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { styled } from '@mui/system';
 
 import { addToCart } from '../../api/api';
+import './image-gallery.scss';
+import ImageGallery from 'react-image-gallery';
 
 type ProductPageProps = {
   refreshCartList: () => void;
@@ -34,7 +36,20 @@ const BuyBtton = styled(Button)({
   width: '100%',
 
 });
-
+const imgsExtension: string[] =[" (1).jpg", 
+                                " (2).jpg",
+                                " (3).jpg",
+                                " (4).jpg",
+                                " (5).jpg",
+                                " (6).jpg"];
+function getImages(product: string, nImgs: number): string{
+  let imgs = new Array();
+  let imgPath = "/cars/" + product + "/" + product;
+  for(let i = 0; i<nImgs; i++){
+    imgs.push(new ImgNode(imgPath+ imgsExtension[i], imgPath+ imgsExtension[i]));
+  }
+  return JSON.stringify(imgs);
+}
 
 function addProduct(product: Product): void {
   addToCart({ product: product, quantity: 1 });
@@ -53,10 +68,25 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
 
 
   if (product) {
-
+    const images = [
+      {
+        original: 'https://picsum.photos/id/1018/1000/600/',
+        thumbnail: 'https://picsum.photos/id/1018/250/150/',
+      },
+      {
+        original: 'https://picsum.photos/id/1015/1000/600/',
+        thumbnail: 'https://picsum.photos/id/1015/250/150/',
+      },
+      {
+        original: 'https://picsum.photos/id/1019/1000/600/',
+        thumbnail: 'https://picsum.photos/id/1019/250/150/',
+      },
+    ];
     const imgPath = "/cars/" + product?.image + "/" + product?.image + " (1).jpg"
-
+    let e = getImages("brz", 4);
+    console.log(e);
     return (
+      
       <Grid container
         direction="row"
         justifyContent="left"
@@ -99,9 +129,11 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
             </BuyBtton>
           </DivBtonStyle>
         </Grid>
-
+        <Grid item>
+        <ImageGallery items={JSON.parse(e)} />
+        </Grid>
       </Grid>
-
+    
 
       // the button is contained because it has actions that are primary to our app( add an Item to the cart)
 
@@ -113,6 +145,24 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
     </Typography>);
   }
 }
+
+
+
+
+
+class ImgNode {
+  original: string;
+  thumbnail:string;
+  constructor(img:string, cap:string){
+    this.original = img;
+    this.thumbnail = cap;
+  }
+  getJSON() : string{
+    return JSON.stringify(this);
+  }
+}
+
+
 
 
 
