@@ -35,7 +35,10 @@ const DataComponent = () => {
         for (let line of JSON.stringify(data).split(',')) {
             let value: string = line.split(':')[1].replace('"', '').replace('"', '').replace('}', '');
             values.push(value);
+
         }
+        localStorage.setItem("country", values[0]);
+        localStorage.setItem("locality", values[1]);
     }
 
     return data
