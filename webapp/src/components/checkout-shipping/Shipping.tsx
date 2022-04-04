@@ -32,7 +32,11 @@ export default function Shipping(props: ShippingProps) {
           .then(() => addOrder());
     }, []); */
 
-    var shippingCost = getShippingCost();
+
+   
+    
+    var shippingCost = getShippingCost(localStorage.getItem("country"), localStorage.getItem("locality"));
+
 
     if (localStorage.getItem("webId") === null) {
         return(
@@ -59,7 +63,7 @@ export default function Shipping(props: ShippingProps) {
 
             <Typography id="costMessage" component="h2" variant="h5" >
 
-                Your estimated delivery cost is: <span id="cost">{shippingCost} €</span>
+                Your delivery cost is: <span id="cost">{shippingCost} €</span>
 
             </Typography>
 

@@ -48,16 +48,29 @@ export  function getCart() : ItemCart[] {
 }
 
 
-export function getShippingCost(){
+export function getShippingCost(country?:String|null, locality?:String|null){
   var cart = getCart();
   var totalPrice = cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
-  var shippingCost;
+  var shippingCost;  
+  
+  if(country === "Spain" && locality !== "Ceuta" && locality !== "Melilla" && locality !== "Baleares"
+                  && locality !== "Canarias")
+  {
+    shippingCost = 3.99;
+  }else 
+  {
+    shippingCost = 7.50 ;
+  }
+
+  if(country !== "Spain")
+  {
+    shippingCost = 30;
+  }
   
   if(totalPrice > 100){
     shippingCost = 0;
-  }else{
-    shippingCost = 10;
   }
+
   return shippingCost;
 }
 
@@ -87,10 +100,12 @@ export async function deleteFromCart(id:String) {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
 
+
 export function emptyCart(updateCarCountNumberFunction:Function) {
   localStorage.setItem('cart', JSON.stringify([]));
   updateCarCountNumberFunction();
 }
+
 
 export async function getProductById(id: any):Promise<Product>{ 
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
