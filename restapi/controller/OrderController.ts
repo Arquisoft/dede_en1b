@@ -10,17 +10,21 @@ class OrderController {
 
     public async saveOrder(req: Request, res: Response) {
         const { userId, products} = req.body;
-        await Promise.all(products.map(async (productOrdered:ProductOrdered) => {
+        console.log("products",products);
+
+
+        await Promise.all( products.map(async (productOrdered:ProductOrdered) => {
+            console.log("productOrdered",productOrdered);
             const p =  await productController.getProductById(productOrdered.productId) as ProductModel;
             productOrdered.product = p;
-            console.log(productOrdered);
-            console.log(p);
+            console.log("product", p);
             productOrdered.price = p.price;
         }));
 
         const subTotal = products.reduce((acc:number, productOrdered:ProductOrdered) => acc + productOrdered.price * productOrdered.quantity, 0);
         console.log("esto deberia ser lo ultimo" ,products)
         const order = new Order( {userId, products, subTotal,deliveryPrice:0} );
+        console.log("order",order);
         order.save()
             .then(() => res.status(201).json({ message: 'Order saved' }))
             .catch(error => res.status(400).json({ error }));
@@ -32,7 +36,8 @@ class OrderController {
     }
 
     public async getOrderByUserId(req: Request, res: Response) {
-        const userId = req.params.userId;
+        const userId = req.body.webId;
+        console.log("userId",req.body);
         var order = await Order.find({ userId: userId });
         res.send(order);
     }

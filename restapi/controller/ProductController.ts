@@ -23,7 +23,6 @@ class ProductController {
         }
         else{
             var products = await Product.find({});
-            console.log(products);
             //products = await productController.addImagePaths(products);
             res.send(products);
         }
