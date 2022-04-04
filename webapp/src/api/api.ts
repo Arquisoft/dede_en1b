@@ -87,8 +87,9 @@ export async function deleteFromCart(id:String) {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-export function emptyCart() {
+export function emptyCart(updateCarCountNumberFunction:Function) {
   localStorage.setItem('cart', JSON.stringify([]));
+  updateCarCountNumberFunction();
 }
 
 export async function getProductById(id: any):Promise<Product>{ 

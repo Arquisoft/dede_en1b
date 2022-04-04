@@ -9,7 +9,11 @@ import {
 import { useNavigate } from "react-router-dom";
 import "../../css/Shipping.css";
 
-export default function Shipping() {
+type ShippingProps = {
+    refreshCartList: () => void
+}
+export default function Shipping(props: ShippingProps) {
+
 
     const { session } = useSession();
     const webId = localStorage.getItem('webId') as string;
@@ -30,7 +34,7 @@ export default function Shipping() {
 
     function addOrder() {
         addOrderToUser(webId).then(() => {
-            emptyCart();
+            emptyCart(props.refreshCartList);
             navigate("/");
         });
     }
