@@ -480,7 +480,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_user_browses_dede_webapp">6.1. User browses DeDe WebApp</a></li>
 <li><a href="#_user_makes_an_order">6.2. User makes an order</a></li>
-<li><a href="#">6.3. &#8230;&#8203;</a></li>
+<li><a href="#_user_logs_in">6.3. User logs in</a></li>
 </ul>
 </li>
 <li><a href="#section-deployment-view">7. Deployment View</a>
@@ -828,7 +828,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <h3 id="_business_context">3.1. Business Context</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/diag-bc801f16afb1b072b5ba70c0d39c802f.png" alt="Diagram" width="810" height="435">
+<img src="./images/diag-f8e3d74ce71ebeb7d2374c882533c9d2.png" alt="Diagram" width="814" height="435">
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -866,7 +866,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <td class="tableblock halign-left valign-top"><p class="tableblock">The database will communicate with the application as a response. It will return information that is supposed to be known as public.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Correos API</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shipping API</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The API will accept requests from the application, avoiding interaction with the user as serving to mediate between him and the delivery is the main purpose of the application.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">From the API, a response will ideally be given to DeDe when the order has been completed, although this behaviour can be considered optional as making the order is the end goal.</p></td>
 </tr>
@@ -935,7 +935,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <p><strong>JSON:</strong> Exporting the information of the purchases for communication with API will be done with JSON, a flexible and powerful format of handling data that can also be converted easily to many others (such as n3 or turtle).</p>
 </li>
 <li>
-<p><strong>Correos API:</strong> We will communicate with it to inform the deliverers of the chosen products. It&#8217;s the single most important external service in our application.</p>
+<p><strong>Shipping API:</strong> We will communicate with it to inform the deliverers of the chosen products and receive an estimate shipping price to show the user. It&#8217;s the single most important external service in our application.</p>
 </li>
 <li>
 <p><strong>Mongoose:</strong> We will employ the Mongoose library as the frame to communicate with the internal Mongo database. It is easily accesible with Node JS</p>
@@ -1033,13 +1033,18 @@ the order is done.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="">6.3. &#8230;&#8203;</h3>
+<h3 id="_user_logs_in">6.3. User logs in</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>In further versions more runtime views will be added&#8230;&#8203; #TBD</p>
+<p>To log in, the user must access the login page, where they must choose a solid pod provider to authenticate with. Once authentication is complete, the provider will grant the web app the information requested. Thanks to this information, the user orders stored in the database will be retrieved. All this data will be shown to the user by means of the user page.</p>
 </li>
 </ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/Runtimeview%203.png" alt="Runtimeview 3" width="784" height="495">
+</div>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -1052,7 +1057,7 @@ the order is done.</p>
 <h3 id="_infrastructure_level_1">7.1. Infrastructure Level 1</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/diag-de5520148075948864d7e44a30621c12.png" alt="Diagram" width="626" height="490">
+<img src="./images/diag-9122b0692d39d642cd71d5e01af693fb.png" alt="Diagram" width="630" height="490">
 </div>
 </div>
 <div class="dlist">
@@ -1096,7 +1101,7 @@ Performance is also a thing to look after, but DeDe being a Web App, this will d
 <td class="tableblock halign-left valign-top"><p class="tableblock">This is the DataBase, which will be stored on a server as well. Like the application per se, the nature of this server is still to be determined.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CorreosAPI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ShippingApi</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This API will be used to calculate routes and costs of delivery. It will be hosted by a third party in a server of their choosing.</p></td>
 </tr>
 </tbody>
@@ -1168,7 +1173,10 @@ As well as the role assigned to the user.</p>
 <h3 id="_web_application">9.1. Web Application</h3>
 <div class="paragraph">
 <p>We decided to create a Web application supported by the latest versions of the main market browsers (Chrome, Firefox, Edge&#8230;&#8203;). This online version of DeDe could be ported
-to a portable device app easily with REACT Native, a JavaScript framework for writing real, natively rendering mobile applications for iOS and Android.</p>
+to a mobile device app easily with REACT Native, a JavaScript framework for writing real, natively rendering mobile applications for iOS and Android.</p>
+</div>
+<div class="paragraph">
+<p>Because we are choosing to develop a web app from the beggining, we must take careful consideration into making components mobile friendly. This should not be done, it would prove a struggle to adapt in the future.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1177,13 +1185,19 @@ to a portable device app easily with REACT Native, a JavaScript framework for wr
 <p>We chose MongoDB as our Database Management System because its flexible schema allows us
 to rapidly model the domain and change it with the evolution of the app without any problems.
 MongoDB stores data in form of JSON so the conversion and interaction between typescript and the database are flawless.
-Another point in favor is its performance and scalability although in a small application like ours is not strictly necessary.</p>
+Another point in favor is its performance and scalability although in a small application like ours is not strictly necessary. We also chose MongoDB because it gives us a free database in the cloud for developing purposes.</p>
+</div>
+<div class="paragraph">
+<p>By discarding the use of an SQL database, we are also losing the opportunity to wotk with an schema, and thus, all data validation responsibility falls in the hands of the developers, that is, us. This may prove trying at times, but it is also good to learn new technologies.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_material_ui">9.3. Material UI</h3>
 <div class="paragraph">
 <p>Material UI is a free React-compatible library directed at easy creation of responsive components. It contains many default styles for typography, forms, buttons, navigation, and other interface components. It will allow us to create a good frontend with less effort.</p>
+</div>
+<div class="paragraph">
+<p>We descarded the use of Bootstrap because we felt that Material was more attuned to what we were trying to do with this reactive app. By doing so, we made a lot of design decision fall in the developers hands, making it more customizable but also more diffcult and time consuming to create.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
