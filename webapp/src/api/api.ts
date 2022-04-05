@@ -51,16 +51,29 @@ export  function getCart() : ItemCart[] {
 }
 
 
-export function getShippingCost(){
+export function getShippingCost(country?:String|null, locality?:String|null){
   var cart = getCart();
   var totalPrice = cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
-  var shippingCost;
+  var shippingCost;  
+  
+  if(country === "Spain" && locality !== "Ceuta" && locality !== "Melilla" && locality !== "Baleares"
+                  && locality !== "Canarias")
+  {
+    shippingCost = 3.99;
+  }else 
+  {
+    shippingCost = 7.50 ;
+  }
+
+  if(country !== "Spain")
+  {
+    shippingCost = 30;
+  }
   
   if(totalPrice > 100){
     shippingCost = 0;
-  }else{
-    shippingCost = 10;
   }
+
   return shippingCost;
 }
 
@@ -90,10 +103,12 @@ export async function deleteFromCart(id:String) {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
 
+
 export function emptyCart(updateCarCountNumberFunction:Function) {
   localStorage.setItem('cart', JSON.stringify([]));
   updateCarCountNumberFunction();
 }
+
 
 export async function getProductById(id: any):Promise<Product>{ 
   const apiEndPoint = window.location.href.includes("www.dedeen1b.tk") ? "https://api.dedeen1b.tk/api" : (process.env.REACT_APP_API_URI || 'http://localhost:5000/api');
@@ -104,11 +119,12 @@ export async function getProductById(id: any):Promise<Product>{
 
 export async function addOrderToUser(webId: string) {
   console.log('adding order to user ' + webId)
+  var shippingCost = getShippingCost(localStorage.getItem("country"), localStorage.getItem("locality"));
   const apiEndPoint = window.location.href.includes("www.dedeen1b.tk") ? "https://api.dedeen1b.tk/api" : (process.env.REACT_APP_API_URI || 'http://localhost:5000/api');
   let response = await fetch(apiEndPoint + '/order', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ 'userId': webId, 'products': 
+    body: JSON.stringify({ 'userId': webId,'deliveryPrice': shippingCost,'products': 
       getCart().map( (item:ItemCart) => {
         let pid = item.product.id;
         var product = {

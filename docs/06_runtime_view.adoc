@@ -59,8 +59,32 @@ WebApp --> User: notifies finalization of ordering
 ----
 
 
-=== ... 
- * In further versions more runtime views will be added... #TBD
+=== User logs in
+ * To log in, the user must access the login page, where they must choose a solid pod provider to authenticate with. Once authentication is complete, the provider will grant the web app the information requested. Thanks to this information, the user orders stored in the database will be retrieved. All this data will be shown to the user by means of the user page.
+
+[plantuml,"Runtimeview 3",png]
+----
+@startuml 07_RuntimeView_login
+actor User
+participant WebApp
+participant restapi as "Dede Server"
+participant Provider as "Pod Provider"
+database POD as "User's POD"
+database DB as "DeDe database"
+
+User -> WebApp: Selects provider
+WebApp -> Provider: Asks for login
+Provider -> POD: Searches for login information
+POD -> Provider: Returns login information
+Provider -> WebApp: Returns login information
+WebApp -> restapi: Asks for user orders
+restapi -> DB: Asks for user orders
+DB -> restapi: Returns user orders
+restapi -> WebApp: Returns user orders
+WebApp -> User: Shows user profile page
+
+@enduml
+----
 
 
 

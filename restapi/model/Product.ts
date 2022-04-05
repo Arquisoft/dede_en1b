@@ -26,6 +26,7 @@ export interface ProductModel extends moongose.Document {
     price: number;
     image: string;
     category: string;
+    numImages:number;
 }
 
 ProductSchema.method('toClient', function() {

@@ -8,11 +8,13 @@ import Typography from '@mui/material/Typography';
 import { useParams } from "react-router-dom";
 import './ProductPage.css';
 import Grid from "@mui/material/Grid";
-import { Button } from '@mui/material';
+import { Button, CardActions } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { styled } from '@mui/system';
 
 import { addToCart } from '../../api/api';
+import './image-gallery.scss';
+import ImageGallery from 'react-image-gallery';
 
 type ProductPageProps = {
   refreshCartList: () => void;
@@ -34,7 +36,25 @@ const BuyBtton = styled(Button)({
   width: '100%',
 
 });
-
+const imgsExtension: string[] =[" (1).jpg", 
+                                " (2).jpg",
+                                " (3).jpg",
+                                " (4).jpg",
+                                " (5).jpg",
+                                " (6).jpg",
+                                " (7).jpg",
+                                " (8).jpg",
+                                " (9).jpg",
+                                " (10).jpg",
+                              ];
+function getImages(product: string, nImgs: number): string{
+  let imgs = new Array();
+  let imgPath = "/cars/" + product + "/" + product;
+  for(let i = 0; i<nImgs; i++){
+    imgs.push(new ImgNode(imgPath+ imgsExtension[i], imgPath+ imgsExtension[i]));
+  }
+  return JSON.stringify(imgs);
+}
 
 function addProduct(product: Product): void {
   addToCart({ product: product, quantity: 1 });
@@ -54,26 +74,19 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
 
   if (product) {
 
-    const imgPath = "/cars/" + product?.image + "/" + product?.image + " (1).jpg"
-
+    let prodImgs = getImages(product?.image, product?.numImages);
     return (
+      
       <Grid container
-        direction="row"
-        justifyContent="left"
-        alignItems="center"
-        spacing={{ xs: 2, md: 3 }} columns={{ xs: 6, sm: 12, md: 15 }}
-        rowSpacing={5}
 
+       spacing={2} columns={16}
       >
+        <Grid item xs={8}>
+        <ImageGallery items={JSON.parse(prodImgs)} />
+        </Grid>
+        <Grid item xs={8}>
+          <Card>
 
-        <Grid item xs={2} sm={5} md={6} >
-          <Card sx={{ maxWidth: 345 }} style={{ height: "100%" }}>
-
-            <CardMedia
-              component="img"
-              image={imgPath}
-              alt={product.name}
-            />
             <CardContent>
               <Typography gutterBottom variant="h3" component="div">
                 {product?.name}
@@ -85,12 +98,8 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
                 {product?.description}
               </Typography>
             </CardContent>
-
-
-          </Card>
-        </Grid>
-        <Grid item xs={2} sm={5} md={6} >
-          <DivBtonStyle>
+            <CardActions>
+            <DivBtonStyle>
             <BuyBtton startIcon={<AddShoppingCartIcon />} onClick={() => {
               addProduct(product);
               prop.refreshCartList();
@@ -98,10 +107,14 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
               Add to Cart
             </BuyBtton>
           </DivBtonStyle>
+          </CardActions>
+
+          </Card>
         </Grid>
-
+       
+        
       </Grid>
-
+    
 
       // the button is contained because it has actions that are primary to our app( add an Item to the cart)
 
@@ -113,6 +126,24 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
     </Typography>);
   }
 }
+
+
+
+
+
+class ImgNode {
+  original: string;
+  thumbnail:string;
+  constructor(img:string, cap:string){
+    this.original = img;
+    this.thumbnail = cap;
+  }
+  getJSON() : string{
+    return JSON.stringify(this);
+  }
+}
+
+
 
 
 
