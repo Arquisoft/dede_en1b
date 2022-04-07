@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
-import Product, { ProductModel } from '../model/Product';
+import Product from '../model/Product';
 const path = require('path');
 const fs = require('fs');
 const ObjectId = require('mongodb').ObjectID;
