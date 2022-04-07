@@ -1,6 +1,10 @@
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
-import Product from '../model/Product';
+import Product, { ProductModel } from '../model/Product';
+const path = require('path');
+const fs = require('fs');
+const ObjectId = require('mongodb').ObjectID;
+
 
 
 class ProductController {
@@ -39,15 +43,40 @@ class ProductController {
         return product;
     }
 
+    public async getProductImages(req:Request, res:Response): Promise<void> {
+        if(req.params.id === undefined)
+            res.status(404).send({ message: 'Product Not Found' });
+        
+        let product = await Product.findOne({_id: ObjectId(req.params.id)});
+        if (!product)
+            res.status(404).send({ message: 'Product Not Found' });
+
+        let images:string[] = [];
+        try{
+            fs.readdirSync(path.join(__dirname, "../public/cars/"+product?.image)).forEach((file :File)=> {
+                images.push("/cars/"+product?.image+"/"+file);
+            });
+        }catch(e){
+            res.send([]);
+            return;
+        }
+        res.send(images);
+    }
+
 
     public async getProductWithId(req: Request, res: Response) {
-        const product  = await Product.findOne({_id: req.params.id});
-        if (product) {
-            res.status(200).json(product);
-            console.log(product);
-          } else {
+        try{
+            const product  = await Product.findOne({_id: ObjectId(req.params.id)});
+            if (product) {
+                res.status(200).json(product);
+                console.log(product);
+            }else {
+                res.status(404).send({ message: 'Product Not Found' });
+            }
+        }catch(e){
             res.status(404).send({ message: 'Product Not Found' });
-          }
+        }
+        
  
     }
 }
