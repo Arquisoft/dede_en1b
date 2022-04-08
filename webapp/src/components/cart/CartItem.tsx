@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react';
 import { ItemCart, Product } from "../../shared/shareddtypes";
-import { addToCart } from '../../api/api';
+import { addToCart,baseApiEndPoint } from '../../api/api';
 
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
@@ -31,7 +31,7 @@ function CartItem(props: CartItemProps) {
         setQuantity(props.item.quantity);
     }, [props.item.quantity]);
 
-    const imgPath = "cars/" + props.item.product.image + "/" + props.item.product.image + " (1).jpg"
+    const imgPath =  baseApiEndPoint + "/cars/" + props.item.product.image + "/" + props.item.product.image + " (1).jpg"
 
     return (
         
