@@ -15,11 +15,12 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
-import {baseApiEndPoint } from '../../api/api';
+import { baseApiEndPoint } from '../../api/api';
 
 import { Product } from "../../shared/shareddtypes";
 
 import "../../css/OrderDetails.css";
+import { Grid } from '@mui/material';
 
 type ProductCardProps = {
     product: Product;
@@ -50,21 +51,30 @@ export default function OrderDetails(props: ProductCardProps) {
 
     console.log(props);
 
-    const imgPath = baseApiEndPoint+"/cars/" + props.product.product.image + "/" + props.product.product.image + " (1).jpg"
+    const imgPath = baseApiEndPoint + "/cars/" + props.product.product.image + "/" + props.product.product.image + " (1).jpg"
 
     return (
         <Card id="mainCard">
-            <CardHeader
-                title={props.product.product.name}
-                subheader={props.product.product.price} 
-            />
-            <CardMedia
-                id = "cardImg"
-                component="img"
-                height="194"
-                image={imgPath}
-                alt={props.product.product.name}
-            />
+            <Grid container spacing={2}>
+                <Grid item xs={2}>
+                    <CardHeader
+                        title={props.product.product.name}
+                        subheader={props.product.product.price}
+                    />
+                </Grid>
+
+                <Grid item xs={8}>
+                    <CardMedia
+                        id="cardImg"
+                        component="img"
+                        height="194"
+                        image={imgPath}
+                        alt={props.product.product.name}
+                    />
+                </Grid>
+            </Grid>
+
+
             <CardActions disableSpacing>
                 <ExpandMore
                     expand={expanded}
