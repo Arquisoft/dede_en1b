@@ -20,18 +20,30 @@ import { addToCart } from './api/api';
 
 import ShoppingCart from './components/cart/ShoppingCart';
 import Checkout from './components/checkout-shipping/Checkout';
+import {Session} from "@inrupt/solid-client-authn-browser";
 
 
 function App(): JSX.Element {
 
   const [cart,setCart] = useState<ItemCart[]>([]);
-
-
+  let session:Session;
  
 
   const refreshCartList =  () => {
     setCart( getCart());
   }
+
+  const setSessionInfo = (sessionInfo: Session) => {
+    session = sessionInfo;
+    console.log(session); 
+  }
+
+  const getSessionInfo = () => {
+    console.log(session);
+    return session;
+  }
+
+
 
   useEffect(()=>{
     refreshCartList();
@@ -49,8 +61,8 @@ function App(): JSX.Element {
               <Route path="/products/:id" element={<ProductPage refreshCartList={refreshCartList}/>} />
               <Route path='/about_us' element={<AboutUs/>} />
               <Route path='/login' element={<SOLIDLogin/>} />
-              <Route path='/profile' element={<UserProfile/>} />
-              <Route path='/shipping' element={<Shipping refreshCartList={refreshCartList}/> } />
+              <Route path='/profile' element={<UserProfile setSessionInfo={setSessionInfo}/>} />
+              <Route path='/shipping' element={<Shipping refreshCartList={refreshCartList} getSessionInfo={getSessionInfo}/> } />
               <Route path='/checkout' element={<Checkout items={cart} refreshCartList={refreshCartList}/>}/>
               <Route path='/cart' element={<ShoppingCart items={cart} refreshCartList={refreshCartList} />} />
           </Routes>

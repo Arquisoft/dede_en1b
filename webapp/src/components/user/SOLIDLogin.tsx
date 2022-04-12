@@ -11,6 +11,8 @@ import {
 } from "@inrupt/solid-client-authn-browser";
 import { useEffect } from 'react';
 
+
+
 const authOptions = {
   clientName: "DedEx: Decentralized Delivery",
 };
@@ -32,8 +34,9 @@ export default function SOLIDLogin() {
   const { session } = useSession();
 
   onSessionRestore((url) => {
-    if (session.info.isLoggedIn) {
-      navigate(url);
+    console.log(url);
+    if (!session.info.isLoggedIn) {
+      window.location.href = url;
     }
   });
 
@@ -42,10 +45,11 @@ export default function SOLIDLogin() {
       restorePreviousSession: true
     }).then(() => {
       if (session.info.isLoggedIn) {
-        navigate("/profile");
+       // navigate("/profile");
       }
     })
   }, []);
+
 
   return (
     <Container id="mainLoginDiv">
@@ -71,12 +75,7 @@ export default function SOLIDLogin() {
             <Button href="/" variant="contained" id="cancelButton" >Cancel</Button>
           </Grid>
           <Grid item xs={6}>
-            <LoginButton
-              oidcIssuer={oidcIssuer}
-              redirectUrl={window.location.href}
-              authOptions={authOptions}>
               <Button id="loginButton" data-testid="button" color="primary" variant="contained">CONNECT</Button>
-            </LoginButton>
           </Grid>
         </Grid>
         <Typography variant="body1" component="p" className="help">

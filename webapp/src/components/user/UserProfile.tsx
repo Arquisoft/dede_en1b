@@ -1,5 +1,15 @@
 import { Container, Divider, Stack, Typography } from "@mui/material";
+
 import {
+    getSolidDataset,
+    getThing,
+    getStringNoLocale,
+    getUrlAll,
+    Thing,
+    getUrl,
+  } from "@inrupt/solid-client";
+  
+  import {
     Text,
     useSession,
     CombinedDataProvider
@@ -18,8 +28,14 @@ import {
 import { useEffect, useState } from 'react';
 import OrderCard from "./OrderCard";
 import { Order } from "../../shared/shareddtypes";
+import { getAddressesFromPod, setSession } from "../../api/solid";
+import {Session} from "@inrupt/solid-client-authn-browser";
 
-export default function UserProfile() {
+type ProfileProps = {
+    setSessionInfo: (sessionInfo:Session) => void,
+}
+
+export default function UserProfile(props: ProfileProps) {
 
     const { session } = useSession();
     const webId = session.info.webId as string;
@@ -30,6 +46,7 @@ export default function UserProfile() {
 
     onSessionRestore(() => {
         if (session.info.isLoggedIn) {
+            
             navigate("/profile");
         }
     });
@@ -37,12 +54,15 @@ export default function UserProfile() {
     useEffect(() => {
         handleIncomingRedirect({
             restorePreviousSession: true
-        }).then(() => {
+        }).then(async () => {
             if (session.info.isLoggedIn) {
-                navigate("/profile");
+                setSession(session);
             }
-        })
-    }, []);
+                navigate("/profile");
+            })
+            
+
+        }, []);
 
     // let address : string = "Address not found."
     // if (localStorage.getItem("provider") == "https://inrupt.net/")  {

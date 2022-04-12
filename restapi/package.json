@@ -9,10 +9,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@inrupt/solid-client-authn-node": "^1.11.6",
+    "@inrupt/solid-client": "^1.21.0",
+    "@inrupt/solid-client-authn-node": "^1.11.7",
     "@types/express-session": "^1.17.4",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.1",
+    "cookie-session": "^2.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
@@ -28,7 +30,10 @@
     "lodash.isplainobject": "^4.0.6",
     "lodash.isstring": "^4.0.1",
     "mongoose": "^6.2.4",
-    "prom-client": "^14.0.1"
+    "prom-client": "^14.0.1",
+    "rdf-namespaces": "^1.9.2",
+    "solid-auth-client": "^2.5.6",
+    "tripledoc": "^4.4.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
