@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Order } from "../../shared/shareddtypes";
+import OrderDetails from "./OrderDetails";
 
 type OrderCardProps = {
     order: Order;
@@ -12,7 +13,6 @@ type OrderCardProps = {
 
 export default function OrderCard(props: OrderCardProps) {
     return (
-        // <a id = "cardLink" href="/details?order_id=">
         <Button id="cardButton">
             <Card id="orderCard" variant="outlined">
                 <CardContent>
@@ -21,11 +21,12 @@ export default function OrderCard(props: OrderCardProps) {
                     </Typography>
                     Items: 
                     {props.order.products.map(product => (
-                        <Typography variant="caption" color="text.secondary">
+                        // <Typography variant="caption" color="text.secondary">
 
-                            {"\t"}
-                            {product.product.name},
-                        </Typography>
+                        //     {"\t"}
+                        //     {product.product.name},
+                        // </Typography>
+                        <OrderDetails {product = {product}}></OrderDetails>
                     ))}
                     <Typography variant="body2" color="text.secondary">
                         Total: {props.order.subTotal} €
@@ -36,6 +37,5 @@ export default function OrderCard(props: OrderCardProps) {
                 </CardContent>
             </Card>
         </Button>
-        // </a>
     );
 }
