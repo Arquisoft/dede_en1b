@@ -56,10 +56,11 @@ export default function OrderDetails(props: ProductCardProps) {
     return (
         <Card id="mainCard">
             <Grid container spacing={2}>
-                <Grid item xs={2}>
+                <Grid item xs={2.5}>
                     <CardHeader
                         title={props.product.product.name}
-                        subheader={props.product.product.price}
+                        subheader={"Price: " + props.product.product.price + "€/unit Quantity:  " + props.product.quantity} 
+                        
                     />
                 </Grid>
 

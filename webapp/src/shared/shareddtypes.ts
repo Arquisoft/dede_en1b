@@ -12,6 +12,7 @@ export type Product = {
     category:string;
     numImages:number;
     product: Product;
+    quantity: Number;
 }
 
 export type Order = {
