@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Product } from '../../shared/shareddtypes';
-import { getProductById } from '../../api/api';
+import { getProductById, getProductImages } from '../../api/api';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -15,9 +15,11 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { styled } from '@mui/system';
 import ReviewView from './ReviewView';
 
-import { addToCart } from '../../api/api';
+import { addToCart,baseApiEndPoint } from '../../api/api';
 import './image-gallery.scss';
 import ImageGallery from 'react-image-gallery';
+
+
 
 type ProductPageProps = {
   refreshCartList: () => void;
@@ -50,11 +52,12 @@ const imgsExtension: string[] =[" (1).jpg",
                                 " (9).jpg",
                                 " (10).jpg",
                               ];
-function getImages(product: string, nImgs: number): string{
+async function getImages(product: Product): Promise<string>{
+  console.log('getImages', product);
   let imgs = new Array();
-  let imgPath = "/cars/" + product + "/" + product;
-  for(let i = 0; i<nImgs; i++){
-    imgs.push(new ImgNode(imgPath+ imgsExtension[i], imgPath+ imgsExtension[i]));
+  let imagePaths = await getProductImages(product.id);
+  for(let i = 0; i<imagePaths.length; i++){
+    imgs.push(new ImgNode(baseApiEndPoint+ imagePaths[i], baseApiEndPoint+ imagePaths[i]));
   }
   return JSON.stringify(imgs);
 }
@@ -66,10 +69,23 @@ function addProduct(product: Product): void {
 
 function ProductPage(prop: ProductPageProps): JSX.Element {
   const { id } = useParams();
+  const [productFound, setProductFound] = useState<boolean>(false);
   const [product, setProduct] = useState<Product>(); //default empty product
+  const [images, setImages] = useState<string>();
+
   const getProduct = async () => {
-    await setProduct(await getProductById(id));
+    getProductById(id).then(
+      async p=>{
+        if(p){
+          setImages(await getImages(p));
+          setProduct(p);
+        }
+        setProductFound(true);
+    });
   };
+
+ 
+
   useEffect(() => {
     getProduct();
   }, []);
@@ -85,15 +101,9 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
       return 0;
     }
 
-
-  if (product) {
-
-
-
+  // the product was found correctly
+  if (productFound && product) {
     
-
-    let prodImgs = getImages(product?.image, product?.numImages);
-
     return (
         
       <Grid container
@@ -101,7 +111,7 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
        spacing={2} columns={16}
       >
         <Grid item xs={8}>
-        <ImageGallery items={JSON.parse(prodImgs)} />
+        <ImageGallery items={JSON.parse(images as string)} />
         </Grid>
         <Grid item xs={8}>
           <Card>
@@ -122,7 +132,7 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
             <CardActions>
             <DivBtonStyle>
             <BuyBtton startIcon={<AddShoppingCartIcon />} onClick={() => {
-              addProduct(product);
+              addProduct(product as Product);
               prop.refreshCartList();
             }} >
               Add to Cart
@@ -160,10 +170,15 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
   
 
     );
-  } else {
+    //the product was not found
+  } else if(productFound && !product) {
     return (<Typography gutterBottom variant="body1" component="div">
       No product found
     </Typography>);
+  }
+  //the product is still loading
+  else {
+    return (<Typography gutterBottom variant="body1" component="div"></Typography>);
   }
 }
 

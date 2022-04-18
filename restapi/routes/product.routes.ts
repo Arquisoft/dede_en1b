@@ -9,6 +9,7 @@ router.get('/products', productController.getProducts);
 router.post('/product', productController.saveProduct);
 router.get('/products/:id', productController.getProductWithId); 
 router.post('/review/add',reviewController.addReview);
+router.get('/products/:id/images', productController.getProductImages);
 
 
 export default router;

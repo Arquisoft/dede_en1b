@@ -2,9 +2,12 @@ import { User, Product, Order,ItemCart, Review } from '../shared/shareddtypes';
 
 
 //if the current url is www.dedeen1b.tk sets the apiEndPoint to api.dedeen1b.tk
+export const baseApiEndPoint = window.location.href.includes("www.dedeen1b.tk") ? "https://api.dedeen1b.tk" : (process.env.REACT_APP_API_URI || 'http://localhost:5000');
+export const apiEndPoint = baseApiEndPoint + "/api"
+
+
 
 export async function addUser(user: User): Promise<boolean> {
-  const apiEndPoint = window.location.href.includes("www.dedeen1b.tk") ? "https://api.dedeen1b.tk/api" : (process.env.REACT_APP_API_URI || 'http://localhost:5000/api');
   let response = await fetch(apiEndPoint + '/users/add', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -24,7 +27,6 @@ export async function getUsers(): Promise<User[]> {
 }
 
 export async function getProducts(searchParams?:String): Promise<Product[]> {
-  const apiEndPoint = window.location.href.includes("www.dedeen1b.tk") ? "https://api.dedeen1b.tk/api" : (process.env.REACT_APP_API_URI || 'http://localhost:5000/api');
   let response = await fetch(apiEndPoint + '/products' + (searchParams ? '?search=' + searchParams : ''));
   return response.json();
 }
@@ -124,20 +126,30 @@ export function emptyCart(updateCarCountNumberFunction:Function) {
 }
 
 
-export async function getProductById(id: any):Promise<Product>{ 
+export async function getProductById(id: any):Promise<Product|undefined>{ 
   const apiEndPoint = window.location.href.includes("www.dedeen1b.tk") ? "https://api.dedeen1b.tk/api" : (process.env.REACT_APP_API_URI || 'http://localhost:5000/api');
   console.log(apiEndPoint+'/product/id')
   let response = await fetch(apiEndPoint+'/products/' + id);
+  if(response.status === 200)
+    return response.json();
+  else
+    return undefined;
+}
+
+export async function getProductImages(id: string):Promise<string[]>{ 
+  console.log(apiEndPoint+'/product/' + id + '/images');
+  let response = await fetch(apiEndPoint+'/products/' + id + '/images');
   return response.json();
 }
 
 export async function addOrderToUser(webId: string) {
   console.log('adding order to user ' + webId)
+  var shippingCost = getShippingCost(localStorage.getItem("country"), localStorage.getItem("locality"));
   const apiEndPoint = window.location.href.includes("www.dedeen1b.tk") ? "https://api.dedeen1b.tk/api" : (process.env.REACT_APP_API_URI || 'http://localhost:5000/api');
   let response = await fetch(apiEndPoint + '/order', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ 'userId': webId, 'products': 
+    body: JSON.stringify({ 'userId': webId,'deliveryPrice': shippingCost,'products': 
       getCart().map( (item:ItemCart) => {
         let pid = item.product.id;
         var product = {
