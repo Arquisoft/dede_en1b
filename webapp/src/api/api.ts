@@ -31,7 +31,11 @@ export async function getProducts(searchParams?:String): Promise<Product[]> {
 
 export async function getOrderByUserId(webId: string): Promise<Order[]> {
   const apiEndPoint = window.location.href.includes("www.dedeen1b.tk") ? "https://api.dedeen1b.tk/api" : (process.env.REACT_APP_API_URI || 'http://localhost:5000/api');
-  let response = await fetch(apiEndPoint + '/order/' + encodeURIComponent(webId));
+  let response = await fetch(apiEndPoint + '/order/find' ,{
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ 'webId': webId })
+  });
   return response.json();
 }
 
