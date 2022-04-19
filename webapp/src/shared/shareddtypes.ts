@@ -15,15 +15,17 @@ export type Product = {
     reviews:Array<Review>;
     numImages:number;
     product: Product;
-  quantity: number;
+    _id:string;
+    quantity: number;
 }
 
 export type Order = {
   userId: string;
-  products: Array<Product>;
+  products: Array<ProductOrdered>;
   subTotal: number;
   deliveryPrice: number;
   createdAt: Date;
+  id: string;
 }
 
 export type ItemCart = {
@@ -36,4 +38,13 @@ export type Review = {
   productId: string;
   rating: number;
   comment: string;
+  orderId: string;
+}
+
+export type ProductOrdered = {
+  productId: string;
+  product: Product;
+  quantity: number;
+  price: number;
+  reviewed: boolean;
 }

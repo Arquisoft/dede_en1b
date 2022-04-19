@@ -61,7 +61,7 @@ export default function OrderCard(props: OrderCardProps) {
                             //     {"\t"}
                             //     {product.product.name},
                             // </Typography>
-                            <OrderDetails product={product}></OrderDetails>
+                            <OrderDetails orderId={props.order.id} productOrdered={product}></OrderDetails>
                         ))}
                     </CardContent>
                 </Collapse>

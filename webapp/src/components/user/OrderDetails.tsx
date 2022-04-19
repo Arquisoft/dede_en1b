@@ -11,13 +11,15 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import { baseApiEndPoint } from '../../api/api';
 
-import { Product } from "../../shared/shareddtypes";
+import { Product, ProductOrdered } from "../../shared/shareddtypes";
 
 import "../../css/OrderDetails.css";
-import { Grid } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
+import AddReviewCard from '../products/addReviewCard';
 
 type ProductCardProps = {
-    product: Product;
+    productOrdered: ProductOrdered;
+    orderId: string;
 }
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -45,15 +47,15 @@ export default function OrderDetails(props: ProductCardProps) {
 
     console.log(props);
 
-    const imgPath = baseApiEndPoint + "/cars/" + props.product.product.image + "/" + props.product.product.image + " (1).jpg"
+    const imgPath = baseApiEndPoint + "/cars/" + props.productOrdered.product.image + "/" + props.productOrdered.product.image + " (1).jpg"
 
     return (
         <Card id="mainCard">
             <Grid container spacing={2}>
                 <Grid item xs={2.5}>
                     <CardHeader
-                        title={props.product.product.name}
-                        subheader={"Price: " + props.product.product.price + "€/unit Quantity:  " + props.product.quantity} 
+                        title={props.productOrdered.product.name}
+                        subheader={"Price: " + props.productOrdered.product.price + "€/unit Quantity:  " + props.productOrdered.quantity} 
                         
                     />
                 </Grid>
@@ -64,7 +66,7 @@ export default function OrderDetails(props: ProductCardProps) {
                         component="img"
                         height="194"
                         image={imgPath}
-                        alt={props.product.product.name}
+                        alt={props.productOrdered.product.name}
                     />
                 </Grid>
             </Grid>
@@ -82,7 +84,13 @@ export default function OrderDetails(props: ProductCardProps) {
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                    {/* Aquí va lo que se expande. */}
+                    {!props.productOrdered.reviewed ?
+                    <AddReviewCard setExpanded={setExpanded} orderId={props.orderId} productOrdered={props.productOrdered} userId={localStorage.getItem("webId") as string}></AddReviewCard>
+                    :
+                    <Typography variant="caption" color="text.secondary">
+                        You have already reviewed this product .
+                    </Typography>
+                    }
                 </CardContent>
             </Collapse>
         </Card>
