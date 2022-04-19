@@ -36,7 +36,8 @@ class OrderController {
     }
 
     public async getOrderByUserId(req: Request, res: Response) {
-        const userId = req.params.userId;
+        const userId = req.body.webId;
+        console.log("userId",req.body);
         var order = await Order.find({ userId: userId });
         res.send(order);
     }
