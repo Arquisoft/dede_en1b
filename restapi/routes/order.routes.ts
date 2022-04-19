@@ -6,7 +6,7 @@ import orderController from './../controller/OrderController';
 
 router.get('/orders',orderController.getOrders); 
 router.post('/order', orderController.saveOrder);
-router.post('/order/find', orderController.getOrderByUserId);
+router.get('/order/:userId', orderController.getOrderByUserId);
 
 export default router;
 
