@@ -4,6 +4,10 @@ import Product from '../model/Product';
 const path = require('path');
 const fs = require('fs');
 const ObjectId = require('mongodb').ObjectID;
+const qs = require('qs');
+
+
+
 
 
 
@@ -20,17 +24,40 @@ class ProductController {
     }
 
     public async getProducts(req: Request, res: Response) {
-        let params = req.query.search;
-        if(params){
-            const products = await Product.find({name: {$regex: params, $options: 'i'}});
-            res.status(200).json(products);
+        let userQuery = qs.parse(req.query);
+        let query:any = {};
+        for(let key in userQuery){
+            if (typeof userQuery[key] === "string"){
+                userQuery[key] = {eq: userQuery[key]};
+            }
+            query[key] = {}
+            for (let i = 0; i < Object.keys(userQuery[key]).length; i++) {
+                console.log(query[key]);
+                Object.assign(query[key], ProductController.buildQuery(key,Object.keys(userQuery[key])[i], Object.values(userQuery[key])[i] as string));
+            }
         }
-        else{
-            var products = await Product.find({});
-            //products = await productController.addImagePaths(products);
-            res.send(products);
-        }
+        console.log("Searching products using ", query);
+        const products = await Product.find(query);
+        res.status(200).json(products);
+
             
+    }
+
+    private static buildQuery(field:string,comparator:string, value:string):any{
+        let query:any = {};
+        if(["name","description","color","category"].includes(field)){
+            return {$regex: value, $options: 'i'};
+        }
+        switch(comparator){
+            case "gte":
+                return {$gte: value};
+            case "lte":
+                return {$lte: value};
+            case "eq":
+                return {$eq: value};
+            default:
+                return {}
+        }
     }
 
     public async getProductsByIds(ids: string[]) {
