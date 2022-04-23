@@ -2,6 +2,7 @@ import { Rating, Typography } from "@mui/material";
 import { Product, Review } from "../../shared/shareddtypes";
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import './ReviewsView.css';
 type ReviewViewProps = {
     review: Review;
 }
@@ -9,19 +10,20 @@ type ReviewViewProps = {
 //Shows one review of a product
 function ReviewView(props:ReviewViewProps): JSX.Element {
     return (
-        <div>
-            <div>
-                <Typography variant="subtitle1">
-                <PersonOutlineIcon> </PersonOutlineIcon> {props.review.userId}
-                    </Typography>
+        <div className="review-box">
+            <div className="review-top">
+                    <div className="author">
+                        <PersonOutlineIcon> </PersonOutlineIcon> {props.review.userId}
+                    </div>
+                    <div>
+                       <Rating name="read-only" value={props.review.rating} readOnly />
+                    </div>
             </div>
+            
             <div>
-             <ArrowRightIcon /> <Rating name="read-only" value={props.review.rating} readOnly />
-            </div>
-            <div>
-             <Typography variant="body1"> 
-              <ArrowRightIcon /> {props.review.comment}
-             </Typography>
+            <div className="comment">
+               "{props.review.comment}"
+              </div> 
             </div>
         </div>
     );
