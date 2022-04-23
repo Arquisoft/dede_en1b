@@ -1,4 +1,4 @@
-import AddressComponent from "../user/address";
+import AddressComponent from "../user/address_v2";
 
 import { useState, useEffect } from 'react';
 import { getShippingCost, addOrderToUser, getCart, emptyCart } from '../../api/api';
