@@ -20,6 +20,7 @@ import { addToCart } from './api/api';
 
 import ShoppingCart from './components/cart/ShoppingCart';
 import Checkout from './components/checkout-shipping/Checkout';
+import AdminView from './components/administrator/AdminView';
 
 
 function App(): JSX.Element {
@@ -53,6 +54,7 @@ function App(): JSX.Element {
               <Route path='/shipping' element={<Shipping refreshCartList={refreshCartList}/> } />
               <Route path='/checkout' element={<Checkout items={cart} refreshCartList={refreshCartList}/>}/>
               <Route path='/cart' element={<ShoppingCart items={cart} refreshCartList={refreshCartList} />} />
+              <Route path='/admin' element={<AdminView/>}/>
           </Routes>
           </Router>
         </Container>
