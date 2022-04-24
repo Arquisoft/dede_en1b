@@ -19,12 +19,84 @@ import { useEffect, useState } from 'react';
 import OrderCard from "./OrderCard";
 import { Order } from "../../shared/shareddtypes";
 
-export default function UserProfile() {
+import AddressForm from "./AddressForm";
 
+
+
+import { getSolidDataset, getThing, getStringNoLocale } from "@inrupt/solid-client";
+
+import { FOAF, RDF, VCARD } from "@inrupt/vocab-common-rdf";
+
+import { Address } from "../../shared/shareddtypes";
+
+import {
+    getUrlAll,
+    Thing
+} from "@inrupt/solid-client";
+
+import {
+    Session
+} from "@inrupt/solid-client-authn-browser";
+
+async function getProfile(webId: string): Promise<Thing> {
+    let profileDocumentURI = webId.split("#")[0];
+    let myDataset = await getSolidDataset(profileDocumentURI);
+    return getThing(myDataset, webId) as Thing;
+}
+
+async function getDedExAddress(webId: string, addresses: Address[]) {
+    let profileDocumentURI = webId.split("#")[0];
+    let myDataset = await getSolidDataset(profileDocumentURI);
+    let profile = getThing(myDataset, profileDocumentURI + "#DedExAddress") as Thing;
+
+    let street = getStringNoLocale(profile, VCARD.street_address);
+    let city = getStringNoLocale(profile, VCARD.locality);
+    let state = getStringNoLocale(profile, VCARD.region);
+    let zip = getStringNoLocale(profile, VCARD.postal_code);
+    let country = getStringNoLocale(profile, VCARD.country_name);
+
+    addresses.push({
+        street: street, city: city, state: state, zip: zip, country: country
+    });
+}
+
+async function getAddressesFromPod(webId: string) {
+
+    let addressURLs = getUrlAll(await getProfile(webId), VCARD.hasAddress);
+    let addresses: Address[] = [];
+    await getDedExAddress(webId, addresses);
+
+    for (let addressURL of addressURLs) {
+        let profile = await getProfile(addressURL);
+        let street = getStringNoLocale(profile, VCARD.street_address);
+        let city = getStringNoLocale(profile, VCARD.locality);
+        let state = getStringNoLocale(profile, VCARD.region);
+        let zip = getStringNoLocale(profile, VCARD.postal_code);
+        let country = getStringNoLocale(profile, VCARD.country_name);
+
+        addresses.push({ street: street, city: city, state: state, zip: zip, country: country });
+    }
+
+    console.log(addresses);
+
+
+    return addresses;
+}
+
+async function getAddresses(session: Session) {
+    const webId = session.info.webId as string;
+    getAddressesFromPod(webId).then(data => {
+        sessionStorage.setItem("addresses", JSON.stringify(data));
+    });
+}
+
+export default function UserProfile() {
     const { session } = useSession();
     const webId = session.info.webId as string;
     localStorage.setItem("webId", webId);
-    let username : string = "null";
+    let username: string = "null";
+
+    getAddresses(session);
 
     const navigate = useNavigate();
 
@@ -43,27 +115,6 @@ export default function UserProfile() {
             }
         })
     }, []);
-
-    // let address : string = "Address not found."
-    // if (localStorage.getItem("provider") == "https://inrupt.net/")  {
-    //     username = webId.substring(8, webId.length - 27);
-
-    //     axios.get("https://" + username + ".solidcommunity.net/profile/card#address")
-    //     .then(res => {
-    //         console.log(res.data);
-    //         address = res.data;
-    //     })
-    // } else if (localStorage.getItem("provider") == "https://broker.pod.inrupt.com/") {
-    //     username = webId.substring(8, webId.length - 27);
-        
-    //     axios.get("https://" + username + ".solidcommunity.net/profile/card#address")
-    //     .then(res => {
-    //         console.log(res.data);
-    //         address = res.data;
-    // })
-    // }  
-
-    console.log(username);
 
     //Order management:
     const [orders, setOrders] = useState<Order[]>([]);
@@ -110,6 +161,12 @@ export default function UserProfile() {
                     ))}
                 </Stack>
             </CombinedDataProvider>
+
+            <br></br>
+            <br></br>
+            <hr></hr>
+
+            <AddressForm></AddressForm>
         </Container>
     );
 }

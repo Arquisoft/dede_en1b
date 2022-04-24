@@ -1,46 +1,52 @@
+import { Autocomplete, TextField, Typography } from "@mui/material";
 import { useEffect } from "react";
 import { Address } from "../../shared/shareddtypes";
 
-const DataComponent = () => {
+export default function AddressComponent() {
 
     let adds: Address[] = [];
 
-    useEffect(() => {
-        let addresses = sessionStorage.getItem("addresses");
-        
-        let addressesJSON = JSON.parse(addresses as string) as JSON;
+    let addresses = sessionStorage.getItem("addresses");
 
-        console.log(addressesJSON);
+    let addressesJSON = JSON.parse(addresses as string) as JSON;
 
-        if (addresses != null) {
-            for (let address of addressesJSON as unknown as Array<Address>) {
-                console.log(address as Address);
-                adds.push(address as Address);
-            }
+    if (addresses != null) {
+        for (let address of addressesJSON as unknown as Array<Address>) {
+            adds.push(address as Address);
         }
-    }, [])
+    }
 
-    return null;
+    if (adds.length > 0) {
 
-    // return data
-    //     ? (
-    //         // <div>
-    //         //     <h3>Shipping Address:</h3>
-    //         //     <p>Country: {values[0]}</p>
-    //         //     <p>Locality: {values[1]}</p>
-    //         //     <p>ZIP Code: {values[2]}</p>
-    //         //     <p>City: {values[3]}</p>
-    //         //     <p>Street: {values[4]}</p>
-    //         // </div>
-    //         <div>Hay data</div>
-    //     )
+        const addresses = adds.map(item => item.street + ", " + item.zip + ", " + item.state + ", " + item.country);
 
-    //     :
-    //     <input type="text"></input>
-    //     ;
-};
+        const AddressComboBox = (
+            <Autocomplete
+                disablePortal
+                id="combo-box-address"
+                options={addresses}
+                sx={{ width: 600 }}
+                renderInput={(params) => <TextField {...params} label="Shipping Address:" />}
+            />
+        );
+
+        return AddressComboBox;
+    } else {
+        return (
+            <div>
+                <Typography variant="h3">
+                    Oops! Something went wrong.
+                </Typography>
+                <Typography variant="h6">
+                    We either could not find your address, or none are publicly available on your POD.
+                    <br/>
+                    Please, head over to your <a href="/profile">Profile</a> to create one or contact us if the problem persists.
+                </Typography>
+            </div>
+        );
+    }
+
+    return <div>Loading...</div>
 
 
-export default function AddressComponent() {
-    return DataComponent();
 };

@@ -2,29 +2,11 @@ import { useState } from "react";
 import { LoginButton, useSession } from "@inrupt/solid-ui-react";
 import { Autocomplete, Button, Container, Grid, Link, TextField, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { getSolidDataset, getThing, getStringNoLocale } from "@inrupt/solid-client";
-
-import { FOAF, VCARD } from "@inrupt/vocab-common-rdf";
-
-import { Address } from "../../shared/shareddtypes";
-
-import {
-  getUrlAll,
-  Thing,
-  getUrl,
-  createThing,
-  buildThing,
-  setThing,
-  saveSolidDatasetAt
-} from "@inrupt/solid-client";
 
 import "../../css/SOLIDLogin.css";
 
 import {
   handleIncomingRedirect,
-  onSessionRestore,
-  fetch,
-  Session
 } from "@inrupt/solid-client-authn-browser";
 import { useEffect } from 'react';
 
@@ -34,37 +16,6 @@ const authOptions = {
 
 function handleProvider(value: { displayName: string; url: string; } | null) {
   localStorage.setItem("provider", value?.url as string);
-}
-
-async function getProfile(webId: string): Promise<Thing> {
-  let profileDocumentURI = webId.split("#")[0]; // we remove the right hand side of the # for consistency
-  let myDataset = await getSolidDataset(profileDocumentURI); // obtain the dataset from the URI
-  return getThing(myDataset, webId) as Thing; // we obtain the thing we are looking for from the dataset
-}
-
-export async function getAddressesFromPod(webId: string) {
-  let addressURLs = getUrlAll(await getProfile(webId), VCARD.hasAddress);
-  let addresses: Address[] = [];
-
-  for (let addressURL of addressURLs) {
-      let profile = await getProfile(addressURL);
-      let street = getStringNoLocale(profile,VCARD.street_address);
-      let city = getStringNoLocale(profile,VCARD.locality);
-      let state = getStringNoLocale(profile, VCARD.region);
-      let zip = getStringNoLocale(profile,VCARD.postal_code);
-      let country = getStringNoLocale(profile,VCARD.country_name);
-  
-      addresses.push({street: street, city: city, state: state, zip: zip, country: country});
-  }
-
-  return addresses;
-}
-
-async function getAddresses(session: Session) {
-  const webId = session.info.webId as string;
-  getAddressesFromPod(webId).then(data => {
-    sessionStorage.setItem("addresses", JSON.stringify(data));
-  });
 }
 
 export default function SOLIDLogin() {
@@ -82,7 +33,6 @@ export default function SOLIDLogin() {
       restorePreviousSession: true
     }).then(() => {
       if (session.info.isLoggedIn) {
-        getAddresses(session);
         navigate("/profile");
       }
     })
