@@ -44,8 +44,6 @@ export default function AddressComponent() {
                     onChange={(e, value) => {
                         if (value != null) {
                             updateShippingCost(addresses.indexOf(value), adds);
-                        } else {
-                            window.alert("Please, select an address.");
                         }
                     }}
                 />

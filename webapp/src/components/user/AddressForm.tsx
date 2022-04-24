@@ -1,6 +1,8 @@
 import { Button, FormHelperText, TextField, Typography } from '@mui/material';
 import { useSession } from "@inrupt/solid-ui-react";
 
+import { Store } from 'react-notifications-component';
+
 import {
     getSolidDataset,
     createThing,
@@ -50,7 +52,19 @@ function addAddress() {
 
 
     if (!flag) {
-        window.alert("Please, fill all form fields.");
+        Store.addNotification({
+            title: "Attention!",
+            message: "Please, fill all form fields.",
+            type: "danger",
+            insert: "top",
+            container: "top-left",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+                duration: 3000,
+                onScreen: true
+            }
+        });
     } else {
         persistAddress(address);
     }

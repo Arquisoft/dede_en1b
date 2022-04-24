@@ -6,6 +6,8 @@ import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 import "../../css/Shipping.css";
 
+import { Store } from 'react-notifications-component';
+
 type ShippingProps = {
     refreshCartList: () => void
 }
@@ -23,11 +25,38 @@ export default function Shipping(props: ShippingProps) {
 
     function addOrder() {
         if ((document.getElementById("combo-box-address") as HTMLInputElement).value.trim().length === 0) {
-            window.alert("Please, select an address to continue.");
+            Store.addNotification({
+                title: "Attention!",
+                message: "Please, select an address to continue.",
+                type: "warning",
+                insert: "top",
+                container: "top-left",
+                animationIn: ["animate__animated", "animate__fadeIn"],
+                animationOut: ["animate__animated", "animate__fadeOut"],
+                dismiss: {
+                    duration: 3000,
+                    onScreen: true
+                }
+            });
         } else {
-            addOrderToUser(webId).then(() => {
+            addOrderToUser(webId).then(async () => {
                 emptyCart(props.refreshCartList);
+                Store.addNotification({
+                    title: "Yay!",
+                    message: "Order succesfully placed.",
+                    type: "success",
+                    insert: "top",
+                    container: "top-center",
+                    animationIn: ["animate__animated", "animate__fadeIn"],
+                    animationOut: ["animate__animated", "animate__fadeOut"],
+                    dismiss: {
+                        duration: 3000,
+                        onScreen: true
+                    }
+                });
+                await new Promise(r => setTimeout(r, 3000));
                 navigate("/profile");
+
             });
         }
     }
