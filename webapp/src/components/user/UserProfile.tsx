@@ -79,7 +79,6 @@ async function getAddressesFromPod(webId: string) {
 
     console.log(addresses);
 
-
     return addresses;
 }
 
