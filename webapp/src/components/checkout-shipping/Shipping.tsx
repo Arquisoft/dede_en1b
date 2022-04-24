@@ -1,4 +1,4 @@
-import AddressComponent from "../user/address_v2";
+import AddressComponent from "../user/address";
 
 import { addOrderToUser, emptyCart } from '../../api/api';
 import { Box, Divider, Grid, Button, Link } from "@mui/material";
@@ -40,6 +40,8 @@ export default function Shipping(props: ShippingProps) {
             });
         } else {
             addOrderToUser(webId).then(async () => {
+                (document.getElementById("cancelButton") as HTMLButtonElement).disabled = true;
+                (document.getElementById("loginButton") as HTMLButtonElement).disabled = true;
                 emptyCart(props.refreshCartList);
                 Store.addNotification({
                     title: "Yay!",

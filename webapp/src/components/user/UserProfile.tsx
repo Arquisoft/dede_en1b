@@ -13,30 +13,20 @@ import "../../css/UserProfile.css";
 
 import {
     handleIncomingRedirect,
-    onSessionRestore
+    onSessionRestore,
+    Session
 } from "@inrupt/solid-client-authn-browser";
 import { useEffect, useState } from 'react';
 import OrderCard from "./OrderCard";
-import { Order } from "../../shared/shareddtypes";
+import { Order, Address } from "../../shared/shareddtypes";
 
 import AddressForm from "./AddressForm";
 
 
 
-import { getSolidDataset, getThing, getStringNoLocale } from "@inrupt/solid-client";
+import { getSolidDataset, getThing, getStringNoLocale, getUrlAll, Thing } from "@inrupt/solid-client";
 
 import { VCARD } from "@inrupt/vocab-common-rdf";
-
-import { Address } from "../../shared/shareddtypes";
-
-import {
-    getUrlAll,
-    Thing
-} from "@inrupt/solid-client";
-
-import {
-    Session
-} from "@inrupt/solid-client-authn-browser";
 
 async function getProfile(webId: string): Promise<Thing> {
     let profileDocumentURI = webId.split("#")[0];
