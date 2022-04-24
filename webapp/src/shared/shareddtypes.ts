@@ -11,7 +11,7 @@ export type Product = {
     image:string;
     category:string;
     numImages:number;
-    product: Product;
+    product: any;
 }
 
 export type Order = {
