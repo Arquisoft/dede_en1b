@@ -3,18 +3,13 @@ import { useSession } from "@inrupt/solid-ui-react";
 
 import {
     getSolidDataset,
-    getThing,
-    getStringNoLocale,
-    getUrlAll,
-    Thing,
-    getUrl,
     createThing,
     buildThing,
     setThing,
     saveSolidDatasetAt
 } from "@inrupt/solid-client";
 
-import { FOAF, RDF, VCARD } from "@inrupt/vocab-common-rdf";
+import { RDF, VCARD } from "@inrupt/vocab-common-rdf";
 
 import "../../css/AddressForm.css"
 
@@ -37,19 +32,19 @@ function addAddress() {
 
     let flag: boolean = true;
 
-    if (street.length == 0) {
+    if (street.length === 0) {
         flag = false;
     }
-    if (city.length == 0) {
+    if (city.length === 0) {
         flag = false;
     }
-    if (locality.length == 0) {
+    if (locality.length === 0) {
         flag = false;
     }
-    if (zipcode.length == 0) {
+    if (zipcode.length === 0) {
         flag = false;
     }
-    if (country.length == 0) {
+    if (country.length === 0) {
         flag = false;
     }
 
@@ -81,11 +76,14 @@ async function writeAddressToPod(webId: string, address: Address) {
         myDataset,
         { fetch: session.fetch }
     );
+
+    console.log("SAVED? :", savedSolidDataset);
 }
 
 async function persistAddress(address: Address) {
     console.log("PERSISTING ADDRESS:", address);
-    writeAddressToPod(session.session.info.webId as string, address);
+    await writeAddressToPod(session.session.info.webId as string, address);
+    window.location.reload();
 }
 
 export default function AddressForm() {
@@ -94,7 +92,7 @@ export default function AddressForm() {
         <div>
             <Typography id="addressTitle" variant='h4'>Create / Update DedEx Address</Typography>
             <br></br>
-            <form id="myform" onSubmit={addAddress}>
+            <form id="myform">
                 <TextField sx={{ width: 500 }} label="Street" id="Street" aria-describedby="Street-helper-text" required={true} />
                 <FormHelperText id="Street-helper-text">Example: Valdés Salas.</FormHelperText>
                 <br></br>
@@ -110,7 +108,7 @@ export default function AddressForm() {
                 <TextField sx={{ width: 500 }} label="Country" id="Country" aria-describedby="Country-helper-text" required={true} />
                 <FormHelperText id="Country-helper-text">Example: Spain.</FormHelperText>
 
-                <Button type="button" onClick={addAddress} id="addAddress" variant="contained">Add Address</Button>
+                <Button type="button" onClick={addAddress} id="addAddress" variant="contained">Set Address</Button>
             </form>
             <br></br>
             <br></br>

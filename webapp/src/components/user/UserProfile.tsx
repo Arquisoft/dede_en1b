@@ -25,7 +25,7 @@ import AddressForm from "./AddressForm";
 
 import { getSolidDataset, getThing, getStringNoLocale } from "@inrupt/solid-client";
 
-import { FOAF, RDF, VCARD } from "@inrupt/vocab-common-rdf";
+import { VCARD } from "@inrupt/vocab-common-rdf";
 
 import { Address } from "../../shared/shareddtypes";
 
@@ -93,7 +93,6 @@ export default function UserProfile() {
     const { session } = useSession();
     const webId = session.info.webId as string;
     localStorage.setItem("webId", webId);
-    let username: string = "null";
 
     getAddresses(session);
 

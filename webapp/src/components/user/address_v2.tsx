@@ -1,5 +1,4 @@
 import { Autocomplete, TextField, Typography } from "@mui/material";
-import { useEffect } from "react";
 import { Address } from "../../shared/shareddtypes";
 import { getShippingCost } from '../../api/api';
 
