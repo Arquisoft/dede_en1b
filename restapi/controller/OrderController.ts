@@ -33,18 +33,8 @@ class OrderController {
     }
 
     public async getOrders(req: Request, res: Response) {
-        //validate if user is admin with token
-        let token = req.headers['auth-token'];
-
-        jwt.verify(token, process.env.TOKEN_SECRET, async (err:any, decoded:any) => {
-            if (err) {
-                return res.status(401).json({ message: 'Unauthorized' });
-            }
-            console.log("decoded",decoded);
-            var orders = await Order.find({});
-            res.send(orders);
-        });
-
+        var orders = await Order.find({});
+        res.send(orders);
     }
 
     public async getOrderByUserId(req: Request, res: Response) {

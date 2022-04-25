@@ -14,7 +14,11 @@ class ProductController {
 
     public saveProduct(req: Request, res: Response) {
         const { name, description, price, category,base64Images } = req.body;
+        if (!name || !description || !price || !category || !base64Images) {
+            res.status(400).send({ message: 'Please provide all the required fields' });
+        }
         let imagePath = uuidv4();
+        
 
         new ProductController().saveImages(base64Images, imagePath);
         const product
@@ -95,6 +99,22 @@ class ProductController {
         }
         
  
+    }
+
+
+    public async deleteProduct(req: Request, res: Response) {
+        try{
+            const product  = await Product.findOne({_id: ObjectId(req.params.id)});
+            if (product) {
+                await Product.deleteOne({_id: ObjectId(req.params.id)});
+                res.status(200).json({ message: 'Product deleted' });
+            }else {
+                res.status(404).send({ message: 'Product Not Found' });
+            }
+        }catch(e){
+            res.status(404).send({ message: 'Product Not Found' });
+        }
+        
     }
 }
 

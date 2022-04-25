@@ -2,17 +2,25 @@ import { useState, useEffect } from 'react';
 
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-import { Button, TextField } from '@mui/material';
+import { Autocomplete, Button, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 
 import { styled } from "@mui/material/styles";
 
 import { Card, Box, Divider} from "@mui/material";
-import { addProduct,getOrders } from '../../api/api';
+import { addProduct,deleteProduct,getOrders, getProducts } from '../../api/api';
 import { Order, Product } from '../../shared/shareddtypes';
 import OrderCard from '../user/OrderCard';
 import OrdersChart from "./OrdersChart";
+import { useNavigate } from 'react-router-dom';
+import { Logout } from '@mui/icons-material';
 
 function AdminView(): JSX.Element {
+
+    const navigate = useNavigate()
+    //if user is not logged in, redirect to login page
+    if(!localStorage.getItem("token")){
+        navigate("login");
+    }
 
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -20,14 +28,24 @@ function AdminView(): JSX.Element {
     const [category, setCategory] = useState("");
     const [images, setImages] = useState<FileList>();
 
+    const [selectedProduct, setSelectedProduct] = useState<Product>();
+
     const [orders, setOrders] = useState<Order[]>([]);
+    const [products, setProducts] = useState<Product[]>([]);
 
     function newProduct() {
-        addProduct({name:name, description, price, category} as Product, images as FileList);
+        addProduct({name:name, description, price, category} as Product, images as FileList).then((res)=>{
+            if(res){
+                window.location.reload();
+            }
+            else
+                alert("Error adding product");
+        });
     }
 
     const  fetchOrders= async () => {
         setOrders( await getOrders());
+        setProducts(await getProducts());
         console.log(orders);
     }
 
@@ -35,10 +53,28 @@ function AdminView(): JSX.Element {
         fetchOrders();
     }, []);
 
+    function logOut() {
+        localStorage.removeItem("token");
+        navigate("login");
+    }
+
+    function removeProduct(product: Product) {
+        deleteProduct(product.id).then((res) => {
+            if(res){
+                window.location.reload();
+            }
+            else
+                alert("Failed to delete product");
+        });
+                
+    }
 
     return (
         
         <Box justifyContent="center">
+            <Button onClick={() => logOut()}>
+            <Logout></Logout>
+            </Button>
             <Box justifyContent="center">
             <OrdersChart orders={orders}></OrdersChart>
             </Box>
@@ -100,20 +136,24 @@ function AdminView(): JSX.Element {
                     </Button>            
                 </form>
 
-                <label> Delete product:</label>
+            
+                <label> Delete a product:</label>
+                <Autocomplete
+                    disablePortal
+                    id="productComboBox"
+                    options={products.map((option) => option.name+" ["+option.id+"]")}
+                    renderInput={(params) => <TextField {...params} label="Select Product to delete" variant="outlined" />}
+                    contentEditable={false}
+                    sx={{width: "600px"}}
+                    onChange={(event, value) => {
+                        setSelectedProduct(products.filter(product => product.name+" ["+product.id+"]" === value)[0]);
+                    }}
+                />
+                <Button variant="contained" color="primary" onClick={() => removeProduct(selectedProduct as Product)}>
+                    Delete Product
+                </Button>
 
-                <form id="deleteProduct">
-                <TextField
-                        variant="outlined"
-                        type="text"
-                        id="product-id"
-                        placeholder="Set Product id"
-                        style={{ width: "50%" }}
-                        sx={{ input: { color: 'black' } }}
-                    />
 
-                <input type="submit" value = "Delete" />
-                </form>
 
                 <label >All Orders: </label>
                 {orders.map(order => (

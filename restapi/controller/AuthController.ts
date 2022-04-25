@@ -1,6 +1,7 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import UserController from './UserController';
 import UserModel from '../model/User';
+import { verify } from 'crypto';
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -56,6 +57,19 @@ const jwt = require('jsonwebtoken');
         }, process.env.TOKEN_SECRET)
 
         res.send(token);
+    },
+
+    verifyToken: async(req: Request, res: Response, next:NextFunction) => {
+        let token = req.headers['auth-token'];
+        if(!token)
+            return res.status(401).send({message: 'Unauthorized'});
+
+        jwt.verify(token, process.env.TOKEN_SECRET, async (err:any, decoded:any) => {
+            if (err) {
+                return res.status(401).json({ message: 'Unauthorized' });
+            }
+            next();
+        });
     }
 }
 

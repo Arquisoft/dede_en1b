@@ -192,10 +192,11 @@ export async function addProduct(product: Product,images:FileList) {
 
   let response = await fetch(apiEndPoint + '/product', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', 'auth-token': localStorage.getItem('token') as string },
     body: JSON.stringify(bodyObject)
   });
-  if (response.status === 200)
+  console.log(response.status)
+  if (response.status === 201)
     return true;
   else
     return false;
@@ -209,6 +210,19 @@ export async function  getOrders(): Promise<Order[]> {
     
   });
   return response.json();
+}
+
+export async function deleteProduct(id: string): Promise<boolean> {
+  const apiEndPoint = window.location.href.includes("www.dedeen1b.tk") ? "https://api.dedeen1b.tk/api" : (process.env.REACT_APP_API_URI || 'http://localhost:5000/api');
+  let response = await fetch(apiEndPoint + '/product/' + id, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json', 'auth-token': localStorage.getItem('token') as string   },
+    
+  });
+  if (response.status === 200)
+    return true;
+  else
+    return false;
 }
 
   

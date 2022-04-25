@@ -13,26 +13,26 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { adminLogin } from '../../api/api';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const theme = createTheme();
 
-export default function AdminLogin() {
+export default function AdminLogin(): JSX.Element {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
 
+  const navigate = useNavigate()
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-
     adminLogin(username,password).then(res => {
-      console.log(res);
-    });
+      if (res)
+        navigate("/admin")
+      else
+        alert("Invalid username or password")
+    
+  });
   };
 
   return (
@@ -78,10 +78,6 @@ export default function AdminLogin() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <Button
               type="submit"
               fullWidth
@@ -98,3 +94,4 @@ export default function AdminLogin() {
     </ThemeProvider>
   );
 }
+
