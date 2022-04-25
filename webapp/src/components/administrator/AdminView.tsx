@@ -7,8 +7,10 @@ import { Button, TextField } from '@mui/material';
 import { styled } from "@mui/material/styles";
 
 import { Card, Box, Divider} from "@mui/material";
-import { addProduct } from '../../api/api';
-import { Product } from '../../shared/shareddtypes';
+import { addProduct,getOrders } from '../../api/api';
+import { Order, Product } from '../../shared/shareddtypes';
+import OrderCard from '../user/OrderCard';
+import OrdersChart from "./OrdersChart";
 
 function AdminView(): JSX.Element {
 
@@ -18,12 +20,28 @@ function AdminView(): JSX.Element {
     const [category, setCategory] = useState("");
     const [images, setImages] = useState<FileList>();
 
+    const [orders, setOrders] = useState<Order[]>([]);
+
     function newProduct() {
         addProduct({name:name, description, price, category} as Product, images as FileList);
     }
 
+    const  fetchOrders= async () => {
+        setOrders( await getOrders());
+        console.log(orders);
+    }
+
+    useEffect(() => {
+        fetchOrders();
+    }, []);
+
+
     return (
+        
         <Box justifyContent="center">
+            <Box justifyContent="center">
+            <OrdersChart orders={orders}></OrdersChart>
+            </Box>
         <Box style={{ display: 'flex' }}>
             <Stack m={6} spacing={5} style={{ flex: 3 }}>
                 <label>Add Product:</label>
@@ -98,6 +116,9 @@ function AdminView(): JSX.Element {
                 </form>
 
                 <label >All Orders: </label>
+                {orders.map(order => (
+                        <OrderCard order={order} />
+                    ))}
             </Stack>
         </Box>
         </Box>

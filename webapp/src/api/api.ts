@@ -201,4 +201,13 @@ export async function addProduct(product: Product,images:FileList) {
     return false;
 }
 
+export async function  getOrders(): Promise<Order[]> {
+  const apiEndPoint = window.location.href.includes("www.dedeen1b.tk") ? "https://api.dedeen1b.tk/api" : (process.env.REACT_APP_API_URI || 'http://localhost:5000/api');
+  let response = await fetch(apiEndPoint + '/orders', {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  return response.json();
+}
+
   
