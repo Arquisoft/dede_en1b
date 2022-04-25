@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { ShoppingCart } from "@material-ui/icons";
-import { Badge, Button, Grid, Slider, TextField } from '@mui/material';
+import { Badge, Button, Grid, InputLabel, MenuItem, Select, Slider, TextField } from '@mui/material';
 import Container from '@mui/material/Container';
 import { ItemCart } from '../../shared/shareddtypes';
 
@@ -114,10 +114,12 @@ const SearchBar = () => (
 
 function filterColor(color: string) {
     console.log(color);
+    (document.getElementById("colorChooser") as HTMLDivElement).textContent = color;
 }
 
 function filterBrand(brand: string) {
     console.log(brand);
+    (document.getElementById("brandChooser") as HTMLDivElement).textContent = brand;
 }
 
 function filterMinPrice(price: number) {
@@ -224,85 +226,116 @@ export default function PrimarySearchAppBar(props: NavBarProps) {
                             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                         </IconButton>
                     </DrawerHeader>
-                    <Divider /><br/>
+                    <Divider /><br />
 
                     <Typography variant='h5' style={{ float: "left" }}>Color</Typography>
 
-                    <List>
-                        <ListItem button key="yellow" onClick={() => { filterColor("yellow") }}>
-                            <ListItemIcon>
-                                <Brightness1Icon sx={{ color: yellow[500] }}></Brightness1Icon>
-                            </ListItemIcon>
-                            <ListItemText primary="yellow" />
-                        </ListItem>
+                    <br />
+                    <Select
+                        id="colorChooser"
+                        sx={{ width: 200 }}
+                    >
+                        <MenuItem>
+                            <ListItem button key="yellow" onClick={() => { filterColor("yellow") }}>
+                                <ListItemIcon>
+                                    <Brightness1Icon sx={{ color: yellow[500] }}></Brightness1Icon>
+                                </ListItemIcon>
+                                <ListItemText primary="yellow" />
+                            </ListItem>
+                        </MenuItem>
+                        <br></br>
+                        <MenuItem>
+                            <ListItem button key="orange" onClick={() => { filterColor("orange") }}>
+                                <ListItemIcon>
+                                    <Brightness1Icon sx={{ color: orange[500] }}></Brightness1Icon>
+                                </ListItemIcon>
+                                <ListItemText primary="orange" />
+                            </ListItem>
+                        </MenuItem>
+                        <br></br>
+                        <MenuItem>
+                            <ListItem button key="red" onClick={() => { filterColor("red") }}>
+                                <ListItemIcon>
+                                    <Brightness1Icon sx={{ color: red[500] }}></Brightness1Icon>
+                                </ListItemIcon>
+                                <ListItemText primary="red" />
+                            </ListItem>
+                        </MenuItem>
+                        <br></br>
+                        <MenuItem>
+                            <ListItem button key="gray" onClick={() => { filterColor("gray") }}>
+                                <ListItemIcon>
+                                    <Brightness1Icon></Brightness1Icon>
+                                </ListItemIcon>
+                                <ListItemText primary="gray" />
+                            </ListItem>
+                        </MenuItem>
+                        <br></br>
+                        <MenuItem>
+                            <ListItem button key="green" onClick={() => { filterColor("green") }}>
+                                <ListItemIcon>
+                                    <Brightness1Icon sx={{ color: green[500] }}></Brightness1Icon>
+                                </ListItemIcon>
+                                <ListItemText primary="green" />
+                            </ListItem>
+                        </MenuItem>
+                        <br></br>
+                        <MenuItem>
+                            <ListItem button key="blue" onClick={() => { filterColor("blue") }}>
+                                <ListItemIcon>
+                                    <Brightness1Icon sx={{ color: blue[500] }}></Brightness1Icon>
+                                </ListItemIcon>
+                                <ListItemText primary="blue" />
+                            </ListItem>
+                        </MenuItem>
+                        <br></br>
+                        <MenuItem>
+                            <ListItem id="black" button key="white" onClick={() => { filterColor("white") }}>
+                                <ListItemIcon>
+                                    <Brightness1Icon id="whiteIcon"></Brightness1Icon>
+                                </ListItemIcon>
+                                <ListItemText primary="white" />
+                            </ListItem>
+                        </MenuItem>
+                        <br></br>
+                        <MenuItem>
+                            <ListItem id="black" button key="black" onClick={() => { filterColor("black") }}>
+                                <ListItemIcon>
+                                    <Brightness1Icon id="blackIcon"></Brightness1Icon>
+                                </ListItemIcon>
+                                <ListItemText primary="black" />
+                            </ListItem>
+                        </MenuItem>
+                    </Select>
 
-                        <ListItem button key="orange" onClick={() => { filterColor("orange") }}>
-                            <ListItemIcon>
-                                <Brightness1Icon sx={{ color: orange[500] }}></Brightness1Icon>
-                            </ListItemIcon>
-                            <ListItemText primary="orange" />
-                        </ListItem>
-
-                        <ListItem button key="red" onClick={() => { filterColor("red") }}>
-                            <ListItemIcon>
-                                <Brightness1Icon sx={{ color: red[500] }}></Brightness1Icon>
-                            </ListItemIcon>
-                            <ListItemText primary="red" />
-                        </ListItem>
-
-                        <ListItem button key="gray" onClick={() => { filterColor("gray") }}>
-                            <ListItemIcon>
-                                <Brightness1Icon></Brightness1Icon>
-                            </ListItemIcon>
-                            <ListItemText primary="gray" />
-                        </ListItem>
-
-                        <ListItem button key="green" onClick={() => { filterColor("green") }}>
-                            <ListItemIcon>
-                                <Brightness1Icon sx={{ color: green[500] }}></Brightness1Icon>
-                            </ListItemIcon>
-                            <ListItemText primary="green" />
-                        </ListItem>
-
-                        <ListItem button key="blue" onClick={() => { filterColor("blue") }}>
-                            <ListItemIcon>
-                                <Brightness1Icon sx={{ color: blue[500] }}></Brightness1Icon>
-                            </ListItemIcon>
-                            <ListItemText primary="blue" />
-                        </ListItem>
-
-                        <ListItem button key="white" onClick={() => { filterColor("white") }}>
-                            <ListItemIcon>
-                                <Brightness1Icon id="whiteIcon"></Brightness1Icon>
-                            </ListItemIcon>
-                            <ListItemText primary="white" />
-                        </ListItem>
-
-                        <ListItem id="black" button key="black" onClick={() => { filterColor("black") }}>
-                            <ListItemIcon>
-                                <Brightness1Icon id="blackIcon"></Brightness1Icon>
-                            </ListItemIcon>
-                            <ListItemText primary="black" />
-                        </ListItem>
-
-                    </List>
-
-                    <br/><Divider /><br/>
+                    <br /><br /><Divider /><br />
 
                     <Typography variant='h5' style={{ float: "left" }}>Brand</Typography>
 
-                    <List>
-                        {['Toyota', 'Volvo', 'Renault', 'Nissan', 'Plymouth', 'BMW', 'Subaru', 'Honda', 'Lamborghini', 'Volkswagen', 'Chevy', 'Polestar', 'Porsche'].map((text, _index) => (
-                            <ListItem button key={text} onClick={() => { filterBrand(text) }}>
-                                <ListItemIcon>
-                                    <DirectionsCarIcon />
-                                </ListItemIcon>
-                                <ListItemText primary={text} />
-                            </ListItem>
-                        ))}
-                    </List>
+                    <br />
+                    
+                    <Select
+                        id="brandChooser"
+                        sx={{ width: 200 }}
+                    >
+                        <div id="brandChooserDiv">
+                            {['Toyota', 'Volvo', 'Renault', 'Nissan', 'Plymouth', 'BMW', 'Subaru', 'Honda', 'Lamborghini', 'Volkswagen', 'Chevy', 'Polestar', 'Porsche'].map((text, index) => (
 
-                    <br/><Divider /><br/>
+                                <MenuItem>
+                                    <ListItem button key={text} onClick={() => { filterBrand(text) }} id={"li" + index}>
+                                        <ListItemIcon>
+                                            <DirectionsCarIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary={text} />
+                                    </ListItem>
+                                </MenuItem>
+                            ))}
+                        </div>
+
+
+                    </Select>
+
+                    <br /><br/><Divider /><br />
 
                     <Typography variant='h5' style={{ float: "left" }}>Min Price</Typography>
 
@@ -317,7 +350,7 @@ export default function PrimarySearchAppBar(props: NavBarProps) {
                         onChange={(_e, value) => { filterMinPrice(value as number) }}
                     />
 
-                    <br/><Divider /><br/>
+                    <br /><Divider /><br />
 
                     <Typography variant='h5' style={{ float: "left" }}>Max Price</Typography>
 
@@ -332,7 +365,7 @@ export default function PrimarySearchAppBar(props: NavBarProps) {
                         onChange={(_e, value) => { filterMaxPrice(value as number) }}
                     />
 
-                    <br/><Divider /><br/>
+                    <br /><Divider /><br />
 
                     <Typography variant='h5' style={{ float: "left" }}>Rating</Typography>
 
@@ -340,10 +373,10 @@ export default function PrimarySearchAppBar(props: NavBarProps) {
 
                         {[1, 2, 3, 4, 5].map((text, _index) => (
                             <Grid item xs={2}>
-                            <IconButton title={text as unknown as string} component="span" onClick={() => {filterRating(text)}}>
-                                <Star id={"star" + text as unknown as string}/>
-                            </IconButton>
-                        </Grid>
+                                <IconButton title={text as unknown as string} component="span" onClick={() => { filterRating(text) }}>
+                                    <Star id={"star" + text as unknown as string} />
+                                </IconButton>
+                            </Grid>
                         ))}
                     </Grid>
                     <br></br>

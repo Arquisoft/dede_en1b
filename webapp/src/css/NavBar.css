@@ -56,24 +56,38 @@
 
 #filterTitle {
     margin-right: 50%;
+    color: #F23005;
 }
 
 #star1:hover {
-    color: orange;
+    color: #F23005;
 }
 
 #star2:hover {
-    color: orange;
+    color: #F23005;
 }
 
 #star3:hover {
-    color: orange;
+    color: #F23005;
 }
 
 #star4:hover {
-    color: orange;
+    color: #F23005;
 }
 
 #star5:hover {
-    color: orange;
+    color: #F23005;
+}
+
+#colorChooser {
+    width: 100%;
+}
+
+li {
+    width: 100%;
+}
+
+
+#brandChooserDiv {
+    width: 100%;
 }
