@@ -13,8 +13,8 @@ import { useNavigate } from "react-router-dom";
 const DivBtonStyle = styled('div')({
   backgroundColor: '#7c4dff',
   color: '#ffff',
-  padding: 4,
   borderRadius: 4,
+  padding: 5,
   position: 'relative',
   width: '100%',
 
