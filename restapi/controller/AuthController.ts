@@ -55,9 +55,7 @@ const jwt = require('jsonwebtoken');
             id: user._id
         }, process.env.TOKEN_SECRET)
 
-        res.header('auth-token', token).json({
-            token
-        }).send();
+        res.send(token);
     }
 }
 

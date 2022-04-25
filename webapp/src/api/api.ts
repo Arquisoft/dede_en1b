@@ -164,7 +164,7 @@ export async function adminLogin(email: string, password: string): Promise<boole
     body: JSON.stringify({ 'email': email, 'password': password })
   });
   if (response.status === 200){
-    localStorage.setItem('token', response.headers.get('auth-token') as string);
+    localStorage.setItem('token', await response.text());
     return true;
   }
   else
@@ -205,7 +205,8 @@ export async function  getOrders(): Promise<Order[]> {
   const apiEndPoint = window.location.href.includes("www.dedeen1b.tk") ? "https://api.dedeen1b.tk/api" : (process.env.REACT_APP_API_URI || 'http://localhost:5000/api');
   let response = await fetch(apiEndPoint + '/orders', {
     method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', 'auth-token': localStorage.getItem('token') as string   },
+    
   });
   return response.json();
 }
