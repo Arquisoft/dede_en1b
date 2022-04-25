@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import Product from '../model/Product';
+import { v4 as uuidv4 } from 'uuid';
+
 const path = require('path');
 const fs = require('fs');
 const ObjectId = require('mongodb').ObjectID;
@@ -11,12 +13,27 @@ class ProductController {
 
 
     public saveProduct(req: Request, res: Response) {
-        const { name, description, price, image, category } = req.body;
+        const { name, description, price, category,base64Images } = req.body;
+        let imagePath = uuidv4();
+
+        new ProductController().saveImages(base64Images, imagePath);
         const product
-         = new Product({name, description, price, image, category});
+         = new Product({name, description, price,image:imagePath, category});
         product.save()
             .then(() => res.status(201).json({ message: 'Product saved' }))
             .catch((error:any) => res.status(400).json({ error }));
+    }
+
+    private saveImages(base64Images: string[], image: string) {
+        base64Images.forEach(async (base64Image: string) => {
+            base64Image= base64Image.replace(/^data:image\/png;base64,/, "");
+            const imageBuffer = Buffer.from(base64Image, 'base64');
+            //create folder if not exist
+            if (!fs.existsSync(path.join(__dirname, "../public/cars/"+image))) {
+                fs.mkdirSync(path.join(__dirname, "../public/cars/"+image));
+            }
+            fs.writeFileSync(path.join(__dirname, "../public/cars/"+image+"/"+ uuidv4()+".jpg"), imageBuffer,"base64");
+        });
     }
 
     public async getProducts(req: Request, res: Response) {

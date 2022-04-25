@@ -1,6 +1,6 @@
 
 import { Product } from '../../shared/shareddtypes';
-import { addToCart,baseApiEndPoint } from '../../api/api';
+import { addToCart,baseApiEndPoint, getProductImages } from '../../api/api';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -10,6 +10,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { padding, styled, width } from '@mui/system';
 
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
 const DivBtonStyle = styled('div')({
   backgroundColor: '#7c4dff',
   color: '#ffff',
@@ -42,10 +43,18 @@ function addProduct(product: Product): void {
 
 const ProductCard = ( prod: ProductCardProps): JSX.Element => {
 
-
-  const imgPath = baseApiEndPoint+"/cars/" + prod.product.image + "/" + prod.product.image + " (1).jpg"
+  const [imagePath, setImagePath] = useState<string>();
+  //const imgPath = baseApiEndPoint+"/cars/" + prod.product.image + "/" + prod.product.image + " (1).jpg"
 
   const navigate = useNavigate();
+
+  const getImage = async () => {
+    setImagePath(baseApiEndPoint+(await getProductImages(prod.product.id)as string[])[0]);
+  }; 
+
+  useEffect(() => {
+    getImage();
+  }, []);
 
   return (
 
@@ -56,7 +65,7 @@ const ProductCard = ( prod: ProductCardProps): JSX.Element => {
 
         <CardMedia
           component="img"
-          image={imgPath}
+          image={imagePath}
           alt={prod.product.name}
         />
         <CardContent>

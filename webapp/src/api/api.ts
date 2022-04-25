@@ -1,9 +1,11 @@
 import { User, Product, Order,ItemCart } from '../shared/shareddtypes';
 
 
+
 //if the current url is www.dedeen1b.tk sets the apiEndPoint to api.dedeen1b.tk
 export const baseApiEndPoint = window.location.href.includes("www.dedeen1b.tk") ? "https://api.dedeen1b.tk" : (process.env.REACT_APP_API_URI || 'http://localhost:5000');
 export const apiEndPoint = baseApiEndPoint + "/api"
+
 
 
 
@@ -153,4 +155,60 @@ export async function addOrderToUser(webId: string) {
   else
     return false;
 }
+
+
+export async function adminLogin(email: string, password: string): Promise<boolean> {
+  let response = await fetch(apiEndPoint + '/admin/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ 'email': email, 'password': password })
+  });
+  if (response.status === 200){
+    localStorage.setItem('token', await response.text());
+    return true;
+  }
+  else
+    return false;
+}
+
+function imgToBase64(img:any): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = reject;
+    reader.readAsDataURL(img);
+  });
+}
+
+export async function addProduct(product: Product,images:FileList) {
+  //convert images to base64
+  var base64Images: (string|any)[] = [];
+  for(var i = 0; i < images.length; i++)
+  {
+    base64Images.push(await imgToBase64(images[i]));     
+  }
+  let bodyObject:any = product;
+  bodyObject.base64Images = base64Images;
+
+  let response = await fetch(apiEndPoint + '/product', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(bodyObject)
+  });
+  if (response.status === 200)
+    return true;
+  else
+    return false;
+}
+
+export async function  getOrders(): Promise<Order[]> {
+  const apiEndPoint = window.location.href.includes("www.dedeen1b.tk") ? "https://api.dedeen1b.tk/api" : (process.env.REACT_APP_API_URI || 'http://localhost:5000/api');
+  let response = await fetch(apiEndPoint + '/orders', {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json', 'auth-token': localStorage.getItem('token') as string   },
+    
+  });
+  return response.json();
+}
+
   

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import Container from '@mui/material/Container';
 import Header from './components/fragments/NavBar';
 import Footer from './components/fragments/Footer';
-import  {getCart} from './api/api';
 import {ItemCart} from './shared/shareddtypes';
 import './css/App.css';
 import { BrowserRouter as Router, Routes, Route, useSearchParams } from 'react-router-dom';
@@ -16,11 +15,12 @@ import Shipping from './components/checkout-shipping/Shipping';
 import MainProducts from './components/products/MainProducts';
 import ProductPage from './components/products/ProductPage';
 
-import { addToCart } from './api/api';
 
 import ShoppingCart from './components/cart/ShoppingCart';
 import Checkout from './components/checkout-shipping/Checkout';
 import AdminView from './components/administrator/AdminView';
+import { getCart } from './api/api';
+import AdminLogin from './components/administrator/AdminLogin';
 
 
 function App(): JSX.Element {
@@ -55,6 +55,7 @@ function App(): JSX.Element {
               <Route path='/checkout' element={<Checkout items={cart} refreshCartList={refreshCartList}/>}/>
               <Route path='/cart' element={<ShoppingCart items={cart} refreshCartList={refreshCartList} />} />
               <Route path='/admin' element={<AdminView/>}/>
+              <Route path='/admin/login' element={<AdminLogin/>}/>
           </Routes>
           </Router>
         </Container>

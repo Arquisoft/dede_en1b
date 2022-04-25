@@ -10,12 +10,22 @@ const jwt = require('jsonwebtoken');
 
     
     register: async (req: Request, res: Response) => {
-        
-        const salt = await bcrypt.genSalt(10);
-        const password = await bcrypt.hash(req.body.password, salt);
 
-        const { email, name, lastName, PODUrl } = req.body;
-        const user = new UserModel({email, name, lastName, password, PODUrl});
+        if(req.body.password === undefined || req.body.email === undefined)
+            res.status(400).send({ message: 'Please provide email and password' });
+        //check if email already exists
+        const userFound = await UserModel.findOne({email:req.body.email});
+        if(userFound){
+            res.status(400).send({ message: 'User already exists' });
+            return
+        }
+        
+        const password = await bcrypt.hash(req.body.password,10 );
+
+        console.log(await bcrypt.compare(req.body.password, password));
+
+        const email = req.body.email;
+        const user = new UserModel({email,  password});
 
         try {
             await user.save();
@@ -30,7 +40,8 @@ const jwt = require('jsonwebtoken');
     login: async(req: Request, res: Response) => {
         const { email, password } = req.body;
         var userEmail = String(email);
-        const user = await UserModel.findOne({userEmail});
+    
+        const user = await UserModel.findOne({email:userEmail});
         if(!user) {
             return res.status(404).send('User not found');
         }
@@ -44,10 +55,7 @@ const jwt = require('jsonwebtoken');
             id: user._id
         }, process.env.TOKEN_SECRET)
 
-        res.header('auth-token', token).json({
-            error: null,
-            data: {token}
-        }).send();
+        res.send(token);
     }
 }
 
