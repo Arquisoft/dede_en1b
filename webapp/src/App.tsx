@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import Container from '@mui/material/Container';
 import Header from './components/fragments/NavBar';
 import Footer from './components/fragments/Footer';
-import  {getCart} from './api/api';
-import {ItemCart} from './shared/shareddtypes';
+import { getCart } from './api/api';
+import { ItemCart } from './shared/shareddtypes';
 import './css/App.css';
 import { BrowserRouter as Router, Routes, Route, useSearchParams } from 'react-router-dom';
 
@@ -24,41 +24,37 @@ import Checkout from './components/checkout-shipping/Checkout';
 
 function App(): JSX.Element {
 
-  const [cart,setCart] = useState<ItemCart[]>([]);
+  const [cart, setCart] = useState<ItemCart[]>([]);
 
 
- 
 
-  const refreshCartList =  () => {
-    setCart( getCart());
+
+  const refreshCartList = () => {
+    setCart(getCart());
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     refreshCartList();
-  },[]);
+  }, []);
 
   return (
     <>
-
-
-      <Header cart={cart}/>
-        <Container style={{alignContent: "center", marginTop: "5%", minHeight: "50vh"}} maxWidth="lg">
+      <Header cart={cart} />
+      <Container style={{ alignContent: "center", marginTop: "5%", minHeight: "50vh" }} maxWidth="lg">
         <Router>
           <Routes>
-             <Route path='/' element={<MainProducts refreshCartList={refreshCartList}/>} />
-              <Route path="/products/:id" element={<ProductPage refreshCartList={refreshCartList}/>} />
-              <Route path='/about_us' element={<AboutUs/>} />
-              <Route path='/login' element={<SOLIDLogin/>} />
-              <Route path='/profile' element={<UserProfile/>} />
-              <Route path='/shipping' element={<Shipping refreshCartList={refreshCartList}/> } />
-              <Route path='/checkout' element={<Checkout items={cart} refreshCartList={refreshCartList}/>}/>
-              <Route path='/cart' element={<ShoppingCart items={cart} refreshCartList={refreshCartList} />} />
+            <Route path='/' element={<MainProducts refreshCartList={refreshCartList} />} />
+            <Route path="/products/:id" element={<ProductPage refreshCartList={refreshCartList} />} />
+            <Route path='/about_us' element={<AboutUs />} />
+            <Route path='/login' element={<SOLIDLogin />} />
+            <Route path='/profile' element={<UserProfile />} />
+            <Route path='/shipping' element={<Shipping refreshCartList={refreshCartList} />} />
+            <Route path='/checkout' element={<Checkout items={cart} refreshCartList={refreshCartList} />} />
+            <Route path='/cart' element={<ShoppingCart items={cart} refreshCartList={refreshCartList} />} />
           </Routes>
-          </Router>
-        </Container>
-      <Footer/>
-
-      
+        </Router>
+      </Container>
+      <Footer />
     </>
   );
 }
