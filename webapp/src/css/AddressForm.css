@@ -1,0 +1,17 @@
+#addAddress {
+    width: 15%;
+    color: white;
+    padding: 1%;
+    margin-top: 1.5%;
+    background-color: #7c4dff;
+    border-radius: 8px;
+    float: right;
+    margin-right: 56%;
+}
+
+#addressTitle {
+    text-align: left;
+    margin: auto;
+    margin-top: 5%;
+    color: #F23005;
+}
