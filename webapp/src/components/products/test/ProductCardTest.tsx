@@ -17,6 +17,7 @@ const productsList = [
     "image": "",
     "category": "",
     "numImages":1,
+    "quantity":2,
     "product": ""
 
 }
