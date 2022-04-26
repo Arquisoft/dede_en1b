@@ -2,14 +2,14 @@ import { Request, Response } from 'express';
 import Order from '../model/Order';
 import Product from '../model/Product';
 import Review,{ ReviewModel } from '../model/Review';
-
+const ObjectId = require('mongodb').ObjectID;
 class ReviewController {
 
     public async addReview(req: Request, res: Response) {
         const { userId, productId,orderId, rating, comment } = req.body;
 
         //find the order 
-        const order = await Order.findOne({ _id: orderId, userId: userId });
+        const order = await Order.findOne({ _id: ObjectId(orderId), userId: userId });
         if (!order) 
             return res.status(404).json({ message: 'You cant review a product you didnt order' });
 
@@ -23,10 +23,10 @@ class ReviewController {
 
         //create the review
         const review = new Review({ userId, productId, rating, comment });
-        var product = await Product.findOne({_id:productId});
+        var product = await Product.findOne({_id:ObjectId(productId)});
         //set the productOrdered as reviewed
         order.products.find(product => product.productId === productId)!.reviewed = true;
-        await Order.findOneAndUpdate({_id:orderId},{products:order.products})
+        await Order.findOneAndUpdate({_id:ObjectId(orderId)},{products:order.products})
         //add the review to the product and save it
         product?.reviews.push(review as ReviewModel);
         product?.save().then(()=>{
