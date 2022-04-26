@@ -11,7 +11,7 @@ const jwt = require('jsonwebtoken');
 class OrderController {
 
     public async saveOrder(req: Request, res: Response) {
-        const { userId, products,deliveryPrice} = req.body;
+        const { userId, products,deliveryPrice,address} = req.body;
         console.log("products",products);
 
 
@@ -25,7 +25,7 @@ class OrderController {
 
         const subTotal = products.reduce((acc:number, productOrdered:ProductOrdered) => acc + productOrdered.price * productOrdered.quantity, 0);
         console.log("esto deberia ser lo ultimo" ,products)
-        const order = new Order( {userId, products, subTotal,deliveryPrice:deliveryPrice} );
+        const order = new Order( {userId, products, subTotal,deliveryPrice:deliveryPrice,address} );
         console.log("order",order);
         order.save()
             .then(() => res.status(201).json({ message: 'Order saved' }))

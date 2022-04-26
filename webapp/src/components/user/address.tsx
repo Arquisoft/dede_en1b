@@ -6,6 +6,7 @@ import { getShippingCost } from '../../api/api';
 function updateShippingCost(index: number, addresses: Address[]) {
     var shippingCost = getShippingCost(addresses[index].country as string, addresses[index].state as string);
     (document.getElementById("cost") as HTMLTextAreaElement).textContent = shippingCost as unknown as string + "€";
+    localStorage.setItem("selectedAddress", JSON.stringify(addresses[index]));
 }
 
 export default function AddressComponent() {

@@ -22,6 +22,7 @@ export type Order = {
   subTotal: number;
   deliveryPrice: number;
   createdAt: Date;
+  address: string;
   id: string;
 }
 
