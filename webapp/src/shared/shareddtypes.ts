@@ -48,3 +48,10 @@ export type ProductOrdered = {
   price: number;
   reviewed: boolean;
 }
+export type Address = {
+  street:string|null
+  city:string|null
+  state:string| null
+  zip:string| null
+  country:string| null
+}
