@@ -20,6 +20,7 @@ type CheckoutProps = {
 function Checkout(props: CheckoutProps): JSX.Element {
 
     const [total, setTotal] = useState<number>(0);
+    
 
     const updateTotal = async () => {
         let cart = getCart();

@@ -39,7 +39,7 @@ const BuyBtton = styled(Button)({
 
 });
 
-async function getImages(product: Product): Promise<string> {
+async function getImages(product: Product): Promise<string>{
   console.log('getImages', product);
   let imgs = new Array();
   let imagePaths = await getProductImages(product.id);

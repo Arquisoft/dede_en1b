@@ -11,7 +11,6 @@ export type Product = {
   image: string;
   category: string;
   reviews: Array<Review>;
-  numImages: number;
   product: Product;
   _id: string;
   quantity: number;
@@ -23,6 +22,7 @@ export type Order = {
   subTotal: number;
   deliveryPrice: number;
   createdAt: Date;
+  address: string;
   id: string;
 }
 
