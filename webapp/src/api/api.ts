@@ -3,7 +3,7 @@ import { User, Product, Order,ItemCart, Review } from '../shared/shareddtypes';
 
 //if the current url is www.dedeen1b.tk sets the apiEndPoint to api.dedeen1b.tk
 export const baseApiEndPoint = window.location.href.includes("www.dedeen1b.tk") ? "https://api.dedeen1b.tk" : (process.env.REACT_APP_API_URI || 'http://localhost:5000');
-export const apiEndPoint = baseApiEndPoint + "/api"
+export let apiEndPoint = baseApiEndPoint + "/api"
 
 
 
@@ -20,7 +20,7 @@ export async function addUser(user: User): Promise<boolean> {
 }
 
 export async function getUsers(): Promise<User[]> {
-  const apiEndPoint = window.location.href.includes("www.dedeen1b.tk") ? "https://api.dedeen1b.tk/api" : (process.env.REACT_APP_API_URI || 'http://localhost:5000/api');
+  let apiEndPoint = window.location.href.includes("www.dedeen1b.tk") ? "https://api.dedeen1b.tk/api" : (process.env.REACT_APP_API_URI || 'http://localhost:5000/api');
   let response = await fetch(apiEndPoint + '/users/list');
   //The objects returned by the api are directly convertible to User objects
   return response.json()
@@ -32,7 +32,7 @@ export async function getProducts(searchParams?:String): Promise<Product[]> {
 }
 
 export async function getOrderByUserId(webId: string): Promise<Order[]> {
-  const apiEndPoint = window.location.href.includes("www.dedeen1b.tk") ? "https://api.dedeen1b.tk/api" : (process.env.REACT_APP_API_URI || 'http://localhost:5000/api');
+  let apiEndPoint = window.location.href.includes("www.dedeen1b.tk") ? "https://api.dedeen1b.tk/api" : (process.env.REACT_APP_API_URI || 'http://localhost:5000/api');
   let response = await fetch(apiEndPoint + '/order/find' ,{
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -42,7 +42,7 @@ export async function getOrderByUserId(webId: string): Promise<Order[]> {
 }
 
 export async function addReview(review:Review) {
-  const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
+  let apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
   let response = await fetch(apiEndPoint + '/review/add', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -127,7 +127,7 @@ export function emptyCart(updateCarCountNumberFunction:Function) {
 
 
 export async function getProductById(id: any):Promise<Product|undefined>{ 
-  const apiEndPoint = window.location.href.includes("www.dedeen1b.tk") ? "https://api.dedeen1b.tk/api" : (process.env.REACT_APP_API_URI || 'http://localhost:5000/api');
+  let apiEndPoint = window.location.href.includes("www.dedeen1b.tk") ? "https://api.dedeen1b.tk/api" : (process.env.REACT_APP_API_URI || 'http://localhost:5000/api');
   console.log(apiEndPoint+'/product/id')
   let response = await fetch(apiEndPoint+'/products/' + id);
   if(response.status === 200)
@@ -145,7 +145,7 @@ export async function getProductImages(id: string):Promise<string[]>{
 export async function addOrderToUser(webId: string) {
   console.log('adding order to user ' + webId)
   var shippingCost = getShippingCost(localStorage.getItem("country"), localStorage.getItem("locality"));
-  const apiEndPoint = window.location.href.includes("www.dedeen1b.tk") ? "https://api.dedeen1b.tk/api" : (process.env.REACT_APP_API_URI || 'http://localhost:5000/api');
+  let apiEndPoint = window.location.href.includes("www.dedeen1b.tk") ? "https://api.dedeen1b.tk/api" : (process.env.REACT_APP_API_URI || 'http://localhost:5000/api');
   let response = await fetch(apiEndPoint + '/order', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
