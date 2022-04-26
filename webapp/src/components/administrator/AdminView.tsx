@@ -91,7 +91,7 @@ function AdminView(): JSX.Element {
                         style={{ width: "50%" }}
                         sx={{ input: { color: 'black' } }}
                         value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        onChange={(e:any) => setName(e.target.value)}
                     />
 
                     <TextField
@@ -102,7 +102,7 @@ function AdminView(): JSX.Element {
                         style={{ width: "50%" }}
                         sx={{ input: { color: 'black' } }}
                         value={description}
-                        onChange={(e) => setDescription(e.target.value)}
+                        onChange={(e:any) => setDescription(e.target.value)}
                     />
 
                     <TextField
@@ -113,7 +113,7 @@ function AdminView(): JSX.Element {
                         style={{ width: "50%" }}
                         sx={{ input: { color: 'black' } }}
                         value={price}
-                        onChange={(e) => setPrice(parseInt(e.target.value))}
+                        onChange={(e:any) => setPrice(parseInt(e.target.value))}
                     />
 
                     <TextField
@@ -124,7 +124,7 @@ function AdminView(): JSX.Element {
                         style={{ width: "50%" }}
                         sx={{ input: { color: 'black' } }}
                         value={category}
-                        onChange={(e) => setCategory(e.target.value)}
+                        onChange={(e:any) => setCategory(e.target.value)}
                     />
                     <Button variant="contained" component="label">
                     Upload File

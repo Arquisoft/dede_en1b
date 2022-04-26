@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Container from '@mui/material/Container';
 import Header from './components/fragments/NavBar';
 import Footer from './components/fragments/Footer';
-import {ItemCart} from './shared/shareddtypes';
+import { ItemCart } from './shared/shareddtypes';
 import './css/App.css';
 import { BrowserRouter as Router, Routes, Route, useSearchParams } from 'react-router-dom';
 
@@ -22,28 +22,31 @@ import AdminView from './components/administrator/AdminView';
 import { getCart } from './api/api';
 import AdminLogin from './components/administrator/AdminLogin';
 
+import { ReactNotifications } from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css'
+
 
 function App(): JSX.Element {
 
-  const [cart,setCart] = useState<ItemCart[]>([]);
+  const [cart, setCart] = useState<ItemCart[]>([]);
 
 
- 
 
-  const refreshCartList =  () => {
-    setCart( getCart());
+
+  const refreshCartList = () => {
+    setCart(getCart());
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     refreshCartList();
-  },[]);
+  }, []);
 
   return (
     <>
+      <ReactNotifications/>
 
-
-      <Header cart={cart}/>
-        <Container style={{alignContent: "center", marginTop: "5%", minHeight: "50vh"}} maxWidth="lg">
+      <Header cart={cart} />
+      <Container style={{ alignContent: "center", marginTop: "5%", minHeight: "50vh" }} maxWidth="lg">
         <Router>
           <Routes>
              <Route path='/' element={<MainProducts refreshCartList={refreshCartList}/>} />
@@ -57,11 +60,11 @@ function App(): JSX.Element {
               <Route path='/admin' element={<AdminView/>}/>
               <Route path='/admin/login' element={<AdminLogin/>}/>
           </Routes>
-          </Router>
-        </Container>
-      <Footer/>
+        </Router>
+      </Container>
+      <Footer />
 
-      
+
     </>
   );
 }

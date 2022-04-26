@@ -7,7 +7,6 @@ import "../../css/SOLIDLogin.css";
 
 import {
   handleIncomingRedirect,
-  onSessionRestore
 } from "@inrupt/solid-client-authn-browser";
 import { useEffect } from 'react';
 
@@ -21,21 +20,13 @@ function handleProvider(value: { displayName: string; url: string; } | null) {
 
 export default function SOLIDLogin() {
 
-  // localStorage.setItem("provider", "https://broker.pod.inrupt.com/");
-
   const navigate = useNavigate();
 
   const [oidcIssuer, setOidcIssuer] = useState("https://broker.pod.inrupt.com/");
 
-  const providers = [{ displayName: "Broker Inrupt", url: "https://broker.pod.inrupt.com/" }, { displayName: "Inrupt", url: "https://inrupt.net/" }]
+  const providers = [{ displayName: "Broker Inrupt", url: "https://broker.pod.inrupt.com/" }, { displayName: "Inrupt", url: "https://inrupt.net/" }, { displayName: "SOLID Community", url: "https://solidcommunity.net/" }]
 
   const { session } = useSession();
-
-  onSessionRestore((url) => {
-    if (session.info.isLoggedIn) {
-      navigate(url);
-    }
-  });
 
   useEffect(() => {
     handleIncomingRedirect({

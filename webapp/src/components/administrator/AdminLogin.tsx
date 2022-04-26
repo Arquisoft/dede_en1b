@@ -64,7 +64,7 @@ export default function AdminLogin(): JSX.Element {
               autoComplete="email"
               autoFocus
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e:any) => setUsername(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -76,7 +76,7 @@ export default function AdminLogin(): JSX.Element {
               id="password"
               autoComplete="current-password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e:any) => setPassword(e.target.value)}
             />
             <Button
               type="submit"

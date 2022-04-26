@@ -69,7 +69,7 @@ function Checkout(props: CheckoutProps): JSX.Element {
                             Cart Totals:
                         </Typography>
                         <Typography component="h1" variant="h4">
-                            {total.toString().concat(" €")}
+                            {total.toFixed(2).toString().concat(" €")}
                         </Typography>
                     </Card>
 
