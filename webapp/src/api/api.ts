@@ -154,10 +154,10 @@ export async function addOrderToUser(webId: string) {
             'productId': pid,
             'product': null,
             'quantity': item.quantity,
-            'price': item.product.price
+            'price': item.product.price,
           }
           return product;
-        })
+        }),"address": localStorage.getItem("selectedAddress"),
     })
   });
   if (response.status === 200)
