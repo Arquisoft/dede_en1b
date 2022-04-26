@@ -37,7 +37,7 @@ function OrdersChart( props: OrdersChartProps): JSX.Element {
   
   console.log(ordersByDate);
    //data has the date as the argument and the total price as the value
-  Object.keys(ordersByDate).map(date => {
+  Object.keys(ordersByDate).forEach(date => {
     data.push({ argument: date, value: ordersByDate[date].reduce((total: number, order :Order) => total + order.subTotal+order.deliveryPrice, 0)})
   });
 

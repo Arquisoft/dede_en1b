@@ -15,7 +15,7 @@ const jwt = require('jsonwebtoken');
         if(req.body.password === undefined || req.body.email === undefined)
             res.status(400).send({ message: 'Please provide email and password' });
         //check if email already exists
-        const userFound = await UserModel.findOne({email:req.body.email});
+        const userFound = await UserModel.findOne({email:req.body.email.toString()});
         if(userFound){
             res.status(400).send({ message: 'User already exists' });
             return
