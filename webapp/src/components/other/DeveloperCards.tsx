@@ -70,8 +70,8 @@ export default function MultiActionAreaCard() {
                                     Jesús González Méndez
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                                    species, ranging across all continents except Antarctica
+                                    I'm a very chill guy who happens to like Software Developing and everything related.
+                                    Very happy to be a part of this team and being able to learn with them!
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
@@ -92,8 +92,9 @@ export default function MultiActionAreaCard() {
                                     Sebastián López Hernández
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                                    species, ranging across all continents except Antarctica
+                                    I like to overcome the different obstacles life brings us. 
+                                    Miley Cyrus once said "Life's a climb. But the views is great" and I could not agree more with her.
+                                    I never would have believed it if three years ago I was told I'd be here developing part of this app with this team, but here I am. Super proud!
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
