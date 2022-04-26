@@ -1,9 +1,7 @@
 
 import { Product } from '../../shared/shareddtypes';
 import { addToCart,baseApiEndPoint, getProductImages } from '../../api/api';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
+
 import Typography from '@mui/material/Typography';
 import { Button, createTheme, ThemeProvider } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
