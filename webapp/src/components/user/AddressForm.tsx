@@ -111,10 +111,10 @@ export default function AddressForm() {
                 <FormHelperText id="Street-helper-text">Example: Valdés Salas.</FormHelperText>
                 <br></br>
                 <TextField sx={{ width: 500 }} label="City" id="City" aria-describedby="City-helper-text" required={true} />
-                <FormHelperText id="City-helper-text">Example: Spain.</FormHelperText>
+                <FormHelperText id="City-helper-text">Example: Oviedo.</FormHelperText>
                 <br></br>
                 <TextField sx={{ width: 500 }} label="Locality" id="Locality" aria-describedby="Locality-helper-text" required={true} />
-                <FormHelperText id="Locality-helper-text">Example: Oviedo.</FormHelperText>
+                <FormHelperText id="Locality-helper-text">Example: Asturias.</FormHelperText>
                 <br></br>
                 <TextField sx={{ width: 500 }} label="ZIP Code" id="ZIPCode" aria-describedby="ZIPCode-helper-text" required={true} />
                 <FormHelperText id="ZIPCode-helper-text">Example: 33007.</FormHelperText>

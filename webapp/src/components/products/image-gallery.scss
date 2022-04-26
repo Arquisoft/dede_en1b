@@ -1,3 +1,13 @@
+.product-page-container{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  row-gap: 20px;
+}
+
+
 $ig-small-screen: 768px !default;
 $ig-xsmall-screen: 480px !default;
 $ig-white: #fff !default;

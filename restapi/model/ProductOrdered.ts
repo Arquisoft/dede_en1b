@@ -1,8 +1,9 @@
-import {Product} from "./Product";
+import {ProductModel} from "./Product";
 
 export interface ProductOrdered {
     productId: string;
-    product : Product;
+    product : ProductModel;
     quantity : number;
     price : number;
+    reviewed : boolean;
 }
