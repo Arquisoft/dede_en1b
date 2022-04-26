@@ -9,7 +9,7 @@ class ReviewController {
         const { userId, productId,orderId, rating, comment } = req.body;
 
         //find the order 
-        const order = await Order.findOne({ _id: ObjectId(orderId), userId: userId });
+        const order = await Order.findOne({ _id: ObjectId(orderId), userId: userId.toString() });
         if (!order) 
             return res.status(404).json({ message: 'You cant review a product you didnt order' });
 
