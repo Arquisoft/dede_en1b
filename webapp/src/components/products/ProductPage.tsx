@@ -105,15 +105,14 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
   if (productFound && product) {
     
     return (
-        
-      <Grid container
+      <div>
+        <div className="product-page-container">
 
-       spacing={2} columns={16}
-      >
-        <Grid item xs={8}>
+     
+ 
         <ImageGallery items={JSON.parse(images as string)} />
-        </Grid>
-        <Grid item xs={8}>
+        
+  
           <Card>
 
             <CardContent>
@@ -142,8 +141,7 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
           </CardActions>
 
           </Card>
-        </Grid>
-        <Grid item xs={16}> 
+          </div>
         <Card>
             <Typography gutterBottom variant="h5" component="div">
             Reviews of the product          <ReviewsIcon> </ReviewsIcon>
@@ -153,9 +151,11 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
               <ReviewView review={review} />
             ))}
             </List>
-            </Card></Grid>
+            </Card>
         
-      </Grid>
+
+      
+        </div>
       
           
 
