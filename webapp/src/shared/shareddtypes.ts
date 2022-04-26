@@ -1,22 +1,20 @@
-import { type } from "os";
-
 export type User = {
   name: string;
   email: string;
 }
 
 export type Product = {
-    id:string;
-    name:string;
-    description:string;
-    price:number;
-    image:string;
-    category:string;
-    reviews:Array<Review>;
-    numImages:number;
-    product: Product;
-    _id:string;
-    quantity: number;
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  category: string;
+  reviews: Array<Review>;
+  numImages: number;
+  product: Product;
+  _id: string;
+  quantity: number;
 }
 
 export type Order = {
@@ -49,9 +47,9 @@ export type ProductOrdered = {
   reviewed: boolean;
 }
 export type Address = {
-  street:string|null
-  city:string|null
-  state:string| null
-  zip:string| null
-  country:string| null
+  street: string | null
+  city: string | null
+  state: string | null
+  zip: string | null
+  country: string | null
 }

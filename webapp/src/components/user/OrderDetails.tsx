@@ -11,7 +11,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import { baseApiEndPoint } from '../../api/api';
 
-import { Product, ProductOrdered } from "../../shared/shareddtypes";
+import { ProductOrdered } from "../../shared/shareddtypes";
 
 import "../../css/OrderDetails.css";
 import { Grid, Typography } from '@mui/material';
@@ -55,8 +55,8 @@ export default function OrderDetails(props: ProductCardProps) {
                 <Grid item xs={2.5}>
                     <CardHeader
                         title={props.productOrdered.product.name}
-                        subheader={"Price: " + props.productOrdered.product.price + "€/unit Quantity:  " + props.productOrdered.quantity} 
-                        
+                        subheader={"Price: " + props.productOrdered.product.price + "€/unit Quantity:  " + props.productOrdered.quantity}
+
                     />
                 </Grid>
 
@@ -85,11 +85,11 @@ export default function OrderDetails(props: ProductCardProps) {
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
                     {!props.productOrdered.reviewed ?
-                    <AddReviewCard setExpanded={setExpanded} orderId={props.orderId} productOrdered={props.productOrdered} userId={localStorage.getItem("webId") as string}></AddReviewCard>
-                    :
-                    <Typography variant="caption" color="text.secondary">
-                        You have already reviewed this product .
-                    </Typography>
+                        <AddReviewCard setExpanded={setExpanded} orderId={props.orderId} productOrdered={props.productOrdered} userId={localStorage.getItem("webId") as string}></AddReviewCard>
+                        :
+                        <Typography variant="caption" color="text.secondary">
+                            You have already reviewed this product .
+                        </Typography>
                     }
                 </CardContent>
             </Collapse>
