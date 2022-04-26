@@ -10,17 +10,20 @@ export type Product = {
   price: number;
   image: string;
   category: string;
+  reviews: Array<Review>;
   numImages: number;
   product: Product;
+  _id: string;
   quantity: number;
 }
 
 export type Order = {
   userId: string;
-  products: Array<Product>;
+  products: Array<ProductOrdered>;
   subTotal: number;
   deliveryPrice: number;
   createdAt: Date;
+  id: string;
 }
 
 export type ItemCart = {
@@ -28,10 +31,25 @@ export type ItemCart = {
   quantity: number
 }
 
+export type Review = {
+  userId: string;
+  productId: string;
+  rating: number;
+  comment: string;
+  orderId: string;
+}
+
+export type ProductOrdered = {
+  productId: string;
+  product: Product;
+  quantity: number;
+  price: number;
+  reviewed: boolean;
+}
 export type Address = {
-  street:string|null
-  city:string|null
-  state:string| null
-  zip:string| null
-  country:string| null
+  street: string | null
+  city: string | null
+  state: string | null
+  zip: string | null
+  country: string | null
 }
