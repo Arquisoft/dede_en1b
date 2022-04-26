@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 
-import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-import { Autocomplete, Button, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { Autocomplete, Button, TextField, Box } from '@mui/material';
 
-import { styled } from "@mui/material/styles";
 
-import { Card, Box, Divider} from "@mui/material";
+
 import { addProduct,deleteProduct,getOrders, getProducts } from '../../api/api';
 import { Order, Product } from '../../shared/shareddtypes';
 import OrderCard from '../user/OrderCard';
