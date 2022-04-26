@@ -16,6 +16,7 @@ class ProductController {
         const { name, description, price, category,base64Images } = req.body;
         if (!name || !description || !price || !category || !base64Images) {
             res.status(400).send({ message: 'Please provide all the required fields' });
+            return;
         }
         let imagePath = uuidv4();
         
