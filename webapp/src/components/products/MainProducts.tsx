@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import {useSearchParams} from 'react-router-dom';
 
-import { getCart, getProducts } from '../../api/api';
-import { Product, ItemCart } from '../../shared/shareddtypes';
+import { getProducts } from '../../api/api';
+import { Product } from '../../shared/shareddtypes';
 import ProductCard from './ProductCard';
-import Grid from "@mui/material/Grid";
 import '../../css/MainProducts.scss'
 type MainProductsProps = {
   refreshCartList: () => void;
