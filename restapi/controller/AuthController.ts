@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import UserController from './UserController';
 import UserModel from '../model/User';
-import { verify } from 'crypto';
+
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
