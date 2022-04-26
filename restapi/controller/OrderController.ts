@@ -4,6 +4,8 @@ import Order from '../model/Order';
 import  { ProductModel } from '../model/Product';
 import { ProductOrdered } from '../model/ProductOrdered';
 import productController from './ProductController';
+const jwt = require('jsonwebtoken');
+
 
 
 class OrderController {
