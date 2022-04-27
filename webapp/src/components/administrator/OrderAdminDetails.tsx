@@ -12,19 +12,16 @@ import { ProductOrdered } from "../../shared/shareddtypes";
 import "../../css/OrderDetails.css";
 import { Grid} from '@mui/material';
 
-type ProductCardProps = {
+type ProductCardAdminProps = {
     productOrdered: ProductOrdered;
     orderId: string;
 }
-export default function OrderAdminDetails(props: ProductCardProps) {  
-
+export default function OrderAdminDetails(props: ProductCardAdminProps) {  
     
     console.log(props);
-
-    const imgPath = baseApiEndPoint + "/cars/" + props.productOrdered.product.image + "/" + props.productOrdered.product.image + " (1).jpg"
-
+    const imgAdminPath = baseApiEndPoint + "/cars/" + props.productOrdered.product.image + "/" + props.productOrdered.product.image + " (1).jpg"
     return (
-        <Card id="mainCard">
+        <Card id="mainAdminCard">
             <Grid container spacing={2}>
                 <Grid item xs={2.5}>
                     <CardHeader
@@ -39,7 +36,7 @@ export default function OrderAdminDetails(props: ProductCardProps) {
                         id="cardImg"
                         component="img"
                         height="194"
-                        image={imgPath}
+                        image={imgAdminPath}
                         alt={props.productOrdered.product.name}
                     />
                 </Grid>
