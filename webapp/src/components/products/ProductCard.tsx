@@ -62,10 +62,10 @@ const ProductCard = (prod: ProductCardProps): JSX.Element => {
   return (
 
     <div className="product-card"
-      onClick={() => navigate("products/" + prod.product.id)}
+      
     >
 
-      <div className="product-info">
+      <div className="product-info" onClick={() => navigate("products/" + prod.product.id)}>
 
         <div className="product-media"
         ><img src={imgPath} alt={prod.product.name} /></div>
