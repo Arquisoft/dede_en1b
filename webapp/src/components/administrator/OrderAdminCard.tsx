@@ -10,15 +10,15 @@ import React from "react";
 import { CardActions, Collapse, IconButton, IconButtonProps } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-type OrderCardProps = {
+type OrderAdminCardProps = {
     order: Order;
 }
 
-interface ExpandMoreProps extends IconButtonProps {
+interface ExpandMoreAdminProps extends IconButtonProps {
     expand: boolean;
 }
 
-const ExpandMore = styled((props: ExpandMoreProps) => {
+const ExpandMoreAdmin = styled((props: ExpandMoreAdminProps) => {
     const { expand, ...other } = props;
     return <IconButton {...other} />;
 })(({ theme, expand }) => ({
@@ -29,7 +29,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     }),
 }));
 
-export default function OrderAdminCard(props: OrderCardProps) {
+export default function OrderAdminCard(props: OrderAdminCardProps) {
 
     const [expanded, setExpanded] = React.useState(false);
     const handleExpandClick = () => {
@@ -47,14 +47,14 @@ export default function OrderAdminCard(props: OrderCardProps) {
                 </Typography>
                 Items:
                 <CardActions disableSpacing>
-                    <ExpandMore
+                    <ExpandMoreAdmin
                         expand={expanded}
                         onClick={handleExpandClick}
                         aria-expanded={expanded}
                         aria-label="show more"
                     >
                         <ExpandMoreIcon />
-                    </ExpandMore>
+                    </ExpandMoreAdmin>
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
