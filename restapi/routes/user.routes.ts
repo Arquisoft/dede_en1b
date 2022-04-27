@@ -7,7 +7,7 @@ import auth from './../middleware/auth';
 
 
 router.get('/users',auth.verifyToken,userController.getUsers);
-router.post('/register', authController.register);
+router.post('/register', auth.verifyToken,authController.register);
 router.post('/login', authController.login);  
 
 

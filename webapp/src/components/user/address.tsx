@@ -1,67 +1,74 @@
-import { useEffect, useState } from "react";
-
-const DataComponent = () => {
-    const [data, setData] = useState(null);
-    const webId = localStorage.getItem("webId") as string;
-    let username: string = "null";
-    let url: string = "null";
-    let values: string[] = [];
-
-    useEffect(() => {
-        let unmounted = false;
-
-        if (localStorage.getItem("provider") == "https://inrupt.net/") {
-            username = webId.substring(8, webId.length - 27);
-        } else if (localStorage.getItem("provider") == "https://broker.pod.inrupt.com/") {
-            username = webId.substring(23, webId.length - 16);            
-        }
-
-        url = "https://pod.inrupt.com/" + username + "/public/address.json";
-
-        fetch(url)
-            .then(res => res.json())
-            .then(data => {
-                !unmounted && setData(data);
-            })
-            .catch(console.error);
+import { Autocomplete, TextField, Typography } from "@mui/material";
+import { Address } from "../../shared/shareddtypes";
+import { getShippingCost } from '../../api/api';
 
 
-        return () => {
-            (unmounted = true)
-        };
-    }, [])
-
-    if (data) {
-        for (let line of JSON.stringify(data).split(',')) {
-            let value: string = line.split(':')[1].replace('"', '').replace('"', '').replace('}', '');
-            values.push(value);
-
-        }
-        localStorage.setItem("country", values[0]);
-        localStorage.setItem("locality", values[1]);
-    }
-
-    return data
-        ? (
-            <div>
-                <h3>Shipping Address:</h3>
-                <p>Country: {values[0]}</p>
-                <p>Locality: {values[1]}</p>
-                <p>ZIP Code: {values[2]}</p>
-                <p>City: {values[3]}</p>
-                <p>Street: {values[4]}</p>
-            </div>
-        )
-
-        :
-        <div>
-            <h3>Shipping Address:</h3>
-            <p>Loading...</p>
-        </div>
-        ;
-};
-
+function updateShippingCost(index: number, addresses: Address[]) {
+    var shippingCost = getShippingCost(addresses[index].country as string, addresses[index].state as string);
+    (document.getElementById("cost") as HTMLTextAreaElement).textContent = shippingCost as unknown as string + "€";
+    localStorage.setItem("selectedAddress", JSON.stringify(addresses[index]));
+}
 
 export default function AddressComponent() {
-    return DataComponent();
-};
+
+    let adds: Address[] = [];
+
+    let addresses = sessionStorage.getItem("addresses");
+
+    let addressesJSON = JSON.parse(addresses as string) as JSON;
+
+    if (addresses != null) {
+        for (let address of addressesJSON as unknown as Array<Address>) {
+            adds.push(address);
+        }
+    }
+
+    if (adds.length > 0) {
+
+        const addressesString = adds.map(item => item.street + ", " + item.zip + ", " + item.state + ", " + item.country);
+
+        return (
+            <div>
+                <br></br>
+                <br></br>
+
+                <Typography variant="h6">
+                    Choose a Shipping Address:
+                </Typography>
+
+                <Autocomplete
+                    disablePortal
+                    id="combo-box-address"
+                    options={addressesString}
+                    sx={{ width: 600 }}
+                    renderInput={(params) => <TextField {...params} label="Shipping Address:" />}
+                    onChange={(_e, value) => {
+                        if (value != null) {
+                            updateShippingCost(addressesString.indexOf(value), adds);
+                        }
+                    }}
+                />
+                <Typography id="costMessage" component="h2" variant="h5" >
+
+                    Your delivery cost is: <span id="cost">{0} €</span>
+
+                </Typography>
+            </div>
+
+        );
+    } else {
+        return (
+            <div>
+                <Typography variant="h3">
+                    Oops! Something went wrong.
+                </Typography>
+                <Typography variant="h6">
+                    We either could not find your address, or none are publicly available on your POD.
+                    <br />
+                    Please, head over to your <a href="/profile">Profile</a> to create one or contact us if the problem persists.
+                </Typography>
+            </div>
+        );
+    }
+
+}

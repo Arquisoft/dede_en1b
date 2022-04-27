@@ -16,10 +16,15 @@ import Shipping from './components/checkout-shipping/Shipping';
 import MainProducts from './components/products/MainProducts';
 import ProductPage from './components/products/ProductPage';
 
-import { addToCart } from './api/api';
 
 import ShoppingCart from './components/cart/ShoppingCart';
 import Checkout from './components/checkout-shipping/Checkout';
+import AdminView from './components/administrator/AdminView';
+import { getCart } from './api/api';
+import AdminLogin from './components/administrator/AdminLogin';
+
+import { ReactNotifications } from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css'
 
 
 function App(): JSX.Element {
@@ -39,22 +44,28 @@ function App(): JSX.Element {
 
   return (
     <>
+      <ReactNotifications/>
+
       <Header cart={cart} />
       <Container style={{ alignContent: "center", marginTop: "5%", minHeight: "50vh" }} maxWidth="lg">
         <Router>
           <Routes>
-            <Route path='/' element={<MainProducts refreshCartList={refreshCartList} />} />
-            <Route path="/products/:id" element={<ProductPage refreshCartList={refreshCartList} />} />
-            <Route path='/about_us' element={<AboutUs />} />
-            <Route path='/login' element={<SOLIDLogin />} />
-            <Route path='/profile' element={<UserProfile />} />
-            <Route path='/shipping' element={<Shipping refreshCartList={refreshCartList} />} />
-            <Route path='/checkout' element={<Checkout items={cart} refreshCartList={refreshCartList} />} />
-            <Route path='/cart' element={<ShoppingCart items={cart} refreshCartList={refreshCartList} />} />
+             <Route path='/' element={<MainProducts refreshCartList={refreshCartList}/>} />
+              <Route path="/products/:id" element={<ProductPage refreshCartList={refreshCartList}/>} />
+              <Route path='/about_us' element={<AboutUs/>} />
+              <Route path='/login' element={<SOLIDLogin/>} />
+              <Route path='/profile' element={<UserProfile/>} />
+              <Route path='/shipping' element={<Shipping refreshCartList={refreshCartList}/> } />
+              <Route path='/checkout' element={<Checkout items={cart} refreshCartList={refreshCartList}/>}/>
+              <Route path='/cart' element={<ShoppingCart items={cart} refreshCartList={refreshCartList} />} />
+              <Route path='/admin' element={<AdminView/>}/>
+              <Route path='/admin/login' element={<AdminLogin/>}/>
           </Routes>
         </Router>
       </Container>
       <Footer />
+
+
     </>
   );
 }
