@@ -18,6 +18,10 @@ const OrderSchema = new Schema({
     deliveryPrice: {
         type: Number,
         required: true
+    },
+    address: {
+        type: String,
+        required: true
     }
 },{
     timestamps: true

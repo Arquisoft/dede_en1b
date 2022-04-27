@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import Product from '../model/Product';
+import { v4 as uuidv4 } from 'uuid';
+
 const path = require('path');
 const fs = require('fs');
 const ObjectId = require('mongodb').ObjectID;
@@ -11,12 +13,32 @@ class ProductController {
 
 
     public saveProduct(req: Request, res: Response) {
-        const { name, description, price, image, category } = req.body;
+        const { name, description, price, category,base64Images } = req.body;
+        if (!name || !description || !price || !category || !base64Images) {
+            res.status(400).send({ message: 'Please provide all the required fields' });
+            return;
+        }
+        let imagePath = uuidv4();
+        
+
+        new ProductController().saveImages(base64Images, imagePath);
         const product
-         = new Product({name, description, price, image, category});
+         = new Product({name, description, price,image:imagePath, category});
         product.save()
             .then(() => res.status(201).json({ message: 'Product saved' }))
             .catch((error:any) => res.status(400).json({ error }));
+    }
+
+    private saveImages(base64Images: string[], image: string) {
+        base64Images.forEach(async (base64Image: string) => {
+            base64Image= base64Image.replace(/^data:image\/png;base64,/, "");
+            const imageBuffer = Buffer.from(base64Image, 'base64');
+            //create folder if not exist
+            if (!fs.existsSync(path.join(__dirname, "../public/cars/"+image))) {
+                fs.mkdirSync(path.join(__dirname, "../public/cars/"+image));
+            }
+            fs.writeFileSync(path.join(__dirname, "../public/cars/"+image+"/"+ uuidv4()+".jpg"), imageBuffer,"base64");
+        });
     }
 
     public async getProducts(req: Request, res: Response) {
@@ -78,6 +100,22 @@ class ProductController {
         }
         
  
+    }
+
+
+    public async deleteProduct(req: Request, res: Response) {
+        try{
+            const product  = await Product.findOne({_id: ObjectId(req.params.id)});
+            if (product) {
+                await Product.deleteOne({_id: ObjectId(req.params.id)});
+                res.status(200).json({ message: 'Product deleted' });
+            }else {
+                res.status(404).send({ message: 'Product Not Found' });
+            }
+        }catch(e){
+            res.status(404).send({ message: 'Product Not Found' });
+        }
+        
     }
 }
 

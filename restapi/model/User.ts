@@ -6,19 +6,7 @@ const UserSchema = new Schema({
         required: true,
         unique: true
     },
-    name: {
-        type: String,
-        required: true
-    },
-    lastName: {
-        type: String,
-        required: true
-    },
     password: {
-        type: String,
-        required: true
-    },
-    PODUrl: {
         type: String,
         required: true
     }
@@ -29,10 +17,7 @@ const UserSchema = new Schema({
 
 export interface UserModel extends moongose.Document {
     email: string;
-    name: string;
-    lastName: string;
     password: string;
-    PODUrl: string;
 }
 
 export default model<UserModel>('User', UserSchema);

@@ -30,10 +30,10 @@ const metricsMiddleware:RequestHandler = promBundle({includeMethod: true});
 app.use(metricsMiddleware);
 
 app.use(cors());
-app.use(bp.json());
+app.use(bp.json({limit: '50mb'}));
 
-app.use("/api",ProductRoutes,UserRoutes,OrderRoutes);
-
+app.use("/api",ProductRoutes,OrderRoutes);
+app.use("/api/admin",UserRoutes);
 app.listen(port, ():void => {
     console.log('Restapi listening on '+ port);
 }).on("error",(error:Error)=>{
