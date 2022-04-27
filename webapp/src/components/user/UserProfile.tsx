@@ -146,7 +146,7 @@ export default function UserProfile() {
 
                     {orders.map(order => (
                         <OrderCard order={order} />
-                    ))}
+                    )).reverse()}
                 </Stack>
             </CombinedDataProvider>
 
