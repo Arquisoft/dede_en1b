@@ -20,7 +20,7 @@ import ListItemText from '@mui/material/ListItemText';
 
 import Brightness1Icon from '@mui/icons-material/Brightness1';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
-import { IconButton, MenuItem, Select, Slider, Typography } from '@mui/material';
+import { IconButton, MenuItem, Rating, Select, Slider, Typography } from '@mui/material';
 
 import { yellow, orange, red, green, blue } from '@mui/material/colors';
 import Star from '@mui/icons-material/Star';
@@ -66,32 +66,71 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-function filterColor(color: string) {
-  console.log(color);
-  (document.getElementById("colorChooser") as HTMLDivElement).textContent = color;
-}
-
-function filterBrand(brand: string) {
-  console.log(brand);
-  (document.getElementById("brandChooser") as HTMLDivElement).textContent = brand;
-}
-
-function filterMinPrice(price: number) {
-  console.log(price);
-}
-
-function filterMaxPrice(price: number) {
-  console.log(price);
-}
-
-function filterRating(rating: number) {
-  console.log(rating);
-}
-
 function MainProducts(props: MainProductsProps): JSX.Element {
 
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+
+  const [color, setColor] = React.useState("");
+  const [brand, setBrand] = React.useState("");
+  const [minPrice, setMinPrice] = React.useState(0);
+  const [maxPrice, setMaxPrice] = React.useState(0);
+  const [minRating, setMinRating] = React.useState(0);
+
+
+
+  function computeQueryParams(): string {
+    let queryParams = "";
+    if (color !== "") {
+      queryParams += "&color[eq]=" + color;
+    }
+    if (brand !== "") {
+      queryParams += "&brand[eq]=" + brand;
+    }
+    if (minPrice !== 0) {
+      queryParams += "&price[gte]=" + minPrice;
+    }
+    if (maxPrice !== 0) {
+      queryParams += "&price[lte]=" + maxPrice;
+    }
+    if (minRating !== 0) {
+      queryParams += "&rating[gte]=" + minRating;
+    }
+    return queryParams;
+  }
+
+
+
+
+  function filterColor(color: string) {
+    if (color =="All") {
+      setColor("");
+    } else {
+      setColor(color);
+    }
+    (document.getElementById("colorChooser") as HTMLDivElement).textContent = color;
+  }
+  
+  function filterBrand(brand: string) {
+    if (brand =="All") {
+      setBrand("");
+    } else {
+      setBrand(brand);
+    }
+    (document.getElementById("brandChooser") as HTMLDivElement).textContent = brand;
+  }
+  
+  function filterMinPrice(price: number) {
+    setMinPrice(price);
+  }
+  
+  function filterMaxPrice(price: number) {
+    setMaxPrice(price);
+  }
+  
+  function filterRating(rating: number) {
+    setMinRating(rating);
+  }
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -104,13 +143,13 @@ function MainProducts(props: MainProductsProps): JSX.Element {
   const [searchParams, setSearchParams] = useSearchParams();
   const [products, setProducts] = useState<Product[]>([]);
 
-  const refreshProductList = async () => {
-    setProducts(await getProducts(searchParams.get('q') as string));
+  const refreshProductList = async (query:string) => {
+    setProducts(await getProducts(query));
   }
 
   useEffect(() => {
-    refreshProductList();
-  }, []);
+    refreshProductList(computeQueryParams());
+  }, [color, brand, minPrice, maxPrice, minRating]);
 
   return (
     <>
@@ -166,7 +205,16 @@ function MainProducts(props: MainProductsProps): JSX.Element {
           <Select
             id="colorChooser"
             sx={{ width: 200 }}
+            defaultValue="all"
           >
+            <MenuItem>
+              <ListItem button key="all" onClick={() => { filterColor("All") }}>
+                <ListItemIcon>
+                <ListItemText primary="All" />
+                </ListItemIcon>
+              </ListItem>
+            </MenuItem>
+            <br></br>
             <MenuItem>
               <ListItem button key="yellow" onClick={() => { filterColor("yellow") }}>
                 <ListItemIcon>
@@ -251,7 +299,7 @@ function MainProducts(props: MainProductsProps): JSX.Element {
             sx={{ width: 200 }}
           >
             <div id="brandChooserDiv">
-              {['Toyota', 'Volvo', 'Renault', 'Nissan', 'Plymouth', 'BMW', 'Subaru', 'Honda', 'Lamborghini', 'Volkswagen', 'Chevy', 'Polestar', 'Porsche'].map((text, index) => (
+              {['All','Toyota', 'Volvo', 'Renault', 'Nissan', 'Plymouth', 'BMW', 'Subaru', 'Honda', 'Lamborghini', 'Volkswagen', 'Chevy', 'Polestar', 'Porsche'].map((text, index) => (
 
                 <MenuItem>
                   <ListItem button key={text} onClick={() => { filterBrand(text) }} id={"li" + index}>
@@ -279,7 +327,7 @@ function MainProducts(props: MainProductsProps): JSX.Element {
             id="minPrice"
             min={29.99}
             max={420.0}
-            onChange={(_e, value) => { filterMinPrice(value as number) }}
+            onChangeCommitted={(_e, value) => { filterMinPrice(value as number) }}
           />
 
           <br /><Divider /><br />
@@ -294,22 +342,19 @@ function MainProducts(props: MainProductsProps): JSX.Element {
             id="maxPrice"
             min={29.99}
             max={420.0}
-            onChange={(_e, value) => { filterMaxPrice(value as number) }}
+            onChangeCommitted={(_e, value) => { filterMaxPrice(value as number) }}
           />
 
           <br /><Divider /><br />
 
           <Typography variant='h5' style={{ float: "left" }}>Rating</Typography>
 
-          <Grid container spacing={2} id="ratingFilter">
+          <Grid container spacing={0} id="ratingFilter">
 
-            {[1, 2, 3, 4, 5].map((text, _index) => (
-              <Grid item xs={2}>
-                <IconButton title={text as unknown as string} component="span" onClick={() => { filterRating(text) }}>
-                  <Star id={"star" + text as unknown as string} />
-                </IconButton>
-              </Grid>
-            ))}
+            <Rating name="no-value" value={minRating} size="large" onChange={(event,value)=>{
+              filterRating(value as number)
+
+            }} />
           </Grid>
           <br></br>
         </div>

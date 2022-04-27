@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import Container from '@mui/material/Container';
 import Header from './components/fragments/NavBar';
 import Footer from './components/fragments/Footer';
-import { getCart } from './api/api';
 import { ItemCart } from './shared/shareddtypes';
 import './css/App.css';
 import { BrowserRouter as Router, Routes, Route, useSearchParams } from 'react-router-dom';

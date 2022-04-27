@@ -46,6 +46,8 @@ class ProductController {
     }
 
     public async getProducts(req: Request, res: Response) {
+        let rating = 0;
+
         let userQuery = qs.parse(req.query);
         let query:any = {};
         for(let key in userQuery){
@@ -55,32 +57,41 @@ class ProductController {
             query[key] = {}
             for (let i = 0; i < Object.keys(userQuery[key]).length; i++) {
                 console.log(query[key]);
-                Object.assign(query[key], ProductController.buildQuery(key,Object.keys(userQuery[key])[i], Object.values(userQuery[key])[i] as string));
+                Object.assign(query[key], buildQuery(key,Object.keys(userQuery[key])[i], Object.values(userQuery[key])[i] as string));
             }
         }
         console.log("Searching products using ", query);
         const products = await Product.find(query);
+        console.log(query);
+        if(rating > 0){
+            res.status(200).json(products.filter(product => product.reviews.reduce((acc, review) => acc + review.rating, 0) / product.reviews.length >= rating));
+            return;
+        }
         res.status(200).json(products);
 
             
+        function  buildQuery(field:string,comparator:string, value:string):any{
+            let query:any = {};
+    
+            if(field == "rating"){
+                rating = parseInt(value);
+            }
+            if(["name","description","color","category"].includes(field)){
+                return {$regex: value, $options: 'i'};
+            }
+            switch(comparator){
+                case "gte":
+                    return {$gte: value};
+                case "lte":
+                    return {$lte: value};
+                case "eq":
+                    return {$eq: value};
+                default:
+                    return {}
+            }
+        }
     }
 
-    private static buildQuery(field:string,comparator:string, value:string):any{
-        let query:any = {};
-        if(["name","description","color","category"].includes(field)){
-            return {$regex: value, $options: 'i'};
-        }
-        switch(comparator){
-            case "gte":
-                return {$gte: value};
-            case "lte":
-                return {$lte: value};
-            case "eq":
-                return {$eq: value};
-            default:
-                return {}
-        }
-    }
 
     public async getProductsByIds(ids: string[]) {
         var products = await Product.find({_id: {$in: ids}});
