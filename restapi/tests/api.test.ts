@@ -3,28 +3,33 @@ import express, { Application } from 'express';
 import * as http from 'http';
 import bp from 'body-parser';
 import cors from 'cors';
-import mongoose  from "mongoose";
-import config from "../db/keys";
+import mongoose from "mongoose";
 
 import rproducts from '../routes/product.routes';
 import rusers from '../routes/user.routes';
 import rorders from '../routes/order.routes';
 
-// compose connection string from keys
-const conn = `mongodb://${config.DB_USER}:${config.DB_PASSWORD}@${config.DB_URI}/${config.DB_NAME}`;
+// unable to form by composition
+const conn = `mongodb://user:asw2022@130.61.249.212:8100/dede?authSource=admin`;
 
-let app:Application;
-let server:http.Server;
+let app: Application;
+let server: http.Server;
 
 beforeAll(async () => {
     app = express();
+    
     const port: number = 5000;
     const options: cors.CorsOptions = {
         origin: ['http://localhost:3000']
     };
+
     app.use(cors(options));
     app.use(bp.json());
     app.use("/api", rproducts, rusers, rorders);
+
+    mongoose.connect(conn)
+        .then(db => console.log("DB is connected")) 
+        .catch(err => console.error(err));
 
     server = app.listen(port, ():void => {
         console.log('Restapi server for testing listening on '+ port);
@@ -35,50 +40,19 @@ beforeAll(async () => {
 
 afterAll(async () => {
     server.close()                  // close the server
-})
-
-/** TESTS FOR USER (ADMIN) **/  // non-active for now
-/* describe('user ', () => {
-    it('can be registered', async () => {
-        const response:Response = await request(app).post("/register").send({
-            email: "test@email.com",
-            name: "test",
-            lastName: "testington",
-            password: "pass123",
-            PODUrl: "https://pod.inrupt.com/test/"
-        });
-        expect(response.statusCode).toBe(201);  // Success
-    });
-    //, 500000);    // increased timeout (?)
-
-    it('can log in', async () => {
-        const response:Response = await request(app).post("/login").send({
-            email: "test@email.com",
-            password: "pass123"
-        });
-        expect(response.statusCode).toBe(201);  // Success
-    });
-    //, 500000);    // increased timeout (?)
-
-    it('can be listed', async () => {
-        const response:Response = await request(app).get("/users");
-        expect(response.statusCode).toBe(200);
-    });
-}); */
+    mongoose.disconnect();          // close connection with DB
+});
 
 /** TESTS FOR PRODUCT **/
 describe('product ', () => {
-
-    test("CRASH", (done) => {
-        request(app).get("/").expect(400);
-    })
 
     /**
      * Test that we can list all products without any error.
      */
     it('can be listed', async () => {
-        const response:Response = await request(app).get("/products");
-        // Resultado en formato JSON
+        const response:Response = await request(app).get("/api/products");
+        
+        // Result in JSON format
         expect(response.type).toEqual("application/json");
         expect(response.statusCode).toBe(200);
     });
@@ -87,29 +61,44 @@ describe('product ', () => {
      * Test that we can add products without errors.
      */
     it('can be added', async () => {
-        let product:Object = {
-            id: '1432',
-            name: 'testProduct',
-            description: 'A product just for testing purposes',
-            price: 7.7,
+        let newProduct:Object = {
+            name: 'newProduct',
+            description: 'A new product for testing purposes',
+            price: 5.0,
             image: 'no image',
-            category: 'testing only',
+            category: 'testing',
             numImages: 1
         }
 
-        const response:Response = await request(app).post("/product")
-            .send(product);
-        expect(response.statusCode).toBe(200);
+        const response:Response = await request(app).post("/api/product")
+            .send(newProduct);
+        expect(response.statusCode).toBe(201);
     });
 
     /**
-     * Test that the added product can be accessed without errors.
+     * Test that, when accessed, a product that exists:
+     * - can be recovered without problems
+     * - returns a JSON response type
+     * - returns the appropiate product (checking name)
      */
-    it('can be added', async () => {
-        const response:Response = await request(app).get("/product/1432");
-        // Resultado en formato JSON
-        expect(response.type).toEqual("application/json");
+    it('can be accessed', async () => {
+        let id = "6247415969857467dbbd7a1e";  // Nissan 300ZX id
+
+        const response:Response = await request(app).get("/api/products/" + id);
         expect(response.statusCode).toBe(200);
+        expect(response.type).toEqual("application/json");
+        expect(response.body.name).toEqual("Nissan 300ZX");
+    });
+
+    /**
+    * Test that, when accessed, a product that doesn't exist gives an error
+    */
+    it('cannot be accessed if not real', async () => {
+        let id = "56194546fake";    // non-existant id
+
+        const response:Response = await request(app).get("/api/products/" + id);
+        expect(response.statusCode).toBe(404);
+        expect(response.body.message).toEqual("Product Not Found");
     });
 });
 
@@ -119,62 +108,141 @@ describe('order ', () => {
     /**
      * Test that we get all the orders without errors
      */
-     it('can be listed', async () => {
-        const response:Response = await request(app).get("/orders");
-        // Resultado en formato JSON
+    it('can be listed', async () => {
+        const response:Response = await request(app).get("/api/orders");
+   
+        // Result in JSON format
         expect(response.type).toEqual("application/json");
         expect(response.statusCode).toBe(200);
     });
 
     /**
-     * Test that we can save an empty order when completed with no errors.
+     * Test that we can save an empty order with no errors.
      */
-    it('can be saved', async () => {
+    it('cannot be saved empty', async () => {
         let order:Object = {
             userId: 'testingUID',
-            products: {},
-            subTotal: 555.0,
+            products: [],
             deliveryPrice: 570.6
         }
 
-        const response:Response = await request(app).post("/order")
+        const response:Response = await request(app).post("/api/order")
             .send(order);
-        expect(response.statusCode).toBe(200);
+        expect(response.statusCode).toBe(201);
+        expect(response.type).toEqual("application/json");
+        expect(response.body.message).toEqual("Order saved");
     });
 
     /**
-     * Test that we can save a non-empty order when completed with no errors.
+     * Test that we can save a non-empty order with no errors.
      */
-    it('can be saved', async () => {
+    it('can be saved non-empty', async () => {
         let order:Object = {
-            userId: 'testest',
-            products: {
-                id: '744',
-                name: 'orderTestP',
-                description: 'A product just for the order to have it',
-                price: 0.6,
-                image: 'no image',
-                category: 'testing only',
-                numImages: 1
-            },
-            subTotal: 78.0,
-            deliveryPrice: 134.5
+            userId: "user_test_id",
+            products: [
+                {
+                    // barracuda ID
+                    productId: "624741b769857467dbbd7a22",
+                    quantity: 1
+                },
+                {
+                    // toyota ID
+                    productId: "6247418c69857467dbbd7a20",
+                    quantity: 2
+                },
+            ],
+            deliveryPrice: 9.1
         }
 
-        const response:Response = await request(app).post("/order")
+        const response:Response = await request(app).post("/api/order")
             .send(order);
-        expect(response.statusCode).toBe(200);
+        expect(response.statusCode).toBe(201);
+        expect(response.type).toEqual("application/json");
+        expect(response.body.message).toEqual("Order saved");
     });
 
     /**
-     * Test that the added order can be accesed for the user.
+     * Test that we get errors when saving non-existent products in order.
      */
-    it('can be added', async () => {
-        let userId = 'testingUID';
-        const response:Response = await request(app).post("/order/find")
+    it('cannot be saved with wrong products', async () => {
+        let order:Object = {
+            userId: "another_user_id",
+            products: [
+                {
+                    productId: "14532659nope",
+                    quantity: 1
+                }
+            ],
+            deliveryPrice: 4.4
+        }
+
+        const response:Response = await request(app).post("/api/order")
+            .send(order);
+        expect(response.statusCode).toBe(400);
+        expect(response.body.message).toEqual("Wrong order values");
+    });
+
+    /**
+     * Test that we get errors when not specifying quantity.
+     */
+    it('cannot be saved without quantity', async () => {
+        let order:Object = {
+            userId: "third_user_id",
+            products: [
+                {
+                    productId: "624741b769857467dbbd7a22"
+                }
+            ],
+            deliveryPrice: 9.9
+        }
+
+        const response:Response = await request(app).post("/api/order")
+            .send(order);
+        expect(response.statusCode).toBe(400);
+        expect(response.body.message).toEqual("Order cannot be saved");
+    });
+
+    /**
+     * Test that an added order can be accesed for the user.
+     */
+    it('can be accessed', async () => {
+        let userId = "user_test_id";
+        const response:Response = await request(app).post("/api/order/find")
             .send(userId);
-        // Resultado en formato JSON
+
+        // Result in JSON format
+        expect(response.statusCode).toBe(200);
         expect(response.type).toEqual("application/json");
+    });
+});
+
+/** TESTS FOR USER (ADMIN) **/
+/* non-active for now
+describe('user ', () => {
+    it('can be registered', async () => {
+        const response:Response = await request(app).post("/api/register").send({
+            email: "test@email.com",
+            name: "test",
+            lastName: "testington",
+            password: "pass123",
+            PODUrl: "https://pod.inrupt.com/test/"
+        });
+        expect(response.statusCode).toBe(201);  // Success
+    });
+    //, 500000);    // increased timeout
+
+    it('can log in', async () => {
+        const response:Response = await request(app).post("/api/login").send({
+            email: "test@email.com",
+            password: "pass123"
+        });
+        expect(response.statusCode).toBe(201);  // Success
+    });
+    //, 500000);    // increased timeout
+
+    it('can be listed', async () => {
+        const response:Response = await request(app).get("/api/users");
         expect(response.statusCode).toBe(200);
     });
 });
+*/
