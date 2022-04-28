@@ -26,6 +26,9 @@ const ProductSchema = new Schema({
     reviews: {
         type: Array,
         required: true
+    },
+    brand:{
+        type: String,
     }
 
 
@@ -42,6 +45,7 @@ export interface ProductModel extends moongose.Document {
     category: string;
     reviews: Array<ReviewModel>;
     numImages:number;
+    brand:string;
 }
 
 ProductSchema.method('toClient', function() {

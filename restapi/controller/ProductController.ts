@@ -62,7 +62,6 @@ class ProductController {
         }
         console.log("Searching products using ", query);
         const products = await Product.find(query);
-        console.log(query);
         if(rating > 0){
             res.status(200).json(products.filter(product => product.reviews.reduce((acc, review) => acc + review.rating, 0) / product.reviews.length >= rating));
             return;
@@ -76,7 +75,7 @@ class ProductController {
             if(field == "rating"){
                 rating = parseInt(value);
             }
-            if(["name","description","color","category"].includes(field)){
+            if(["name","description","color","category","brand"].includes(field)){
                 return {$regex: value, $options: 'i'};
             }
             switch(comparator){
