@@ -58,16 +58,19 @@ describe('product ', () => {
     });
 
     /**
-     * Test that we can add products without errors.
+     * Test that we can save products without errors.
      */
-    it('can be added', async () => {
+    it('can be saved', async () => {
         let newProduct:Object = {
             name: 'newProduct',
             description: 'A new product for testing purposes',
             price: 5.0,
-            image: 'no image',
             category: 'testing',
-            numImages: 1
+            base64Images: [
+                "image1",
+                "image2",
+                "image3"
+            ],
         }
 
         const response:Response = await request(app).post("/api/product")
@@ -113,7 +116,6 @@ describe('order ', () => {
    
         // Result in JSON format
         expect(response.type).toEqual("application/json");
-        expect(response.statusCode).toBe(200);
     });
 
     /**
@@ -123,7 +125,8 @@ describe('order ', () => {
         let order:Object = {
             userId: 'testingUID',
             products: [],
-            deliveryPrice: 570.6
+            deliveryPrice: 570.6,
+            address: "Cualquier lugar"
         }
 
         const response:Response = await request(app).post("/api/order")
@@ -151,7 +154,8 @@ describe('order ', () => {
                     quantity: 2
                 },
             ],
-            deliveryPrice: 9.1
+            deliveryPrice: 9.1,
+            address: "Oviedo, Asturias, España"
         }
 
         const response:Response = await request(app).post("/api/order")
@@ -173,7 +177,8 @@ describe('order ', () => {
                     quantity: 1
                 }
             ],
-            deliveryPrice: 4.4
+            deliveryPrice: 4.4,
+            address: "Cualquier lugar"
         }
 
         const response:Response = await request(app).post("/api/order")
@@ -193,7 +198,8 @@ describe('order ', () => {
                     productId: "624741b769857467dbbd7a22"
                 }
             ],
-            deliveryPrice: 9.9
+            deliveryPrice: 9.9,
+            address: "Cualquier lugar"
         }
 
         const response:Response = await request(app).post("/api/order")
