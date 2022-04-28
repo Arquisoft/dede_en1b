@@ -114,9 +114,9 @@ export default function MultiActionAreaCard() {
                                     Miguel Cuesta Martínez
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    I've enjoyed this opportunity to get work experience with a group of developers.
-                                    I find React to be a framework with a lot of future, but maybe that future doesn't include me.
-                                    My hobbies include taking long walks along the sea and animal takecare.
+                                    I've enjoyed this opportunity to get work experience.
+                                    I find React to be a framework with a lot of future.
+                                    I like trains.
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
