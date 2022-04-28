@@ -48,8 +48,8 @@ export default function MultiActionAreaCard() {
                                     Daniel Álvarez Díaz
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                                    species, ranging across all continents except Antarctica
+                                    I'm a software developer student, I like to build things and I'm always looking for new challenges.
+                                    Frontend makes me go bye bye, that's why I only do backend.
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
@@ -70,8 +70,7 @@ export default function MultiActionAreaCard() {
                                     Jesús González Méndez
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    I'm a very chill guy who happens to like Software Developing and everything related.
-                                    Very happy to be a part of this team and being able to learn with them!
+                                    I'm a very chill guy who happens to like Software Developing and everything related.                                    
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
@@ -92,9 +91,9 @@ export default function MultiActionAreaCard() {
                                     Sebastián López Hernández
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    I like to overcome the different obstacles life brings us. 
-                                    Miley Cyrus once said "Life's a climb. But the views is great" and I could not agree more with her.
-                                    I never would have believed it if three years ago I was told I'd be here developing part of this app with this team, but here I am. Super proud!
+                                  I am first-gen student with a keen interest in software development.
+                                  I like swimming and the IoT world. Working with this amazing team
+                                  has been a pleasure.
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
@@ -115,8 +114,9 @@ export default function MultiActionAreaCard() {
                                     Miguel Cuesta Martínez
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                                    species, ranging across all continents except Antarctica
+                                    I've enjoyed this opportunity to get work experience.
+                                    I find React to be a framework with a lot of future.
+                                    I like trains.
                                 </Typography>
                             </CardContent>
                         </CardActionArea>

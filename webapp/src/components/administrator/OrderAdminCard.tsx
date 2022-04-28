@@ -5,20 +5,20 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Order } from "../../shared/shareddtypes";
-import OrderDetails from "./OrderDetails";
+import OrderAdminDetails from "./OrderAdminDetails";
 import React from "react";
 import { CardActions, Collapse, IconButton, IconButtonProps } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-type OrderCardProps = {
+type OrderAdminCardProps = {
     order: Order;
 }
 
-interface ExpandMoreProps extends IconButtonProps {
+interface ExpandMoreAdminProps extends IconButtonProps {
     expand: boolean;
 }
 
-const ExpandMore = styled((props: ExpandMoreProps) => {
+const ExpandMoreAdmin = styled((props: ExpandMoreAdminProps) => {
     const { expand, ...other } = props;
     return <IconButton {...other} />;
 })(({ theme, expand }) => ({
@@ -29,7 +29,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     }),
 }));
 
-export default function OrderCard(props: OrderCardProps) {
+export default function OrderAdminCard(props: OrderAdminCardProps) {
 
     const [expanded, setExpanded] = React.useState(false);
     const handleExpandClick = () => {
@@ -37,31 +37,29 @@ export default function OrderCard(props: OrderCardProps) {
     };
     
     return (
-        <Card id="orderCard" variant="outlined">
+        <Card id="orderAdminCard" variant="outlined">
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                     Order {props.order.createdAt.toString().substring(0, 10)}
                 </Typography>
+                <Typography gutterBottom variant="h5" component="div">
+                    {props.order.userId.toString()}
+                </Typography>
                 Items:
                 <CardActions disableSpacing>
-                    <ExpandMore
+                    <ExpandMoreAdmin
                         expand={expanded}
                         onClick={handleExpandClick}
                         aria-expanded={expanded}
                         aria-label="show more"
                     >
                         <ExpandMoreIcon />
-                    </ExpandMore>
+                    </ExpandMoreAdmin>
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
-                        {props.order.products.map(product => (
-                            // <Typography variant="caption" color="text.secondary">
-
-                            //     {"\t"}
-                            //     {product.product.name},
-                            // </Typography>
-                            <OrderDetails orderId={props.order.id} productOrdered={product}></OrderDetails>
+                        {props.order.products.map(product => (                            
+                            <OrderAdminDetails orderId={props.order.id} productOrdered={product}></OrderAdminDetails>
                         ))}
                     </CardContent>
                 </Collapse>

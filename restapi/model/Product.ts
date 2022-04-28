@@ -1,4 +1,5 @@
 import moongose, { Schema,model } from 'mongoose';
+import { ReviewModel } from './Review';
 
 const ProductSchema = new Schema({
     name: {
@@ -18,6 +19,10 @@ const ProductSchema = new Schema({
         type: String,
         required: true
     },
+    reviews: {
+        type: Array,
+        required: true
+    }
 
 },  {
     timestamps: true
@@ -30,6 +35,7 @@ export interface ProductModel extends moongose.Document {
     price: number;
     image: string;
     category: string;
+    reviews: Array<ReviewModel>;
     numImages:number;
 }
 
