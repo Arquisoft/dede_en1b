@@ -1,6 +1,8 @@
 import { ItemCart } from "../../shared/shareddtypes";
 import Typography from "@mui/material/Typography";
 import { Card, CardContent, Box, CardMedia } from "@mui/material";
+import { baseApiEndPoint, getProductImages } from '../../api/api';
+import { useState,useEffect } from 'react';
 
 type CheckoutItemProps = {
     item: ItemCart;
@@ -8,8 +10,16 @@ type CheckoutItemProps = {
 };
 
 function CheckoutItem(props: CheckoutItemProps) {
+    const [imgPath, setImgPath] = useState<string>("");
 
-    const imgPath = "cars/" + props.item.product.image + "/" + props.item.product.image + " (1).jpg"
+    const getImage = async () => {
+        setImgPath(baseApiEndPoint+(await getProductImages(props.item.product.id)as string[])[0]);
+      }; 
+
+    useEffect(() => {
+        getImage();
+    }, []);
+
 
     return (
         <Card variant="elevation" sx={{ display: 'flex', marginBottom: 5 }}>

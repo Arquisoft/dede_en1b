@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react';
 import { ItemCart, Product } from "../../shared/shareddtypes";
-import { addToCart } from '../../api/api';
+import { addToCart,apiEndPoint,baseApiEndPoint, getProductImages } from '../../api/api';
 
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
@@ -17,6 +17,7 @@ type CartItemProps = {
 
 function CartItem(props: CartItemProps) {
     const [quantity, setQuantity] = useState<number>(props.item.quantity);
+    const[imgPath,setImgPath] = useState<string>("");
 
     async function changeQuantityBy(item: ItemCart, factor: number): Promise<void> {
         item.quantity += factor;
@@ -27,11 +28,16 @@ function CartItem(props: CartItemProps) {
 
     };
 
+    const getImage = async () => {
+        setImgPath(baseApiEndPoint+(await getProductImages(props.item.product.id)as string[])[0]);
+      }; 
+
     useEffect(() => {
         setQuantity(props.item.quantity);
+        getImage();
     }, [props.item.quantity]);
 
-    const imgPath = "cars/" + props.item.product.image + "/" + props.item.product.image + " (1).jpg"
+
 
     return (
         

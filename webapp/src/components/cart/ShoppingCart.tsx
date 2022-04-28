@@ -118,7 +118,7 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
                             Total Amount:
                         </Typography>
                         <Typography component="h1" variant="h4">
-                            {total.toString().concat(" €")}
+                            {total.toFixed(2).toString().concat(" €")}
                         </Typography>
                     </Card>
                     {props.items.length > 0 ? <Button variant="contained" href="/checkout" style={{ color: "white", backgroundColor: "#7c4dff", borderRadius: "8px", top: "20px", height: "50px" }}>
