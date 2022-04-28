@@ -48,8 +48,8 @@ export default function MultiActionAreaCard() {
                                     Daniel Álvarez Díaz
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                                    species, ranging across all continents except Antarctica
+                                    I'm a software developer student, I like to build things and I'm always looking for new challenges.
+                                    Frontend makes me go bye bye, that's why I only do backend.
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
