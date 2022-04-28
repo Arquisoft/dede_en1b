@@ -70,8 +70,7 @@ export default function MultiActionAreaCard() {
                                     Jesús González Méndez
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    I'm a very chill guy who happens to like Software Developing and everything related.
-                                    Very happy to be a part of this team and being able to learn with them!
+                                    I'm a very chill guy who happens to like Software Developing and everything related.                                    
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
