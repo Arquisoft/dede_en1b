@@ -144,10 +144,13 @@ function MainProducts(props: MainProductsProps): JSX.Element {
   const [products, setProducts] = useState<Product[]>([]);
 
   const refreshProductList = async (query:string) => {
+    if(searchParams.get("q") !== null) 
+      query += "&name[eq]=" + searchParams.get("q");
     setProducts(await getProducts(query));
   }
 
   useEffect(() => {
+    
     refreshProductList(computeQueryParams());
   }, [color, brand, minPrice, maxPrice, minRating]);
 
