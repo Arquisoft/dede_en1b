@@ -7,7 +7,7 @@ import { Autocomplete, Button, TextField, Box } from '@mui/material';
 
 import { addProduct,deleteProduct,getOrders, getProducts } from '../../api/api';
 import { Order, Product } from '../../shared/shareddtypes';
-import OrderCard from '../user/OrderCard';
+import OrderAdminCard from './OrderAdminCard';
 import OrdersChart from "./OrdersChart";
 import { useNavigate } from 'react-router-dom';
 import { Logout } from '@mui/icons-material';
@@ -154,8 +154,10 @@ function AdminView(): JSX.Element {
 
 
                 <label >All Orders: </label>
-                {orders.map(order => (
-                        <OrderCard order={order} />
+                {orders.sort((a, b) => {
+                        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+                      }).map(order => (
+                        <OrderAdminCard order={order} />
                     ))}
             </Stack>
         </Box>
