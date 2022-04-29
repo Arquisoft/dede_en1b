@@ -50,7 +50,7 @@ function CartItem(props: CartItemProps) {
                 image={imgPath}
                 //image={require("path/to/image.jpg")} FOR TESTING
                 //set max height to 100px
-                sx={{ height: 200, width: 100, margin: 3 }}
+                
                 style={{ flex: 2 }} />
             <Box style={{ flex: 3, display: 'flex', flexDirection: 'column' }}
                 justifyContent='space-between'>
