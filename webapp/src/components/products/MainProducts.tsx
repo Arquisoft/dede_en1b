@@ -304,7 +304,7 @@ function MainProducts(props: MainProductsProps): JSX.Element {
           >
             <div id="brandChooserDiv">
               {['All','Toyota', 'Volvo', 'Renault', 'Nissan', 'Plymouth', 'BMW', 'Subaru', 'Honda', 'Lamborghini', 'Volkswagen', 'Chevy', 'Polestar', 'Porsche'].map((text, index) => (
-
+                <div>
                 <MenuItem>
                   <ListItem button key={text} onClick={() => { filterBrand(text) }} id={"li" + index}>
                     <ListItemIcon>
@@ -313,6 +313,9 @@ function MainProducts(props: MainProductsProps): JSX.Element {
                     <ListItemText primary={text} />
                   </ListItem>
                 </MenuItem>
+                <br></br>
+                </div>
+                
               ))}
             </div>
 
