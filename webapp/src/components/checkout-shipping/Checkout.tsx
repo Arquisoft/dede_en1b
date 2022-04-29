@@ -54,14 +54,15 @@ function Checkout(props: CheckoutProps): JSX.Element {
 
     return (
         <Box justifyContent="center">
-            <div style={{display:'inline-block', marginTop:'30px', fontWeight:'bold', fontSize:'2.2rem'}} >
+            <div style={{display:'inline-block', marginTop:'30px', fontWeight:'bold', fontSize:'2.2rem', color:'#7c4dff'}} >
                 Checkout
             </div>
             <Divider />
 
             <Box style={{ display: 'flex', flexWrap:'wrap'  }}>
-                <Stack m={6} spacing={5} style={{ maxHeight:300, overflow:'auto', 
-                gridColumnStart:1, gridColumnEnd:4}}>
+                <Stack m={6} spacing={5} style={{  maxHeight:300, overflow:'auto', 
+                gridColumnStart:1, gridColumnEnd:4,marginLeft:'15%', marginRight:'15%',
+                backgroundColor: '#FAF9F6', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px' }}>
 
                     {loadItemsCheckout()}
 

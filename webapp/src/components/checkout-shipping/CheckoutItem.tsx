@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import { Card, CardContent, Box, CardMedia, useMediaQuery } from "@mui/material";
 import { baseApiEndPoint, getProductImages } from '../../api/api';
 import { useState,useEffect } from 'react';
-import './CheckoutItem.css'
+import './../../css/CheckoutItem.css'
 type CheckoutItemProps = {
     item: ItemCart;
     updateTotal: () => void;
