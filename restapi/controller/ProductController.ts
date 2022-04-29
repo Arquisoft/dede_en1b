@@ -6,6 +6,10 @@ import { v4 as uuidv4 } from 'uuid';
 const path = require('path');
 const fs = require('fs');
 const ObjectId = require('mongodb').ObjectID;
+const qs = require('qs');
+
+
+
 
 
 
@@ -42,18 +46,51 @@ class ProductController {
     }
 
     public async getProducts(req: Request, res: Response) {
-        let params = req.query.search;
-        if(params){
-            const products = await Product.find({name: {$regex: params, $options: 'i'}});
-            res.status(200).json(products);
+        let rating = 0;
+
+        let userQuery = qs.parse(req.query);
+        let query:any = {};
+        for(let key in userQuery){
+            if (typeof userQuery[key] === "string"){
+                userQuery[key] = {eq: userQuery[key]};
+            }
+            query[key] = {}
+            for (let i = 0; i < Object.keys(userQuery[key]).length; i++) {
+                console.log(query[key]);
+                Object.assign(query[key], buildQuery(key,Object.keys(userQuery[key])[i], Object.values(userQuery[key])[i] as string));
+            }
         }
-        else{
-            var products = await Product.find({});
-            //products = await productController.addImagePaths(products);
-            res.send(products);
+        console.log("Searching products using ", query);
+        const products = await Product.find(query);
+        if(rating > 0){
+            res.status(200).json(products.filter(product => product.reviews.reduce((acc, review) => acc + review.rating, 0) / product.reviews.length >= rating));
+            return;
         }
+        res.status(200).json(products);
+
             
+        function  buildQuery(field:string,comparator:string, value:string):any{
+            let query:any = {};
+    
+            if(field == "rating"){
+                rating = parseInt(value);
+            }
+            if(["name","description","color","category","brand"].includes(field)){
+                return {$regex: value, $options: 'i'};
+            }
+            switch(comparator){
+                case "gte":
+                    return {$gte: value};
+                case "lte":
+                    return {$lte: value};
+                case "eq":
+                    return {$eq: value};
+                default:
+                    return {}
+            }
+        }
     }
+
 
     public async getProductsByIds(ids: string[]) {
         var products = await Product.find({_id: {$in: ids}});
