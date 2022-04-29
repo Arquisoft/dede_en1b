@@ -25,8 +25,7 @@ function CheckoutItem(props: CheckoutItemProps) {
         <Card variant="elevation" sx={{ display: 'flex', marginBottom: 5 }}>
             <CardMedia
                 component="img"
-                image={imgPath}
-                sx={{ height: 260, width: 100, margin: 3 }}
+                image={imgPath}          
                 style={{ flex: 2 }} />
             <Box style={{ flex: 3, display: 'flex', flexDirection: 'column' }}
                 justifyContent='space-between'>
