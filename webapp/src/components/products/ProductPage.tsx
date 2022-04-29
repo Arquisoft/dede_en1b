@@ -136,7 +136,7 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
           <List>
             {product.reviews.map((review) => (
               <ReviewView review={review} />
-            ))}
+            )).reverse()}
           </List>
         </Card>
 
