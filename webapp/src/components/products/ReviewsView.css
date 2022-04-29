@@ -1,6 +1,7 @@
 .review-box{
     border-top: 3px dashed #bbb;
     font-family: inherit;
+    overflow: auto;
 }
 .review-top{
     margin-top: 10px;
