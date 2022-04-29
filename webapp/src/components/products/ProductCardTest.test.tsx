@@ -21,6 +21,17 @@ const productsList = [
     "product": "",
     "_id": "1"
  
+},{
+    "id":"2",
+    "name":"nissan",
+    "description":"nissan good",
+    "price": 30,
+    "image": "",
+    "category": "",
+    "reviews": [],
+    "quantity":2,
+    "product": "",
+    "_id": "2"
 }
 ];
 test("Product card is rendered properly", async () =>{
@@ -42,20 +53,8 @@ await act( async () => {
 
 });
 
-test("When listing products the proper function is called", async () =>{
-    jest.spyOn(api, 'getProductImages').mockImplementation((id: string): Promise<string[]> => {
-        return Promise.resolve(["1"]);
-    });    
-    const GetProducts = jest.spyOn(api, 'getProducts').mockImplementation( (searchParams?:String):Promise<Product[]> =>{  return Promise.resolve(productsList);});
-        
-          await act(async () => {
-            render(<MemoryRouter><MainProducts refreshCartList={()=> {}} /> </MemoryRouter>);
-            
-          }); 
-     
-      
-        
-});
+
+
 
 
 
