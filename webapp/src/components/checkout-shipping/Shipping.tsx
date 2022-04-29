@@ -65,7 +65,7 @@ export default function Shipping(props: ShippingProps) {
 
     return (
         <Box justifyContent="center">
-            <Typography id="shippingTitle" component="h1" variant="h3" >
+            <Typography id="shippingTitle" component="h1" variant="h3" style={{display:'inline-block', marginTop:'35px', fontSize:'2.1em', fontWeight:'bold'}} >
                 Shipping Information
             </Typography>
 
