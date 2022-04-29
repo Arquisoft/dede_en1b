@@ -59,12 +59,18 @@ function Checkout(props: CheckoutProps): JSX.Element {
             </Typography>
             <Divider />
 
-            <Box style={{ display: 'flex' }}>
-                <Stack m={6} spacing={5} style={{ flex: 3 }}>
+            <Box style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr'  }}>
+                <Stack m={6} spacing={5} style={{ maxHeight:300, overflow:'auto', 
+                gridColumnStart:1, gridColumnEnd:5}}>
 
                     {loadItemsCheckout()}
 
-                    <Card variant="elevation" sx={{ display: 'flex', flexDirection: 'column', padding: 3 }}>
+
+                   
+
+                </Stack>
+                
+                <Card variant="elevation" sx={{ gridColumnStart:5,  padding: 3 }}>
                         <Typography component="h1" variant="h6" color="text.secondary">
                             Cart Totals:
                         </Typography>
@@ -72,17 +78,14 @@ function Checkout(props: CheckoutProps): JSX.Element {
                             {total.toFixed(2).toString().concat(" €")}
                         </Typography>
                     </Card>
-
-                    <Button variant="contained" href="/cart" style={{ color: "black", backgroundColor: "lavender", borderRadius: "8px", top: "20px", height: "50px" }}>
+                <Button variant="contained" href="/cart" style={{ color: "black", backgroundColor: "lavender", borderRadius: "8px", top: "20px", height: "50px",gridColumnStart:1 }}>
                         Back to Shopping Cart
                     </Button> 
-
-                    {props.items.length > 0 ? <Button variant="contained" href="/shipping" style={{ color: "white", backgroundColor: "#7c4dff", borderRadius: "8px", top: "20px", height: "50px" }}>
+                {props.items.length > 0 ? <Button variant="contained" href="/shipping" style={{ color: "white", backgroundColor: "#7c4dff", borderRadius: "8px", top: "20px", height: "50px",gridColumnStart:5 }}>
                         Continue to Shipping
                     </Button>
                     :
                     <></>}
-                </Stack>
             </Box>
         </Box>
     );
