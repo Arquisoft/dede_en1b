@@ -109,7 +109,7 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
             <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <Button color="secondary" variant="contained" size="large" href="/"
                     style={{ color: "white", backgroundColor: "#7c4dff", borderRadius: "8px", top: "20px", height: "50px", padding: "2%" }}>
-                    🛒🤑Continue shopping🤑🛒
+                   Continue shopping
                 </Button>
             </div>
             <Box style={{}}>
