@@ -32,7 +32,7 @@ export default function PrimarySearchAppBar(props: NavBarProps) {
     }
 
 const SearchBar = () => (
-    <Container id="searchBarConatiner">
+    <Container id="searchBarConatiner" style={{maxWidth:'45%'}}>
         <form onSubmit={handleSearch}>
             <TextField
                 variant="outlined"
@@ -49,7 +49,6 @@ const SearchBar = () => (
             <Button
                 id="submitButton"
                 type="submit"
-                variant="contained"
                 >
                 <SearchIcon />
             </Button>
@@ -79,7 +78,7 @@ const SearchBar = () => (
                 <SearchBar />
 
                 <IconButton
-                    style={{ marginRight: "1%" }}
+                    style={{ marginRight: "2%" }}
                     size="large"
                     aria-label="shopping cart"
                     color="inherit"
@@ -99,7 +98,7 @@ const SearchBar = () => (
                     aria-haspopup="true"
                     color="inherit"
                     href="/login"
-                    style={{ marginRight: "5%" }}
+                    style={{ marginRight: "4%", marginLeft:"1%" }}
                 >
                     <AccountCircle />
                 </IconButton>
