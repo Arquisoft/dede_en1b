@@ -1,4 +1,17 @@
+.main-products{
+    display: grid;
+    grid-template-areas: "filter"
+                          "products";
+}
+.main-filter{
+    grid-area:"filter";
+    display: inline-block;
+    margin-top: 40px;
+}
+
+
 .products-container{
+    grid-area: "products";
     display: flex;
     flex-wrap: wrap;
     align-content: space-around;

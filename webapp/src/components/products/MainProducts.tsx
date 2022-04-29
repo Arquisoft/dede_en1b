@@ -156,29 +156,30 @@ function MainProducts(props: MainProductsProps): JSX.Element {
 
   return (
     <>
+    <div className='main-products'>
+      <div className='main-filter'>
       <IconButton
         id="openFilterButton"
         color="inherit"
         aria-label="open drawer"
         onClick={handleDrawerOpen}
         edge="start"
-        sx={{ mr: 2, ...(open && { display: 'none' }) }}
+        sx={{ mr: 2, ...(open && { display: 'none' }), backgroundColor:' purple'}}
       >
         <MenuIcon /><Typography>FILTER</Typography>
       </IconButton>
+      </div>
+ 
+    <div className="products-container">
 
-      <Grid container
-        spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}
-        rowSpacing={5}
-      >
-
+     
         {products.map((p, i) => (
-          <Grid item xs={2} sm={4} md={4} key={p.id} >
+          
             <ProductCard key={p.id} product={p} refreshCartList={props.refreshCartList} />
-          </Grid>
+          
         ))}
-      </Grid>
-
+     </div>
+     </div>
       <Drawer
         sx={{
           width: drawerWidth,
