@@ -117,7 +117,7 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
             </CardContent>
             <CardActions>
               <DivBtonStyle>
-                <BuyBtton startIcon={<AddShoppingCartIcon />} onClick={() => {
+                <BuyBtton id="addToCartButton" startIcon={<AddShoppingCartIcon />} onClick={() => {
                   addProduct(product as Product);
                   prop.refreshCartList();
                 }} >

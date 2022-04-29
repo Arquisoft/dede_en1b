@@ -17,13 +17,13 @@ defineFeature(feature, test => {
         page = await browser.newPage();
 
         await page
-            .goto("http://www.dedeen1b.tk", {
+            .goto("http://localhost:3000", {
                 waitUntil: "networkidle0",
             })
             .catch(() => { });
     });
 
-    test('Adding only one item', ({ given, when, then }) => {;
+    test('Adding one item', ({ given, when, then }) => {;
 
         given('A user', () => {
         });
@@ -31,11 +31,35 @@ defineFeature(feature, test => {
         when('They add an item to the cart and navigate to the cart', async () => {
             await expect(page).toClick('#addToCartButton');
             await new Promise(r => setTimeout(r, 2000));
-            await page.screenshot({ path: './e2e/screenshots/cart.png' });
+            // await page.screenshot({ path: './e2e/screenshots/cart.png' });
         });
 
         then('They can see the item', async () => {
-            await expect(page).toMatch('dedeen1btests');
+            await page.goto("http://localhost:3000/cart");
+            await expect(page).toMatch('Nissan 300ZX');
+        });
+    });
+
+    afterAll(async () => {
+        browser.close()
+    })
+
+    test('Adding an item from product details view', ({ given, when, then }) => {;
+
+        given('A user', () => {
+        });
+
+        when('They add an item to the cart from the details view of the product and navigate to the cart', async () => {
+            await page.goto("http://localhost:3000/products/6247415969857467dbbd7a1e");
+            await new Promise(r => setTimeout(r, 1000));
+            await expect(page).toClick('#addToCartButton');
+            await new Promise(r => setTimeout(r, 2000));
+            // await page.screenshot({ path: './e2e/screenshots/cart.png' });
+        });
+
+        then('They can see the item', async () => {
+            await page.goto("http://localhost:3000/cart");
+            await expect(page).toMatch('Nissan 300ZX');
         });
     });
 

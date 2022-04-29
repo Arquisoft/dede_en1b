@@ -1,11 +1,11 @@
 Feature: Adding items to the cart
 
-Scenario: Adding only one item
+Scenario: Adding one item
     Given A user
     When They add an item to the cart and navigate to the cart
     Then They can see the item
 
-# Scenario: Adding Serveral items
-#     Given A user
-#     When They add 2 items to the cart and navigate to the cart
-#     Then They can see the items
+Scenario: Adding an item from product details view
+    Given A user
+    When They add an item to the cart from the details view of the product and navigate to the cart
+    Then They can see the item
