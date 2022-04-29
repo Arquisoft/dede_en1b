@@ -1,9 +1,9 @@
 import { ItemCart } from "../../shared/shareddtypes";
 import Typography from "@mui/material/Typography";
-import { Card, CardContent, Box, CardMedia } from "@mui/material";
+import { Card, CardContent, Box, CardMedia, useMediaQuery } from "@mui/material";
 import { baseApiEndPoint, getProductImages } from '../../api/api';
 import { useState,useEffect } from 'react';
-
+import './CheckoutItem.css'
 type CheckoutItemProps = {
     item: ItemCart;
     updateTotal: () => void;
@@ -19,32 +19,32 @@ function CheckoutItem(props: CheckoutItemProps) {
     useEffect(() => {
         getImage();
     }, []);
-
-
+    
     return (
-        <Card variant="elevation" sx={{ display: 'flex', marginBottom: 5 }}>
-            <CardMedia
-                component="img"
-                image={imgPath}          
-                style={{ flex: 2 }} />
-            <Box style={{ flex: 3, display: 'flex', flexDirection: 'column' }}
-                justifyContent='space-between'>
-                <CardContent>
-                    <Typography component="h2" variant="h3">
+        <div className="card-item" style={ {
+           
+        }}>
+            <img className="item-img" src={imgPath} alt={props.item.product.name}  />
+          
+            <div className="item-info">
+          
+                    <div className="item-name" >
                         {props.item.product.name}
 
-                    </Typography>
-                    <Typography component="h3" variant="h4">
+                    </div>
+                   
+                    <div className="item-price-quantity"  >
 
                         <p>x{props.item.quantity}</p>
                         <p>Price: {props.item.product.price.toString().concat(" €")}</p>
-                    </Typography>
-                </CardContent>
+                    </div>
+             
 
-            </Box>
+            </div>
 
-        </Card>
+        </div>
     );
+  
 }
 
 export default CheckoutItem;
