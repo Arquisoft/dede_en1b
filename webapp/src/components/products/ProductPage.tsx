@@ -6,7 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { useParams } from "react-router-dom";
 import './ProductPage.css';
-import ReviewsIcon from '@mui/icons-material/Reviews';
+
 import { Button, CardActions, List, Rating } from '@mui/material';
 
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
@@ -131,7 +131,7 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
         </div>
         <Card>
           <Typography gutterBottom variant="h5" component="div">
-            Reviews of the product          <ReviewsIcon> </ReviewsIcon>
+            Reviews of the product          ✨✨
           </Typography>
           <List>
             {product.reviews.map((review) => (
