@@ -54,14 +54,14 @@ function Checkout(props: CheckoutProps): JSX.Element {
 
     return (
         <Box justifyContent="center">
-            <Typography component="h1" variant="h3" >
+            <div style={{display:'inline-block', marginTop:'30px', fontWeight:'bold', fontSize:'2.2rem'}} >
                 Checkout
-            </Typography>
+            </div>
             <Divider />
 
-            <Box style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr'  }}>
+            <Box style={{ display: 'flex', flexWrap:'wrap'  }}>
                 <Stack m={6} spacing={5} style={{ maxHeight:300, overflow:'auto', 
-                gridColumnStart:1, gridColumnEnd:5}}>
+                gridColumnStart:1, gridColumnEnd:4}}>
 
                     {loadItemsCheckout()}
 
@@ -70,7 +70,7 @@ function Checkout(props: CheckoutProps): JSX.Element {
 
                 </Stack>
                 
-                <Card variant="elevation" sx={{ gridColumnStart:5,  padding: 3 }}>
+                <Card variant="elevation" sx={{ gridColumnStart:4, width:'100%' }}>
                         <Typography component="h1" variant="h6" color="text.secondary">
                             Cart Totals:
                         </Typography>
@@ -78,10 +78,10 @@ function Checkout(props: CheckoutProps): JSX.Element {
                             {total.toFixed(2).toString().concat(" €")}
                         </Typography>
                     </Card>
-                <Button variant="contained" href="/cart" style={{ color: "black", backgroundColor: "lavender", borderRadius: "8px", top: "20px", height: "50px",gridColumnStart:1 }}>
+                <Button variant="contained" href="/cart" style={{ color: "black", backgroundColor: "lavender", borderRadius: "8px", top: "20px", height: "50px",flex:2, margin:'10px' }}>
                         Back to Shopping Cart
                     </Button> 
-                {props.items.length > 0 ? <Button variant="contained" href="/shipping" style={{ color: "white", backgroundColor: "#7c4dff", borderRadius: "8px", top: "20px", height: "50px",gridColumnStart:5 }}>
+                {props.items.length > 0 ? <Button variant="contained" href="/shipping" style={{ color: "white", backgroundColor: "#7c4dff", borderRadius: "8px", top: "20px", height: "50px",flex:2 , margin:'10px'}}>
                         Continue to Shipping
                     </Button>
                     :
