@@ -1,14 +1,23 @@
 .review-box{
     border-top: 3px dashed #bbb;
     font-family: inherit;
-    overflow: auto;
+   
 }
+
 .review-top{
     margin-top: 10px;
-    display: grid;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+}
+@media (max-width: 380px) {
+    .review-top{
+        margin-top: 10px;
+        display: grid;
+        align-items: center;
+        margin-bottom: 10px;
+    }
 }
 .author{
     font-size: 1.2rem;

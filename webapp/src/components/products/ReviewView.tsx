@@ -14,7 +14,7 @@ function ReviewView(props: ReviewViewProps): JSX.Element {
                 <div className="author">
                     <PersonOutlineIcon> </PersonOutlineIcon> {props.review.userId}
                 </div>
-                <div>
+                <div className="rating">
                     <Rating name="read-only" value={props.review.rating} readOnly />
                 </div>
             </div>
