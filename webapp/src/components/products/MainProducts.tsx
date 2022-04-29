@@ -23,7 +23,7 @@ import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import { IconButton, MenuItem, Rating, Select, Slider, Typography } from '@mui/material';
 
 import { yellow, orange, red, green, blue } from '@mui/material/colors';
-import Star from '@mui/icons-material/Star';
+
 import React from 'react';
 
 import "../../css/MainProducts.css";
