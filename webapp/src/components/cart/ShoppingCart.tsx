@@ -88,7 +88,7 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
             //console.log("Length: " + props.items.length)
             let res = props.items.map((item: ItemCart) => {
                 if (item !== null && item.quantity > 0) {
-                    return <CartItem  refreshCartList={props.refreshCartList} updateTotal={updateTotal} deleteItem={deleteItem} item={item} />
+                    return <CartItem refreshCartList={props.refreshCartList} updateTotal={updateTotal} deleteItem={deleteItem} item={item} />
                 }
             }
             )
@@ -102,13 +102,20 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
 
     return (
         <Box justifyContent="center">
-            <Typography component="h1" variant="h3" >
+            <div style={{ display: 'inline-block', marginTop: '30px', fontWeight: 'bold', fontSize: '2.2rem', color: '#7c4dff', marginBottom: '1%' }} >
                 Shopping cart
-            </Typography>
+            </div>
             <Divider />
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <Button color="secondary" variant="contained" size="large" href="/"
+                    style={{ color: "white", backgroundColor: "#7c4dff", borderRadius: "8px", top: "20px", height: "50px", padding: "2%" }}>
+                   Continue shopping
+                </Button>
+            </div>
+            <Box style={{}}>
 
-            <Box style={{ display: 'flex' }}>
-                <Stack m={6} spacing={5} style={{ flex: 3 }}>
+
+                <Stack m={6} spacing={5} style={{ flex: 3, maxHeight: 300, overflow: 'auto',backgroundColor: '#FAF9F6', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px' }}>
                     {loadItems()}
                 </Stack>
 
@@ -118,23 +125,25 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
                             Total Amount:
                         </Typography>
                         <Typography component="h1" variant="h4">
-                            {total.toString().concat(" €")}
+                            {total.toFixed(2).toString().concat(" €")}
                         </Typography>
                     </Card>
-                    {props.items.length > 0 ? <Button variant="contained" href="/checkout" style={{ color: "white", backgroundColor: "#7c4dff", borderRadius: "8px", top: "20px", height: "50px" }}>
-                        Checkout
-                    </Button> : <></>}
+
                 </Stack>
             </Box>
 
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Stack direction="row" spacing={3} alignItems="center">
-                    <Button color="secondary" size="large" href="/">
-                        Continue shopping
-                    </Button>
+
+                {props.items.length > 0 ? <Button variant="contained" href="/checkout" size="large"
+                    style={{
+                        color: "white", backgroundColor: "#7c4dff", borderRadius: "8px",
+                        top: "20px", height: "50px", padding: "2%"
+                    }}>
+                    Checkout
+                </Button> : <></>}
 
 
-                </Stack>
+
             </div>
         </Box>
     );

@@ -13,18 +13,78 @@ import "../../css/UserProfile.css";
 
 import {
     handleIncomingRedirect,
-    onSessionRestore
+    onSessionRestore,
+    Session
 } from "@inrupt/solid-client-authn-browser";
 import { useEffect, useState } from 'react';
 import OrderCard from "./OrderCard";
-import { Order } from "../../shared/shareddtypes";
+import { Order, Address } from "../../shared/shareddtypes";
+
+import AddressForm from "./AddressForm";
+
+
+
+import { getSolidDataset, getThing, getStringNoLocale, getUrlAll, Thing } from "@inrupt/solid-client";
+
+import { VCARD } from "@inrupt/vocab-common-rdf";
+
+async function getProfile(webId: string): Promise<Thing> {
+    let profileDocumentURI = webId.split("#")[0];
+    let myDataset = await getSolidDataset(profileDocumentURI);
+    return getThing(myDataset, webId) as Thing;
+}
+
+async function getDedExAddress(webId: string, addresses: Address[]) {
+    let profileDocumentURI = webId.split("#")[0];
+    let myDataset = await getSolidDataset(profileDocumentURI);
+    let profile = getThing(myDataset, profileDocumentURI + "#DedExAddress") as Thing;
+
+    let street = getStringNoLocale(profile, VCARD.street_address);
+    let city = getStringNoLocale(profile, VCARD.locality);
+    let state = getStringNoLocale(profile, VCARD.region);
+    let zip = getStringNoLocale(profile, VCARD.postal_code);
+    let country = getStringNoLocale(profile, VCARD.country_name);
+
+    addresses.push({
+        street: street, city: city, state: state, zip: zip, country: country
+    });
+}
+
+async function getAddressesFromPod(webId: string) {
+
+    let addressURLs = getUrlAll(await getProfile(webId), VCARD.hasAddress);
+    let addresses: Address[] = [];
+    await getDedExAddress(webId, addresses);
+
+    for (let addressURL of addressURLs) {
+        let profile = await getProfile(addressURL);
+        let street = getStringNoLocale(profile, VCARD.street_address);
+        let city = getStringNoLocale(profile, VCARD.locality);
+        let state = getStringNoLocale(profile, VCARD.region);
+        let zip = getStringNoLocale(profile, VCARD.postal_code);
+        let country = getStringNoLocale(profile, VCARD.country_name);
+
+        addresses.push({ street: street, city: city, state: state, zip: zip, country: country });
+    }
+
+    console.log(addresses);
+
+    return addresses;
+}
+
+async function getAddresses(session: Session) {
+    const webId = session.info.webId as string;
+    getAddressesFromPod(webId).then(data => {
+        sessionStorage.setItem("addresses", JSON.stringify(data));
+    });
+}
 
 export default function UserProfile() {
-
     const { session } = useSession();
     const webId = session.info.webId as string;
     localStorage.setItem("webId", webId);
-    let username : string = "null";
+
+    getAddresses(session);
 
     const navigate = useNavigate();
 
@@ -44,27 +104,6 @@ export default function UserProfile() {
         })
     }, []);
 
-    // let address : string = "Address not found."
-    // if (localStorage.getItem("provider") == "https://inrupt.net/")  {
-    //     username = webId.substring(8, webId.length - 27);
-
-    //     axios.get("https://" + username + ".solidcommunity.net/profile/card#address")
-    //     .then(res => {
-    //         console.log(res.data);
-    //         address = res.data;
-    //     })
-    // } else if (localStorage.getItem("provider") == "https://broker.pod.inrupt.com/") {
-    //     username = webId.substring(8, webId.length - 27);
-        
-    //     axios.get("https://" + username + ".solidcommunity.net/profile/card#address")
-    //     .then(res => {
-    //         console.log(res.data);
-    //         address = res.data;
-    // })
-    // }  
-
-    console.log(username);
-
     //Order management:
     const [orders, setOrders] = useState<Order[]>([]);
     const findUserOrders = async () => {
@@ -81,7 +120,7 @@ export default function UserProfile() {
                 datasetUrl={webId}
                 thingUrl={webId}
             >
-                <Typography id="pageTitle" variant="h3">
+                <Typography id="pageTitle" variant="h3" style={{display:'inline-block', fontWeight:'bold', fontSize:'2.4em', marginTop:'40px', marginBottom:'0px'}}>
                     <span>Welcome, </span>
                     <Text properties={[
                         "http://www.w3.org/2006/vcard/ns#fn",
@@ -103,13 +142,20 @@ export default function UserProfile() {
                     direction="column"
                     divider={<Divider orientation="horizontal" flexItem />}
                     spacing={2}
+                    style={{overflow:'auto'}}
                 >
 
                     {orders.map(order => (
                         <OrderCard order={order} />
-                    ))}
+                    )).reverse()}
                 </Stack>
             </CombinedDataProvider>
+
+            <br></br>
+            <br></br>
+            <hr></hr>
+
+            <AddressForm></AddressForm>
         </Container>
     );
 }

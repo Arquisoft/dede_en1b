@@ -4,15 +4,21 @@
 
 === Web Application
 We decided to create a Web application supported by the latest versions of the main market browsers (Chrome, Firefox, Edge...). This online version of DeDe could be ported
-to a portable device app easily with REACT Native, a JavaScript framework for writing real, natively rendering mobile applications for iOS and Android.
+to a mobile device app easily with REACT Native, a JavaScript framework for writing real, natively rendering mobile applications for iOS and Android.
+
+Because we are choosing to develop a web app from the beggining, we must take careful consideration into making components mobile friendly. This should not be done, it would prove a struggle to adapt in the future.
 
 
 === Database
 We chose MongoDB as our Database Management System because its flexible schema allows us 
 to rapidly model the domain and change it with the evolution of the app without any problems.
 MongoDB stores data in form of JSON so the conversion and interaction between typescript and the database are flawless.
-Another point in favor is its performance and scalability although in a small application like ours is not strictly necessary.
+Another point in favor is its performance and scalability although in a small application like ours is not strictly necessary. We also chose MongoDB because it gives us a free database in the cloud for developing purposes.
+
+By discarding the use of an SQL database, we are also losing the opportunity to wotk with an schema, and thus, all data validation responsibility falls in the hands of the developers, that is, us. This may prove trying at times, but it is also good to learn new technologies.
 
 
 === Material UI
 Material UI is a free React-compatible library directed at easy creation of responsive components. It contains many default styles for typography, forms, buttons, navigation, and other interface components. It will allow us to create a good frontend with less effort.
+
+We descarded the use of Bootstrap because we felt that Material was more attuned to what we were trying to do with this reactive app. By doing so, we made a lot of design decision fall in the developers hands, making it more customizable but also more diffcult and time consuming to create.

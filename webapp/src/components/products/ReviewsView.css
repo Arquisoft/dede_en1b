@@ -1,0 +1,36 @@
+.review-box{
+    border-top: 3px dashed #bbb;
+    font-family: inherit;
+   
+}
+
+.review-top{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+@media (max-width: 450px) {
+    .review-top{
+        margin-top: 10px;
+        display: grid;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+}
+.author{
+    font-size: 1.2rem;
+    display:flex;
+    font-weight: bold;
+}
+.comment{
+    margin-left: 25px;
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.review-comment{
+    width: 100%;
+}

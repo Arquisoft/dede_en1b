@@ -20,6 +20,7 @@ type CheckoutProps = {
 function Checkout(props: CheckoutProps): JSX.Element {
 
     const [total, setTotal] = useState<number>(0);
+    
 
     const updateTotal = async () => {
         let cart = getCart();
@@ -53,35 +54,39 @@ function Checkout(props: CheckoutProps): JSX.Element {
 
     return (
         <Box justifyContent="center">
-            <Typography component="h1" variant="h3" >
+            <div style={{display:'inline-block', marginTop:'30px', fontWeight:'bold', fontSize:'2.2rem', color:'#7c4dff'}} >
                 Checkout
-            </Typography>
+            </div>
             <Divider />
 
-            <Box style={{ display: 'flex' }}>
-                <Stack m={6} spacing={5} style={{ flex: 3 }}>
+            <Box style={{ display: 'flex', flexWrap:'wrap'  }}>
+                <Stack m={6} spacing={5} style={{  maxHeight:300, overflow:'auto', 
+                gridColumnStart:1, gridColumnEnd:4,marginLeft:'15%', marginRight:'15%',
+                backgroundColor: '#FAF9F6', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px' }}>
 
                     {loadItemsCheckout()}
 
-                    <Card variant="elevation" sx={{ display: 'flex', flexDirection: 'column', padding: 3 }}>
+
+                   
+
+                </Stack>
+                
+                <Card variant="elevation" sx={{ gridColumnStart:4, width:'100%' }}>
                         <Typography component="h1" variant="h6" color="text.secondary">
                             Cart Totals:
                         </Typography>
                         <Typography component="h1" variant="h4">
-                            {total.toString().concat(" €")}
+                            {total.toFixed(2).toString().concat(" €")}
                         </Typography>
                     </Card>
-
-                    <Button variant="contained" href="/cart" style={{ color: "black", backgroundColor: "lavender", borderRadius: "8px", top: "20px", height: "50px" }}>
+                <Button variant="contained" href="/cart" style={{ color: "black", backgroundColor: "lavender", borderRadius: "8px", top: "20px", height: "50px",flex:2, margin:'10px' }}>
                         Back to Shopping Cart
                     </Button> 
-
-                    {props.items.length > 0 ? <Button variant="contained" href="/shipping" style={{ color: "white", backgroundColor: "#7c4dff", borderRadius: "8px", top: "20px", height: "50px" }}>
+                {props.items.length > 0 ? <Button variant="contained" href="/shipping" style={{ color: "white", backgroundColor: "#7c4dff", borderRadius: "8px", top: "20px", height: "50px",flex:2 , margin:'10px'}}>
                         Continue to Shipping
                     </Button>
                     :
                     <></>}
-                </Stack>
             </Box>
         </Box>
     );
