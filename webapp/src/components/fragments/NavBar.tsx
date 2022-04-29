@@ -10,15 +10,30 @@ import Container from '@mui/material/Container';
 import { ItemCart } from '../../shared/shareddtypes';
 
 import '../../css/NavBar.css';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 
 type NavBarProps = {
     cart: ItemCart[];
 };
 
+
+
+export default function PrimarySearchAppBar(props: NavBarProps) {
+    const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
+
+
+    const [search, setSearch] = useState("");
+
+    let q : string = "";
+    function handleSearch() {
+        window.location.href = "/?q=" + q;
+    }
+
 const SearchBar = () => (
     <Container id="searchBarConatiner">
-        <form id="searchBarForm" action="/" method="get">
+        <form onSubmit={handleSearch}>
             <TextField
                 variant="outlined"
                 type="text"
@@ -27,29 +42,34 @@ const SearchBar = () => (
                 name="q"
                 style={{ width: "100%" }}
                 sx={{ input: { color: 'white' } }}
-            />
+                onChange={(e) => q=e.target.value}
+               
+                />
 
-            <Button 
-                id="submitButton" 
-                type="submit" 
+            <Button
+                id="submitButton"
+                type="submit"
                 variant="contained"
-            >
+                >
                 <SearchIcon />
             </Button>
         </form>
     </Container>
 );
-
-export default function PrimarySearchAppBar(props: NavBarProps) {
+    
 
     const [cartItemNumber, setCartItemNumber] = useState<number>(0);
 
     useEffect(() => {
+        
         setCartItemNumber(props.cart.length);
+
     }, []);
 
     return (
-        <AppBar position="static">
+
+
+        <AppBar position="fixed">
             <Toolbar id="navToolbar">
 
                 <a id="logoLink" href="/" >
@@ -60,12 +80,12 @@ export default function PrimarySearchAppBar(props: NavBarProps) {
 
                 <IconButton
                     style={{ marginRight: "1%" }}
-                    size="large" 
-                    aria-label="shopping cart" 
-                    color="inherit" 
+                    size="large"
+                    aria-label="shopping cart"
+                    color="inherit"
                     href="/cart">
-                    <Badge 
-                        badgeContent={props.cart.reduce((acc, i) => acc + i.quantity, 0)} 
+                    <Badge
+                        badgeContent={props.cart.reduce((acc, i) => acc + i.quantity, 0)}
                         color="secondary"
                     >
                         <ShoppingCart />
@@ -81,10 +101,13 @@ export default function PrimarySearchAppBar(props: NavBarProps) {
                     href="/login"
                     style={{ marginRight: "5%" }}
                 >
-                    <AccountCircle/>
+                    <AccountCircle />
                 </IconButton>
 
             </Toolbar>
         </AppBar>
+
+
+
     );
 }

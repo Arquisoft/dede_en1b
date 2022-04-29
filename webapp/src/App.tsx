@@ -45,9 +45,9 @@ function App(): JSX.Element {
     <>
       <ReactNotifications/>
 
-      <Header cart={cart} />
       <Container style={{ alignContent: "center", marginTop: "5%", minHeight: "50vh" }} maxWidth="lg">
-        <Router>
+      <Router>
+      <Header cart={cart} />
           <Routes>
              <Route path='/' element={<MainProducts refreshCartList={refreshCartList}/>} />
               <Route path="/products/:id" element={<ProductPage refreshCartList={refreshCartList}/>} />

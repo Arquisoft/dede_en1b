@@ -1,0 +1,63 @@
+#whiteIcon {
+    color: rgb(223, 223, 223);
+}
+
+#blackIcon {
+    color: black;
+}
+
+#minPrice {
+    width: 80%;
+    margin-left: 10%;
+}
+
+#maxPrice {
+    width: 80%;
+    margin-left: 10%;
+}
+
+#filterDrawer {
+    padding-left: 5%;
+}
+
+#filterTitle {
+    margin-right: 50%;
+    color: #F23005;
+}
+
+#star1:hover {
+    color: #F23005;
+}
+
+#star2:hover {
+    color: #F23005;
+}
+
+#star3:hover {
+    color: #F23005;
+}
+
+#star4:hover {
+    color: #F23005;
+}
+
+#star5:hover {
+    color: #F23005;
+}
+
+#colorChooser {
+    width: 100%;
+}
+
+li {
+    width: 100%;
+}
+
+
+#brandChooserDiv {
+    width: 100%;
+}
+
+#openFilterButton {
+    margin-bottom: 2%;
+}
