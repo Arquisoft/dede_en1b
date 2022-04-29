@@ -108,10 +108,12 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
             <Divider />
 
             <Box style={{ display: 'flex' }}>
-                <Stack m={6} spacing={5} style={{ flex: 3 }}>
+            
+                    
+                <Stack m={6} spacing={5} style={{ flex: 3,maxHeight:300, overflow:'auto' }}>
                     {loadItems()}
                 </Stack>
-
+              
                 <Stack mt={6} mr={6} style={{ flex: 1 }}>
                     <Card variant="elevation" sx={{ display: 'flex', flexDirection: 'column', padding: 3 }}>
                         <Typography component="h1" variant="h6" color="text.secondary">
