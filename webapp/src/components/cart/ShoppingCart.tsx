@@ -108,18 +108,21 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
             <Divider />
             <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <Button color="secondary" variant="contained" size="large" href="/"
-                    style={{ color: "white", backgroundColor: "#7c4dff", borderRadius: "8px", top: "20px", height: "50px", padding: "2%" }}>
-                   Continue shopping
+                    style={{ color: "white", backgroundColor: "#F23005", borderRadius: "8px", top: "20px", height: "50px", padding: "2%" }}>
+                    Continue shopping
                 </Button>
             </div>
+            <br></br>
+            <br></br>
+            <br></br>
             <Box style={{}}>
 
 
-                <Stack m={6} spacing={5} style={{ flex: 3, maxHeight: 300, overflow: 'auto',backgroundColor: '#FAF9F6', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px' }}>
+                <Stack m={6} spacing={5} style={{ flex: 3, height: "50vh", margin: "auto", overflow: 'auto', backgroundColor: '#FAF9F6', padding: "1%" }}>
                     {loadItems()}
                 </Stack>
-
-                <Stack mt={6} mr={6} style={{ flex: 1 }}>
+                <br></br>
+                <Stack mt={6} mr={6} style={{width: "80vw", margin: "auto", flex: 1}}>
                     <Card variant="elevation" sx={{ display: 'flex', flexDirection: 'column', padding: 3 }}>
                         <Typography component="h1" variant="h6" color="text.secondary">
                             Total Amount:
@@ -145,6 +148,7 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
 
 
             </div>
+            <br></br>
         </Box>
     );
 }

@@ -41,7 +41,8 @@ function CartItem(props: CartItemProps) {
 
     return (
 
-        <div className="card-item">
+        // <div className="card-item">
+        <Card id="card-item">
             <img className="item-img" src={imgPath} alt={props.item.product.name} />
             <div className="item-info">
 
@@ -60,7 +61,8 @@ function CartItem(props: CartItemProps) {
                     <Button size="small"
                         disabled={props.item.quantity === 1}
                         onClick={() => changeQuantityBy(props.item, -1)}
-                        style={{ maxWidth: '20px', maxHeight: '20px', minWidth: '20px', minHeight: '20px' }}>
+                        style={{ maxWidth: '20px', maxHeight: '20px', minWidth: '20px', minHeight: '20px' }}
+                    >
                         -
                     </Button>
                     <Typography component="h4" align="center">
@@ -85,8 +87,8 @@ function CartItem(props: CartItemProps) {
 
 
 
-
-        </div>
+        </Card>
+        /* </div> */
 
     );
 }

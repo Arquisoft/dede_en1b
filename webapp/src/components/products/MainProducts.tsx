@@ -103,31 +103,31 @@ function MainProducts(props: MainProductsProps): JSX.Element {
 
 
   function filterColor(color: string) {
-    if (color =="All") {
+    if (color == "All") {
       setColor("");
     } else {
       setColor(color);
     }
     (document.getElementById("colorChooser") as HTMLDivElement).textContent = color;
   }
-  
+
   function filterBrand(brand: string) {
-    if (brand =="All") {
+    if (brand == "All") {
       setBrand("");
     } else {
       setBrand(brand);
     }
     (document.getElementById("brandChooser") as HTMLDivElement).textContent = brand;
   }
-  
+
   function filterMinPrice(price: number) {
     setMinPrice(price);
   }
-  
+
   function filterMaxPrice(price: number) {
     setMaxPrice(price);
   }
-  
+
   function filterRating(rating: number) {
     setMinRating(rating);
   }
@@ -143,43 +143,43 @@ function MainProducts(props: MainProductsProps): JSX.Element {
   const [searchParams, setSearchParams] = useSearchParams();
   const [products, setProducts] = useState<Product[]>([]);
 
-  const refreshProductList = async (query:string) => {
-    if(searchParams.get("q") !== null) 
+  const refreshProductList = async (query: string) => {
+    if (searchParams.get("q") !== null)
       query += "&name[eq]=" + searchParams.get("q");
     setProducts(await getProducts(query));
   }
 
   useEffect(() => {
-    
+
     refreshProductList(computeQueryParams());
   }, [color, brand, minPrice, maxPrice, minRating]);
 
   return (
     <>
-    <div className='main-products'>
-      <div className='main-filter'>
-      <IconButton
-        id="openFilterButton"
-        color="inherit"
-        aria-label="open drawer"
-        onClick={handleDrawerOpen}
-        edge="start"
-        sx={{ mr: 2, ...(open && { display: 'none' }), backgroundColor:' purple'}}
-      >
-        <MenuIcon /><Typography>FILTER</Typography>
-      </IconButton>
-      </div>
- 
-    <div className="products-container">
+      <div className='main-products'>
+        <div className='main-filter'>
+          <IconButton
+            id="openFilterButton"
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            sx={{ mr: 2, ...(open && { display: 'none' }), backgroundColor: ' purple' }}
+          >
+            <MenuIcon /><Typography>FILTER</Typography>
+          </IconButton>
+        </div>
 
-     
-        {products.map((p, i) => (
-          
+        <div className="products-container">
+
+
+          {products.map((p, i) => (
+
             <ProductCard key={p.id} product={p} refreshCartList={props.refreshCartList} />
-          
-        ))}
-     </div>
-     </div>
+
+          ))}
+        </div>
+      </div>
       <Drawer
         sx={{
           width: drawerWidth,
@@ -214,7 +214,7 @@ function MainProducts(props: MainProductsProps): JSX.Element {
             <MenuItem>
               <ListItem button key="all" onClick={() => { filterColor("All") }}>
                 <ListItemIcon>
-                <ListItemText primary="All" />
+                  <ListItemText primary="All" />
                 </ListItemIcon>
               </ListItem>
             </MenuItem>
@@ -303,19 +303,19 @@ function MainProducts(props: MainProductsProps): JSX.Element {
             sx={{ width: 200 }}
           >
             <div id="brandChooserDiv">
-              {['All','Toyota', 'Volvo', 'Renault', 'Nissan', 'Plymouth', 'BMW', 'Subaru', 'Honda', 'Lamborghini', 'Volkswagen', 'Chevy', 'Polestar', 'Porsche'].map((text, index) => (
+              {['All', 'Toyota', 'Volvo', 'Renault', 'Nissan', 'Plymouth', 'BMW', 'Subaru', 'Honda', 'Lamborghini', 'Volkswagen', 'Chevy', 'Polestar', 'Porsche'].map((text, index) => (
                 <div>
-                <MenuItem>
-                  <ListItem button key={text} onClick={() => { filterBrand(text) }} id={"li" + index}>
-                    <ListItemIcon>
-                      <DirectionsCarIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItem>
-                </MenuItem>
-                <br></br>
+                  <MenuItem>
+                    <ListItem button key={text} onClick={() => { filterBrand(text) }} id={"li" + index}>
+                      <ListItemIcon>
+                        <DirectionsCarIcon />
+                      </ListItemIcon>
+                      <ListItemText primary={text} />
+                    </ListItem>
+                  </MenuItem>
+                  <br></br>
                 </div>
-                
+
               ))}
             </div>
 
@@ -358,7 +358,7 @@ function MainProducts(props: MainProductsProps): JSX.Element {
 
           <Grid container spacing={0} id="ratingFilter">
 
-            <Rating name="no-value" value={minRating} size="large" onChange={(event,value)=>{
+            <Rating name="no-value" value={minRating} size="large" onChange={(event, value) => {
               filterRating(value as number)
 
             }} />
