@@ -12,14 +12,21 @@
 @startuml 07_DeploymentView_V0
 node UserPC {
     node WebBrowser {
-        component WebApp 
+        component Web 
     }
 }
 
-node WebServer{
-    node DockerContainer {
-        component DeDe
+node "Azure Server"{
+     node "RestApi Docker Container" {
+        component RestApi
     }
+
+    node "WebApp Docker Container" {
+        component WebApp
+    }
+
+    
+   
 }
 
 cloud SOLID_POD
@@ -32,12 +39,13 @@ actor User
 
 cloud ShippingAPI
 
-DeDe -u-> MongoDB : CRUD
-DeDe -d-> SOLID_POD : getUserAddress
-DeDe -l-> WebApp : serve
-DeDe -r-> ShippingAPI : calculateRoute
+RestApi -u-> MongoDB : CRUD
+WebApp -l-> SOLID_POD : getUserAddress
+RestApi -d-> ShippingAPI : calculateRoute
+WebApp -u-> Web : serve
+WebApp -r-> RestApi : "getProducts, createOrders..."
 SOLID_POD <-l- User
-WebApp <-d- User
+Web <-d- User
 
 @enduml
 ....
