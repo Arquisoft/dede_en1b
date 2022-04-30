@@ -7,9 +7,10 @@ import * as api from '../../api/api';
 import { MemoryRouter } from 'react-router-dom';
 
 import ProductCard from './ProductCard';
+import { Product } from '../../shared/shareddtypes';
 
 jest.mock("../../api/api");
-
+const fakeProd: Product = {} as Product;
 const productsList = 
 {
     "id":"1",
@@ -20,7 +21,7 @@ const productsList =
     "category": "",
     "reviews": [],
     "quantity":2,
-    "product": "",
+    "product": fakeProd,
     "_id": "1"
  
 }

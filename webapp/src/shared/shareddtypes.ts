@@ -12,7 +12,7 @@ export type Product = {
   image: string;
   category: string;
   reviews: Array<Review>;
-  product: any;
+  product: Product;
   _id: string;
   quantity: number;
 
