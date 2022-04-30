@@ -1,3 +1,4 @@
+import React from 'react'
 import { render, screen } from '@testing-library/react';
 import { Review } from '../../shared/shareddtypes';
 import ReviewView from './ReviewView';
