@@ -19,13 +19,12 @@
     }
 
     .item-info {
-        margin-left: "100px";
         grid-column: 2;
         display: 'grid';
         justify-content: 'left';
         overflow-wrap: break-word;
         text-align: center;
-        margin-top: 0;
+    
         margin: auto;
     }
 
