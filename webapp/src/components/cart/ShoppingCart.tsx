@@ -88,7 +88,7 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
             //console.log("Length: " + props.items.length)
             let res = props.items.map((item: ItemCart) => {
                 if (item !== null && item.quantity > 0) {
-                    return <CartItem  refreshCartList={props.refreshCartList} updateTotal={updateTotal} deleteItem={deleteItem} item={item} />
+                    return <CartItem refreshCartList={props.refreshCartList} updateTotal={updateTotal} deleteItem={deleteItem} item={item} />
                 }
             }
             )
@@ -102,17 +102,27 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
 
     return (
         <Box justifyContent="center">
-            <Typography component="h1" variant="h3" >
+            <div style={{ display: 'inline-block', marginTop: '30px', fontWeight: 'bold', fontSize: '2.2rem', color: '#7c4dff', marginBottom: '1%' }} >
                 Shopping cart
-            </Typography>
+            </div>
             <Divider />
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <Button color="secondary" variant="contained" size="large" href="/"
+                    style={{ color: "white", backgroundColor: "#F23005", borderRadius: "8px", top: "20px", height: "50px", padding: "2%" }}>
+                    Continue shopping
+                </Button>
+            </div>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Box style={{}}>
 
-            <Box style={{ display: 'flex' }}>
-                <Stack m={6} spacing={5} style={{ flex: 3 }}>
+
+                <Stack m={6} spacing={5} style={{ flex: 3, height: "50vh", margin: "auto", overflow: 'auto', backgroundColor: '#FAF9F6', padding: "1%" }}>
                     {loadItems()}
                 </Stack>
-
-                <Stack mt={6} mr={6} style={{ flex: 1 }}>
+                <br></br>
+                <Stack mt={6} mr={6} style={{width: "80vw", margin: "auto", flex: 1}}>
                     <Card variant="elevation" sx={{ display: 'flex', flexDirection: 'column', padding: 3 }}>
                         <Typography component="h1" variant="h6" color="text.secondary">
                             Total Amount:
@@ -121,21 +131,24 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
                             {total.toFixed(2).toString().concat(" €")}
                         </Typography>
                     </Card>
-                    {props.items.length > 0 ? <Button variant="contained" href="/checkout" style={{ color: "white", backgroundColor: "#7c4dff", borderRadius: "8px", top: "20px", height: "50px" }}>
-                        Checkout
-                    </Button> : <></>}
+
                 </Stack>
             </Box>
 
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Stack direction="row" spacing={3} alignItems="center">
-                    <Button color="secondary" size="large" href="/">
-                        Continue shopping
-                    </Button>
+
+                {props.items.length > 0 ? <Button variant="contained" href="/checkout" size="large"
+                    style={{
+                        color: "white", backgroundColor: "#7c4dff", borderRadius: "8px",
+                        top: "20px", height: "50px", padding: "2%"
+                    }}>
+                    Checkout
+                </Button> : <></>}
 
 
-                </Stack>
+
             </div>
+            <br></br>
         </Box>
     );
 }

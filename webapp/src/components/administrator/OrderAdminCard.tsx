@@ -37,7 +37,7 @@ export default function OrderAdminCard(props: OrderAdminCardProps) {
     };
     
     return (
-        <Card id="orderAdminCard" variant="outlined">
+        <Card id="orderAdminCard" variant="outlined" style={{"margin":"5px"}}>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                     Order {props.order.createdAt.toString().substring(0, 10)}
