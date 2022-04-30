@@ -35,7 +35,7 @@ function CartItem(props: CartItemProps) {
     useEffect(() => {
         setQuantity(props.item.quantity);
         getImage();
-    }, [props.item.quantity]);
+    }, [props.item]);
 
 
 
