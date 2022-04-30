@@ -30,14 +30,16 @@ When a product card has been passed a functional product it renders its correspo
 test("Product card is rendered properly", async () =>{
 
 
-jest.spyOn(api, 'getProductImages').mockImplementation((id: string): Promise<string[]> => {
+jest.spyOn(api, 'getProductImages').mockImplementation((_id: string): Promise<string[]> => {
     return Promise.resolve(["1"]);
 });
-const prodCardImpl = require('./ProductCard');
-
-//const addCart = jest.spyOn(prodCardImpl, 'addProduct');  needs to be tested that it's called when clicking on 'add to cart'
-
-        render(<MemoryRouter><ProductCard product={productsList} refreshCartList={()=> {}} /> </MemoryRouter>);
+/*
+needs to be tested that it's called when clicking on 'add to cart'
+//const prodCardImpl = require('./ProductCard');
+//const addCart = jest.spyOn(prodCardImpl, 'addProduct');  
+*/
+        const dummy = () => {};
+        render(<MemoryRouter><ProductCard product={productsList} refreshCartList={dummy} /> </MemoryRouter>);
 
         expect(screen.getByText('bmw')).toBeInTheDocument();
         expect(screen.getByText('30€')).toBeInTheDocument();
