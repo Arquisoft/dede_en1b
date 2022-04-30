@@ -14,7 +14,7 @@ import { baseApiEndPoint } from '../../api/api';
 import { ProductOrdered } from "../../shared/shareddtypes";
 
 import "../../css/OrderDetails.css";
-import { Grid, Typography } from '@mui/material';
+import { Divider, Grid, Typography } from '@mui/material';
 import AddReviewCard from '../products/addReviewCard';
 
 type ProductCardProps = {
@@ -50,27 +50,35 @@ export default function OrderDetails(props: ProductCardProps) {
     const imgPath = baseApiEndPoint + "/cars/" + props.productOrdered.product.image + "/" + props.productOrdered.product.image + " (1).jpg"
 
     return (
-        <Card id="mainCard">
+        <Card id="mainCard"
+            style={{
+            height: "auto"
+        }}>
             <Grid container spacing={2}>
-                <Grid item xs={2.5}>
+                <Grid item xs={10}>
                     <CardHeader
                         title={props.productOrdered.product.name}
-                        subheader={"Price: " + props.productOrdered.product.price + "€/unit Quantity:  " + props.productOrdered.quantity}
+                        subheader={props.productOrdered.product.price + "€/unit -  \n" + props.productOrdered.quantity + " units"}
 
                     />
                 </Grid>
 
-                <Grid item xs={8}>
+                <Grid item xs={2}>
                     <CardMedia
                         id="cardImg"
                         component="img"
-                        height="194"
                         image={imgPath}
                         alt={props.productOrdered.product.name}
+                        style={{
+                            width: "100%",
+                            margin: "auto",
+                            minWidth: "100px"
+                        }}
                     />
                 </Grid>
             </Grid>
 
+            <Divider></Divider>
 
             <CardActions disableSpacing>
                 <ExpandMore
