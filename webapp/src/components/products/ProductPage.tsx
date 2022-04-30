@@ -129,7 +129,11 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
 
           </Card>
         </div>
+        <br></br>
+        <br></br>
+        <br></br>
         <Card>
+          
           <Typography gutterBottom variant="h5" component="div">
             Reviews of the product          ✨✨
           </Typography>
