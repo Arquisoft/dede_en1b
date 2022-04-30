@@ -55,7 +55,7 @@ function CartItem(props: CartItemProps) {
                 <div className="item-price">
                     {props.item.product.price.toString().concat(" €")}
                 </div>
-                <div className="item-buttons" style={{ display: 'flex', justifyContent: 'left', margin: 15 }}>
+                <div className="item-buttons" style={{ display: 'flex', justifyContent: 'center', margin: 15 }}>
 
 
                     <Button size="small"
