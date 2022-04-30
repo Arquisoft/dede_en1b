@@ -19,7 +19,7 @@ export default function Shipping(props: ShippingProps) {
 
     if (localStorage.getItem("webId") === null) {
         return (
-            <Typography style={{ textAlign: "center" }} variant='h6'>Please, <Link id="li" href="/login">Log In</Link> or register via <Link id="inrupt" href="https://inrupt.com/" target="_blank">Inrupt</Link> or <Link id="solidcom" href="https://solidcommunity.net/" target="_blank">SOLID</Link></Typography>
+            <Typography style={{ textAlign: "center", marginTop:"40px", display: 'inline-block' }} variant='h6'>Please, <Link id="li" href="/login">Log In</Link> or register via <Link id="inrupt" href="https://inrupt.com/" target="_blank">Inrupt</Link> or <Link id="solidcom" href="https://solidcommunity.net/" target="_blank">SOLID</Link></Typography>
         );
     }
 
@@ -65,7 +65,7 @@ export default function Shipping(props: ShippingProps) {
 
     return (
         <Box justifyContent="center">
-            <Typography id="shippingTitle" component="h1" variant="h3" >
+            <Typography id="shippingTitle" component="h1" variant="h3" style={{display:'inline-block', marginTop:'35px', fontSize:'2.1em', fontWeight:'bold'}} >
                 Shipping Information
             </Typography>
 
