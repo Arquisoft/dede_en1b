@@ -154,11 +154,14 @@ function AdminView(): JSX.Element {
 
 
                 <label >All Orders: </label>
+                <div style={{"overflow":"auto", "maxHeight":"300px"}}>
                 {orders.sort((a, b) => {
                         return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
                       }).map(order => (
                         <OrderAdminCard order={order} />
                     ))}
+                </div>    
+              
             </Stack>
         </Box>
         </Box>
