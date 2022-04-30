@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { ItemCart, Product } from "../../shared/shareddtypes";
-import { addToCart, apiEndPoint, baseApiEndPoint, getProductImages } from '../../api/api';
+import { addToCart,  baseApiEndPoint, getProductImages } from '../../api/api';
 
 import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
+
 import Button from "@mui/material/Button";
-import { Card, CardContent, Box, Divider, CardMedia } from "@mui/material";
+import { Card } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import './../../css/CartItem.css'
 type CartItemProps = {

@@ -1,6 +1,5 @@
 import { ItemCart } from "../../shared/shareddtypes";
-import Typography from "@mui/material/Typography";
-import { Card, CardContent, Box, CardMedia, useMediaQuery } from "@mui/material";
+
 import { baseApiEndPoint, getProductImages } from '../../api/api';
 import { useState, useEffect } from 'react';
 import './../../css/CheckoutItem.css'
