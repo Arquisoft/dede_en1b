@@ -70,3 +70,8 @@ Mapping of Building Blocks to Infrastructure::
     |MongoDB | This is the DataBase, which will be stored on a server as well. Like the application per se, the nature of this server is still to be determined.
     |ShippingApi | This API will be used to calculate routes and costs of delivery. It will be hosted by a third party in a server of their choosing.
 |===
+
+Continuous Integration::
+
+Both the WebApp and the RestApi are automatically deployed using GitHub Actions. Every time a new realese is made, a script, located in .github/workflows/asw2122.yml, will be executed. This script first runs the tests, and if they all pass succesfully, the docker images will be build and publish to GitHub Packages. Finally, the scripts connect through SSH to the server and deploys the application using Docker-Compose. As private tokens, server IPs and other information must be private, we are using GitHub Secrets to store it. 
+
