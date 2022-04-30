@@ -9,8 +9,17 @@ import rproducts from '../routes/product.routes';
 import rusers from '../routes/user.routes';
 import rorders from '../routes/order.routes';
 
+
+require('dotenv').config({path:__dirname+'/./../.env'});
+let config = {
+    DB_URI: process.env.DB_URI,
+    DB_NAME: process.env.DB_NAME,
+    DB_USER: process.env.DB_USER,
+    DB_PASSWORD: process.env.DB_PASSWORD,
+}
+
 // unable to form by composition
-const conn = `mongodb://user:asw2022@130.61.249.212:8100/dede?authSource=admin`;
+const conn = `mongodb://${config.DB_USER}:${config.DB_PASSWORD}@${config.DB_URI}/${config.DB_NAME}`;
 
 let app: Application;
 let server: http.Server;
@@ -27,7 +36,8 @@ beforeAll(async () => {
     app.use(bp.json());
     app.use("/api", rproducts, rusers, rorders);
 
-    mongoose.connect(conn)
+    mongoose.connect(conn,{    authSource : "admin",
+})
         .then(db => console.log("DB is connected")) 
         .catch(err => console.error(err));
 
