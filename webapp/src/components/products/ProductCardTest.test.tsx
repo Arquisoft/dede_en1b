@@ -38,7 +38,9 @@ needs to be tested that it's called when clicking on 'add to cart'
 //const prodCardImpl = require('./ProductCard');
 //const addCart = jest.spyOn(prodCardImpl, 'addProduct');  
 */
-        const dummy = () => {};
+        const dummy = () => {
+            //This is intentional as we won't be checking whether the Cart component is updated or not
+        };
         render(<MemoryRouter><ProductCard product={productsList} refreshCartList={dummy} /> </MemoryRouter>);
 
         expect(screen.getByText('bmw')).toBeInTheDocument();
