@@ -1,4 +1,4 @@
-import { Button, FormHelperText, TextField, Typography } from '@mui/material';
+import { Alert, Button, FormHelperText, TextField, Typography } from '@mui/material';
 import { useSession } from "@inrupt/solid-ui-react";
 
 import { Store } from 'react-notifications-component';
@@ -110,10 +110,10 @@ export default function AddressForm() {
                 <TextField sx={{ width: '85%' }} label="Street" id="Street" aria-describedby="Street-helper-text" required={true} />
                 <FormHelperText id="Street-helper-text">Example: Valdés Salas.</FormHelperText>
                 <br></br>
-                <TextField sx={{ width: '85%'}} label="City" id="City" aria-describedby="City-helper-text" required={true} />
+                <TextField sx={{ width: '85%' }} label="City" id="City" aria-describedby="City-helper-text" required={true} />
                 <FormHelperText id="City-helper-text">Example: Oviedo.</FormHelperText>
                 <br></br>
-                <TextField sx={{ width:'85%' }} label="Locality" id="Locality" aria-describedby="Locality-helper-text" required={true} />
+                <TextField sx={{ width: '85%' }} label="Locality" id="Locality" aria-describedby="Locality-helper-text" required={true} />
                 <FormHelperText id="Locality-helper-text">Example: Asturias.</FormHelperText>
                 <br></br>
                 <TextField sx={{ width: '85%' }} label="ZIP Code" id="ZIPCode" aria-describedby="ZIPCode-helper-text" required={true} />
@@ -121,7 +121,7 @@ export default function AddressForm() {
                 <br></br>
                 <TextField sx={{ width: '85%' }} label="Country" id="Country" aria-describedby="Country-helper-text" required={true} />
                 <FormHelperText id="Country-helper-text">Example: Spain.</FormHelperText>
-
+                <Alert sx={{ width: '82%' }} severity="info">Attention! By clicking "Set Address" you are giving us persmission to write on your VCARD, a public place.</Alert>
                 <Button type="button" onClick={addAddress} id="addAddress" variant="contained">Set Address</Button>
             </form>
             <br></br>
