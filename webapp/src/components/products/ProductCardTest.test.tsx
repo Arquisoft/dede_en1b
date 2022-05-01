@@ -7,11 +7,11 @@ import * as api from '../../api/api';
 import { MemoryRouter } from 'react-router-dom';
 
 import ProductCard from './ProductCard';
-import { Product } from '../../shared/shareddtypes';
+import { ItemCart, Product } from '../../shared/shareddtypes';
 
 jest.mock("../../api/api");
 const fakeProd: Product = {} as Product;
-const productsList = 
+const productTest = 
 {
     "id":"1",
     "name":"bmw",
@@ -34,20 +34,23 @@ test("Product card is rendered properly", async () =>{
 jest.spyOn(api, 'getProductImages').mockImplementation((_id: string): Promise<string[]> => {
     return Promise.resolve(["1"]);
 });
-/*
-needs to be tested that it's called when clicking on 'add to cart'
-//const prodCardImpl = require('./ProductCard');
-//const addCart = jest.spyOn(prodCardImpl, 'addProduct');  
-*/
+jest.spyOn(api, 'addToCart').mockImplementation((itemCart: ItemCart, factor: number = 1): void  => {
+    //doNothing as I'm only testing this function is being called when clicking on add...
+});
+
         const dummy = () => {
             //This is intentional as we won't be checking whether the Cart component is updated or not
         };
-        render(<MemoryRouter><ProductCard product={productsList} refreshCartList={dummy} /> </MemoryRouter>);
+        render(<MemoryRouter><ProductCard product={productTest} refreshCartList={dummy} /> </MemoryRouter>);
 
         expect(screen.getByText('bmw')).toBeInTheDocument();
         expect(screen.getByText('30€')).toBeInTheDocument();
         expect(screen.getByText('Add to cart')).toBeInTheDocument();
         expect(screen.getByAltText('bmw')).toBeInTheDocument();
+        expect(api.getProductImages).toHaveBeenCalled();
+        screen.getByTestId('add-cart-button').click();
+        expect(api.addToCart).toHaveBeenCalled();
+        expect(api.addToCart).toHaveBeenCalledWith({product:productTest, quantity:1});
 
 });
 

@@ -4,7 +4,6 @@ export type User = {
 }
 
 export type Product = {
-
   id: string;
   name: string;
   description: string;
@@ -15,7 +14,6 @@ export type Product = {
   product: Product;
   _id: string;
   quantity: number;
-
 }
 
 export type Order = {
