@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-
+import LinearProgress from '@mui/material/LinearProgress';
 import { getProducts } from '../../api/api';
 import { Product } from '../../shared/shareddtypes';
 import ProductCard from './ProductCard';
@@ -172,12 +172,15 @@ function MainProducts(props: MainProductsProps): JSX.Element {
 
         <div className="products-container">
 
+          
+          {products.length>0 ? products.map((p, i) => (
 
-          {products.map((p, i) => (
+            <ProductCard data-testid={p.id} key={p.id} product={p} refreshCartList={props.refreshCartList} />
 
-            <ProductCard key={p.id} product={p} refreshCartList={props.refreshCartList} />
-
-          ))}
+          )): <Typography data-testid="loader">Loading products!!
+            <LinearProgress color="success" />
+          </Typography>
+        }
         </div>
       </div>
       <Drawer
