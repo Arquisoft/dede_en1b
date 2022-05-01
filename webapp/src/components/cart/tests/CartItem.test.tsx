@@ -4,8 +4,12 @@ import { ItemCart, Product } from "../../../shared/shareddtypes";
 import CartItem from "../CartItem";
 
 const fakeProd: Product = {} as Product;
-const doNothing = () => {};
-const dontDelete = (product: Product) => {};
+const doNothing = () => {
+    //this is intentional. For testing purposes we pass an empty function
+};
+const dontDelete = (_product: Product) => { 
+    //this is intentional. For testing purposes we pass an empty function
+};
 
 /**
  * Test that the item cart is rendered correctly

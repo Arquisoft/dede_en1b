@@ -7,7 +7,9 @@ import ProductPage from "../ProductPage";
  */
  test("ProductPage is rendered correctly", async() => {
     
-    const doNothing = () => {};
+    const doNothing = () => {
+        //this is intentional
+    };
 
     //const { getByText } =
     render (

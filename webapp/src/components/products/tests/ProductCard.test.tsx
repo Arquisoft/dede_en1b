@@ -4,7 +4,9 @@ import { Product } from "../../../shared/shareddtypes";
 import ProductCard from "../ProductCard";
 
 const fakeProd: Product = {} as Product;
-const doNothing = () => {};
+const doNothing = () => {
+    //this is intentional
+};
 
 /**
  * Test that the product card can be rendered without errors
