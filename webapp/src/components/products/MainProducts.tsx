@@ -174,7 +174,7 @@ function MainProducts(props: MainProductsProps): JSX.Element {
         <div className="products-container">
 
 
-          {products.length > 0 ? products.map((p, i) => (
+          {products.length > 0 ? products.map((p, _i) => (
             <div data-testid="products-retrieved">
               <ProductCard key={p.id} product={p} refreshCartList={props.refreshCartList} />
             </div>

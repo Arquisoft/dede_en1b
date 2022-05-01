@@ -1,11 +1,10 @@
 
-import { fireEvent, render, screen, waitFor, waitForElementToBeRemoved, within } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
 import MainProducts from './MainProducts';
 import * as api from '../../api/api';
 import { Product } from '../../shared/shareddtypes';
 import { MemoryRouter } from 'react-router-dom';
-import { containerClasses } from '@mui/material';
-import userEvent from '@testing-library/user-event';
+
 
 const fakeProd: Product = {} as Product;
 const productsList = [
@@ -37,12 +36,14 @@ const productsList = [
 ];
 
 test("Filter is rendered properly", async () => {
-  jest.spyOn(api, "getProductImages").mockImplementation((id: string): Promise<string[]> => {
+  jest.spyOn(api, "getProductImages").mockImplementation((_id: string): Promise<string[]> => {
     return Promise.resolve(["1"]);
   });
   //The products are retrieved from the getProducts method of the API. 
   jest.spyOn(api, "getProducts").mockReturnValue(Promise.resolve([]));
-  render(<MemoryRouter><MainProducts refreshCartList={() => { }} /> </MemoryRouter>);
+  render(<MemoryRouter><MainProducts refreshCartList={() => {
+    //intentional for testing purposes
+  }} /> </MemoryRouter>);
 
   expect(screen.getByText('Loading products!!')).toBeInTheDocument();
   let filter = screen.getByTestId("openFilterBtn");
@@ -61,13 +62,15 @@ test("Filter is rendered properly", async () => {
 
 test("When listing products the proper function is called", async () => {
   //We need to mock this function as the ProductCard calls it in order to render the img of each product.
-  jest.spyOn(api, "getProductImages").mockImplementation((id: string): Promise<string[]> => {
+  jest.spyOn(api, "getProductImages").mockImplementation((_id: string): Promise<string[]> => {
     return Promise.resolve(["1"]);
   });
   //The products are retrieved from the getProducts method of the API. 
   const mockAPI = jest.spyOn(api, "getProducts").mockReturnValue(Promise.resolve(productsList));
 
-  render(<MemoryRouter><MainProducts refreshCartList={() => { }} /> </MemoryRouter>);
+  render(<MemoryRouter><MainProducts refreshCartList={() => {
+    //intentional for testing purposes
+   }} /> </MemoryRouter>);
   //When we first render the component, it will make an API call to getProducts.
   expect(screen.getByText('Loading products!!')).toBeInTheDocument();
   //We neeed to wait for the loader to be removed!!!!
@@ -87,4 +90,4 @@ test("When listing products the proper function is called", async () => {
 });
 
 
- 
+
