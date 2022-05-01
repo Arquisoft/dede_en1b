@@ -4,7 +4,9 @@ import ShoppingCart from "../ShoppingCart";
 import { ItemCart, Product } from "../../../shared/shareddtypes";
 import { act } from "react-dom/test-utils";
 
-const doNothing = () => {};
+const doNothing = () => {
+    //this is intentional for testing purposes. We won't be using a proper refreshCarList so we'll pass this empty function. to the component
+};
 const fakeProd: Product = {} as Product;
 
 /**
