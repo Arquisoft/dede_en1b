@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ItemCart, Product } from "../../shared/shareddtypes";
-import { addToCart, deleteFromCart, getCart } from '../../api/api';
+import { deleteFromCart, getCart } from '../../api/api';
 
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
@@ -18,10 +18,6 @@ const Img =
     styled("img")({
         display: "block"
     });
-
-function addProduct(product: Product): void {
-    addToCart({ product: product, quantity: 1 });
-}
 
 function ShoppingCart(props: ShoppingCartProps): JSX.Element {
 
@@ -62,17 +58,11 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
         temp.forEach(item => {
             props.items.push(item);
         });
-
     }
-
-
 
     useEffect(() => {
         setTotal(props.items.reduce((acc, item) => acc + item.product.price * item.quantity, 0));
     }, [props.items]);
-
-
-
 
 
     function loadItems(): JSX.Element {
