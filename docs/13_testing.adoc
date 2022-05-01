@@ -1,0 +1,40 @@
+[[section-quality-scenarios]]
+== Testing
+Different testing methods were used to check the correct functioning and implementation of the project.
+
+
+=== Unitary Tests
+
+
+
+=== Integration Tests
+
+=== Load Tests
+
+Gatling tool was used to perform load tests to the application.
+Using its recorder functionality we were able to capture a fixed number of requests and reproduce their functionality for every user that was simulated by the program.
+
+Those requests included the use of filters, adding products to the cart, modifying their quantities and perform checkout functionality. 
+
+The recorder tool acts as a man-in-the-middle to capture the traffic and requests made, we had to modify the proxy configuration in our browsers for the tool to do the before-mentioned actions properly, losing internet connection meanwhile. 
+
+This internet loss made it impossible for us to load test the SOLID login and, as a consequence, the order creation. 
+
+An Open Model for user injection was the one used because you control the arrival rate of users, and the concurrent number of users in our web is not capped. We used this injection setup.
+
+image::gatlingSetUp.png[]
+
+An approximate number of 18k requests were made during the test in which 10% of those had a response time between 800ms and 1200ms, and just 1% had a response time above the latter. 
+
+image::gatlingChart.png[]
+
+During the test there was a peak of 196 concurrent users.
+
+image::gatlingActiveUsers.png[]
+
+Observing the percentile response time chart generated we can know where in the execution of the recording the requests consume more time and its different distributions. The requests that consume more time in this test would be filter usage, and quantity modification in the shopping cart.
+
+image::gatlingPercentiles.png[]
+
+
+
