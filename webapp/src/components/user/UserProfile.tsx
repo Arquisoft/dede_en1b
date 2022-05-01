@@ -120,7 +120,7 @@ export default function UserProfile() {
                 datasetUrl={webId}
                 thingUrl={webId}
             >
-                <Typography id="pageTitle" variant="h3">
+                <Typography id="pageTitle" variant="h3" style={{display:'inline-block', fontWeight:'bold', fontSize:'2.4em', marginTop:'40px', marginBottom:'0px'}}>
                     <span>Welcome, </span>
                     <Text properties={[
                         "http://www.w3.org/2006/vcard/ns#fn",
@@ -142,6 +142,7 @@ export default function UserProfile() {
                     direction="column"
                     divider={<Divider orientation="horizontal" flexItem />}
                     spacing={2}
+                    style={{overflow:'auto'}}
                 >
 
                     {orders.map(order => (

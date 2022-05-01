@@ -23,6 +23,7 @@ import AdminLogin from './components/administrator/AdminLogin';
 
 import { ReactNotifications } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css'
+import PageNotFound from './components/fragments/PageNotFound';
 
 
 function App(): JSX.Element {
@@ -41,9 +42,9 @@ function App(): JSX.Element {
     <>
       <ReactNotifications/>
 
-      <Header cart={cart} />
       <Container style={{ alignContent: "center", marginTop: "5%", minHeight: "50vh" }} maxWidth="lg">
-        <Router>
+      <Router>
+      <Header cart={cart} />
           <Routes>
              <Route path='/' element={<MainProducts refreshCartList={refreshCartList}/>} />
               <Route path="/products/:id" element={<ProductPage refreshCartList={refreshCartList}/>} />
@@ -55,6 +56,7 @@ function App(): JSX.Element {
               <Route path='/cart' element={<ShoppingCart items={cart} refreshCartList={refreshCartList} />} />
               <Route path='/admin' element={<AdminView/>}/>
               <Route path='/admin/login' element={<AdminLogin/>}/>
+              <Route path="/*" element={<PageNotFound/>} />
           </Routes>
         </Router>
       </Container>
