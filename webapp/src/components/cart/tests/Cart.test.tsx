@@ -1,8 +1,8 @@
-import { fireEvent, queryByTestId, queryByText, render, waitForElementToBeRemoved, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render,screen, waitFor } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import ShoppingCart from "../ShoppingCart";
 import { ItemCart, Product } from "../../../shared/shareddtypes";
-import { act } from "react-dom/test-utils";
+
 import * as api from '../../../api/api';
 const doNothing = () => {
     //this is intentional for testing purposes. We won't be using a proper refreshCarList so we'll pass this empty function. to the component
