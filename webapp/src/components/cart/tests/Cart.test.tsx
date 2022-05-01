@@ -4,13 +4,14 @@ import ShoppingCart from "../ShoppingCart";
 import { ItemCart, Product } from "../../../shared/shareddtypes";
 import { act } from "react-dom/test-utils";
 
+const doNothing = () => {};
+
 /**
  * Test that the shopping cart is rendered correctly
  * when empty
  */
 test("Cart empty is rendered correctly", async() => {
     const itemCarts: ItemCart[] = [];
-    const doNothing = () => {};
 
     const { getByText } = render (
         <Router>
@@ -24,7 +25,7 @@ test("Cart empty is rendered correctly", async() => {
     // The expected messages
     expect(getByText("Shopping cart")).toBeInTheDocument();
     expect(getByText("The shopping cart is empty")).toBeInTheDocument();
-    
+
     // The total ammount must be 0
     expect(getByText("0.00 €")).toBeInTheDocument();
 });
@@ -68,7 +69,6 @@ test("Cart empty is rendered correctly", async() => {
             quantity: 1
         }
     ];
-    const doNothing = () => {};
 
     const { getByText } = render (
         <Router>
@@ -111,7 +111,6 @@ test("Cart empty is rendered correctly", async() => {
             quantity: 2
         }
     ];
-    const doNothing = () => {};
 
     const { getByText } = render (
         <Router>

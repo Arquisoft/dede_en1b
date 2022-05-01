@@ -1,8 +1,9 @@
 import { fireEvent, render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { ItemCart, Product } from "../../../shared/shareddtypes";
-import { act } from "react-dom/test-utils";
+import { Product } from "../../../shared/shareddtypes";
 import ProductCard from "../ProductCard";
+
+const doNothing = () => {};
 
 /**
  * Test that the product card can be rendered without errors
@@ -22,7 +23,6 @@ import ProductCard from "../ProductCard";
         _id: "5555",
         quantity: 0
     };
-    const doNothing = () => {};
 
     const { getByText } = render (
         <Router>
@@ -57,7 +57,6 @@ import ProductCard from "../ProductCard";
         _id: "5555",
         quantity: 0
     };
-    const doNothing = () => {};
 
     const { getByText } = render (
         <Router>

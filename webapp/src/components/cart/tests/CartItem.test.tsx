@@ -3,6 +3,9 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { ItemCart, Product } from "../../../shared/shareddtypes";
 import CartItem from "../CartItem";
 
+const doNothing = () => {};
+const dontDelete = (product: Product) => {};
+
 /**
  * Test that the item cart is rendered correctly
  * from a product
@@ -25,8 +28,6 @@ import CartItem from "../CartItem";
         },
         quantity: 53    // Intentionally high to check
     };
-    const doNothing = () => {};
-    const dontDelete = (product: Product) => {};
 
     const { getByText } = render (
         <Router>
@@ -68,8 +69,6 @@ import CartItem from "../CartItem";
         },
         quantity: 53    // Intentionally high to check
     };
-    const doNothing = () => {};
-    const dontDelete = (product: Product) => {};
 
     const { getByText } = render (
         <Router>
