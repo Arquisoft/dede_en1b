@@ -5,14 +5,15 @@ import { ItemCart, Product } from "../../../shared/shareddtypes";
 import { act } from "react-dom/test-utils";
 
 const doNothing = () => {};
+const fakeProd: Product = {} as Product;
 
 /**
  * Test that the shopping cart is rendered correctly
  * when empty
  */
 test("Cart empty is rendered correctly", async() => {
+    
     const itemCarts: ItemCart[] = [];
-
     const { getByText } = render (
         <Router>
             <ShoppingCart
@@ -36,7 +37,6 @@ test("Cart empty is rendered correctly", async() => {
  */
  test("Cart with products is rendered correctly", async() => {
      
-    const fakeProd: Product = {} as Product;
     const itemCarts: ItemCart[] = [
         {
             product: {
@@ -93,19 +93,18 @@ test("Cart empty is rendered correctly", async() => {
  * after some or all of the items are deleted
  */
  test("Cart can have its products deleted", async() => {
-    const fakeProd: Product = {} as Product;
     const itemCarts: ItemCart[] = [
         {
             product: {
-                id: "1234",
-                name: "P1",
-                description: "P1 description",
+                id: "9999",
+                name: "P0",
+                description: "P0 description",
                 price: 0.5,
                 image: "",
                 category: "Testing",
                 reviews: [],
                 product: fakeProd,
-                _id: "1234",
+                _id: "9999",
                 quantity: 2
             },
             quantity: 2
@@ -124,11 +123,10 @@ test("Cart empty is rendered correctly", async() => {
     // The initial total ammount must be 0.5 * 2 = 1.0
     expect(getByText("1.00 €")).toBeInTheDocument();
 
-    expect(getByText("P1 description")).toBeInTheDocument();
     fireEvent.click(getByText("-"));
 
     // The product should still be there, and ammount should update
-    expect(getByText("P1 description")).toBeInTheDocument();
+    expect(getByText("P0 description")).toBeInTheDocument();
     expect(getByText("0.5 €")).toBeInTheDocument();
 
     // Reduce quantity should be disabled (quantity = 1)

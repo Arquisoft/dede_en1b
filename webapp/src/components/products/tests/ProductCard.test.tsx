@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Product } from "../../../shared/shareddtypes";
 import ProductCard from "../ProductCard";
 
+const fakeProd: Product = {} as Product;
 const doNothing = () => {};
 
 /**
@@ -10,45 +11,10 @@ const doNothing = () => {};
  */
  test("ProductCard is rendered correctly", async() => {
     
-    const fakeProd: Product = {} as Product;
     const prod: Product = {
         id: "5555",
         name: "Realistically long name",
-        description: "P1 description",
-        price: 88.8,
-        image: "",
-        category: "Testing",
-        reviews: [],
-        product: fakeProd,
-        _id: "5555",
-        quantity: 0
-    };
-
-    const { getByText } = render (
-        <Router>
-            <ProductCard
-                product={prod}
-                refreshCartList = {doNothing}
-            />
-        </Router>
-    );
-
-    // ALL the expected elements appear in the card
-    expect(getByText("Realistically long name")).toBeInTheDocument();
-    expect(getByText("88.8€")).toBeInTheDocument();
-    expect(getByText("Add to cart")).toBeInTheDocument();
-});
-
-/**
- * Test that the product card can be rendered without errors
- */
- test("ProductCard is rendered correctly", async() => {
-    
-    const fakeProd: Product = {} as Product;
-    const prod: Product = {
-        id: "5555",
-        name: "Realistically long name",
-        description: "My description",
+        description: "Any description",
         price: 88.8,
         image: "",
         category: "Testing",
@@ -78,9 +44,8 @@ const doNothing = () => {};
  */
  test("ProductCard handles adding", async() => {
     
-    const fakeProd: Product = {} as Product;
-    const prod: Product = {
-        id: "5555",
+    const prd: Product = {
+        id: "7777",
         name: "P0",
         description: "P0 description",
         price: 88.8,
@@ -88,15 +53,15 @@ const doNothing = () => {};
         category: "Testing",
         reviews: [],
         product: fakeProd,
-        _id: "5555",
-        quantity: 0
+        _id: "7777",
+        quantity: 1
     };
     const spyable = jest.fn();
 
     const { getByText } = render (
         <Router>
             <ProductCard
-                product={prod}
+                product={prd}
                 refreshCartList = {spyable}
             />
         </Router>

@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { ItemCart, Product } from "../../../shared/shareddtypes";
 import CartItem from "../CartItem";
 
+const fakeProd: Product = {} as Product;
 const doNothing = () => {};
 const dontDelete = (product: Product) => {};
 
@@ -12,21 +13,20 @@ const dontDelete = (product: Product) => {};
  */
  test("CartItem is rendered correctly", async() => {
     
-    const fakeProd: Product = {} as Product;
     const item: ItemCart = {
         product: {
-            id: "1111",
-            name: "P1",
-            description: "P1 description",
-            price: 0.1,
+            id: "2222",
+            name: "ProductName",
+            description: "Productdescription",
+            price: 0.3,
             image: "",
             category: "Testing",
             reviews: [],
             product: fakeProd,
-            _id: "1111",
-            quantity: 53
+            _id: "2222",
+            quantity: 9
         },
-        quantity: 53    // Intentionally high to check
+        quantity: 9
     };
 
     const { getByText } = render (
@@ -40,9 +40,9 @@ const dontDelete = (product: Product) => {};
         </Router>
     );
 
-    expect(getByText("P1")).toBeInTheDocument();
-    expect(getByText("P1 description")).toBeInTheDocument();
-    expect(getByText("53")).toBeInTheDocument();
+    expect(getByText("ProductName")).toBeInTheDocument();
+    expect(getByText("Productdescription")).toBeInTheDocument();
+    expect(getByText("9")).toBeInTheDocument();
     expect(getByText("+")).toBeInTheDocument();
     expect(getByText("-")).toBeInTheDocument();
     expect(getByText("Delete")).toBeInTheDocument();
@@ -53,10 +53,9 @@ const dontDelete = (product: Product) => {};
  */
  test("CartItem can have quantity modified", async() => {
     
-    const fakeProd: Product = {} as Product;
     const item: ItemCart = {
         product: {
-            id: "1111",
+            id: "3333",
             name: "P1",
             description: "P1 description",
             price: 0.1,
@@ -64,7 +63,7 @@ const dontDelete = (product: Product) => {};
             category: "Testing",
             reviews: [],
             product: fakeProd,
-            _id: "1234",
+            _id: "3333",
             quantity: 53
         },
         quantity: 53    // Intentionally high to check
