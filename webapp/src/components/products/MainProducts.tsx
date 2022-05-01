@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-
+import LinearProgress from '@mui/material/LinearProgress';
 import { getProducts } from '../../api/api';
 import { Product } from '../../shared/shareddtypes';
 import ProductCard from './ProductCard';
@@ -159,6 +159,7 @@ function MainProducts(props: MainProductsProps): JSX.Element {
       <div className='main-products'>
         <div className='main-filter'>
           <IconButton
+            data-testid="openFilterBtn"
             id="openFilterButton"
             color="inherit"
             aria-label="open drawer"
@@ -173,14 +174,18 @@ function MainProducts(props: MainProductsProps): JSX.Element {
         <div className="products-container">
 
 
-          {products.map((p, i) => (
-
-            <ProductCard key={p.id} product={p} refreshCartList={props.refreshCartList} />
-
-          ))}
+          {products.length > 0 ? products.map((p, _i) => (
+            <div data-testid="products-retrieved">
+              <ProductCard key={p.id} product={p} refreshCartList={props.refreshCartList} />
+            </div>
+          )) : <Typography data-testid="loader">Loading products!!
+            <LinearProgress color="success" />
+          </Typography>
+          }
         </div>
       </div>
       <Drawer
+        data-testid="drawer-filter"
         sx={{
           width: drawerWidth,
           flexShrink: 0,
@@ -207,9 +212,11 @@ function MainProducts(props: MainProductsProps): JSX.Element {
 
           <br />
           <Select
+            data-testid="colorPanel"
             id="colorChooser"
             sx={{ width: 200 }}
             defaultValue="all"
+            label="color-filter"
           >
             <MenuItem>
               <ListItem button key="all" onClick={() => { filterColor("All") }}>
@@ -220,7 +227,7 @@ function MainProducts(props: MainProductsProps): JSX.Element {
             </MenuItem>
             <br></br>
             <MenuItem>
-              <ListItem button key="yellow" onClick={() => { filterColor("yellow") }}>
+              <ListItem button data-testid="yellow" key="yellow" onClick={() => { filterColor("yellow") }}>
                 <ListItemIcon>
                   <Brightness1Icon sx={{ color: yellow[500] }}></Brightness1Icon>
                 </ListItemIcon>
