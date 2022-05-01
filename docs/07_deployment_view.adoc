@@ -59,19 +59,29 @@ Quality and/or Performance Features::
 As we have stated before, privacy and security will be our main concerns. Having a good infraestructure and servers backing up our app, will be a crucial part for us to achieve this goals. 
 Performance is also a thing to look after, but DeDe being a Web App, this will depend mostly on the server in which it runs, as well ass the users own internet connection.
 
+
 Mapping of Building Blocks to Infrastructure::
 
 [cols="1, 3"]
 |===
     |*Building Block* | *Mapping to Infraestructure*
-    |DeDe | This is the main application. It will run inside a docker container, which will be deployed in a server. The nature of this server is still to be determined.
+    |RestApi | This is the brains of our shop, It's job is to retrieve the products, save the orders, store de reviews... etc . It will run inside a docker container, which will be automatically deployed in an Azure server.The server will count with 1 cpu and 2GB of RAM, in a real world, a more powerfull server should be use, but for this example is more than enought.
     |WebApp | This is the user end of the application. It will be rendered by a web browser, which will be executed over the users personal computer or smart device, like phones, tablets...
     |Pod | These are the users Pods, where their address will be stored. They will be served by the SOLID project, and hosted in a server of the user's election.
-    |MongoDB | This is the DataBase, which will be stored on a server as well. Like the application per se, the nature of this server is still to be determined.
-    |ShippingApi | This API will be used to calculate routes and costs of delivery. It will be hosted by a third party in a server of their choosing.
+    |MongoDB | This is the DataBase, which will be stored on a server as well. It's has been deployed in an Oracle server.
+    |ShippingApi | This API will be used to calculate routes and costs of delivery. As there are no free APIs for this kind of demostration, we are using our own api simulating the prices.
 |===
 
-Continuous Integration::
 
-Both the WebApp and the RestApi are automatically deployed using GitHub Actions. Every time a new realese is made, a script, located in .github/workflows/asw2122.yml, will be executed. This script first runs the tests, and if they all pass succesfully, the docker images will be build and publish to GitHub Packages. Finally, the scripts connect through SSH to the server and deploys the application using Docker-Compose. As private tokens, server IPs and other information must be private, we are using GitHub Secrets to store it. 
+=== Process of chossing a provider
+
+As we are students, we searched for the cheapest provider to run our application. The first one we tried, Oracle, has a free tier for students which includes 2 virtual machines with 1 cpu and 1 GB of RAM without time limt. We deployed our database there and had no issues with performance, but when we tried to deploy our application, the server struggled to run everything smoothly so we looked for an alternative. We found that Microsoft Azures has also a student program which gives us 100$ credit for its services, so we used it to rent a vm with 1 cpu and 2GB of RAM. We kept the database in the oracle server and use the azure one to deploy our application.
+
+To use other Solid providers, it is necesary to have the web encrypted with https because connections from https to http are not allowed for security reasons. To have HTTPS on our web, we used Caddy to configure a proxy server, and registered a free domain name with freenom. Caddy is in charge to serve the content in localhost:3000 to the requests coming from dedeen1b.tk encrypting it first using a SSL certificate from letsencrypt.org. The same thing is done for api.dedeen1b.tk to serve the api.
+
+With this setup, we have now a complete infrastructure for our application.
+
+=== Continuous Integration
+
+Both the WebApp and the RestApi are automatically deployed using GitHub Actions. Every time a new realese is made, a script, located in .github/workflows/asw2122.yml, will be executed. This script first runs the tests, and if they all pass succesfully, the docker images will be build and publish to GitHub Packages. Finally, the scripts connect through SSH to the server and deploys the application using Docker-Compose. As tokens, server IPs and other information must be private, we are using GitHub Secrets to store it. 
 
