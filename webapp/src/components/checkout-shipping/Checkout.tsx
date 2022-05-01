@@ -14,7 +14,6 @@ import CheckoutItem from "./CheckoutItem";
 
 type CheckoutProps = {
     items: ItemCart[];
-    refreshCartList: () => void;
 };
 
 function Checkout(props: CheckoutProps): JSX.Element {
@@ -22,10 +21,6 @@ function Checkout(props: CheckoutProps): JSX.Element {
     const [total, setTotal] = useState<number>(0);
 
 
-    const updateTotal = async () => {
-        let cart = getCart();
-        setTotal(cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0));
-    };
 
     useEffect(() => {
         setTotal(props.items.reduce((acc, item) => acc + item.product.price * item.quantity, 0));
@@ -39,7 +34,7 @@ function Checkout(props: CheckoutProps): JSX.Element {
 
         let res = props.items.map((item: ItemCart) => {
             if (item !== null && item.quantity > 0) {
-                return <CheckoutItem updateTotal={updateTotal} item={item} />
+                return <CheckoutItem item={item} />
             }
         }
         )
