@@ -24,6 +24,7 @@ test("Cart empty is rendered correctly", async() => {
     // The expected messages
     expect(getByText("Shopping cart")).toBeInTheDocument();
     expect(getByText("The shopping cart is empty")).toBeInTheDocument();
+    
     // The total ammount must be 0
     expect(getByText("0.00 €")).toBeInTheDocument();
 });
