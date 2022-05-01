@@ -1,9 +1,9 @@
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, queryByTestId, queryByText, render, waitForElementToBeRemoved, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import ShoppingCart from "../ShoppingCart";
 import { ItemCart, Product } from "../../../shared/shareddtypes";
 import { act } from "react-dom/test-utils";
-
+import * as api from '../../../api/api';
 const doNothing = () => {
     //this is intentional for testing purposes. We won't be using a proper refreshCarList so we'll pass this empty function. to the component
 };
@@ -13,14 +13,14 @@ const fakeProd: Product = {} as Product;
  * Test that the shopping cart is rendered correctly
  * when empty
  */
-test("Cart empty is rendered correctly", async() => {
-    
-    const itemCarts: ItemCart[] = [];
-    const { getByText } = render (
+test("Cart empty is rendered correctly", async () => {
+
+
+    const { getByText } = render(
         <Router>
             <ShoppingCart
-                items = { itemCarts }
-                refreshCartList = {doNothing}
+                items={[]}
+                refreshCartList={doNothing}
             />
         </Router>
     )
@@ -37,8 +37,8 @@ test("Cart empty is rendered correctly", async() => {
  * Test that the shopping cart is rendered correctly
  * when containing several products
  */
- test("Cart with products is rendered correctly", async() => {
-     
+test("Cart with products is rendered correctly", async () => {
+
     const itemCarts: ItemCart[] = [
         {
             product: {
@@ -72,11 +72,11 @@ test("Cart empty is rendered correctly", async() => {
         }
     ];
 
-    const { getByText } = render (
+    const { getByText } = render(
         <Router>
             <ShoppingCart
-                items = { itemCarts }
-                refreshCartList = {doNothing}
+                items={itemCarts}
+                refreshCartList={doNothing}
             />
         </Router>
     )
@@ -94,8 +94,8 @@ test("Cart empty is rendered correctly", async() => {
  * Test that the shopping cart is rendered correctly
  * after some or all of the items are deleted
  */
- test("Cart can have its products deleted", async() => {
-    const itemCarts: ItemCart[] = [
+test("Cart can have its products deleted", async () => {
+    const cartWithOneItem: ItemCart[] = [
         {
             product: {
                 id: "9999",
@@ -113,18 +113,19 @@ test("Cart empty is rendered correctly", async() => {
         }
     ];
 
-    const { getByText } = render (
+    const mockAPI = jest.spyOn(api, "deleteFromCart");
+    const { getByText } = render(
         <Router>
             <ShoppingCart
-                items = { itemCarts }
-                refreshCartList = {doNothing}
+                items={cartWithOneItem}
+                refreshCartList={doNothing}
             />
         </Router>
     )
 
     // The initial total ammount must be 0.5 * 2 = 1.0
     expect(getByText("1.00 €")).toBeInTheDocument();
-
+    expect(screen.getByTestId('it9999')).toBeInTheDocument();
     fireEvent.click(getByText("-"));
 
     // The product should still be there, and ammount should update
@@ -133,11 +134,10 @@ test("Cart empty is rendered correctly", async() => {
 
     // Reduce quantity should be disabled (quantity = 1)
     expect(getByText("-")).toBeDisabled();
-    
-    act(() => {
-        fireEvent.click(getByText("Delete"));
-    });
+    expect(screen.getByTestId("9999-delete")).toBeInTheDocument();
 
-    // The product should no longer be there
-    expect(getByText("1.00 €")).toBeInTheDocument();
+    fireEvent.click(screen.getByTestId("9999-delete"));
+    
+    await waitFor(() => expect(mockAPI).toHaveBeenCalledTimes(1));
+   //we cannot test view is changed as this is done by the function 'refreshCarList'.
 });

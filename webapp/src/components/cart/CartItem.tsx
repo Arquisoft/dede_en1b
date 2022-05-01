@@ -41,7 +41,7 @@ function CartItem(props: CartItemProps) {
     return (
 
         // <div className="card-item">
-        <Card id={props.item.product.id} className="card-item">
+        <Card data-testid={"it"+props.item.product.id} id={props.item.product.id} className="card-item">
             <img className="item-img" src={imgPath} alt={props.item.product.name} />
             <div className="item-info">
 
@@ -73,7 +73,7 @@ function CartItem(props: CartItemProps) {
                         +
                     </Button>
 
-                    <Button
+                    <Button data-testid={props.item.product.id+"-delete"}
                         onClick={() => props.deleteItem(props.item.product)}
                         color="error" size="medium" startIcon={<DeleteIcon />}
                     >
