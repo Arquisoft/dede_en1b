@@ -26,52 +26,25 @@ function addProduct(product: Product): void {
 function ShoppingCart(props: ShoppingCartProps): JSX.Element {
 
     const [total, setTotal] = useState<number>(0);
-
+    
     const updateTotal = async () => {
-        let cart = await getCart();
+        let cart = getCart();
         setTotal(cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0));
     };
+   
 
     const deleteItem = async (product: Product) => {
-        await deleteFromCart(product.id);
-        updateTotal();
-        //set props.items to the new items
-        let i = props.items.findIndex(item => item.product.id === product.id);
-        if (i >= 0) {
-            delete props.items[i];
-            reorganizeProps();
-        }
-
-        props.refreshCartList();
+        deleteFromCart(product.id).then(() => {
+            updateTotal();
+            props.refreshCartList();
+        });
     };
 
 
-    function reorganizeProps(): void {
-        let temp: ItemCart[] = [];
-
-        //copy all non empty elements
-        props.items.forEach(item => {
-            if (item != undefined)
-                temp.push(item);
-        });
-
-        //empty props.items
-        props.items.length = 0;
-
-        //copy back to props.items
-        temp.forEach(item => {
-            props.items.push(item);
-        });
-
-    }
-
-
-
+    
     useEffect(() => {
         setTotal(props.items.reduce((acc, item) => acc + item.product.price * item.quantity, 0));
-    }, [props.items]);
-
-
+    }, []);
 
 
 
@@ -85,7 +58,9 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
             );
         }
         else {
-            //console.log("Length: " + props.items.length)
+            
+            console.log("Length: " + props.items.length)
+            console.log(props.items);
             let res = props.items.map((item: ItemCart) => {
                 if (item !== null && item.quantity > 0) {
                     return <CartItem refreshCartList={props.refreshCartList} updateTotal={updateTotal} deleteItem={deleteItem} item={item} />

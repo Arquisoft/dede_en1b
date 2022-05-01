@@ -35,14 +35,14 @@ function CartItem(props: CartItemProps) {
     useEffect(() => {
         setQuantity(props.item.quantity);
         getImage();
-    }, [props.item.quantity]);
+    }, [props.item.product.image]);
 
 
 
     return (
 
         // <div className="card-item">
-        <Card id="card-item">
+        <Card id={props.item.product.id} className="card-item">
             <img className="item-img" src={imgPath} alt={props.item.product.name} />
             <div className="item-info">
 

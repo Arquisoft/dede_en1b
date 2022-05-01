@@ -1,5 +1,5 @@
 @media(min-width: 601px) {
-    #card-item {
+    .card-item {
         display: grid;
         grid-template-columns: 1fr 2fr;
         align-items: left;
