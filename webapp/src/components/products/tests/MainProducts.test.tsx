@@ -1,8 +1,8 @@
 
 import { fireEvent, render, screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
-import MainProducts from './MainProducts';
-import * as api from '../../api/api';
-import { Product } from '../../shared/shareddtypes';
+import MainProducts from '../MainProducts';
+import * as api from '../../../api/api';
+import { Product } from '../../../shared/shareddtypes';
 import { MemoryRouter } from 'react-router-dom';
 
 
