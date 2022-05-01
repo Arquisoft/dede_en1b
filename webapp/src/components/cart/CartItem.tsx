@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
 import { ItemCart, Product } from "../../shared/shareddtypes";
 import { addToCart,  baseApiEndPoint, getProductImages } from '../../api/api';
-
 import Typography from "@mui/material/Typography";
-
 import Button from "@mui/material/Button";
 import { Card } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import './../../css/CartItem.css'
+
 type CartItemProps = {
     item: ItemCart;
     updateTotal: () => void;
