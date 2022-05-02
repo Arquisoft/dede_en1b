@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
 import { ItemCart, Product } from "../../shared/shareddtypes";
 import { addToCart,  baseApiEndPoint, getProductImages } from '../../api/api';
-
 import Typography from "@mui/material/Typography";
-
 import Button from "@mui/material/Button";
 import { Card } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import './../../css/CartItem.css'
+
 type CartItemProps = {
     item: ItemCart;
     updateTotal: () => void;
@@ -35,14 +34,14 @@ function CartItem(props: CartItemProps) {
     useEffect(() => {
         setQuantity(props.item.quantity);
         getImage();
-    }, [props.item.quantity]);
+    }, [props.item.product.image]);
 
 
 
     return (
 
         // <div className="card-item">
-        <Card id="card-item">
+        <Card data-testid={"it"+props.item.product.id} id={props.item.product.id} className="card-item">
             <img className="item-img" src={imgPath} alt={props.item.product.name} />
             <div className="item-info">
 
@@ -74,7 +73,7 @@ function CartItem(props: CartItemProps) {
                         +
                     </Button>
 
-                    <Button
+                    <Button data-testid={props.item.product.id+"-delete"}
                         onClick={() => props.deleteItem(props.item.product)}
                         color="error" size="medium" startIcon={<DeleteIcon />}
                     >

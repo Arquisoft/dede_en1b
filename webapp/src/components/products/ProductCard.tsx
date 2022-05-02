@@ -91,7 +91,10 @@ const ProductCard = (prod: ProductCardProps): JSX.Element => {
       </div>
       <div className="product-actions">
         <DivBtonStyle>
-          <BuyBtton startIcon={<AddShoppingCartIcon />} onClick={() => {
+
+
+          <BuyBtton data-testid='add-cart-button' id="addToCartButton" startIcon={<AddShoppingCartIcon />} onClick={() => {
+
             addProduct(prod.product)
             prod.refreshCartList();
           }}>

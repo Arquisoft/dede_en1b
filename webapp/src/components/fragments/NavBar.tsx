@@ -43,12 +43,13 @@ const SearchBar = () => (
                 style={{ width: "100%" }}
                 sx={{ input: { color: 'white' } }}
                 onChange={(e) => q=e.target.value}
-               
+
                 />
 
             <Button
                 id="submitButton"
                 type="submit"
+                data-testid="submitButton"
                 >
                 <SearchIcon />
             </Button>
@@ -78,6 +79,7 @@ const SearchBar = () => (
                 <SearchBar />
 
                 <IconButton
+                    data-testid="cart-icon"
                     style={{ marginRight: "2%" }}
                     size="large"
                     aria-label="shopping cart"
@@ -92,6 +94,7 @@ const SearchBar = () => (
                 </IconButton>
 
                 <IconButton
+                    data-testid="account-icon"
                     size="large"
                     edge="end"
                     aria-label="account of current user"
