@@ -344,7 +344,9 @@ test("When listing products, use filter by color black works", async () => {
 
   //we cannot expect to see the content changed to red cars as we're mocking the API call..
   expect(getByColorBlack).toHaveBeenCalledWith("&color[eq]=black");
-
+  let allOpt = screen.getByTestId("all-color");
+  fireEvent.click(allOpt);
+  expect(getByColorBlack).toHaveBeenCalledWith("");
 });
 
 test("When listing products, use filter by brand works as expected", async () => {
@@ -383,6 +385,10 @@ test("When listing products, use filter by brand works as expected", async () =>
   //we cannot expect to see the content changed to Toyota cars as we're mocking the API call..
   //thus, we can only test the parameters passed to the API
   expect(getByBrand).toHaveBeenCalledWith("&brand[eq]=Toyota");
+
+  let allOpt = screen.getByTestId("All");
+  fireEvent.click(allOpt);
+  expect(getByBrand).toHaveBeenCalledWith("");
 });        
 
 test("When listing products, use filter by rating works as expected", async () => {

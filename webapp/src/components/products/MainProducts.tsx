@@ -219,7 +219,7 @@ function MainProducts(props: MainProductsProps): JSX.Element {
             label="color-filter"
           >
             <MenuItem>
-              <ListItem button key="all" onClick={() => { filterColor("All") }}>
+              <ListItem button data-testid="all-color" key="all" onClick={() => { filterColor("All") }}>
                 <ListItemIcon>
                   <ListItemText primary="All" />
                 </ListItemIcon>
