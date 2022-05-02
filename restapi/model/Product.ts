@@ -21,11 +21,11 @@ const ProductSchema = new Schema({
     },
     color:{
         type: String,
-        required: true
+        required: false
     },
     reviews: {
         type: Array,
-        required: true
+        required: false
     },
     brand:{
         type: String,
