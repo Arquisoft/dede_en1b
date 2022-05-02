@@ -47,7 +47,7 @@ defineFeature(feature, test => {
             await expect(page).toClick('input[name="signInSubmitButton"]');
             await new Promise(r => setTimeout(r, 2000));
             await expect(page).toClick("button.allow-button");
-            await new Promise(r => setTimeout(r, 2000));
+            await new Promise(r => setTimeout(r, 5000));
         });
 
         then('Their name should be shown', async () => {
@@ -75,7 +75,7 @@ defineFeature(feature, test => {
 
         then('Their name and orders, if any, should be shown', async () => {
             await new Promise(r => setTimeout(r, 10000));
-            await page.screenshot({ path: './e2e/screenshots/login.png' });
+            // await page.screenshot({ path: './e2e/screenshots/login.png' });
             await expect(page).toMatch('dedeen1btests');
             await expect(page).toMatch('Order 2022-04-29');
         });

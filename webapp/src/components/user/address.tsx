@@ -18,6 +18,10 @@ function updateShippingCost(index: number, addresses: Address[]) {
     localStorage.setItem("selectedAddress", JSON.stringify(addresses[index]));
 }
 
+function setAddress(index: number, addresses: Address[]) {
+    localStorage.setItem("selectedAddress", JSON.stringify(addresses[index]));
+}
+
 export default function AddressComponent() {
 
     let adds: Address[] = [];
@@ -36,6 +40,8 @@ export default function AddressComponent() {
 
         const addressesString = adds.map(item => item.street + ", " + item.zip + ", " + item.state + ", " + item.country);
 
+        setAddress(0, adds);
+
         return (
             <div>
                 <br></br>
@@ -49,6 +55,7 @@ export default function AddressComponent() {
                     disablePortal
                     id="combo-box-address"
                     options={addressesString}
+                    defaultValue={addressesString[0] as string}
                     sx={{ width: 600 }}
                     renderInput={(params) => <TextField {...params} label="Shipping Address:" />}
                     onChange={(_e, value) => {
