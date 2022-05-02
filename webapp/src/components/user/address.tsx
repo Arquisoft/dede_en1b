@@ -56,7 +56,7 @@ export default function AddressComponent() {
                     id="combo-box-address"
                     options={addressesString}
                     defaultValue={addressesString[0] as string}
-                    sx={{ width: 600 }}
+                    sx={{ width: '80%', marginTop:'1%' }}
                     renderInput={(params) => <TextField {...params} label="Shipping Address:" />}
                     onChange={(_e, value) => {
                         if (value != null) {
