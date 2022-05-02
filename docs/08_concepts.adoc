@@ -20,9 +20,13 @@ SOLID pods also provide a mean of security, as each user is the only owner of hi
 An independent login was used to access the administrator page, we considered this decision a mean of improving security on that specific feature, as there will be only one administrator and we don't want to depend on external providers for performing any of its responsabilities.
 
 === Internationalization
-The project will be a multi-language application since the beginning of the design, to save expensive future costs in implementing this functionality. 
+[.line-through]#The project will be a multi-language application since the beginning of the design, to save expensive future costs in implementing this functionality.#
+
+Unfortunately, due to time constraints, the interationalization of the app could not be implemented. DedEx remains a single language application for the moment, written entirely en English.
 
 === Notifications
-A notification system will be implemented, in which a user gets a notification that provides relevant information to keep track of the product, such as whether that product has arrived or not.
+[.line-through]#A notification system will be implemented, in which a user gets a notification that provides relevant information to keep track of the product, such as whether that product has arrived or not.#
+
+On the same trend as with internazionalization, time would not let us implement this optional feature. Both these things are now pending to create in next sprints.
 
 
