@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import './../../css/CheckoutItem.css'
 type CheckoutItemProps = {
     item: ItemCart;
-    updateTotal: () => void;
 };
 
 function CheckoutItem(props: CheckoutItemProps) {
