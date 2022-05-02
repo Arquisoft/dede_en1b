@@ -97,7 +97,7 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
 
 
 
-          <ImageGallery items={JSON.parse(images as string)} />
+          <ImageGallery data-testid="imgs" items={JSON.parse(images as string)} />
 
 
           <Card>
@@ -117,7 +117,7 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
             </CardContent>
             <CardActions>
               <DivBtonStyle>
-               <BuyBtton id="addToCartButton" startIcon={<AddShoppingCartIcon />} onClick={() => {
+               <BuyBtton id="addToCartButton" data-testid="addToCartBtn" startIcon={<AddShoppingCartIcon />} onClick={() => {
                   addProduct(product as Product);
                   prop.refreshCartList();
                 }} >
