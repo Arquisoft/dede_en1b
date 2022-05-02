@@ -67,7 +67,7 @@ function AdminView(): JSX.Element {
     return (
         
         <Box justifyContent="center">
-            <Button onClick={() => logOut()}>
+            <Button data-testid="logout" onClick={() => logOut()}>
             <Logout></Logout>
             </Button>
             <Box justifyContent="center">
@@ -87,6 +87,7 @@ function AdminView(): JSX.Element {
                         sx={{ input: { color: 'black' } }}
                         value={name}
                         onChange={(e:any) => setName(e.target.value)}
+                        inputProps={{ "data-testid": "input-name" }}
 
                         />
 
@@ -125,7 +126,7 @@ function AdminView(): JSX.Element {
                         sx={{ input: { color: 'black' } }}
                         value={category}
                         onChange={(e:any) => setCategory(e.target.value)}
-                        inputProps={{ "data-testid": "input-email" }}
+                        inputProps={{ "data-testid": "input-category" }}
 
                     />
                     <Button variant="contained" component="label">
