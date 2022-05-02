@@ -359,6 +359,7 @@ function MainProducts(props: MainProductsProps): JSX.Element {
             min={29.99}
             max={420.0}
             onChangeCommitted={(_e, value) => { filterMaxPrice(value as number) }}
+            data-testid="maxPricePanel"
           />
 
           <br /><Divider /><br />
