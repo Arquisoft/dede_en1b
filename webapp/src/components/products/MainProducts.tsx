@@ -236,7 +236,7 @@ function MainProducts(props: MainProductsProps): JSX.Element {
             </MenuItem>
             <br></br>
             <MenuItem>
-              <ListItem button key="orange" onClick={() => { filterColor("orange") }}>
+              <ListItem button data-testid="orange" key="orange" onClick={() => { filterColor("orange") }}>
                 <ListItemIcon>
                   <Brightness1Icon sx={{ color: orange[500] }}></Brightness1Icon>
                 </ListItemIcon>
@@ -245,7 +245,7 @@ function MainProducts(props: MainProductsProps): JSX.Element {
             </MenuItem>
             <br></br>
             <MenuItem>
-              <ListItem button key="red" onClick={() => { filterColor("red") }}>
+              <ListItem button data-testid="red" key="red" onClick={() => { filterColor("red") }}>
                 <ListItemIcon>
                   <Brightness1Icon sx={{ color: red[500] }}></Brightness1Icon>
                 </ListItemIcon>
@@ -254,7 +254,7 @@ function MainProducts(props: MainProductsProps): JSX.Element {
             </MenuItem>
             <br></br>
             <MenuItem>
-              <ListItem button key="gray" onClick={() => { filterColor("gray") }}>
+              <ListItem button data-testid="gray" key="gray" onClick={() => { filterColor("gray") }}>
                 <ListItemIcon>
                   <Brightness1Icon></Brightness1Icon>
                 </ListItemIcon>
@@ -263,7 +263,7 @@ function MainProducts(props: MainProductsProps): JSX.Element {
             </MenuItem>
             <br></br>
             <MenuItem>
-              <ListItem button key="green" onClick={() => { filterColor("green") }}>
+              <ListItem button data-testid="green" key="green" onClick={() => { filterColor("green") }}>
                 <ListItemIcon>
                   <Brightness1Icon sx={{ color: green[500] }}></Brightness1Icon>
                 </ListItemIcon>
@@ -272,7 +272,7 @@ function MainProducts(props: MainProductsProps): JSX.Element {
             </MenuItem>
             <br></br>
             <MenuItem>
-              <ListItem button key="blue" onClick={() => { filterColor("blue") }}>
+              <ListItem button data-testid="blue" key="blue" onClick={() => { filterColor("blue") }}>
                 <ListItemIcon>
                   <Brightness1Icon sx={{ color: blue[500] }}></Brightness1Icon>
                 </ListItemIcon>
@@ -281,7 +281,7 @@ function MainProducts(props: MainProductsProps): JSX.Element {
             </MenuItem>
             <br></br>
             <MenuItem>
-              <ListItem id="black" button key="white" onClick={() => { filterColor("white") }}>
+              <ListItem id="white" data-testid="white" button key="white" onClick={() => { filterColor("white") }}>
                 <ListItemIcon>
                   <Brightness1Icon id="whiteIcon"></Brightness1Icon>
                 </ListItemIcon>
@@ -290,7 +290,7 @@ function MainProducts(props: MainProductsProps): JSX.Element {
             </MenuItem>
             <br></br>
             <MenuItem>
-              <ListItem id="black" button key="black" onClick={() => { filterColor("black") }}>
+              <ListItem id="black" button data-testid="black" key="black" onClick={() => { filterColor("black") }}>
                 <ListItemIcon>
                   <Brightness1Icon id="blackIcon"></Brightness1Icon>
                 </ListItemIcon>
@@ -306,14 +306,15 @@ function MainProducts(props: MainProductsProps): JSX.Element {
           <br />
 
           <Select
+            data-testid="brandPanel"
             id="brandChooser"
             sx={{ width: 200 }}
           >
-            <div id="brandChooserDiv">
+            <div data-testid="brandOptions" id="brandChooserDiv">
               {['All', 'Toyota', 'Volvo', 'Renault', 'Nissan', 'Plymouth', 'BMW', 'Subaru', 'Honda', 'Lamborghini', 'Volkswagen', 'Chevy', 'Polestar', 'Porsche'].map((text, index) => (
                 <div>
                   <MenuItem>
-                    <ListItem button key={text} onClick={() => { filterBrand(text) }} id={"li" + index}>
+                    <ListItem button data-testid={text} key={text} onClick={() => { filterBrand(text) }} id={"li" + index}>
                       <ListItemIcon>
                         <DirectionsCarIcon />
                       </ListItemIcon>
@@ -342,6 +343,7 @@ function MainProducts(props: MainProductsProps): JSX.Element {
             min={29.99}
             max={420.0}
             onChangeCommitted={(_e, value) => { filterMinPrice(value as number) }}
+            data-testid="minPricePanel"
           />
 
           <br /><Divider /><br />
