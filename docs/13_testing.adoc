@@ -9,6 +9,116 @@ Different testing methods were used to check the correct functioning and impleme
 
 === Integration Tests
 
+We used Jest and Cucumber to perform integration testing in our app. Thanks to cucumber, we could design integration tests following the famous syntax "Given, When, Then". This allowed for better understandability of the code as well as easier debugging. 
+
+We divided the 8 tests in 5 different suites, who aggregate similar tests. For each on of them, these were the features tested:
+
+====
+* Add Address:
+
+Feature: Adding/Changing DedEx Address
+
+Scenario: Adding an address
+
+*    Given A loged in user
+
+*    When They change their address in their profile
+
+*    Then It appears on the shipping page
+
+====
+
+====
+* Add to Cart:
+
+Feature: Adding items to the cart
+
+Scenario: Adding one item
+
+* Given A user
+
+* When They add an item to the cart and navigate to the cart
+
+* Then They can see the item
+
+
+Scenario: Adding an item from product details view
+
+* Given A user
+
+* When They add an item to the cart from the details view of the product and navigate to the cart
+
+* Then They can see the item
+====
+
+====
+* Buy item:
+
+Feature: Buying products
+
+Scenario: Buying a product
+
+*  Given A user with an item in his cart
+
+*  When They buy it
+
+*  Then The order appears in their profile
+
+====
+
+====
+* Product Visualization:
+
+Feature: Visualizing products
+
+Scenario: Main Products view
+
+*  Given An user
+
+*  When They enter the application
+
+*  Then Several Prodcut cards must be shown
+
+
+Scenario: Product detail view
+
+*  Given An user
+
+*  When They enter the application and click on a product card
+
+*  Then The details view of the selected product must be shown
+
+====
+
+====
+* SOLID Login:
+
+Feature: Registering or logging in a new user
+
+Scenario: The user is not registered in the site
+
+*    Given An unregistered user
+
+*    When They press the profile button and log in with their preferred SOLID provider
+
+*    Then Their name should be shown
+
+
+Scenario: The user is registered in the site
+
+*    Given A registered user
+
+*    When They press the profile button and log in with their preferred SOLID provider
+
+*    Then Their name and orders, if any, should be shown
+
+====
+
+The result of running these test is as follows: 
+
+image::images/acceptanceResults.png[]
+
+
 === Load Tests
 
 Gatling tool was used to perform load tests to the application.
@@ -22,19 +132,19 @@ This internet loss made it impossible for us to load test the SOLID login and, a
 
 An Open Model for user injection was the one used because you control the arrival rate of users, and the concurrent number of users in our web is not capped. We used this injection setup.
 
-image::gatlingSetUp.png[]
+image::images/gatlingSetUp.png[]
 
 An approximate number of 18k requests were made during the test in which 10% of those had a response time between 800ms and 1200ms, and just 1% had a response time above the latter. 
 
-image::gatlingChart.png[]
+image::images/gatlingChart.png[]
 
 During the test there was a peak of 196 concurrent users.
 
-image::gatlingActiveUsers.png[]
+image::images/gatlingActiveUsers.png[]
 
 Observing the percentile response time chart generated we can know where in the execution of the recording the requests consume more time and its different distributions. The requests that consume more time in this test would be filter usage, and quantity modification in the shopping cart.
 
-image::gatlingPercentiles.png[]
+image::images/gatlingPercentiles.png[]
 
 
 
