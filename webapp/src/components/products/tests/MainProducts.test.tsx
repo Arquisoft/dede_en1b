@@ -138,26 +138,7 @@ test("When listing products, use filter by color works as expected", async () =>
   //we cannot expect to see the content changed to yellow cars as we're mocking the API call..
   expect(getByColor).toHaveBeenCalledWith("&color[eq]=yellow");
 
-  fireEvent.click(screen.getByTestId("orange"));
-  expect(getByColor).toHaveBeenCalledWith("&color[eq]=orange");
 
-  fireEvent.click(screen.getByTestId("red"));
-  expect(getByColor).toHaveBeenCalledWith("&color[eq]=red");
-
-  fireEvent.click(screen.getByTestId("gray"));
-  expect(getByColor).toHaveBeenCalledWith("&color[eq]=gray");
-
-  fireEvent.click(screen.getByTestId("green"));
-  expect(getByColor).toHaveBeenCalledWith("&color[eq]=green");
-
-  fireEvent.click(screen.getByTestId("blue"));
-  expect(getByColor).toHaveBeenCalledWith("&color[eq]=blue");
-
-  fireEvent.click(screen.getByTestId("white"));
-  expect(getByColor).toHaveBeenCalledWith("&color[eq]=white");
-
-  fireEvent.click(screen.getByTestId("black"));
-  expect(getByColor).toHaveBeenCalledWith("&color[eq]=black");
 });
 test("When listing products, use filter by color gray works", async () => {
   //We need to mock this function as the ProductCard calls it in order to render the img of each product.
