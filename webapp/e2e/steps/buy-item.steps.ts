@@ -26,6 +26,7 @@ defineFeature(feature, test => {
 
         when('They buy it', async () => {
             await page.setCacheEnabled(false);
+            jest.setTimeout(60000);
             await loginAndAddToCart(url);
             await new Promise(r => setTimeout(r, 2000));
             await page.goto(url + "shipping");

@@ -25,6 +25,7 @@ defineFeature(feature, test => {
         });
 
         when('They change their address in their profile', async () => {
+            jest.setTimeout(60000);
             await loginAndAddToCart(url);
 
             //Add address

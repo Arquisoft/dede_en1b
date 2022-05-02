@@ -4,7 +4,7 @@ let page: puppeteer.Page;
 let browser: puppeteer.Browser;
 
 export async function login() {
-    jest.setTimeout(30000);
+    jest.setTimeout(60000);
 
     let u: string;
     let p: string;
