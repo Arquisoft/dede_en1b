@@ -4,7 +4,7 @@ import Header from './components/fragments/NavBar';
 import Footer from './components/fragments/Footer';
 import { ItemCart } from './shared/shareddtypes';
 import './css/App.css';
-import { BrowserRouter as Router, Routes, Route, useSearchParams } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import AboutUs from "./components/other/about_us"
 import SOLIDLogin from "./components/user/SOLIDLogin";
