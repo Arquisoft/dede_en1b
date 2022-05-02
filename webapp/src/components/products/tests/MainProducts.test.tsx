@@ -91,3 +91,52 @@ test("When listing products the proper function is called", async () => {
 
 
 
+test("When listing products, use filter by color works as expected", async () => {
+  //We need to mock this function as the ProductCard calls it in order to render the img of each product.
+  jest.spyOn(api, "getProductImages").mockImplementation((id: string): Promise<string[]> => {
+    return Promise.resolve(["1"]);
+  });
+  //The products are retrieved from the getProducts method of the API. 
+  const mockAPI = jest.spyOn(api, "getProducts").mockReturnValue(Promise.resolve(productsList));
+
+  const {container}=render(<MemoryRouter><MainProducts refreshCartList={() => { }} /> </MemoryRouter>);
+
+  //We neeed to wait for the loader to be removed!!!!
+  await waitForElementToBeRemoved(() => screen.getByTestId('loader'));
+  //We make sure getProducts is called
+  await waitFor(() => expect(mockAPI).toHaveBeenCalledTimes(1));
+
+  //We check that we can see both products info
+  expect(screen.getByText('bmw')).toBeInTheDocument();
+  expect(screen.getByAltText('bmw')).toBeInTheDocument();
+  let filter = screen.getByTestId("openFilterBtn");
+  expect(filter).toBeInTheDocument();
+  fireEvent.click(filter);
+  fireEvent.click(filter);
+
+  await waitFor(() => expect(screen.getByTestId("drawer-filter")).toBeInTheDocument());
+
+  expect(screen.getByText('Color')).toBeInTheDocument();
+  let colorChooser =  screen.getByTestId("colorPanel");
+  expect(colorChooser).toBeInTheDocument();
+  fireEvent.click(colorChooser);
+ /* let yellowOpt = screen.getByTestId("yellow");
+  await waitFor(() =>  expect(screen.getByTestId("yellow")).toBeInTheDocument());
+  fireEvent.click(yellowOpt);
+  /*
+  let yellowOpt = screen.getByTestId("yellow");
+  expect(yellowOpt).toBeInTheDocument();
+  fireEvent.click(yellowOpt);
+ *//*
+  expect(mockAPI).toHaveBeenCalledWith("&color[eq]=yellow");
+  
+   
+    expect(colorChooser).toBeInTheDocument();
+    fireEvent.click(colorChooser);
+    let yellowOpt = screen.getByTestId("yellow");
+    expect(yellowOpt).toBeInTheDocument();
+    fireEvent.click(yellowOpt);
+    //
+    expect(mockAPI).toHaveBeenCalledWith("&color[eq]=yellow");
+    */
+});        
