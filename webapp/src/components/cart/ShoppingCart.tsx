@@ -13,7 +13,6 @@ type ShoppingCartProps = {
     items: ItemCart[];
     refreshCartList: () => void;
 };
-
 const Img =
     styled("img")({
         display: "block"
@@ -40,6 +39,7 @@ function ShoppingCart(props: ShoppingCartProps): JSX.Element {
     
     useEffect(() => {
         setTotal(props.items.reduce((acc, item) => acc + item.product.price * item.quantity, 0));
+        updateTotal();
     }, []);
 
 
