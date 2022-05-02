@@ -1,5 +1,5 @@
 
- import { fireEvent, render,getByTestId,screen, act } from "@testing-library/react";
+ import { fireEvent, render,getByTestId,screen, act, within } from "@testing-library/react";
 import AdminView from "./AdminView";
 import { BrowserRouter as Router } from "react-router-dom";
 import * as api from "../../api/api";
@@ -28,21 +28,48 @@ import userEvent from "@testing-library/user-event";
 
  test('add product button calls the api to add a product', async () => {
     const { getByText } = render(<Router><AdminView /></Router>);
-    const name = "Product 1"
-    const description = "Product 1 description"
-    const price = 69.99
-    const image = ""
-    const category = "Test"
-    // fireEvent.change(screen.getByTestId("input-name"), { target: { value: name } });
-    let a = screen.getByTestId("input-name");
-    userEvent.type(a!, description );
-    // fireEvent.change(screen.getByTestId("input-price"), { target: { value: price } });
-    // fireEvent.change(screen.getByTestId("input-image"), { target: { value: image } });
-    // fireEvent.change(screen.getByTestId("input-category"), { target: { value: category } });
-    const spy = jest.spyOn(api,"addProduct");
+
+    const spy = jest.spyOn(api,"addProduct").mockImplementation(():Promise<boolean> =>  Promise.resolve(true));
     fireEvent.click(getByText("Add Product"));
     expect(spy).toHaveBeenCalledTimes(1);
 });
+
+
+/**
+ * Test that the delete product button calls the api to delete a product.
+ * 
+ */
+
+    // test('delete product button calls the api to delete a product', async () => {
+    //     const { getByText } = render(<Router><AdminView /></Router>);
+    //     const spy = jest.spyOn(api,"deleteProduct").mockImplementation(():Promise<boolean> =>  Promise.resolve(true));
+        
+    //     const autocomplete = screen.getByTestId('select-product');
+    //     const input = within(autocomplete).getByRole('textbox')
+    //     autocomplete.focus()
+    //     // the value here can be any string you want, so you may also consider to 
+    //     // wrapper it as a function and pass in inputValue as parameter
+    //     fireEvent.change(input, { target: { value: 'a' } })
+    //     userEvent.type(input, 'a')
+
+    //     //set input value to "Nissan 300ZX [6247415969857467dbbd7a1e]"
+    //     fireEvent.change(input, { target: { value: 'Nissan 300ZX [6247415969857467dbbd7a1e]' } })
+    //     userEvent.type(input, '{enter}')
+        
+        
+    //     fireEvent.keyDown(autocomplete, { key: 'ArrowDown' })
+    //     fireEvent.keyDown(autocomplete, { key: 'Enter' })
+    //     //select first item in the autocomplete
+
+    //     fireEvent.click(getByText("Delete Product"));
+    //     expect(spy).toHaveBeenCalledTimes(1);
+    // }
+    // );
     
+
+        
+    
+
+
 
         

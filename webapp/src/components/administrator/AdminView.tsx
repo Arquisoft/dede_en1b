@@ -15,10 +15,7 @@ import { Logout } from '@mui/icons-material';
 function AdminView(): JSX.Element {
 
     const navigate = useNavigate()
-    //if user is not logged in, redirect to login page
-   /*  if(!localStorage.getItem("token")){
-        navigate("login");
-    } */
+
 
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -90,8 +87,8 @@ function AdminView(): JSX.Element {
                         sx={{ input: { color: 'black' } }}
                         value={name}
                         onChange={(e:any) => setName(e.target.value)}
-                        inputProps={{ "data-testid": "input-name" }}
-                    />
+
+                        />
 
                     <TextField
                         variant="outlined"
@@ -153,7 +150,8 @@ function AdminView(): JSX.Element {
                     onChange={(event, value) => {
                         setSelectedProduct(products.filter(product => product.name+" ["+product.id+"]" === value)[0]);
                     }}
-                />
+                    data-testid="select-product"
+                    />
                 <Button variant="contained" color="primary" onClick={() => removeProduct(selectedProduct as Product)}>
                     Delete Product
                 </Button>
