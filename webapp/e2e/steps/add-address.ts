@@ -1,6 +1,6 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import puppeteer from "puppeteer";
-import { addToCart, close, getPage, login, loginAndAddToCart, setUp } from '../refactor';
+import { close, getPage, loginAndAddToCart, setUp } from '../refactor';
 
 const feature = loadFeature('./e2e/features/add-address.feature');
 

@@ -1,6 +1,6 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import puppeteer from "puppeteer";
-import { addToCart, login, close, getPage, setUp, loginAndAddToCart } from '../refactor';
+import { close, getPage, setUp, loginAndAddToCart } from '../refactor';
 
 const feature = loadFeature('./e2e/features/buy-item.feature');
 
