@@ -93,13 +93,15 @@ test("When listing products the proper function is called", async () => {
 
 test("When listing products, use filter by color works as expected", async () => {
   //We need to mock this function as the ProductCard calls it in order to render the img of each product.
-  jest.spyOn(api, "getProductImages").mockImplementation((id: string): Promise<string[]> => {
+  jest.spyOn(api, "getProductImages").mockImplementation((_id: string): Promise<string[]> => {
     return Promise.resolve(["1"]);
   });
   //The products are retrieved from the getProducts method of the API. 
   const mockAPI = jest.spyOn(api, "getProducts").mockReturnValue(Promise.resolve(productsList));
 
-  const {container}=render(<MemoryRouter><MainProducts refreshCartList={() => { }} /> </MemoryRouter>);
+  render(<MemoryRouter><MainProducts refreshCartList={() => { 
+    //intentional testing purpose
+  }} /> </MemoryRouter>);
 
   //We neeed to wait for the loader to be removed!!!!
   await waitForElementToBeRemoved(() => screen.getByTestId('loader'));
