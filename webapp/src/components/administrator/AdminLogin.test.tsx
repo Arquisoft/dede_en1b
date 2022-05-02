@@ -1,8 +1,8 @@
 import {  screen, render,fireEvent, queryByAttribute, getByTestId } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
+import * as api from "../../api/api";
 import AdminLogin from "./AdminLogin";
 
-const getById = queryByAttribute.bind(null, 'id');
 
 
 
@@ -19,18 +19,16 @@ const getById = queryByAttribute.bind(null, 'id');
 
 
 /**
- * Check that wrong password will show an alert.
+ * Sign in button calls the api to sign in.
  */
 
-    test('wrong password will show an alert', async () => {
-        const alertMock = jest.spyOn(window,'alert').mockImplementation(); 
+    test('sign in button calls the api to sign in', async () => {
         const { getByText } = render(<Router><AdminLogin /></Router>);
         const email = ""
         const password = ""
-        const inputEmail = screen.getByTestId("input-email")
         fireEvent.change(screen.getByTestId("input-email"), { target: { value: email } });
         fireEvent.change(screen.getByTestId("input-password"), { target: { value: password } });
+        const spy = jest.spyOn(api,"adminLogin");
         fireEvent.click(screen.getByText("Sign In"));
-        expect(alertMock).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledTimes(1);
     });
-
