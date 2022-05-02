@@ -486,6 +486,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#section-deployment-view">7. Deployment View</a>
 <ul class="sectlevel2">
 <li><a href="#_infrastructure_level_1">7.1. Infrastructure Level 1</a></li>
+<li><a href="#_process_of_chossing_a_provider">7.2. Process of chossing a provider</a></li>
+<li><a href="#_continuous_integration">7.3. Continuous Integration</a></li>
 </ul>
 </li>
 <li><a href="#section-concepts">8. Cross-cutting Concepts</a>
@@ -1057,7 +1059,7 @@ the order is done.</p>
 <h3 id="_infrastructure_level_1">7.1. Infrastructure Level 1</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/diag-9122b0692d39d642cd71d5e01af693fb.png" alt="Diagram" width="630" height="490">
+<img src="./images/diag-f6a4c88913dbe9c871170b0922593717.png" alt="Diagram" width="838" height="532">
 </div>
 </div>
 <div class="dlist">
@@ -1085,8 +1087,8 @@ Performance is also a thing to look after, but DeDe being a Web App, this will d
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Mapping to Infraestructure</strong></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DeDe</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This is the main application. It will run inside a docker container, which will be deployed in a server. The nature of this server is still to be determined.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RestApi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is the brains of our shop, It&#8217;s job is to retrieve the products, save the orders, store de reviews&#8230;&#8203; etc . It will run inside a docker container, which will be automatically deployed in an Azure server.The server will count with 1 cpu and 2GB of RAM, in a real world, a more powerfull server should be use, but for this example is more than enought.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">WebApp</p></td>
@@ -1098,14 +1100,32 @@ Performance is also a thing to look after, but DeDe being a Web App, this will d
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This is the DataBase, which will be stored on a server as well. Like the application per se, the nature of this server is still to be determined.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is the DataBase, which will be stored on a server as well. It&#8217;s has been deployed in an Oracle server.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ShippingApi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This API will be used to calculate routes and costs of delivery. It will be hosted by a third party in a server of their choosing.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This API will be used to calculate routes and costs of delivery. As there are no free APIs for this kind of demostration, we are using our own api simulating the prices.</p></td>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect2">
+<h3 id="_process_of_chossing_a_provider">7.2. Process of chossing a provider</h3>
+<div class="paragraph">
+<p>As we are students, we searched for the cheapest provider to run our application. The first one we tried, Oracle, has a free tier for students which includes 2 virtual machines with 1 cpu and 1 GB of RAM without time limt. We deployed our database there and had no issues with performance, but when we tried to deploy our application, the server struggled to run everything smoothly so we looked for an alternative. We found that Microsoft Azures has also a student program which gives us 100$ credit for its services, so we used it to rent a vm with 1 cpu and 2GB of RAM. We kept the database in the oracle server and use the azure one to deploy our application.</p>
+</div>
+<div class="paragraph">
+<p>To use other Solid providers, it is necesary to have the web encrypted with https because connections from https to http are not allowed for security reasons. To have HTTPS on our web, we used Caddy to configure a proxy server, and registered a free domain name with freenom. Caddy is in charge to serve the content in localhost:3000 to the requests coming from dedeen1b.tk encrypting it first using a SSL certificate from letsencrypt.org. The same thing is done for api.dedeen1b.tk to serve the api.</p>
+</div>
+<div class="paragraph">
+<p>With this setup, we have now a complete infrastructure for our application.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_continuous_integration">7.3. Continuous Integration</h3>
+<div class="paragraph">
+<p>Both the WebApp and the RestApi are automatically deployed using GitHub Actions. Every time a new realese is made, a script, located in .github/workflows/asw2122.yml, will be executed. This script first runs the tests, and if they all pass succesfully, the docker images will be build and publish to GitHub Packages. Finally, the scripts connect through SSH to the server and deploys the application using Docker-Compose. As tokens, server IPs and other information must be private, we are using GitHub Secrets to store it.</p>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -1148,7 +1168,7 @@ As well as the role assigned to the user.</p>
 <div class="sect2">
 <h3 id="_technical_decisions">8.4. Technical decisions</h3>
 <div class="paragraph">
-<p>TBD</p>
+<p>An independent login was used to access the administrator page, we considered this decision a mean of improving security on that specific feature, as there will be only one administrator and we don&#8217;t want to depend on external providers for performing any of its responsabilities.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1392,7 +1412,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-02-18 17:40:18 +0100
+Last updated 2022-05-01 23:36:43 +0200
 </div>
 </div>
 </body>
