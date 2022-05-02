@@ -20,7 +20,7 @@ defineFeature(feature, test => {
             .goto("http://www.dedeen1b.tk/", {
                 waitUntil: "networkidle0",
             })
-            .catch(() => { });
+            .catch((error) => { console.log(error); });
     });
 
     test('Main Products view', ({ given, when, then }) => {
@@ -29,11 +29,9 @@ defineFeature(feature, test => {
 
         when('They enter the application', async () => {
             await new Promise(r => setTimeout(r, 2000));            
-            // await page.screenshot({ path: './e2e/screenshots/Main_1.png' });
         });
 
         then('Several Prodcut cards must be shown', async () => {
-            // await page.screenshot({ path: 'Main_2.png' });
             await expect(page).toMatch('Nissan 300ZX');
             await expect(page).toMatch('Toyota 2000GT');
             await expect(page).toMatch('Plymouth Barracuda');
@@ -47,11 +45,9 @@ defineFeature(feature, test => {
         when('They enter the application and click on a product card', async () => {
             await new Promise(r => setTimeout(r, 2000));            
             await expect(page).toClick("div.product-card");
-            // await page.screenshot({ path: './e2e/screenshots/Main_1.png' });
         });
 
         then('The details view of the selected product must be shown', async () => {
-            // await page.screenshot({ path: 'Main_2.png' });         
             await new Promise(r => setTimeout(r, 2000));            
             await expect(page).toMatch('Nissan 300ZX');
             await expect(page).toMatch('Widebody. Banana Split Yellow. A beast.');

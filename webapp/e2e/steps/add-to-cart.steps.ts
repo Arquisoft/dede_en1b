@@ -20,7 +20,7 @@ defineFeature(feature, test => {
             .goto("http://www.dedeen1b.tk/", {
                 waitUntil: "networkidle0",
             })
-            .catch(() => { });
+            .catch((error) => { console.log(error); });
     });
 
     test('Adding one item', ({ given, when, then }) => {;
@@ -53,7 +53,6 @@ defineFeature(feature, test => {
             await new Promise(r => setTimeout(r, 1000));
             await expect(page).toClick('#addToCartButton');
             await new Promise(r => setTimeout(r, 2000));
-            // await page.screenshot({ path: './e2e/screenshots/cart.png' });
         });
 
         then('They can see the item', async () => {

@@ -1,5 +1,6 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import puppeteer from "puppeteer";
+import { login } from '../refactor';
 
 const feature = loadFeature('./e2e/features/buy-item.feature');
 
@@ -23,7 +24,7 @@ defineFeature(feature, test => {
             .goto(url + "login", {
                 waitUntil: "networkidle0",
             })
-            .catch(() => { });
+            .catch((error) => { console.log(error); });
     });
 
     test('Buying a product', ({ given, when, then }) => {
@@ -37,18 +38,7 @@ defineFeature(feature, test => {
 
         when('They buy it', async () => {
             //Login
-            await page.setCacheEnabled(false);
-            await new Promise(r => setTimeout(r, 2000));
-            await expect(page).toClick("#loginButton");
-            await new Promise(r => setTimeout(r, 5000));
-            await expect(page).toFillForm('form[name="cognitoSignInForm"]', {
-                username: username,
-                password: password,
-            })
-            await expect(page).toClick('input[name="signInSubmitButton"]');
-            await new Promise(r => setTimeout(r, 2000));
-            await expect(page).toClick("button.allow-button");
-            await new Promise(r => setTimeout(r, 10000));
+            await login(page);
 
             //Add to cart
             await page.goto(url + "");
@@ -63,7 +53,6 @@ defineFeature(feature, test => {
 
         then('The order appears in their profile', async () => {
             await new Promise(r => setTimeout(r, 5000));
-            // await page.screenshot({ path: './e2e/screenshots/buy.png' });
             await expect(page).toMatch("Total: 49.99 €");
 
         });

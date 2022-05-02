@@ -1,5 +1,6 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import puppeteer from "puppeteer";
+import {login} from '../refactor';
 
 const feature = loadFeature('./e2e/features/SOLID-login.feature');
 
@@ -20,7 +21,7 @@ defineFeature(feature, test => {
             .goto("http://www.dedeen1b.tk/login", {
                 waitUntil: "networkidle0",
             })
-            .catch(() => { });
+            .catch((error) => { console.log(error); });
     });
 
     test('The user is not registered in the site', ({ given, when, then }) => {
@@ -36,18 +37,8 @@ defineFeature(feature, test => {
         when('They press the profile button and log in with their preferred SOLID provider', async () => {
             await page.setCacheEnabled(false);
             await new Promise(r => setTimeout(r, 2000));
-            await expect(page).toClick("#loginButton");
-            await new Promise(r => setTimeout(r, 3000));
-            await expect(page).toFillForm('form[name="cognitoSignInForm"]', {
-                username: username,
-                password: password,
-            })
 
-
-            await expect(page).toClick('input[name="signInSubmitButton"]');
-            await new Promise(r => setTimeout(r, 2000));
-            await expect(page).toClick("button.allow-button");
-            await new Promise(r => setTimeout(r, 5000));
+            await login(page);
         });
 
         then('Their name should be shown', async () => {
@@ -75,7 +66,6 @@ defineFeature(feature, test => {
 
         then('Their name and orders, if any, should be shown', async () => {
             await new Promise(r => setTimeout(r, 10000));
-            // await page.screenshot({ path: './e2e/screenshots/login.png' });
             await expect(page).toMatch('dedeen1btests');
             await expect(page).toMatch('Order 2022-04-29');
         });

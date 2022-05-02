@@ -1,5 +1,6 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import puppeteer from "puppeteer";
+import { login } from '../refactor';
 
 const feature = loadFeature('./e2e/features/add-address.feature');
 
@@ -23,7 +24,7 @@ defineFeature(feature, test => {
             .goto(url + "login", {
                 waitUntil: "networkidle0",
             })
-            .catch(() => { });
+            .catch((error) => { console.log(error); });
     });
 
     test('Adding an address', ({ given, when, then }) => {
@@ -37,19 +38,7 @@ defineFeature(feature, test => {
 
         when('They change their address in their profile', async () => {
             //Login
-            await page.setCacheEnabled(false);
-            await new Promise(r => setTimeout(r, 2000));
-            await expect(page).toClick("#loginButton");
-            await new Promise(r => setTimeout(r, 3000));
-            // await page.screenshot({ path: './e2e/screenshots/wtf.png' });
-            await expect(page).toFillForm('form[name="cognitoSignInForm"]', {
-                username: username,
-                password: password,
-            })
-            await expect(page).toClick('input[name="signInSubmitButton"]');
-            await new Promise(r => setTimeout(r, 2000));
-            await expect(page).toClick("button.allow-button");
-            await new Promise(r => setTimeout(r, 10000));
+            await login(page);
 
             //Add to cart
             await page.goto(url + "");
@@ -76,7 +65,6 @@ defineFeature(feature, test => {
             await page.goto(url + "shipping");
             await new Promise(r => setTimeout(r, 1000));
             await expect(page).toClick('input[autocapitalize="none"]');
-            // await page.screenshot({ path: './e2e/screenshots/address.png' });
             await expect(page).toMatch("X, X, X, X");
 
         });
