@@ -37,7 +37,6 @@ const BuyBtton = styled(Button)({
   size: 'large',
   position: 'relative',
   width: '100%',
-
 });
 
 
