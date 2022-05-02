@@ -520,6 +520,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#section-glossary">12. Glossary</a></li>
+<li><a href="#section-quality-scenarios">13. Testing</a>
+<ul class="sectlevel2">
+<li><a href="#_unitary_tests">13.1. Unitary Tests</a></li>
+<li><a href="#_integration_tests">13.2. Integration Tests</a></li>
+<li><a href="#_load_tests">13.3. Load Tests</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -1388,6 +1395,281 @@ and response time of less than 1s.</em></p></td>
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-quality-scenarios">13. Testing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Different testing methods were used to check the correct functioning and implementation of the project.</p>
+</div>
+<div class="sect2">
+<h3 id="_unitary_tests">13.1. Unitary Tests</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_integration_tests">13.2. Integration Tests</h3>
+<div class="paragraph">
+<p>We used Jest and Cucumber to perform integration testing in our app. Thanks to cucumber, we could design integration tests following the famous syntax "Given, When, Then". This allowed for better understandability of the code as well as easier debugging.</p>
+</div>
+<div class="paragraph">
+<p>We divided the 8 tests in 5 different suites, who aggregate similar tests. For each on of them, these were the features tested:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Add Address:</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Feature: Adding/Changing DedEx Address</p>
+</div>
+<div class="paragraph">
+<p>Scenario: Adding an address</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Given A loged in user</p>
+</li>
+<li>
+<p>When They change their address in their profile</p>
+</li>
+<li>
+<p>Then It appears on the shipping page</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Add to Cart:</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Feature: Adding items to the cart</p>
+</div>
+<div class="paragraph">
+<p>Scenario: Adding one item</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Given A user</p>
+</li>
+<li>
+<p>When They add an item to the cart and navigate to the cart</p>
+</li>
+<li>
+<p>Then They can see the item</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Scenario: Adding an item from product details view</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Given A user</p>
+</li>
+<li>
+<p>When They add an item to the cart from the details view of the product and navigate to the cart</p>
+</li>
+<li>
+<p>Then They can see the item</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Buy item:</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Feature: Buying products</p>
+</div>
+<div class="paragraph">
+<p>Scenario: Buying a product</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Given A user with an item in his cart</p>
+</li>
+<li>
+<p>When They buy it</p>
+</li>
+<li>
+<p>Then The order appears in their profile</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Product Visualization:</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Feature: Visualizing products</p>
+</div>
+<div class="paragraph">
+<p>Scenario: Main Products view</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Given An user</p>
+</li>
+<li>
+<p>When They enter the application</p>
+</li>
+<li>
+<p>Then Several Prodcut cards must be shown</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Scenario: Product detail view</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Given An user</p>
+</li>
+<li>
+<p>When They enter the application and click on a product card</p>
+</li>
+<li>
+<p>Then The details view of the selected product must be shown</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>SOLID Login:</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Feature: Registering or logging in a new user</p>
+</div>
+<div class="paragraph">
+<p>Scenario: The user is not registered in the site</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Given An unregistered user</p>
+</li>
+<li>
+<p>When They press the profile button and log in with their preferred SOLID provider</p>
+</li>
+<li>
+<p>Then Their name should be shown</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Scenario: The user is registered in the site</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Given A registered user</p>
+</li>
+<li>
+<p>When They press the profile button and log in with their preferred SOLID provider</p>
+</li>
+<li>
+<p>Then Their name and orders, if any, should be shown</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The result of running these test is as follows:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/images/acceptanceResults.png" alt="acceptanceResults">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_load_tests">13.3. Load Tests</h3>
+<div class="paragraph">
+<p>Gatling tool was used to perform load tests to the application.
+Using its recorder functionality we were able to capture a fixed number of requests and reproduce their functionality for every user that was simulated by the program.</p>
+</div>
+<div class="paragraph">
+<p>Those requests included the use of filters, adding products to the cart, modifying their quantities and perform checkout functionality.</p>
+</div>
+<div class="paragraph">
+<p>The recorder tool acts as a man-in-the-middle to capture the traffic and requests made, we had to modify the proxy configuration in our browsers for the tool to do the before-mentioned actions properly, losing internet connection meanwhile.</p>
+</div>
+<div class="paragraph">
+<p>This internet loss made it impossible for us to load test the SOLID login and, as a consequence, the order creation.</p>
+</div>
+<div class="paragraph">
+<p>An Open Model for user injection was the one used because you control the arrival rate of users, and the concurrent number of users in our web is not capped. We used this injection setup.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/images/gatlingSetUp.png" alt="gatlingSetUp">
+</div>
+</div>
+<div class="paragraph">
+<p>An approximate number of 18k requests were made during the test in which 10% of those had a response time between 800ms and 1200ms, and just 1% had a response time above the latter.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/images/gatlingChart.png" alt="gatlingChart">
+</div>
+</div>
+<div class="paragraph">
+<p>During the test there was a peak of 196 concurrent users.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/images/gatlingActiveUsers.png" alt="gatlingActiveUsers">
+</div>
+</div>
+<div class="paragraph">
+<p>Observing the percentile response time chart generated we can know where in the execution of the recording the requests consume more time and its different distributions. The requests that consume more time in this test would be filter usage, and quantity modification in the shopping cart.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/images/gatlingPercentiles.png" alt="gatlingPercentiles">
+</div>
+</div>
+<div style="page-break-after: always;"></div>
 <div class="paragraph">
 <p><strong>About arc42</strong></p>
 </div>
@@ -1410,9 +1692,10 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 </div>
 </div>
+</div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-02-18 17:40:18 +0100
+Last updated 2022-05-02 23:59:08 +0200
 </div>
 </div>
 </body>
