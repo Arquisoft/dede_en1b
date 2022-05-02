@@ -367,7 +367,7 @@ function MainProducts(props: MainProductsProps): JSX.Element {
 
           <Grid container spacing={0} id="ratingFilter">
 
-            <Rating name="no-value" value={minRating} size="large" onChange={(event, value) => {
+            <Rating name="no-value" data-testid="ratingPanel" value={minRating} size="large" onChange={(event, value) => {
               filterRating(value as number)
 
             }} />
