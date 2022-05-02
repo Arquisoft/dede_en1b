@@ -25,10 +25,12 @@ defineFeature(feature, test => {
 
     test('Main Products view', ({ given, when, then }) => {
 
-        given('An user', () => { });
+        given('An user', () => {
+            console.log("Test starting...");
+        });
 
         when('They enter the application', async () => {
-            await new Promise(r => setTimeout(r, 2000));            
+            await new Promise(r => setTimeout(r, 2000));
         });
 
         then('Several Prodcut cards must be shown', async () => {
@@ -40,15 +42,17 @@ defineFeature(feature, test => {
 
     test('Product detail view', ({ given, when, then }) => {
 
-        given('An user', () => { });
+        given('An user', () => {
+            console.log("Test starting...");
+         });
 
         when('They enter the application and click on a product card', async () => {
-            await new Promise(r => setTimeout(r, 2000));            
+            await new Promise(r => setTimeout(r, 2000));
             await expect(page).toClick("div.product-card");
         });
 
         then('The details view of the selected product must be shown', async () => {
-            await new Promise(r => setTimeout(r, 2000));            
+            await new Promise(r => setTimeout(r, 2000));
             await expect(page).toMatch('Nissan 300ZX');
             await expect(page).toMatch('Widebody. Banana Split Yellow. A beast.');
         });

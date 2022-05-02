@@ -1,6 +1,6 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import puppeteer from "puppeteer";
-import {login} from '../refactor';
+import { login } from '../refactor';
 
 const feature = loadFeature('./e2e/features/SOLID-login.feature');
 
@@ -18,7 +18,7 @@ defineFeature(feature, test => {
         page = await browser.newPage();
 
         await page
-            .goto("http://www.dedeen1b.tk/login", {
+            .goto("https://www.dedeen1b.tk/login", {
                 waitUntil: "networkidle0",
             })
             .catch((error) => { console.log(error); });
@@ -26,12 +26,8 @@ defineFeature(feature, test => {
 
     test('The user is not registered in the site', ({ given, when, then }) => {
 
-        let username: string;
-        let password: string;
-
         given('An unregistered user', () => {
-            username = "dedeen1btests";
-            password = "DeDe_En1B_Tests";
+            console.log("Test starting...");
         });
 
         when('They press the profile button and log in with their preferred SOLID provider', async () => {
@@ -48,12 +44,8 @@ defineFeature(feature, test => {
 
     test('The user is registered in the site', ({ given, when, then }) => {
 
-        let username: string;
-        let password: string;
-
         given('A registered user', () => {
-            username = "dedeen1btests";
-            password = "DeDe_En1B_Tests";
+            console.log("Test starting...");
         });
 
         when('They press the profile button and log in with their preferred SOLID provider', async () => {

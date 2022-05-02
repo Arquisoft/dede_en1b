@@ -21,3 +21,10 @@ export async function login(page: puppeteer.Page) {
     await expect(page).toClick("button.allow-button");
     await new Promise(r => setTimeout(r, 5000));
 };
+
+export async function addToCart(page: puppeteer.Page, url: string) {
+    await page.goto(url);
+    await new Promise(r => setTimeout(r, 1000));
+    await expect(page).toClick('#addToCartButton');
+    await new Promise(r => setTimeout(r, 2000));
+}

@@ -28,15 +28,14 @@ defineFeature(feature, test => {
     });
 
     test('Buying a product', ({ given, when, then }) => {
-        let username: string;
-        let password: string;
 
         given('A user with an item in his cart', () => {
-            username = "dedeen1btests";
-            password = "DeDe_En1B_Tests";
+            console.log("Test starting...");
         });
 
         when('They buy it', async () => {
+            await page.setCacheEnabled(false);
+
             //Login
             await login(page);
 

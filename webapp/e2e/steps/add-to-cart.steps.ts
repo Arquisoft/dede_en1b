@@ -1,5 +1,6 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import puppeteer from "puppeteer";
+import { addToCart } from '../refactor';
 
 const feature = loadFeature('./e2e/features/add-to-cart.feature');
 
@@ -23,19 +24,19 @@ defineFeature(feature, test => {
             .catch((error) => { console.log(error); });
     });
 
-    test('Adding one item', ({ given, when, then }) => {;
+    test('Adding one item', ({ given, when, then }) => {
+        ;
 
         given('A user', () => {
+            console.log("Test starting...");
         });
 
         when('They add an item to the cart and navigate to the cart', async () => {
-            await expect(page).toClick('#addToCartButton');
-            await new Promise(r => setTimeout(r, 2000));
+            await addToCart(page, "http://www.dedeen1b.tk/");
         });
 
         then('They can see the item', async () => {
-            await page.goto("http://www.dedeen1b.tk/cart");
-            await expect(page).toMatch('Nissan 300ZX');
+            await check();
         });
     });
 
@@ -43,21 +44,19 @@ defineFeature(feature, test => {
         browser.close()
     })
 
-    test('Adding an item from product details view', ({ given, when, then }) => {;
+    test('Adding an item from product details view', ({ given, when, then }) => {
+        ;
 
         given('A user', () => {
+            console.log("Test starting...");
         });
 
         when('They add an item to the cart from the details view of the product and navigate to the cart', async () => {
-            await page.goto("http://www.dedeen1b.tk/products/6247415969857467dbbd7a1e");
-            await new Promise(r => setTimeout(r, 1000));
-            await expect(page).toClick('#addToCartButton');
-            await new Promise(r => setTimeout(r, 2000));
+            await addToCart(page, "http://www.dedeen1b.tk/products/6247415969857467dbbd7a1e");
         });
 
         then('They can see the item', async () => {
-            await page.goto("http://www.dedeen1b.tk/cart");
-            await expect(page).toMatch('Nissan 300ZX');
+            await check();
         });
     });
 
@@ -66,4 +65,9 @@ defineFeature(feature, test => {
     })
 
 });
+
+async function check() {
+    await page.goto("http://www.dedeen1b.tk/cart");
+    await expect(page).toMatch('Nissan 300ZX');
+}
 

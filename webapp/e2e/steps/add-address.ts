@@ -1,12 +1,12 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import puppeteer from "puppeteer";
-import { login } from '../refactor';
+import { addToCart, login } from '../refactor';
 
 const feature = loadFeature('./e2e/features/add-address.feature');
 
 let page: puppeteer.Page;
 let browser: puppeteer.Browser;
-// let url = "http://www.dedeen1b.tk/"
+// let url = "https://www.dedeen1b.tk/"
 let url = "http://localhost:3000/"
 
 
@@ -28,23 +28,19 @@ defineFeature(feature, test => {
     });
 
     test('Adding an address', ({ given, when, then }) => {
-        let username: string;
-        let password: string;
 
         given('A loged in user', () => {
-            username = "dedeen1btests";
-            password = "DeDe_En1B_Tests";
+            console.log("Test starting...");
         });
 
         when('They change their address in their profile', async () => {
+            await page.setCacheEnabled(false);
+
             //Login
             await login(page);
 
             //Add to cart
-            await page.goto(url + "");
-            await new Promise(r => setTimeout(r, 1000));
-            await expect(page).toClick('#addToCartButton');
-            await new Promise(r => setTimeout(r, 2000));
+            await addToCart(page, url);
 
             //Add address
             await page.goto(url + "profile");
