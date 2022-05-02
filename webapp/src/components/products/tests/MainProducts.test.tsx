@@ -147,7 +147,7 @@ test("When listing products, use filter by color works as expected", async () =>
 
 test("When listing products, use filter by brand works as expected", async () => {
   //We need to mock this function as the ProductCard calls it in order to render the img of each product.
-  jest.spyOn(api, "getProductImages").mockImplementation((id: string): Promise<string[]> => {
+  jest.spyOn(api, "getProductImages").mockImplementation((_id: string): Promise<string[]> => {
     return Promise.resolve(["1"]);
   });
   //The products are retrieved from the getProducts method of the API. 
