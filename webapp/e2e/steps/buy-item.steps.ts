@@ -1,6 +1,7 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import puppeteer from "puppeteer";
 import { login } from '../refactor';
+import { close, getPage, setUp } from '../refactor';
 
 const feature = loadFeature('./e2e/features/buy-item.feature');
 
@@ -15,16 +16,8 @@ defineFeature(feature, test => {
     jest.setTimeout(60000);
 
     beforeAll(async () => {
-        browser = process.env.GITHUB_ACTIONS
-            ? await puppeteer.launch()
-            : await puppeteer.launch({ headless: true });
-        page = await browser.newPage();
-
-        await page
-            .goto(url + "login", {
-                waitUntil: "networkidle0",
-            })
-            .catch((error) => { console.log(error); });
+        await setUp(url + "login");
+        page = await getPage();
     });
 
     test('Buying a product', ({ given, when, then }) => {
@@ -58,7 +51,7 @@ defineFeature(feature, test => {
     });
 
     afterAll(async () => {
-        browser.close()
+        close();
     })
 
 });

@@ -1,6 +1,6 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import puppeteer from "puppeteer";
-import { addToCart } from '../refactor';
+import { addToCart, close, getPage, setUp } from '../refactor';
 
 const feature = loadFeature('./e2e/features/add-to-cart.feature');
 
@@ -12,16 +12,8 @@ defineFeature(feature, test => {
     jest.setTimeout(30000);
 
     beforeAll(async () => {
-        browser = process.env.GITHUB_ACTIONS
-            ? await puppeteer.launch()
-            : await puppeteer.launch({ headless: true });
-        page = await browser.newPage();
-
-        await page
-            .goto("http://www.dedeen1b.tk/", {
-                waitUntil: "networkidle0",
-            })
-            .catch((error) => { console.log(error); });
+        await setUp("http://www.dedeen1b.tk/");
+        page = await getPage();
     });
 
     test('Adding one item', ({ given, when, then }) => {
@@ -40,10 +32,6 @@ defineFeature(feature, test => {
         });
     });
 
-    afterAll(async () => {
-        browser.close()
-    })
-
     test('Adding an item from product details view', ({ given, when, then }) => {
         ;
 
@@ -61,7 +49,7 @@ defineFeature(feature, test => {
     });
 
     afterAll(async () => {
-        browser.close()
+        close();
     })
 
 });

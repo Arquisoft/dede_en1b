@@ -1,6 +1,6 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import puppeteer from "puppeteer";
-import { login } from '../refactor';
+import { close, getPage, login, setUp } from '../refactor';
 
 const feature = loadFeature('./e2e/features/SOLID-login.feature');
 
@@ -12,16 +12,8 @@ defineFeature(feature, test => {
     jest.setTimeout(30000);
 
     beforeAll(async () => {
-        browser = process.env.GITHUB_ACTIONS
-            ? await puppeteer.launch()
-            : await puppeteer.launch({ headless: true });
-        page = await browser.newPage();
-
-        await page
-            .goto("https://www.dedeen1b.tk/login", {
-                waitUntil: "networkidle0",
-            })
-            .catch((error) => { console.log(error); });
+        await setUp("https://www.dedeen1b.tk/" + "login");
+        page = await getPage();
     });
 
     test('The user is not registered in the site', ({ given, when, then }) => {
@@ -64,7 +56,7 @@ defineFeature(feature, test => {
     });
 
     afterAll(async () => {
-        browser.close()
+        close();
     })
 
 });

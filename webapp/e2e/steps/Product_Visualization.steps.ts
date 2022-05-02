@@ -1,5 +1,6 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import puppeteer from "puppeteer";
+import { getPage, setUp, close } from '../refactor';
 
 const feature = loadFeature('./e2e/features/Product_Visualization.feature');
 
@@ -11,16 +12,8 @@ defineFeature(feature, test => {
     jest.setTimeout(30000);
 
     beforeAll(async () => {
-        browser = process.env.GITHUB_ACTIONS
-            ? await puppeteer.launch()
-            : await puppeteer.launch({ headless: true });
-        page = await browser.newPage();
-
-        await page
-            .goto("http://www.dedeen1b.tk/", {
-                waitUntil: "networkidle0",
-            })
-            .catch((error) => { console.log(error); });
+        await setUp("http://www.dedeen1b.tk/");
+        page = await getPage();
     });
 
     test('Main Products view', ({ given, when, then }) => {
@@ -44,7 +37,7 @@ defineFeature(feature, test => {
 
         given('An user', () => {
             console.log("Test starting...");
-         });
+        });
 
         when('They enter the application and click on a product card', async () => {
             await new Promise(r => setTimeout(r, 2000));
@@ -59,7 +52,7 @@ defineFeature(feature, test => {
     })
 
     afterAll(async () => {
-        browser.close()
+        close();
     })
 
 });
