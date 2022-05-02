@@ -7,7 +7,7 @@ const feature = loadFeature('./e2e/features/buy-item.feature');
 
 let page: puppeteer.Page;
 let browser: puppeteer.Browser;
-// let url = "http://www.dedeen1b.tk/"
+// let url = "https://www.dedeen1b.tk/"
 let url = "http://localhost:3000/"
 
 

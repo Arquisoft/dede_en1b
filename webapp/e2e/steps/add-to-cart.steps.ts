@@ -12,7 +12,7 @@ defineFeature(feature, test => {
     jest.setTimeout(30000);
 
     beforeAll(async () => {
-        await setUp("http://www.dedeen1b.tk/");
+        await setUp("https://www.dedeen1b.tk/");
         page = await getPage();
     });
 
@@ -24,7 +24,7 @@ defineFeature(feature, test => {
         });
 
         when('They add an item to the cart and navigate to the cart', async () => {
-            await addToCart(page, "http://www.dedeen1b.tk/");
+            await addToCart(page, "https://www.dedeen1b.tk/");
         });
 
         then('They can see the item', async () => {
@@ -40,7 +40,7 @@ defineFeature(feature, test => {
         });
 
         when('They add an item to the cart from the details view of the product and navigate to the cart', async () => {
-            await addToCart(page, "http://www.dedeen1b.tk/products/6247415969857467dbbd7a1e");
+            await addToCart(page, "https://www.dedeen1b.tk/products/6247415969857467dbbd7a1e");
         });
 
         then('They can see the item', async () => {
@@ -55,7 +55,7 @@ defineFeature(feature, test => {
 });
 
 async function check() {
-    await page.goto("http://www.dedeen1b.tk/cart");
+    await page.goto("https://www.dedeen1b.tk/cart");
     await expect(page).toMatch('Nissan 300ZX');
 }
 

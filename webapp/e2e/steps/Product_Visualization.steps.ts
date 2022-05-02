@@ -12,7 +12,7 @@ defineFeature(feature, test => {
     jest.setTimeout(30000);
 
     beforeAll(async () => {
-        await setUp("http://www.dedeen1b.tk/");
+        await setUp("https://www.dedeen1b.tk/");
         page = await getPage();
     });
 
