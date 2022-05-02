@@ -169,10 +169,44 @@ test("When listing products, use filter by brand works as expected", async () =>
 
   await waitFor(() => expect(screen.getByTestId("brandOptions")).toBeVisible());
   await waitFor(() => expect(screen.getByTestId("Toyota")).toBeVisible());
-  let yellowOpt = screen.getByTestId("Toyota");
-  fireEvent.click(yellowOpt);
+  let toyotaOpt = screen.getByTestId("Toyota");
+  fireEvent.click(toyotaOpt);
   //we cannot expect to see the content changed to Toyota cars as we're mocking the API call..
   //thus, we can only test the parameters passed to the API
   expect(getByBrand).toHaveBeenCalledWith("&brand[eq]=Toyota");
-
 });        
+
+test("When listing products, use filter by rating works as expected", async () => {
+  //We need to mock this function as the ProductCard calls it in order to render the img of each product.
+  jest.spyOn(api, "getProductImages").mockImplementation((_id: string): Promise<string[]> => {
+    return Promise.resolve(["1"]);
+  });
+  //The products are retrieved from the getProducts method of the API. 
+  const getByRating = jest.spyOn(api, "getProducts").mockReturnValue(Promise.resolve(productsList));
+
+  render(<MemoryRouter><MainProducts refreshCartList={() => { // intentional for testing
+  }} /> </MemoryRouter>);
+
+  //We neeed to wait for the loader to be removed!!!!
+  await waitForElementToBeRemoved(() => screen.getByTestId('loader'));
+  //We make sure getProducts is called
+  await waitFor(() => expect(getByRating).toHaveBeenCalledTimes(1));
+
+
+  let filter = screen.getByTestId("openFilterBtn");
+  expect(filter).toBeInTheDocument();
+  fireEvent.click(filter);
+
+
+  await waitFor(() => expect(screen.getByTestId("drawer-filter")).toBeInTheDocument());
+
+
+
+
+  //we cannot expect to see the content changed to cars rated with 1 star as we're mocking the API call..
+  //thus, we can only test the parameters passed to the API
+
+  let pricePn = screen.getByTestId('ratingPanel').firstChild as HTMLElement;
+  pricePn.click();
+  expect(getByRating).toHaveBeenCalledWith("&rating[gte]=1");
+});      

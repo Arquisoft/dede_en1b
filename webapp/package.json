@@ -42,7 +42,8 @@
     "test": "react-scripts test --coverage",
     "test:e2e": "start-server-and-test prod 3000 'jest --rootDir=e2e --config=./e2e/jest.config.ts'",
     "eject": "react-scripts eject",
-    "prod": "ts-node-dev ./server.ts"
+    "prod": "ts-node-dev ./server.ts",
+    "clear_jest": "jest --clearCache"
   },
   "eslintConfig": {
     "extends": [
