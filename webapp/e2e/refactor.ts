@@ -14,7 +14,7 @@ export async function login() {
     await page.setCacheEnabled(false);
     await new Promise(r => setTimeout(r, 1000));
     await expect(page).toClick("#loginButton");
-    await new Promise(r => setTimeout(r, 6000));
+    await new Promise(r => setTimeout(r, 10000));
     await expect(page).toFillForm('form[name="cognitoSignInForm"]', {
         username: u,
         password: p,
