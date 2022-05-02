@@ -12,9 +12,9 @@ export async function login() {
     p = "DeDe_En1B_Tests";
 
     await page.setCacheEnabled(false);
-    await new Promise(r => setTimeout(r, 2000));
+    await new Promise(r => setTimeout(r, 1000));
     await expect(page).toClick("#loginButton");
-    await new Promise(r => setTimeout(r, 5000));
+    await new Promise(r => setTimeout(r, 6000));
     await expect(page).toFillForm('form[name="cognitoSignInForm"]', {
         username: u,
         password: p,
@@ -46,8 +46,17 @@ export async function setUp(url: string) {
             waitUntil: "networkidle0",
         })
         .catch((error) => { console.log(error); });
-
     return page;
+}
+
+export async function loginAndAddToCart(url: string) {
+    await page.setCacheEnabled(false);
+
+    //Login
+    await login();
+
+    //Add to cart
+    await addToCart(url);
 }
 
 export async function getPage() {
@@ -60,4 +69,19 @@ export async function getBrowser() {
 
 export function close() {
     browser.close();
+}
+export async function quickLogin() {
+    let u: string;
+    let p: string;
+    u = "dedeen1btests";
+    p = "DeDe_En1B_Tests";
+
+    await expect(page).toFillForm('form[name="cognitoSignInForm"]', {
+        username: u,
+        password: p,
+    });
+    await expect(page).toClick('input[name="signInSubmitButton"]');
+    await new Promise(r => setTimeout(r, 2000));
+    await expect(page).toClick("button.allow-button");
+    await new Promise(r => setTimeout(r, 5000));
 }

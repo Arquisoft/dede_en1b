@@ -1,11 +1,11 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import puppeteer from "puppeteer";
-import { addToCart, close, getPage, login, setUp } from '../refactor';
+import { addToCart, close, getPage, login, loginAndAddToCart, setUp } from '../refactor';
 
 const feature = loadFeature('./e2e/features/add-address.feature');
 
 let page: puppeteer.Page;
-// let url = "https://www.dedeen1b.tk/"
+//"https://www.dedeen1b.tk/"
 let url = "http://localhost:3000/"
 
 
@@ -25,13 +25,7 @@ defineFeature(feature, test => {
         });
 
         when('They change their address in their profile', async () => {
-            await page.setCacheEnabled(false);
-
-            //Login
-            await login();
-
-            //Add to cart
-            await addToCart(url);
+            await loginAndAddToCart(url);
 
             //Add address
             await page.goto(url + "profile");
