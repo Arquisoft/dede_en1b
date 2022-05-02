@@ -1,51 +1,48 @@
 import { ItemCart } from "../../shared/shareddtypes";
-import Typography from "@mui/material/Typography";
-import { Card, CardContent, Box, CardMedia } from "@mui/material";
-import { baseApiEndPoint, getProductImages } from '../../api/api';
-import { useState,useEffect } from 'react';
 
+import { baseApiEndPoint, getProductImages } from '../../api/api';
+import { useState, useEffect } from 'react';
+import './../../css/CheckoutItem.css'
 type CheckoutItemProps = {
     item: ItemCart;
-    updateTotal: () => void;
 };
 
 function CheckoutItem(props: CheckoutItemProps) {
     const [imgPath, setImgPath] = useState<string>("");
 
     const getImage = async () => {
-        setImgPath(baseApiEndPoint+(await getProductImages(props.item.product.id)as string[])[0]);
-      }; 
+        setImgPath(baseApiEndPoint + (await getProductImages(props.item.product.id) as string[])[0]);
+    };
 
     useEffect(() => {
         getImage();
     }, []);
 
-
     return (
-        <Card variant="elevation" sx={{ display: 'flex', marginBottom: 5 }}>
-            <CardMedia
-                component="img"
-                image={imgPath}
-                sx={{ height: 260, width: 100, margin: 3 }}
-                style={{ flex: 2 }} />
-            <Box style={{ flex: 3, display: 'flex', flexDirection: 'column' }}
-                justifyContent='space-between'>
-                <CardContent>
-                    <Typography component="h2" variant="h3">
-                        {props.item.product.name}
+        <div className="card-item" style={{
 
-                    </Typography>
-                    <Typography component="h3" variant="h4">
+        }}>
+            <img className="item-img" src={imgPath} alt={props.item.product.name} />
 
-                        <p>x{props.item.quantity}</p>
-                        <p>Price: {props.item.product.price.toString().concat(" €")}</p>
-                    </Typography>
-                </CardContent>
+            <div className="item-info">
 
-            </Box>
+                <div className="item-name" >
+                    {props.item.product.name}
 
-        </Card>
+                </div>
+
+                <div className="item-price-quantity"  >
+
+                    <p>{props.item.quantity} Unit(s)</p>
+                    <p>Price: {props.item.product.price.toString().concat(" €")}</p>
+                </div>
+
+
+            </div>
+
+        </div>
     );
+
 }
 
 export default CheckoutItem;

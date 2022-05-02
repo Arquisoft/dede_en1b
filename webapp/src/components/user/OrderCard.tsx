@@ -56,11 +56,6 @@ export default function OrderCard(props: OrderCardProps) {
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
                         {props.order.products.map(product => (
-                            // <Typography variant="caption" color="text.secondary">
-
-                            //     {"\t"}
-                            //     {product.product.name},
-                            // </Typography>
                             <OrderDetails orderId={props.order.id} productOrdered={product}></OrderDetails>
                         ))}
                     </CardContent>

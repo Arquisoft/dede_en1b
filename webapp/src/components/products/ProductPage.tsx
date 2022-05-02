@@ -6,7 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { useParams } from "react-router-dom";
 import './ProductPage.css';
-import ReviewsIcon from '@mui/icons-material/Reviews';
+import Divider from '@mui/material/Divider';
 import { Button, CardActions, List, Rating } from '@mui/material';
 
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
@@ -39,7 +39,7 @@ const BuyBtton = styled(Button)({
 
 });
 
-async function getImages(product: Product): Promise<string>{
+async function getImages(product: Product): Promise<string> {
   console.log('getImages', product);
   let imgs = new Array();
   let imagePaths = await getProductImages(product.id);
@@ -117,7 +117,7 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
             </CardContent>
             <CardActions>
               <DivBtonStyle>
-                <BuyBtton startIcon={<AddShoppingCartIcon />} onClick={() => {
+               <BuyBtton id="addToCartButton" startIcon={<AddShoppingCartIcon />} onClick={() => {
                   addProduct(product as Product);
                   prop.refreshCartList();
                 }} >
@@ -129,16 +129,25 @@ function ProductPage(prop: ProductPageProps): JSX.Element {
 
           </Card>
         </div>
-        <Card>
-          <Typography gutterBottom variant="h5" component="div">
-            Reviews of the product          <ReviewsIcon> </ReviewsIcon>
+        <br></br>
+        <br></br>
+        <br></br>
+        <Card >
+          <Typography gutterBottom style={{ fontSize: '1.6em', fontWeight: 'bold', color: '#F23005' }}>
+            Reviews of the product
           </Typography>
+          <Divider />
           <List>
-            {product.reviews.map((review) => (
+            {product.reviews.length > 0 ? product.reviews.map((review) => (
               <ReviewView review={review} />
-            )).reverse()}
+            )).reverse() :
+              <Typography gutterBottom style={{ fontSize: '1.1em' }}>
+                This product does not have any review yet.
+              </Typography>
+            }
           </List>
         </Card>
+
 
 
 
