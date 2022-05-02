@@ -61,7 +61,8 @@ test("Filter is rendered properly", async () => {
   expect(screen.getByText('Min Price')).toBeInTheDocument();
   expect(screen.getByText('Max Price')).toBeInTheDocument();
   expect(screen.getByText('Rating')).toBeInTheDocument();
-
+  expect(screen.getByTestId('minPricePanel')).toBeInTheDocument();
+  expect(screen.getByTestId('maxPricePanel')).toBeInTheDocument();
 
 
 });
@@ -134,8 +135,216 @@ test("When listing products, use filter by color works as expected", async () =>
   await waitFor(() => expect(screen.getByTestId("yellow")).toBeVisible());
   let yellowOpt = screen.getByTestId("yellow");
   fireEvent.click(yellowOpt);
-  expect(getByColor).toHaveBeenCalledWith("&color[eq]=yellow");
   //we cannot expect to see the content changed to yellow cars as we're mocking the API call..
+  expect(getByColor).toHaveBeenCalledWith("&color[eq]=yellow");
+
+
+});
+test("When listing products, use filter by color gray works", async () => {
+  //We need to mock this function as the ProductCard calls it in order to render the img of each product.
+  jest.spyOn(api, "getProductImages").mockImplementation((_id: string): Promise<string[]> => {
+    return Promise.resolve(["1"]);
+  });
+  //The products are retrieved from the getProducts method of the API. 
+  const getByColorGray = jest.spyOn(api, "getProducts").mockReturnValue(Promise.resolve([]));
+
+  render(<MemoryRouter><MainProducts refreshCartList={() => {
+    //intentional testing purposes
+  }} /> </MemoryRouter>);
+
+
+  //open filtering
+  fireEvent.click(screen.getByTestId("openFilterBtn"));
+
+
+  await waitFor(() => expect(screen.getByTestId("drawer-filter")).toBeInTheDocument());
+
+  let colorChooserGray = screen.getByTestId("colorPanel").firstChild as HTMLElement;
+  expect(colorChooserGray).toBeInTheDocument();
+  fireEvent.mouseDown(colorChooserGray);
+
+  await waitFor(() => expect(screen.getByTestId("gray")).toBeVisible());
+  let grayOpt = screen.getByTestId("gray");
+  fireEvent.click(grayOpt);
+
+  //we cannot expect to see the content changed to gray cars as we're mocking the API call..
+  expect(getByColorGray).toHaveBeenCalledWith("&color[eq]=gray");
+
+
+  
+});
+test("When listing products, use filter by color orange works", async () => {
+  //We need to mock this function as the ProductCard calls it in order to render the img of each product.
+  jest.spyOn(api, "getProductImages").mockImplementation((_id: string): Promise<string[]> => {
+    return Promise.resolve(["1"]);
+  });
+  //The products are retrieved from the getProducts method of the API. 
+  const getByColorOrange = jest.spyOn(api, "getProducts").mockReturnValue(Promise.resolve([]));
+  render(<MemoryRouter><MainProducts refreshCartList={() => {
+    //intentional testing purposes
+  }} /> </MemoryRouter>);
+
+  //open filtering
+  fireEvent.click(screen.getByTestId("openFilterBtn"));
+
+  await waitFor(() => expect(screen.getByTestId("drawer-filter")).toBeInTheDocument());
+
+  let colorChooserOrange = screen.getByTestId("colorPanel").firstChild as HTMLElement;
+  expect(colorChooserOrange).toBeInTheDocument();
+  fireEvent.mouseDown(colorChooserOrange);
+
+  await waitFor(() => expect(screen.getByTestId("orange")).toBeVisible());
+  let orangeOpt = screen.getByTestId("orange");
+  fireEvent.click(orangeOpt);
+
+  //we cannot expect to see the content changed to orange cars as we're mocking the API call..
+  expect(getByColorOrange).toHaveBeenCalledWith("&color[eq]=orange");
+
+
+  
+});
+
+test("When listing products, use filter by color red works", async () => {
+  //We need to mock this function as the ProductCard calls it in order to render the img of each product.
+  jest.spyOn(api, "getProductImages").mockImplementation((_id: string): Promise<string[]> => {
+    return Promise.resolve(["1"]);
+  });
+  //The products are retrieved from the getProducts method of the API. 
+  const getByColorRed = jest.spyOn(api, "getProducts").mockReturnValue(Promise.resolve([]));
+  render(<MemoryRouter><MainProducts refreshCartList={() => {
+    //intentional testing purposes
+  }} /> </MemoryRouter>);
+
+  //open filtering
+  fireEvent.click(screen.getByTestId("openFilterBtn"));
+
+  await waitFor(() => expect(screen.getByTestId("drawer-filter")).toBeInTheDocument());
+
+  let colorChooserRed = screen.getByTestId("colorPanel").firstChild as HTMLElement;
+  expect(colorChooserRed).toBeInTheDocument();
+  fireEvent.mouseDown(colorChooserRed);
+
+  await waitFor(() => expect(screen.getByTestId("red")).toBeVisible());
+  let redOpt = screen.getByTestId("red");
+  fireEvent.click(redOpt);
+
+  //we cannot expect to see the content changed to red cars as we're mocking the API call..
+  expect(getByColorRed).toHaveBeenCalledWith("&color[eq]=red");
+
+});
+
+test("When listing products, use filter by color green works", async () => {
+  //We need to mock this function as the ProductCard calls it in order to render the img of each product.
+  jest.spyOn(api, "getProductImages").mockImplementation((_id: string): Promise<string[]> => {
+    return Promise.resolve(["1"]);
+  });
+  //The products are retrieved from the getProducts method of the API. 
+  const getByColorGreen = jest.spyOn(api, "getProducts").mockReturnValue(Promise.resolve([]));
+  render(<MemoryRouter><MainProducts refreshCartList={() => {
+    //intentional testing purposes
+  }} /> </MemoryRouter>);
+
+  //open filtering
+  fireEvent.click(screen.getByTestId("openFilterBtn"));
+
+  await waitFor(() => expect(screen.getByTestId("drawer-filter")).toBeInTheDocument());
+
+  let colorChooserGreen = screen.getByTestId("colorPanel").firstChild as HTMLElement;
+  expect(colorChooserGreen).toBeInTheDocument();
+  fireEvent.mouseDown(colorChooserGreen);
+
+  await waitFor(() => expect(screen.getByTestId("green")).toBeVisible());
+  let greenOpt = screen.getByTestId("green");
+  fireEvent.click(greenOpt);
+
+  //we cannot expect to see the content changed to green cars as we're mocking the API call..
+  expect(getByColorGreen).toHaveBeenCalledWith("&color[eq]=green");
+
+});
+test("When listing products, use filter by color blue works", async () => {
+  //We need to mock this function as the ProductCard calls it in order to render the img of each product.
+  jest.spyOn(api, "getProductImages").mockImplementation((_id: string): Promise<string[]> => {
+    return Promise.resolve(["1"]);
+  });
+  //The products are retrieved from the getProducts method of the API. 
+  const getByColorBlue = jest.spyOn(api, "getProducts").mockReturnValue(Promise.resolve([]));
+  render(<MemoryRouter><MainProducts refreshCartList={() => {
+    //intentional testing purposes
+  }} /> </MemoryRouter>);
+
+  //open filtering
+  fireEvent.click(screen.getByTestId("openFilterBtn"));
+
+  await waitFor(() => expect(screen.getByTestId("drawer-filter")).toBeInTheDocument());
+
+  let colorChooserBlue = screen.getByTestId("colorPanel").firstChild as HTMLElement;
+  expect(colorChooserBlue).toBeInTheDocument();
+  fireEvent.mouseDown(colorChooserBlue);
+
+  await waitFor(() => expect(screen.getByTestId("blue")).toBeVisible());
+  let blueOpt = screen.getByTestId("blue");
+  fireEvent.click(blueOpt);
+
+  //we cannot expect to see the content changed to blue cars as we're mocking the API call..
+  expect(getByColorBlue).toHaveBeenCalledWith("&color[eq]=blue");
+
+});
+test("When listing products, use filter by color white works", async () => {
+  //We need to mock this function as the ProductCard calls it in order to render the img of each product.
+  jest.spyOn(api, "getProductImages").mockImplementation((_id: string): Promise<string[]> => {
+    return Promise.resolve(["1"]);
+  });
+  //The products are retrieved from the getProducts method of the API. 
+  const getByColorWhite = jest.spyOn(api, "getProducts").mockReturnValue(Promise.resolve([]));
+  render(<MemoryRouter><MainProducts refreshCartList={() => {
+    //intentional testing purposes
+  }} /> </MemoryRouter>);
+
+  //open filtering
+  fireEvent.click(screen.getByTestId("openFilterBtn"));
+
+  await waitFor(() => expect(screen.getByTestId("drawer-filter")).toBeInTheDocument());
+
+  let colorChooserWhite = screen.getByTestId("colorPanel").firstChild as HTMLElement;
+  expect(colorChooserWhite).toBeInTheDocument();
+  fireEvent.mouseDown(colorChooserWhite);
+
+  await waitFor(() => expect(screen.getByTestId("white")).toBeVisible());
+  let whiteOpt = screen.getByTestId("white");
+  fireEvent.click(whiteOpt);
+
+  //we cannot expect to see the content changed to white cars as we're mocking the API call..
+  expect(getByColorWhite).toHaveBeenCalledWith("&color[eq]=white");
+
+});
+
+test("When listing products, use filter by color black works", async () => {
+  //We need to mock this function as the ProductCard calls it in order to render the img of each product.
+  jest.spyOn(api, "getProductImages").mockImplementation((_id: string): Promise<string[]> => {
+    return Promise.resolve(["1"]);
+  });
+  //The products are retrieved from the getProducts method of the API. 
+  const getByColorBlack = jest.spyOn(api, "getProducts").mockReturnValue(Promise.resolve([]));
+  render(<MemoryRouter><MainProducts refreshCartList={() => {
+    //intentional testing purposes
+  }} /> </MemoryRouter>);
+
+  //open filtering
+  fireEvent.click(screen.getByTestId("openFilterBtn"));
+
+  await waitFor(() => expect(screen.getByTestId("drawer-filter")).toBeInTheDocument());
+
+  let colorChooserBlack = screen.getByTestId("colorPanel").firstChild as HTMLElement;
+  expect(colorChooserBlack).toBeInTheDocument();
+  fireEvent.mouseDown(colorChooserBlack);
+
+  await waitFor(() => expect(screen.getByTestId("black")).toBeVisible());
+  let blackOpt = screen.getByTestId("black");
+  fireEvent.click(blackOpt);
+
+  //we cannot expect to see the content changed to red cars as we're mocking the API call..
+  expect(getByColorBlack).toHaveBeenCalledWith("&color[eq]=black");
+
 });
 
 test("When listing products, use filter by brand works as expected", async () => {
@@ -201,8 +410,6 @@ test("When listing products, use filter by rating works as expected", async () =
   await waitFor(() => expect(screen.getByTestId("drawer-filter")).toBeInTheDocument());
 
 
-
-
   //we cannot expect to see the content changed to cars rated with 1 star as we're mocking the API call..
   //thus, we can only test the parameters passed to the API
 
@@ -210,3 +417,4 @@ test("When listing products, use filter by rating works as expected", async () =
   pricePn.click();
   expect(getByRating).toHaveBeenCalledWith("&rating[gte]=1");
 });      
+
