@@ -62,6 +62,8 @@ export default function AdminLogin(): JSX.Element {
               autoFocus
               value={username}
               onChange={(e:any) => setUsername(e.target.value)}
+              inputProps={{ "data-testid": "input-email" }}
+
             />
             <TextField
               margin="normal"
@@ -73,7 +75,9 @@ export default function AdminLogin(): JSX.Element {
               id="password"
               autoComplete="current-password"
               value={password}
-              onChange={(e:any) => setPassword(e.target.value)}
+              onChange={(e:any) => setPassword(e.target.value)
+              }
+              inputProps={{ "data-testid": "input-password" }}
             />
             <Button
               type="submit"
