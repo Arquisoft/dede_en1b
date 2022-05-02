@@ -142,16 +142,22 @@ function MainProducts(props: MainProductsProps): JSX.Element {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [products, setProducts] = useState<Product[]>([]);
-
+  const [message, setMessage] = useState<string>("Loading products!!");
   const refreshProductList = async (query: string) => {
     if (searchParams.get("q") !== null)
       query += "&name[eq]=" + searchParams.get("q");
     setProducts(await getProducts(query));
+    
   }
 
   useEffect(() => {
 
     refreshProductList(computeQueryParams());
+    if(products.length===0 && computeQueryParams()===""){
+      setMessage("Loading products!!")
+    }else{ 
+      setMessage("No products matched your filtering criteria.")
+    }
   }, [color, brand, minPrice, maxPrice, minRating]);
 
   return (
@@ -178,8 +184,9 @@ function MainProducts(props: MainProductsProps): JSX.Element {
             <div data-testid="products-retrieved">
               <ProductCard key={p.id} product={p} refreshCartList={props.refreshCartList} />
             </div>
-          )) : <Typography data-testid="loader">Loading products!!
-            <LinearProgress color="success" />
+          )) : <Typography data-testid="loader" style={{color:'#F23005', fontWeight:'bold', fontSize:'1.6em'}}>
+             {message.toString()} {message ==="Loading products!!" ? <LinearProgress color="success" />:  <></>}
+            
           </Typography>
           }
         </div>
