@@ -1405,7 +1405,298 @@ and response time of less than 1s.</em></p></td>
 </div>
 <div class="sect2">
 <h3 id="_unitary_tests">13.1. Unitary Tests</h3>
-
+<div class="paragraph">
+<p>We made use of Jest and React testing library. We tried to take into account several tips and good-practises for testing by <a href="https://kentcdodds.com">Kent C Dodds</a>, creator of the
+react testing library. He has several blogs and videos for teaching React in action.</p>
+</div>
+<div class="paragraph">
+<p>Unitary testing had difficulty in the sense that there should not be any dependencies and if they do, they must be mocked for the test.</p>
+</div>
+<div class="paragraph">
+<p>We needed to verify that isolated parts of DeDe worked as expected and in some cases it got really hard.</p>
+</div>
+<div class="paragraph">
+<p>The general strategy used was, in some cases, to put a data-testid in the components we wanted to fetch, or query them by text criteria.</p>
+</div>
+<div class="paragraph">
+<p>When the component relied on asynchronous API calls, we mocked their implementation and used functions like waitFor() or waitForElementToBeRemoved(), in order to wait for the end of execution of those functions.</p>
+</div>
+<div class="paragraph">
+<p>In other cases we had to wrap elements inside others such as MemoryRouter or ReactNotifications before rendering them with the goal of mounting them properly.</p>
+</div>
+<div class="paragraph">
+<p>In the end, we have 40 test distributed in 19 suites. We tested the following scenarios:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>OrderAdminCard component</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check that it is rendered properly with a product.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>AdminLogin component</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check that it is rendered properly.</p>
+</li>
+<li>
+<p>Check that when signing-in it calls the API as expected.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>OrderAdminDetails component</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check that it is rendered properly.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>CartItem component</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check that it is rendered correctly.</p>
+</li>
+<li>
+<p>Check that quantity can be modified.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>ShoppingCart component</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check that it is rendered correctly when cart is empty.</p>
+</li>
+<li>
+<p>Check that it is rendered correctly when it has some products.</p>
+</li>
+<li>
+<p>Check that it can have its products deleted calling the corresponding API function.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>CheckoutItem component</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check that it is rendered correctly with a product.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Checkout component</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check that it is rendered correctly with multiple products.</p>
+</li>
+<li>
+<p>Check that is rendered with the proper information and does not let user go to shipping if the cart is empty.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Main Products component</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Filter is rendered properly.</p>
+</li>
+<li>
+<p>When listing products, the proper function is called and correct products are rendered.</p>
+</li>
+<li>
+<p>When listing products, using filter by color works as expected calling the proper function with corresponding parameters.</p>
+</li>
+<li>
+<p>When listing products, using filter by brand works as expected.</p>
+</li>
+<li>
+<p>When listing products, using filter by rating works a expected.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Product Card component</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check that is rendered correctly</p>
+</li>
+<li>
+<p>Check that it handles adding</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Product Page component</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check that it is rendered correctly when the product with given ID exists and it has reviews.</p>
+</li>
+<li>
+<p>Check that it is rendered correctly when the product with given ID does not exist.</p>
+</li>
+<li>
+<p>Check that it is rendered correctly when it has no reviews.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Review view component</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check that it is rendered correctly</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Fragments components (NavBar, Footer, AboutUs, DeveloperCards)</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check that it is rendered correctly. (One test per fragment)</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Address Form</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check alert is shown when an address field is missing</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_integration_tests">13.2. Integration Tests</h3>
