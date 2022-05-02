@@ -1,12 +1,10 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import puppeteer from "puppeteer";
-import { login } from '../refactor';
-import { close, getPage, setUp } from '../refactor';
+import { addToCart, login, close, getPage, setUp } from '../refactor';
 
 const feature = loadFeature('./e2e/features/buy-item.feature');
 
 let page: puppeteer.Page;
-let browser: puppeteer.Browser;
 // let url = "https://www.dedeen1b.tk/"
 let url = "http://localhost:3000/"
 
@@ -30,14 +28,10 @@ defineFeature(feature, test => {
             await page.setCacheEnabled(false);
 
             //Login
-            await login(page);
+            await login();
 
             //Add to cart
-            await page.goto(url + "");
-            await new Promise(r => setTimeout(r, 1000));
-            await expect(page).toClick('#addToCartButton');
-            await new Promise(r => setTimeout(r, 2000));
-            await page.goto(url + "shipping");
+            addToCart(url);
 
             await new Promise(r => setTimeout(r, 2000));
             await expect(page).toClick("#loginButton");

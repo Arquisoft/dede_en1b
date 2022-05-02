@@ -55,7 +55,7 @@ export default function AddressComponent() {
                     disablePortal
                     id="combo-box-address"
                     options={addressesString}
-                    defaultValue={addressesString[0] as string}
+                    defaultValue={addressesString[0]}
                     sx={{ width: '80%', marginTop: '1%' }}
                     renderInput={(params) => <TextField {...params} label="Shipping Address:" />}
                     onChange={(_e, value) => {

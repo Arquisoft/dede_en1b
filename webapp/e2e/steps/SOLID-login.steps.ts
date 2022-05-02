@@ -5,7 +5,6 @@ import { close, getPage, login, setUp } from '../refactor';
 const feature = loadFeature('./e2e/features/SOLID-login.feature');
 
 let page: puppeteer.Page;
-let browser: puppeteer.Browser;
 
 defineFeature(feature, test => {
 
@@ -26,7 +25,7 @@ defineFeature(feature, test => {
             await page.setCacheEnabled(false);
             await new Promise(r => setTimeout(r, 2000));
 
-            await login(page);
+            await login();
         });
 
         then('Their name should be shown', async () => {
