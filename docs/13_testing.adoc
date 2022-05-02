@@ -116,7 +116,7 @@ Scenario: The user is registered in the site
 
 The result of running these test is as follows: 
 
-image::images/acceptanceResults.png[]
+image::acceptanceResults.png[]
 
 
 === Load Tests
@@ -132,19 +132,19 @@ This internet loss made it impossible for us to load test the SOLID login and, a
 
 An Open Model for user injection was the one used because you control the arrival rate of users, and the concurrent number of users in our web is not capped. We used this injection setup.
 
-image::images/gatlingSetUp.png[]
+image::gatlingSetUp.png[]
 
 An approximate number of 18k requests were made during the test in which 10% of those had a response time between 800ms and 1200ms, and just 1% had a response time above the latter. 
 
-image::images/gatlingChart.png[]
+image::gatlingChart.png[]
 
 During the test there was a peak of 196 concurrent users.
 
-image::images/gatlingActiveUsers.png[]
+image::gatlingActiveUsers.png[]
 
 Observing the percentile response time chart generated we can know where in the execution of the recording the requests consume more time and its different distributions. The requests that consume more time in this test would be filter usage, and quantity modification in the shopping cart.
 
-image::images/gatlingPercentiles.png[]
+image::gatlingPercentiles.png[]
 
 
 
