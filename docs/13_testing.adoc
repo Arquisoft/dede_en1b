@@ -4,9 +4,111 @@ Different testing methods were used to check the correct functioning and impleme
 
 
 === Unitary Tests
+We made use of Jest and React testing library. We tried to take into account several tips and good-practises for testing by https://kentcdodds.com[Kent C Dodds], creator of the
+react testing library. He has several blogs and videos for teaching React in action. 
+
+Unitary testing had difficulty in the sense that there should not be any dependencies and if they do, they must be mocked for the test. 
+
+We needed to verify that isolated parts of DeDe worked as expected and in some cases it got really hard.
+
+The general strategy used was, in some cases, to put a data-testid in the components we wanted to fetch, or query them by text criteria. 
+
+When the component relied on asynchronous API calls, we mocked their implementation and used functions like waitFor() or waitForElementToBeRemoved(), in order to wait for the end of execution of those functions.
+
+In other cases we had to wrap elements inside others such as MemoryRouter or ReactNotifications before rendering them with the goal of mounting them properly.
+
+In the end, we have 40 test distributed in 19 suites. We tested the following scenarios:
+====
+* OrderAdminCard component
+
+1. Check that it is rendered properly with a product.
+====
+
+====
+* AdminLogin component
+
+1. Check that it is rendered properly.
+2. Check that when signing-in it calls the API as expected.
+====
+
+====
+* OrderAdminDetails component
+
+1. Check that it is rendered properly.
+
+====
+
+====
+* CartItem component
+
+1. Check that it is rendered correctly.
+2. Check that quantity can be modified.
+====
+
+====
+* ShoppingCart component
+
+1. Check that it is rendered correctly when cart is empty.
+2. Check that it is rendered correctly when it has some products.
+3. Check that it can have its products deleted calling the corresponding API function.
+====
+
+====
+* CheckoutItem component
+
+1. Check that it is rendered correctly with a product.
+====
+
+====
+* Checkout component
+
+1. Check that it is rendered correctly with multiple products.
+2. Check that is rendered with the proper information and does not let user go to shipping if the cart is empty.
+====
 
 
+====
+* Main Products component
 
+1. Filter is rendered properly.
+2. When listing products, the proper function is called and correct products are rendered.
+3. When listing products, using filter by color works as expected calling the proper function with corresponding parameters. 
+4. When listing products, using filter by brand works as expected.
+5. When listing products, using filter by rating works a expected.
+====
+
+====
+* Product Card component
+
+1. Check that is rendered correctly
+2. Check that it handles adding
+====
+
+====
+* Product Page component
+
+1. Check that it is rendered correctly when the product with given ID exists and it has reviews.
+2. Check that it is rendered correctly when the product with given ID does not exist.
+3. Check that it is rendered correctly when it has no reviews.
+====
+
+====
+* Review view component
+
+1. Check that it is rendered correctly
+====
+
+====
+* Fragments components (NavBar, Footer, AboutUs, DeveloperCards)
+
+1. Check that it is rendered correctly. (One test per fragment)
+====
+
+====
+* Address Form
+
+1. Check alert is shown when an address field is missing
+====
 === Integration Tests
 
 We used Jest and Cucumber to perform integration testing in our app. Thanks to cucumber, we could design integration tests following the famous syntax "Given, When, Then". This allowed for better understandability of the code as well as easier debugging. 
