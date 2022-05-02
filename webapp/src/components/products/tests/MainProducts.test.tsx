@@ -61,7 +61,8 @@ test("Filter is rendered properly", async () => {
   expect(screen.getByText('Min Price')).toBeInTheDocument();
   expect(screen.getByText('Max Price')).toBeInTheDocument();
   expect(screen.getByText('Rating')).toBeInTheDocument();
-
+  expect(screen.getByTestId('minPricePanel')).toBeInTheDocument();
+  expect(screen.getByTestId('maxPricePanel')).toBeInTheDocument();
 
 
 });
@@ -134,8 +135,29 @@ test("When listing products, use filter by color works as expected", async () =>
   await waitFor(() => expect(screen.getByTestId("yellow")).toBeVisible());
   let yellowOpt = screen.getByTestId("yellow");
   fireEvent.click(yellowOpt);
-  expect(getByColor).toHaveBeenCalledWith("&color[eq]=yellow");
   //we cannot expect to see the content changed to yellow cars as we're mocking the API call..
+  expect(getByColor).toHaveBeenCalledWith("&color[eq]=yellow");
+
+  fireEvent.click(screen.getByTestId("orange"));
+  expect(getByColor).toHaveBeenCalledWith("&color[eq]=orange");
+
+  fireEvent.click(screen.getByTestId("red"));
+  expect(getByColor).toHaveBeenCalledWith("&color[eq]=red");
+
+  fireEvent.click(screen.getByTestId("gray"));
+  expect(getByColor).toHaveBeenCalledWith("&color[eq]=gray");
+
+  fireEvent.click(screen.getByTestId("green"));
+  expect(getByColor).toHaveBeenCalledWith("&color[eq]=green");
+
+  fireEvent.click(screen.getByTestId("blue"));
+  expect(getByColor).toHaveBeenCalledWith("&color[eq]=blue");
+
+  fireEvent.click(screen.getByTestId("white"));
+  expect(getByColor).toHaveBeenCalledWith("&color[eq]=white");
+
+  fireEvent.click(screen.getByTestId("black"));
+  expect(getByColor).toHaveBeenCalledWith("&color[eq]=black");
 });
 
 test("When listing products, use filter by brand works as expected", async () => {
@@ -201,8 +223,6 @@ test("When listing products, use filter by rating works as expected", async () =
   await waitFor(() => expect(screen.getByTestId("drawer-filter")).toBeInTheDocument());
 
 
-
-
   //we cannot expect to see the content changed to cars rated with 1 star as we're mocking the API call..
   //thus, we can only test the parameters passed to the API
 
@@ -210,3 +230,4 @@ test("When listing products, use filter by rating works as expected", async () =
   pricePn.click();
   expect(getByRating).toHaveBeenCalledWith("&rating[gte]=1");
 });      
+
