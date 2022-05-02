@@ -1,4 +1,4 @@
-import {  render } from "@testing-library/react";
+import {  screen, render } from "@testing-library/react";
 import { ItemCart, Product } from "../../shared/shareddtypes";
 import Checkout from "./Checkout";
 
@@ -26,10 +26,13 @@ let itemcart1:ItemCart = {
 test('checkout component can be rendered', async () => {
     const cart:ItemCart[] = [itemcart1];
     const { getByText } = render(<Checkout items={cart} />);
+    expect(screen.getByText("Checkout")).toBeInTheDocument();
+    expect(screen.getByText("Cart Totals:")).toBeInTheDocument();
     expect(getByText("Price: 10 €")).toBeInTheDocument();
     expect(getByText("Product 1")).toBeInTheDocument();
     expect(getByText("2 Unit(s)")).toBeInTheDocument();
     expect(getByText("20.00 €")).toBeInTheDocument();
+    expect(screen.getByText("Shipping")).toBeInTheDocument();
 
 });
 
@@ -68,3 +71,13 @@ test('checkout component can be rendered', async () => {
 
     });
 
+    test('checkout component is rendered without letting user go to shipping if the cart is empty', async () => {
+
+        const { getByText } = render(<Checkout items={[]} />);
+        expect(screen.getByText("Checkout")).toBeInTheDocument();
+        expect(screen.getByText("Cart Totals:")).toBeInTheDocument();
+        
+        expect(getByText("0.00 €")).toBeInTheDocument();
+        expect(screen.queryByText("Shipping")).toBeNull();
+    
+    });
