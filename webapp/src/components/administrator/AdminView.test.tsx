@@ -27,12 +27,19 @@ import userEvent from "@testing-library/user-event";
 
 
  test('add product button calls the api to add a product', async () => {
-    const { getByText } = render(<Router><AdminView /></Router>);
+    const { getByText,getByTestId } = render(<Router><AdminView /></Router>);
 
     const spy = jest.spyOn(api,"addProduct").mockImplementation(():Promise<boolean> =>  Promise.resolve(true));
+    userEvent.type(getByTestId("input-name"), "P1");
+    userEvent.type(getByTestId("input-description"), "P1 description");
+    userEvent.type(getByTestId("input-number"), "79.99");
+    userEvent.type(getByTestId("input-category"), "Test");
+
     fireEvent.click(getByText("Add Product"));
     expect(spy).toHaveBeenCalledTimes(1);
 });
+
+
 
 
 /**

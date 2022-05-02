@@ -19,7 +19,7 @@ export default function Shipping(props: ShippingProps) {
 
     if (localStorage.getItem("webId") === null) {
         return (
-            <Typography style={{ textAlign: "center", marginTop:"40px", display: 'inline-block' }} variant='h6'>Please, <Link id="li" href="/login">Log In</Link> or register via <Link id="inrupt" href="https://inrupt.com/" target="_blank">Inrupt</Link> or <Link id="solidcom" href="https://solidcommunity.net/" target="_blank">SOLID</Link></Typography>
+            <Typography data-testId="message" style={{ textAlign: "center", marginTop:"40px", display: 'inline-block' }} variant='h6'>Please, <Link id="li" href="/login">Log In</Link> or register via <Link id="inrupt" href="https://inrupt.com/" target="_blank">Inrupt</Link> or <Link id="solidcom" href="https://solidcommunity.net/" target="_blank">SOLID</Link></Typography>
         );
     }
 

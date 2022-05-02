@@ -24,10 +24,10 @@ import AdminLogin from "./AdminLogin";
 
     test('sign in button calls the api to sign in', async () => {
         const { getByText } = render(<Router><AdminLogin /></Router>);
-        const email = ""
-        const password = ""
-        fireEvent.change(screen.getByTestId("input-email"), { target: { value: email } });
-        fireEvent.change(screen.getByTestId("input-password"), { target: { value: password } });
+        const e = "a"
+        const p = "a"
+        fireEvent.change(screen.getByTestId("input-email"), { target: { value: e } });
+        fireEvent.change(screen.getByTestId("input-password"), { target: { value: p } });
         const spy = jest.spyOn(api,"adminLogin");
         fireEvent.click(screen.getByText("Sign In"));
         expect(spy).toHaveBeenCalledTimes(1);
